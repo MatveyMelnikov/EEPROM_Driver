@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "eeprom_param.h": "c",
+        "eeprom_driver.h": "c",
+        "eeprom_test_driver.h": "c",
+        "string.h": "c",
+        "compare": "cpp"
+    }
+}
