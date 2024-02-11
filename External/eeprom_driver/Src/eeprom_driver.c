@@ -166,12 +166,24 @@ eeprom_status eeprom_current_address_read(
     return EEPROM_OK;
 }
 
-eeprom_status EEPROM_random_read(
-    uint16_t addr,
+eeprom_status eeprom_random_byte_read(
+    const uint16_t addr,
     uint8_t *const data
 )
 {
-    return EEPROM_OK;
+    struct 
+    {
+        uint16_t addr;
+        uint8_t dummy;
+    } set_addr_cmd = { .addr = addr, .dummy = 0xff };
+
+    eeprom_status status = eeprom_io_write(
+        (uint8_t*)&set_addr_cmd,
+        sizeof(set_addr_cmd)
+    );
+    status |= eeprom_io_read(data, 1);
+
+    return status;
 }
 
 eeprom_status eeprom_sequential_read(

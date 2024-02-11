@@ -34,7 +34,6 @@ static expectation *expectations = NULL;
 static int set_expectation_count;
 static int get_expectation_count;
 static int max_expectation_count;
-static int failure_already_reported;
 
 // Static functions ----------------------------------------------------------
 
@@ -92,7 +91,7 @@ static void check_data(
         }
     }
 
-    if (fail)
+    if (!fail)
         return;
 
     sprintf(message, report_data_error, get_expectation_count);
@@ -107,13 +106,18 @@ void mock_eeprom_io_create(const uint8_t max_expectations)
     if (expectations != NULL)
         free(expectations);
     expectations = calloc(max_expectations, sizeof(expectation));
+    max_expectation_count = max_expectations;
 }
 
 void mock_eeprom_io_destroy(void)
 {
     if (expectations)
         free(expectations);
-    expectations = NULL; 
+    expectations = NULL;
+
+    set_expectation_count = 0;
+    get_expectation_count = 0;
+    max_expectation_count = 0;
 }
 
 void mock_eeprom_io_expect_write(
@@ -161,7 +165,6 @@ eeprom_status eeprom_io_read(
 
     fail_when_no_init();
     check_kind(&current_expectation, IO_READ);
-    check_data(&current_expectation, data);
 
     //data = expectations[get_expectation_count++].data;
     for (uint8_t i = 0; i < data_size; i++)

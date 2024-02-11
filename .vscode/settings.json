@@ -9,6 +9,7 @@
         "stm32f1xx.h": "c",
         "stm32_hal_legacy.h": "c",
         "mock_eeprom_io.h": "c",
-        "eeprom_io.h": "c"
+        "eeprom_io.h": "c",
+        "unity_fixture.h": "c"
     }
 }

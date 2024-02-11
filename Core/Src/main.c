@@ -101,6 +101,8 @@ int main(void)
 
   //HAL_StatusTypeDef status = EEPROM_check_link(&hi2c2);
   eeprom_status status = eeprom_check_link();
+  uint8_t data = 0x0U;
+  status |= eeprom_random_byte_read(0x5502, &data);
 
   if (status)
     Error_Handler();
