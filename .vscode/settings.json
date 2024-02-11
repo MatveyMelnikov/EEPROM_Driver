@@ -4,6 +4,9 @@
         "eeprom_driver.h": "c",
         "eeprom_test_driver.h": "c",
         "string.h": "c",
-        "compare": "cpp"
+        "compare": "cpp",
+        "stm32f1xx_hal_def.h": "c",
+        "stm32f1xx.h": "c",
+        "stm32_hal_legacy.h": "c"
     }
 }

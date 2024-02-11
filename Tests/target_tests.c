@@ -80,7 +80,7 @@ static void MX_GPIO_Init(void)
 
 static void run_all_tests()
 {
-	RUN_TEST_GROUP(anything);
+	RUN_TEST_GROUP(eeprom_driver);
 }
 
 void unity_config_put_c(uint8_t a)

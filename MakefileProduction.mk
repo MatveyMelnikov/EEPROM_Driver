@@ -2,7 +2,9 @@
 
 # C_INCLUDES = 
 
-C_SOURCES = \
-Core/Src/main.c
+C_SOURCES += \
+Core/Src/main.c \
+$(EEPROM_DRIVER)/Src/eeprom_io.c \
+$(EEPROM_DRIVER)/Src/eeprom_time.c
 
 include MakefileTarget.mk

@@ -1,22 +1,6 @@
 #include "unity_fixture.h"
-#include <stdbool.h>
 
-TEST_GROUP(anything);
-
-TEST_SETUP(anything)
+TEST_GROUP_RUNNER(eeprom_driver)
 {
-}
-
-TEST_TEAR_DOWN(anything)
-{
-}
-
-TEST(anything, success_test)
-{
-    TEST_ASSERT_EQUAL(true, true);
-}
-
-TEST(anything, fail_test)
-{
-    FAIL("Fails message");
+    //RUN_TEST_CASE(eeprom_driver, success_test);
 }

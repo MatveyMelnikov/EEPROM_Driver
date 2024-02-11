@@ -1,7 +1,11 @@
 #include "unity_fixture.h"
 
-TEST_GROUP_RUNNER(anything)
+TEST_GROUP(eeprom_driver);
+
+TEST_SETUP(eeprom_driver)
 {
-    RUN_TEST_CASE(anything, success_test);
-    RUN_TEST_CASE(anything, fail_test);
+}
+
+TEST_TEAR_DOWN(eeprom_driver)
+{
 }

@@ -1,6 +1,7 @@
 #include "eeprom_driver.h"
 #include "eeprom_defs.h"
 #include "eeprom_io.h"
+#include "eeprom_time.h"
 #include <stdint.h>
 #include <string.h>
 
@@ -120,8 +121,11 @@ eeprom_status eeprom_byte_write(
         data
     };
 
-    eeprom_status status = eeprom_io_write(&sent_data, sizeof(sent_data));
-    HAL_Delay(WRITE_CYCLE_TIMEOUT);
+    eeprom_status status = eeprom_io_write(
+        (uint8_t*)&sent_data,
+        sizeof(sent_data)
+    );
+    eeprom_delay(WRITE_CYCLE_TIMEOUT);
 
     return status;
 }
@@ -150,8 +154,9 @@ eeprom_status eeprom_page_write(
 
         status |= eeprom_io_write((uint8_t*)&sent_part, 66);
     }
+    eeprom_delay(WRITE_CYCLE_TIMEOUT);
 
-    HAL_Delay(WRITE_CYCLE_TIMEOUT);
+    return status;
 }
 
 eeprom_status eeprom_current_address_read(
@@ -182,7 +187,7 @@ eeprom_status eeprom_check_link(void)
     static uint8_t result = 0x0;
 
     eeprom_status status = eeprom_io_write(&data, sizeof(data));
-    HAL_Delay(WRITE_CYCLE_TIMEOUT);
+    eeprom_delay(WRITE_CYCLE_TIMEOUT);
     
     if (status)
         return status;
@@ -191,6 +196,6 @@ eeprom_status eeprom_check_link(void)
     status |= eeprom_io_read(&result, 1);
 
     if (result != 0x55)
-        status |= HAL_ERROR;
+        status |= EEPROM_ERROR;
     return status;
 }

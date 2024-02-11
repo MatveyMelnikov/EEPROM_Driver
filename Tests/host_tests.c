@@ -6,7 +6,7 @@ void unity_config_put_c(uint8_t a);
 
 static void run_all_tests()
 {
-	RUN_TEST_GROUP(any_clear_logic);
+	RUN_TEST_GROUP(eeprom_driver);
 }
 
 int main(int argc, char *argv[])

@@ -24,12 +24,12 @@ enum
 #define WRITE_CYCLE_TIMEOUT 0xaU
 #endif
 
-#endif
-
 typedef enum
 {
     EEPROM_OK = 0x00U,
     EEPROM_ERROR = 0x01U,
     EEPROM_BUSY = 0x02U,
-    EEPROM_TIMEOUT = 0x03U
+    EEPROM_TIMEOUT_ERROR = 0x03U
 } eeprom_status;
+
+#endif

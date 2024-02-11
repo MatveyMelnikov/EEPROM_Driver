@@ -1,0 +1,1064 @@
+ARM GAS  /tmp/ccCBHk9y.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"mock_eeprom_io.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "Tests/mocks/Src/mock_eeprom_io.c"
+  18              		.section	.text.record_expectation,"ax",%progbits
+  19              		.align	1
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	record_expectation:
+  25              	.LVL0:
+  26              	.LFB2:
+   1:Tests/mocks/Src/mock_eeprom_io.c **** #include "mock_eeprom_io.h"
+   2:Tests/mocks/Src/mock_eeprom_io.c **** #include "unity_fixture.h"
+   3:Tests/mocks/Src/mock_eeprom_io.c **** #include <stdlib.h>
+   4:Tests/mocks/Src/mock_eeprom_io.c **** #include <stddef.h>
+   5:Tests/mocks/Src/mock_eeprom_io.c **** #include <stdint.h>
+   6:Tests/mocks/Src/mock_eeprom_io.c **** #include <stdbool.h>
+   7:Tests/mocks/Src/mock_eeprom_io.c **** 
+   8:Tests/mocks/Src/mock_eeprom_io.c **** typedef struct
+   9:Tests/mocks/Src/mock_eeprom_io.c **** {
+  10:Tests/mocks/Src/mock_eeprom_io.c ****     int kind;
+  11:Tests/mocks/Src/mock_eeprom_io.c ****     const uint8_t * data;
+  12:Tests/mocks/Src/mock_eeprom_io.c ****     uint8_t data_size
+  13:Tests/mocks/Src/mock_eeprom_io.c **** } expectation;
+  14:Tests/mocks/Src/mock_eeprom_io.c **** 
+  15:Tests/mocks/Src/mock_eeprom_io.c **** enum
+  16:Tests/mocks/Src/mock_eeprom_io.c **** {
+  17:Tests/mocks/Src/mock_eeprom_io.c ****     IO_READ,
+  18:Tests/mocks/Src/mock_eeprom_io.c ****     IO_WRITE,
+  19:Tests/mocks/Src/mock_eeprom_io.c ****     NO_EXPECTED_VALUE = -1
+  20:Tests/mocks/Src/mock_eeprom_io.c **** };
+  21:Tests/mocks/Src/mock_eeprom_io.c **** 
+  22:Tests/mocks/Src/mock_eeprom_io.c **** static char *report_not_init = "MockIO not initialized";
+  23:Tests/mocks/Src/mock_eeprom_io.c **** static char *report_no_room_for_exp = "No room for expectations in MockIO";
+  24:Tests/mocks/Src/mock_eeprom_io.c **** static char *report_verify_error = "Verify error in MockIO. Expected %u "
+  25:Tests/mocks/Src/mock_eeprom_io.c ****     "operations, but got %u";
+  26:Tests/mocks/Src/mock_eeprom_io.c **** static char *report_kind_error = "Error kind in MockIO."
+  27:Tests/mocks/Src/mock_eeprom_io.c ****     " Num of expectation %u ";
+  28:Tests/mocks/Src/mock_eeprom_io.c **** static char *report_addr_error = "Error addr in MockIO."
+  29:Tests/mocks/Src/mock_eeprom_io.c ****     " Num of expectation %u ";
+  30:Tests/mocks/Src/mock_eeprom_io.c **** static char *report_data_error = "Error data in MockIO."
+  31:Tests/mocks/Src/mock_eeprom_io.c ****     " Expected %u, but got %u";
+  32:Tests/mocks/Src/mock_eeprom_io.c **** 
+ARM GAS  /tmp/ccCBHk9y.s 			page 2
+
+
+  33:Tests/mocks/Src/mock_eeprom_io.c **** static expectation *expectations = NULL;
+  34:Tests/mocks/Src/mock_eeprom_io.c **** static int set_expectation_count;
+  35:Tests/mocks/Src/mock_eeprom_io.c **** static int get_expectation_count;
+  36:Tests/mocks/Src/mock_eeprom_io.c **** static int max_expectation_count;
+  37:Tests/mocks/Src/mock_eeprom_io.c **** static int failure_already_reported;
+  38:Tests/mocks/Src/mock_eeprom_io.c **** 
+  39:Tests/mocks/Src/mock_eeprom_io.c **** // Static functions ----------------------------------------------------------
+  40:Tests/mocks/Src/mock_eeprom_io.c **** 
+  41:Tests/mocks/Src/mock_eeprom_io.c **** static void fail_when_no_init()
+  42:Tests/mocks/Src/mock_eeprom_io.c **** {
+  43:Tests/mocks/Src/mock_eeprom_io.c ****     if (expectations == NULL)
+  44:Tests/mocks/Src/mock_eeprom_io.c ****         FAIL(report_not_init);
+  45:Tests/mocks/Src/mock_eeprom_io.c **** }
+  46:Tests/mocks/Src/mock_eeprom_io.c **** 
+  47:Tests/mocks/Src/mock_eeprom_io.c **** static void fail_when_no_room_for_expectations()
+  48:Tests/mocks/Src/mock_eeprom_io.c **** {
+  49:Tests/mocks/Src/mock_eeprom_io.c ****     fail_when_no_init();
+  50:Tests/mocks/Src/mock_eeprom_io.c ****     if (set_expectation_count >= max_expectation_count)
+  51:Tests/mocks/Src/mock_eeprom_io.c ****         FAIL(report_no_room_for_exp);
+  52:Tests/mocks/Src/mock_eeprom_io.c **** }
+  53:Tests/mocks/Src/mock_eeprom_io.c **** 
+  54:Tests/mocks/Src/mock_eeprom_io.c **** 
+  55:Tests/mocks/Src/mock_eeprom_io.c **** static void record_expectation(
+  56:Tests/mocks/Src/mock_eeprom_io.c ****     const int kind,
+  57:Tests/mocks/Src/mock_eeprom_io.c ****     const uint8_t *const data,
+  58:Tests/mocks/Src/mock_eeprom_io.c ****     const uint8_t data_size
+  59:Tests/mocks/Src/mock_eeprom_io.c **** )
+  60:Tests/mocks/Src/mock_eeprom_io.c **** {
+  27              		.loc 1 60 1 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		.loc 1 60 1 is_stmt 0 view .LVU1
+  32 0000 30B5     		push	{r4, r5, lr}
+  33              	.LCFI0:
+  34              		.cfi_def_cfa_offset 12
+  35              		.cfi_offset 4, -12
+  36              		.cfi_offset 5, -8
+  37              		.cfi_offset 14, -4
+  61:Tests/mocks/Src/mock_eeprom_io.c ****     expectations[set_expectation_count].kind = kind;
+  38              		.loc 1 61 5 is_stmt 1 view .LVU2
+  39              		.loc 1 61 17 is_stmt 0 view .LVU3
+  40 0002 084C     		ldr	r4, .L3
+  41 0004 2368     		ldr	r3, [r4]
+  42 0006 03EB430E 		add	lr, r3, r3, lsl #1
+  43 000a 074D     		ldr	r5, .L3+4
+  44 000c 2D68     		ldr	r5, [r5]
+  45 000e 05EB8E0C 		add	ip, r5, lr, lsl #2
+  46              		.loc 1 61 46 view .LVU4
+  47 0012 45F82E00 		str	r0, [r5, lr, lsl #2]
+  62:Tests/mocks/Src/mock_eeprom_io.c ****     expectations[set_expectation_count].data = data;
+  48              		.loc 1 62 5 is_stmt 1 view .LVU5
+  49              		.loc 1 62 46 is_stmt 0 view .LVU6
+  50 0016 CCF80410 		str	r1, [ip, #4]
+  63:Tests/mocks/Src/mock_eeprom_io.c ****     expectations[set_expectation_count].data_size = data_size;
+  51              		.loc 1 63 5 is_stmt 1 view .LVU7
+  52              		.loc 1 63 51 is_stmt 0 view .LVU8
+ARM GAS  /tmp/ccCBHk9y.s 			page 3
+
+
+  53 001a 8CF80820 		strb	r2, [ip, #8]
+  64:Tests/mocks/Src/mock_eeprom_io.c ****     set_expectation_count++;
+  54              		.loc 1 64 5 is_stmt 1 view .LVU9
+  55              		.loc 1 64 26 is_stmt 0 view .LVU10
+  56 001e 0133     		adds	r3, r3, #1
+  57 0020 2360     		str	r3, [r4]
+  65:Tests/mocks/Src/mock_eeprom_io.c **** }
+  58              		.loc 1 65 1 view .LVU11
+  59 0022 30BD     		pop	{r4, r5, pc}
+  60              	.L4:
+  61              		.align	2
+  62              	.L3:
+  63 0024 00000000 		.word	set_expectation_count
+  64 0028 00000000 		.word	expectations
+  65              		.cfi_endproc
+  66              	.LFE2:
+  68              		.section	.rodata.fail_when_no_init.str1.4,"aMS",%progbits,1
+  69              		.align	2
+  70              	.LC0:
+  71 0000 4D6F636B 		.ascii	"MockIO not initialized\000"
+  71      494F206E 
+  71      6F742069 
+  71      6E697469 
+  71      616C697A 
+  72              		.section	.text.fail_when_no_init,"ax",%progbits
+  73              		.align	1
+  74              		.syntax unified
+  75              		.thumb
+  76              		.thumb_func
+  78              	fail_when_no_init:
+  79              	.LFB0:
+  42:Tests/mocks/Src/mock_eeprom_io.c ****     if (expectations == NULL)
+  80              		.loc 1 42 1 is_stmt 1 view -0
+  81              		.cfi_startproc
+  82              		@ args = 0, pretend = 0, frame = 0
+  83              		@ frame_needed = 0, uses_anonymous_args = 0
+  84 0000 08B5     		push	{r3, lr}
+  85              	.LCFI1:
+  86              		.cfi_def_cfa_offset 8
+  87              		.cfi_offset 3, -8
+  88              		.cfi_offset 14, -4
+  43:Tests/mocks/Src/mock_eeprom_io.c ****         FAIL(report_not_init);
+  89              		.loc 1 43 5 view .LVU13
+  43:Tests/mocks/Src/mock_eeprom_io.c ****         FAIL(report_not_init);
+  90              		.loc 1 43 22 is_stmt 0 view .LVU14
+  91 0002 044B     		ldr	r3, .L9
+  92 0004 1B68     		ldr	r3, [r3]
+  43:Tests/mocks/Src/mock_eeprom_io.c ****         FAIL(report_not_init);
+  93              		.loc 1 43 8 view .LVU15
+  94 0006 03B1     		cbz	r3, .L8
+  45:Tests/mocks/Src/mock_eeprom_io.c **** 
+  95              		.loc 1 45 1 view .LVU16
+  96 0008 08BD     		pop	{r3, pc}
+  97              	.L8:
+  44:Tests/mocks/Src/mock_eeprom_io.c **** }
+  98              		.loc 1 44 9 is_stmt 1 view .LVU17
+  99 000a 2C21     		movs	r1, #44
+ARM GAS  /tmp/ccCBHk9y.s 			page 4
+
+
+ 100 000c 0248     		ldr	r0, .L9+4
+ 101 000e FFF7FEFF 		bl	UnityFail
+ 102              	.LVL1:
+ 103              	.L10:
+ 104 0012 00BF     		.align	2
+ 105              	.L9:
+ 106 0014 00000000 		.word	expectations
+ 107 0018 00000000 		.word	.LC0
+ 108              		.cfi_endproc
+ 109              	.LFE0:
+ 111              		.section	.rodata.fail_when_no_room_for_expectations.str1.4,"aMS",%progbits,1
+ 112              		.align	2
+ 113              	.LC1:
+ 114 0000 4E6F2072 		.ascii	"No room for expectations in MockIO\000"
+ 114      6F6F6D20 
+ 114      666F7220 
+ 114      65787065 
+ 114      63746174 
+ 115              		.section	.text.fail_when_no_room_for_expectations,"ax",%progbits
+ 116              		.align	1
+ 117              		.syntax unified
+ 118              		.thumb
+ 119              		.thumb_func
+ 121              	fail_when_no_room_for_expectations:
+ 122              	.LFB1:
+  48:Tests/mocks/Src/mock_eeprom_io.c ****     fail_when_no_init();
+ 123              		.loc 1 48 1 view -0
+ 124              		.cfi_startproc
+ 125              		@ args = 0, pretend = 0, frame = 0
+ 126              		@ frame_needed = 0, uses_anonymous_args = 0
+ 127 0000 08B5     		push	{r3, lr}
+ 128              	.LCFI2:
+ 129              		.cfi_def_cfa_offset 8
+ 130              		.cfi_offset 3, -8
+ 131              		.cfi_offset 14, -4
+  49:Tests/mocks/Src/mock_eeprom_io.c ****     if (set_expectation_count >= max_expectation_count)
+ 132              		.loc 1 49 5 view .LVU19
+ 133 0002 FFF7FEFF 		bl	fail_when_no_init
+ 134              	.LVL2:
+  50:Tests/mocks/Src/mock_eeprom_io.c ****         FAIL(report_no_room_for_exp);
+ 135              		.loc 1 50 5 view .LVU20
+  50:Tests/mocks/Src/mock_eeprom_io.c ****         FAIL(report_no_room_for_exp);
+ 136              		.loc 1 50 31 is_stmt 0 view .LVU21
+ 137 0006 044B     		ldr	r3, .L15
+ 138 0008 1B68     		ldr	r3, [r3]
+  50:Tests/mocks/Src/mock_eeprom_io.c ****         FAIL(report_no_room_for_exp);
+ 139              		.loc 1 50 8 view .LVU22
+ 140 000a 002B     		cmp	r3, #0
+ 141 000c 00DA     		bge	.L14
+  52:Tests/mocks/Src/mock_eeprom_io.c **** 
+ 142              		.loc 1 52 1 view .LVU23
+ 143 000e 08BD     		pop	{r3, pc}
+ 144              	.L14:
+  51:Tests/mocks/Src/mock_eeprom_io.c **** }
+ 145              		.loc 1 51 9 is_stmt 1 view .LVU24
+ 146 0010 3321     		movs	r1, #51
+ 147 0012 0248     		ldr	r0, .L15+4
+ARM GAS  /tmp/ccCBHk9y.s 			page 5
+
+
+ 148 0014 FFF7FEFF 		bl	UnityFail
+ 149              	.LVL3:
+ 150              	.L16:
+ 151              		.align	2
+ 152              	.L15:
+ 153 0018 00000000 		.word	set_expectation_count
+ 154 001c 00000000 		.word	.LC1
+ 155              		.cfi_endproc
+ 156              	.LFE1:
+ 158              		.section	.rodata.check_kind.str1.4,"aMS",%progbits,1
+ 159              		.align	2
+ 160              	.LC2:
+ 161 0000 4572726F 		.ascii	"Error kind in MockIO. Num of expectation %u \000"
+ 161      72206B69 
+ 161      6E642069 
+ 161      6E204D6F 
+ 161      636B494F 
+ 162              		.section	.text.check_kind,"ax",%progbits
+ 163              		.align	1
+ 164              		.syntax unified
+ 165              		.thumb
+ 166              		.thumb_func
+ 168              	check_kind:
+ 169              	.LVL4:
+ 170              	.LFB3:
+  66:Tests/mocks/Src/mock_eeprom_io.c **** 
+  67:Tests/mocks/Src/mock_eeprom_io.c **** static void check_kind(const expectation *const current_expectation, int kind)
+  68:Tests/mocks/Src/mock_eeprom_io.c **** {
+ 171              		.loc 1 68 1 view -0
+ 172              		.cfi_startproc
+ 173              		@ args = 0, pretend = 0, frame = 56
+ 174              		@ frame_needed = 0, uses_anonymous_args = 0
+  69:Tests/mocks/Src/mock_eeprom_io.c ****     char *message[sizeof(report_kind_error) + 10];
+ 175              		.loc 1 69 5 view .LVU26
+  70:Tests/mocks/Src/mock_eeprom_io.c **** 
+  71:Tests/mocks/Src/mock_eeprom_io.c ****     if (current_expectation->kind == kind)
+ 176              		.loc 1 71 5 view .LVU27
+ 177              		.loc 1 71 28 is_stmt 0 view .LVU28
+ 178 0000 0368     		ldr	r3, [r0]
+ 179              		.loc 1 71 8 view .LVU29
+ 180 0002 8B42     		cmp	r3, r1
+ 181 0004 00D1     		bne	.L23
+ 182 0006 7047     		bx	lr
+ 183              	.L23:
+  68:Tests/mocks/Src/mock_eeprom_io.c ****     char *message[sizeof(report_kind_error) + 10];
+ 184              		.loc 1 68 1 view .LVU30
+ 185 0008 00B5     		push	{lr}
+ 186              	.LCFI3:
+ 187              		.cfi_def_cfa_offset 4
+ 188              		.cfi_offset 14, -4
+ 189 000a 8FB0     		sub	sp, sp, #60
+ 190              	.LCFI4:
+ 191              		.cfi_def_cfa_offset 64
+  72:Tests/mocks/Src/mock_eeprom_io.c ****         return;
+  73:Tests/mocks/Src/mock_eeprom_io.c **** 
+  74:Tests/mocks/Src/mock_eeprom_io.c ****     sprintf(message, report_kind_error, get_expectation_count);
+ 192              		.loc 1 74 5 is_stmt 1 view .LVU31
+ARM GAS  /tmp/ccCBHk9y.s 			page 6
+
+
+ 193 000c 044B     		ldr	r3, .L24
+ 194 000e 1A68     		ldr	r2, [r3]
+ 195 0010 0449     		ldr	r1, .L24+4
+ 196              	.LVL5:
+ 197              		.loc 1 74 5 is_stmt 0 view .LVU32
+ 198 0012 6846     		mov	r0, sp
+ 199              	.LVL6:
+ 200              		.loc 1 74 5 view .LVU33
+ 201 0014 FFF7FEFF 		bl	sprintf
+ 202              	.LVL7:
+  75:Tests/mocks/Src/mock_eeprom_io.c ****     FAIL(message);
+ 203              		.loc 1 75 5 is_stmt 1 view .LVU34
+ 204 0018 4B21     		movs	r1, #75
+ 205 001a 6846     		mov	r0, sp
+ 206 001c FFF7FEFF 		bl	UnityFail
+ 207              	.LVL8:
+ 208              	.L25:
+ 209              		.align	2
+ 210              	.L24:
+ 211 0020 00000000 		.word	get_expectation_count
+ 212 0024 00000000 		.word	.LC2
+ 213              		.cfi_endproc
+ 214              	.LFE3:
+ 216              		.section	.rodata.check_data.str1.4,"aMS",%progbits,1
+ 217              		.align	2
+ 218              	.LC3:
+ 219 0000 4572726F 		.ascii	"Error data in MockIO. Expected %u, but got %u\000"
+ 219      72206461 
+ 219      74612069 
+ 219      6E204D6F 
+ 219      636B494F 
+ 220              		.section	.text.check_data,"ax",%progbits
+ 221              		.align	1
+ 222              		.syntax unified
+ 223              		.thumb
+ 224              		.thumb_func
+ 226              	check_data:
+ 227              	.LVL9:
+ 228              	.LFB4:
+  76:Tests/mocks/Src/mock_eeprom_io.c **** }
+  77:Tests/mocks/Src/mock_eeprom_io.c **** 
+  78:Tests/mocks/Src/mock_eeprom_io.c **** static void check_data(
+  79:Tests/mocks/Src/mock_eeprom_io.c ****     const expectation *const current_expectation,
+  80:Tests/mocks/Src/mock_eeprom_io.c ****     const uint8_t *const data
+  81:Tests/mocks/Src/mock_eeprom_io.c **** )
+  82:Tests/mocks/Src/mock_eeprom_io.c **** {
+ 229              		.loc 1 82 1 view -0
+ 230              		.cfi_startproc
+ 231              		@ args = 0, pretend = 0, frame = 56
+ 232              		@ frame_needed = 0, uses_anonymous_args = 0
+  83:Tests/mocks/Src/mock_eeprom_io.c ****     char *message[sizeof(report_data_error) + 10];
+ 233              		.loc 1 83 5 view .LVU36
+  84:Tests/mocks/Src/mock_eeprom_io.c **** 
+  85:Tests/mocks/Src/mock_eeprom_io.c ****     bool fail = false;
+ 234              		.loc 1 85 5 view .LVU37
+  86:Tests/mocks/Src/mock_eeprom_io.c ****     for (uint8_t i = 0; i < current_expectation->data_size; i++)
+ 235              		.loc 1 86 5 view .LVU38
+ARM GAS  /tmp/ccCBHk9y.s 			page 7
+
+
+ 236              	.LBB2:
+ 237              		.loc 1 86 10 view .LVU39
+ 238              		.loc 1 86 18 is_stmt 0 view .LVU40
+ 239 0000 0023     		movs	r3, #0
+ 240              		.loc 1 86 5 view .LVU41
+ 241 0002 01E0     		b	.L27
+ 242              	.LVL10:
+ 243              	.L37:
+ 244              		.loc 1 86 62 is_stmt 1 discriminator 2 view .LVU42
+ 245 0004 0133     		adds	r3, r3, #1
+ 246              	.LVL11:
+ 247              		.loc 1 86 62 is_stmt 0 discriminator 2 view .LVU43
+ 248 0006 DBB2     		uxtb	r3, r3
+ 249              	.LVL12:
+ 250              	.L27:
+ 251              		.loc 1 86 27 is_stmt 1 discriminator 1 view .LVU44
+ 252              		.loc 1 86 48 is_stmt 0 discriminator 1 view .LVU45
+ 253 0008 027A     		ldrb	r2, [r0, #8]	@ zero_extendqisi2
+ 254              		.loc 1 86 27 discriminator 1 view .LVU46
+ 255 000a 9A42     		cmp	r2, r3
+ 256 000c 07D9     		bls	.L36
+  87:Tests/mocks/Src/mock_eeprom_io.c ****     {
+  88:Tests/mocks/Src/mock_eeprom_io.c ****         if (current_expectation->data[i] != data[i])
+ 257              		.loc 1 88 9 is_stmt 1 view .LVU47
+ 258              		.loc 1 88 32 is_stmt 0 view .LVU48
+ 259 000e 4268     		ldr	r2, [r0, #4]
+ 260              		.loc 1 88 38 view .LVU49
+ 261 0010 12F803C0 		ldrb	ip, [r2, r3]	@ zero_extendqisi2
+ 262              		.loc 1 88 49 view .LVU50
+ 263 0014 CA5C     		ldrb	r2, [r1, r3]	@ zero_extendqisi2
+ 264              		.loc 1 88 12 view .LVU51
+ 265 0016 9445     		cmp	ip, r2
+ 266 0018 F4D0     		beq	.L37
+  89:Tests/mocks/Src/mock_eeprom_io.c ****         {
+  90:Tests/mocks/Src/mock_eeprom_io.c ****             fail = true;
+ 267              		.loc 1 90 18 view .LVU52
+ 268 001a 0123     		movs	r3, #1
+ 269              	.LVL13:
+ 270              		.loc 1 90 18 view .LVU53
+ 271 001c 00E0     		b	.L28
+ 272              	.LVL14:
+ 273              	.L36:
+ 274              		.loc 1 90 18 view .LVU54
+ 275              	.LBE2:
+  85:Tests/mocks/Src/mock_eeprom_io.c ****     for (uint8_t i = 0; i < current_expectation->data_size; i++)
+ 276              		.loc 1 85 10 view .LVU55
+ 277 001e 0023     		movs	r3, #0
+ 278              	.LVL15:
+ 279              	.L28:
+  91:Tests/mocks/Src/mock_eeprom_io.c ****             break;
+  92:Tests/mocks/Src/mock_eeprom_io.c ****         }
+  93:Tests/mocks/Src/mock_eeprom_io.c ****     }
+  94:Tests/mocks/Src/mock_eeprom_io.c **** 
+  95:Tests/mocks/Src/mock_eeprom_io.c ****     if (fail)
+ 280              		.loc 1 95 5 is_stmt 1 view .LVU56
+ 281              		.loc 1 95 8 is_stmt 0 view .LVU57
+ 282 0020 03B1     		cbz	r3, .L38
+ARM GAS  /tmp/ccCBHk9y.s 			page 8
+
+
+ 283 0022 7047     		bx	lr
+ 284              	.L38:
+  82:Tests/mocks/Src/mock_eeprom_io.c ****     char *message[sizeof(report_data_error) + 10];
+ 285              		.loc 1 82 1 view .LVU58
+ 286 0024 00B5     		push	{lr}
+ 287              	.LCFI5:
+ 288              		.cfi_def_cfa_offset 4
+ 289              		.cfi_offset 14, -4
+ 290 0026 8FB0     		sub	sp, sp, #60
+ 291              	.LCFI6:
+ 292              		.cfi_def_cfa_offset 64
+  96:Tests/mocks/Src/mock_eeprom_io.c ****         return;
+  97:Tests/mocks/Src/mock_eeprom_io.c **** 
+  98:Tests/mocks/Src/mock_eeprom_io.c ****     sprintf(message, report_data_error, get_expectation_count);
+ 293              		.loc 1 98 5 is_stmt 1 view .LVU59
+ 294 0028 044B     		ldr	r3, .L39
+ 295              	.LVL16:
+ 296              		.loc 1 98 5 is_stmt 0 view .LVU60
+ 297 002a 1A68     		ldr	r2, [r3]
+ 298 002c 0449     		ldr	r1, .L39+4
+ 299              	.LVL17:
+ 300              		.loc 1 98 5 view .LVU61
+ 301 002e 6846     		mov	r0, sp
+ 302              	.LVL18:
+ 303              		.loc 1 98 5 view .LVU62
+ 304 0030 FFF7FEFF 		bl	sprintf
+ 305              	.LVL19:
+  99:Tests/mocks/Src/mock_eeprom_io.c ****     FAIL(message);
+ 306              		.loc 1 99 5 is_stmt 1 view .LVU63
+ 307 0034 6321     		movs	r1, #99
+ 308 0036 6846     		mov	r0, sp
+ 309 0038 FFF7FEFF 		bl	UnityFail
+ 310              	.LVL20:
+ 311              	.L40:
+ 312              		.align	2
+ 313              	.L39:
+ 314 003c 00000000 		.word	get_expectation_count
+ 315 0040 00000000 		.word	.LC3
+ 316              		.cfi_endproc
+ 317              	.LFE4:
+ 319              		.section	.text.mock_eeprom_io_create,"ax",%progbits
+ 320              		.align	1
+ 321              		.global	mock_eeprom_io_create
+ 322              		.syntax unified
+ 323              		.thumb
+ 324              		.thumb_func
+ 326              	mock_eeprom_io_create:
+ 327              	.LVL21:
+ 328              	.LFB5:
+ 100:Tests/mocks/Src/mock_eeprom_io.c **** }
+ 101:Tests/mocks/Src/mock_eeprom_io.c **** 
+ 102:Tests/mocks/Src/mock_eeprom_io.c **** 
+ 103:Tests/mocks/Src/mock_eeprom_io.c **** // Implementations -----------------------------------------------------------
+ 104:Tests/mocks/Src/mock_eeprom_io.c **** 
+ 105:Tests/mocks/Src/mock_eeprom_io.c **** void mock_eeprom_io_create(const uint8_t max_expectations)
+ 106:Tests/mocks/Src/mock_eeprom_io.c **** {
+ 329              		.loc 1 106 1 view -0
+ARM GAS  /tmp/ccCBHk9y.s 			page 9
+
+
+ 330              		.cfi_startproc
+ 331              		@ args = 0, pretend = 0, frame = 0
+ 332              		@ frame_needed = 0, uses_anonymous_args = 0
+ 333              		.loc 1 106 1 is_stmt 0 view .LVU65
+ 334 0000 10B5     		push	{r4, lr}
+ 335              	.LCFI7:
+ 336              		.cfi_def_cfa_offset 8
+ 337              		.cfi_offset 4, -8
+ 338              		.cfi_offset 14, -4
+ 339 0002 0446     		mov	r4, r0
+ 107:Tests/mocks/Src/mock_eeprom_io.c ****     if (expectations != NULL)
+ 340              		.loc 1 107 5 is_stmt 1 view .LVU66
+ 341              		.loc 1 107 22 is_stmt 0 view .LVU67
+ 342 0004 054B     		ldr	r3, .L44
+ 343 0006 1868     		ldr	r0, [r3]
+ 344              	.LVL22:
+ 345              		.loc 1 107 8 view .LVU68
+ 346 0008 08B1     		cbz	r0, .L42
+ 108:Tests/mocks/Src/mock_eeprom_io.c ****         free(expectations);
+ 347              		.loc 1 108 9 is_stmt 1 view .LVU69
+ 348 000a FFF7FEFF 		bl	unity_free
+ 349              	.LVL23:
+ 350              	.L42:
+ 109:Tests/mocks/Src/mock_eeprom_io.c ****     expectations = calloc(max_expectations, sizeof(expectation));
+ 351              		.loc 1 109 5 view .LVU70
+ 352              		.loc 1 109 20 is_stmt 0 view .LVU71
+ 353 000e 0C21     		movs	r1, #12
+ 354 0010 2046     		mov	r0, r4
+ 355 0012 FFF7FEFF 		bl	unity_calloc
+ 356              	.LVL24:
+ 357              		.loc 1 109 18 discriminator 1 view .LVU72
+ 358 0016 014B     		ldr	r3, .L44
+ 359 0018 1860     		str	r0, [r3]
+ 110:Tests/mocks/Src/mock_eeprom_io.c **** }
+ 360              		.loc 1 110 1 view .LVU73
+ 361 001a 10BD     		pop	{r4, pc}
+ 362              	.LVL25:
+ 363              	.L45:
+ 364              		.loc 1 110 1 view .LVU74
+ 365              		.align	2
+ 366              	.L44:
+ 367 001c 00000000 		.word	expectations
+ 368              		.cfi_endproc
+ 369              	.LFE5:
+ 371              		.section	.text.mock_eeprom_io_destroy,"ax",%progbits
+ 372              		.align	1
+ 373              		.global	mock_eeprom_io_destroy
+ 374              		.syntax unified
+ 375              		.thumb
+ 376              		.thumb_func
+ 378              	mock_eeprom_io_destroy:
+ 379              	.LFB6:
+ 111:Tests/mocks/Src/mock_eeprom_io.c **** 
+ 112:Tests/mocks/Src/mock_eeprom_io.c **** void mock_eeprom_io_destroy(void)
+ 113:Tests/mocks/Src/mock_eeprom_io.c **** {
+ 380              		.loc 1 113 1 is_stmt 1 view -0
+ 381              		.cfi_startproc
+ARM GAS  /tmp/ccCBHk9y.s 			page 10
+
+
+ 382              		@ args = 0, pretend = 0, frame = 0
+ 383              		@ frame_needed = 0, uses_anonymous_args = 0
+ 384 0000 08B5     		push	{r3, lr}
+ 385              	.LCFI8:
+ 386              		.cfi_def_cfa_offset 8
+ 387              		.cfi_offset 3, -8
+ 388              		.cfi_offset 14, -4
+ 114:Tests/mocks/Src/mock_eeprom_io.c ****     if (expectations)
+ 389              		.loc 1 114 5 view .LVU76
+ 390              		.loc 1 114 9 is_stmt 0 view .LVU77
+ 391 0002 044B     		ldr	r3, .L49
+ 392 0004 1868     		ldr	r0, [r3]
+ 393              		.loc 1 114 8 view .LVU78
+ 394 0006 08B1     		cbz	r0, .L47
+ 115:Tests/mocks/Src/mock_eeprom_io.c ****         free(expectations);
+ 395              		.loc 1 115 9 is_stmt 1 view .LVU79
+ 396 0008 FFF7FEFF 		bl	unity_free
+ 397              	.LVL26:
+ 398              	.L47:
+ 116:Tests/mocks/Src/mock_eeprom_io.c ****     expectations = NULL; 
+ 399              		.loc 1 116 5 view .LVU80
+ 400              		.loc 1 116 18 is_stmt 0 view .LVU81
+ 401 000c 014B     		ldr	r3, .L49
+ 402 000e 0022     		movs	r2, #0
+ 403 0010 1A60     		str	r2, [r3]
+ 117:Tests/mocks/Src/mock_eeprom_io.c **** }
+ 404              		.loc 1 117 1 view .LVU82
+ 405 0012 08BD     		pop	{r3, pc}
+ 406              	.L50:
+ 407              		.align	2
+ 408              	.L49:
+ 409 0014 00000000 		.word	expectations
+ 410              		.cfi_endproc
+ 411              	.LFE6:
+ 413              		.section	.text.mock_eeprom_io_expect_write,"ax",%progbits
+ 414              		.align	1
+ 415              		.global	mock_eeprom_io_expect_write
+ 416              		.syntax unified
+ 417              		.thumb
+ 418              		.thumb_func
+ 420              	mock_eeprom_io_expect_write:
+ 421              	.LVL27:
+ 422              	.LFB7:
+ 118:Tests/mocks/Src/mock_eeprom_io.c **** 
+ 119:Tests/mocks/Src/mock_eeprom_io.c **** void mock_eeprom_io_expect_write(
+ 120:Tests/mocks/Src/mock_eeprom_io.c ****     const uint8_t *const  data,
+ 121:Tests/mocks/Src/mock_eeprom_io.c ****     const uint8_t data_size
+ 122:Tests/mocks/Src/mock_eeprom_io.c **** )
+ 123:Tests/mocks/Src/mock_eeprom_io.c **** {
+ 423              		.loc 1 123 1 is_stmt 1 view -0
+ 424              		.cfi_startproc
+ 425              		@ args = 0, pretend = 0, frame = 0
+ 426              		@ frame_needed = 0, uses_anonymous_args = 0
+ 427              		.loc 1 123 1 is_stmt 0 view .LVU84
+ 428 0000 38B5     		push	{r3, r4, r5, lr}
+ 429              	.LCFI9:
+ 430              		.cfi_def_cfa_offset 16
+ARM GAS  /tmp/ccCBHk9y.s 			page 11
+
+
+ 431              		.cfi_offset 3, -16
+ 432              		.cfi_offset 4, -12
+ 433              		.cfi_offset 5, -8
+ 434              		.cfi_offset 14, -4
+ 435 0002 0446     		mov	r4, r0
+ 436 0004 0D46     		mov	r5, r1
+ 124:Tests/mocks/Src/mock_eeprom_io.c ****     fail_when_no_room_for_expectations();
+ 437              		.loc 1 124 5 is_stmt 1 view .LVU85
+ 438 0006 FFF7FEFF 		bl	fail_when_no_room_for_expectations
+ 439              	.LVL28:
+ 125:Tests/mocks/Src/mock_eeprom_io.c ****     record_expectation(IO_WRITE, data, data_size);
+ 440              		.loc 1 125 5 view .LVU86
+ 441 000a 2A46     		mov	r2, r5
+ 442 000c 2146     		mov	r1, r4
+ 443 000e 0120     		movs	r0, #1
+ 444 0010 FFF7FEFF 		bl	record_expectation
+ 445              	.LVL29:
+ 126:Tests/mocks/Src/mock_eeprom_io.c **** }
+ 446              		.loc 1 126 1 is_stmt 0 view .LVU87
+ 447 0014 38BD     		pop	{r3, r4, r5, pc}
+ 448              		.loc 1 126 1 view .LVU88
+ 449              		.cfi_endproc
+ 450              	.LFE7:
+ 452              		.section	.text.mock_eeprom_io_expect_read_then_return,"ax",%progbits
+ 453              		.align	1
+ 454              		.global	mock_eeprom_io_expect_read_then_return
+ 455              		.syntax unified
+ 456              		.thumb
+ 457              		.thumb_func
+ 459              	mock_eeprom_io_expect_read_then_return:
+ 460              	.LVL30:
+ 461              	.LFB8:
+ 127:Tests/mocks/Src/mock_eeprom_io.c **** 
+ 128:Tests/mocks/Src/mock_eeprom_io.c **** void mock_eeprom_io_expect_read_then_return(
+ 129:Tests/mocks/Src/mock_eeprom_io.c ****     const uint8_t *const  data,
+ 130:Tests/mocks/Src/mock_eeprom_io.c ****     const uint8_t data_size
+ 131:Tests/mocks/Src/mock_eeprom_io.c **** )
+ 132:Tests/mocks/Src/mock_eeprom_io.c **** {
+ 462              		.loc 1 132 1 is_stmt 1 view -0
+ 463              		.cfi_startproc
+ 464              		@ args = 0, pretend = 0, frame = 0
+ 465              		@ frame_needed = 0, uses_anonymous_args = 0
+ 466              		.loc 1 132 1 is_stmt 0 view .LVU90
+ 467 0000 38B5     		push	{r3, r4, r5, lr}
+ 468              	.LCFI10:
+ 469              		.cfi_def_cfa_offset 16
+ 470              		.cfi_offset 3, -16
+ 471              		.cfi_offset 4, -12
+ 472              		.cfi_offset 5, -8
+ 473              		.cfi_offset 14, -4
+ 474 0002 0446     		mov	r4, r0
+ 475 0004 0D46     		mov	r5, r1
+ 133:Tests/mocks/Src/mock_eeprom_io.c ****     fail_when_no_room_for_expectations();
+ 476              		.loc 1 133 5 is_stmt 1 view .LVU91
+ 477 0006 FFF7FEFF 		bl	fail_when_no_room_for_expectations
+ 478              	.LVL31:
+ 134:Tests/mocks/Src/mock_eeprom_io.c ****     record_expectation(IO_READ, data, data_size);
+ARM GAS  /tmp/ccCBHk9y.s 			page 12
+
+
+ 479              		.loc 1 134 5 view .LVU92
+ 480 000a 2A46     		mov	r2, r5
+ 481 000c 2146     		mov	r1, r4
+ 482 000e 0020     		movs	r0, #0
+ 483 0010 FFF7FEFF 		bl	record_expectation
+ 484              	.LVL32:
+ 135:Tests/mocks/Src/mock_eeprom_io.c **** }
+ 485              		.loc 1 135 1 is_stmt 0 view .LVU93
+ 486 0014 38BD     		pop	{r3, r4, r5, pc}
+ 487              		.loc 1 135 1 view .LVU94
+ 488              		.cfi_endproc
+ 489              	.LFE8:
+ 491              		.section	.rodata.mock_eeprom_io_verify_complete.str1.4,"aMS",%progbits,1
+ 492              		.align	2
+ 493              	.LC4:
+ 494 0000 56657269 		.ascii	"Verify error in MockIO. Expected %u operations, but"
+ 494      66792065 
+ 494      72726F72 
+ 494      20696E20 
+ 494      4D6F636B 
+ 495 0033 20676F74 		.ascii	" got %u\000"
+ 495      20257500 
+ 496              		.section	.text.mock_eeprom_io_verify_complete,"ax",%progbits
+ 497              		.align	1
+ 498              		.global	mock_eeprom_io_verify_complete
+ 499              		.syntax unified
+ 500              		.thumb
+ 501              		.thumb_func
+ 503              	mock_eeprom_io_verify_complete:
+ 504              	.LFB9:
+ 136:Tests/mocks/Src/mock_eeprom_io.c **** 
+ 137:Tests/mocks/Src/mock_eeprom_io.c **** void mock_eeprom_io_verify_complete(void)
+ 138:Tests/mocks/Src/mock_eeprom_io.c **** {
+ 505              		.loc 1 138 1 is_stmt 1 view -0
+ 506              		.cfi_startproc
+ 507              		@ args = 0, pretend = 0, frame = 56
+ 508              		@ frame_needed = 0, uses_anonymous_args = 0
+ 139:Tests/mocks/Src/mock_eeprom_io.c ****     char *message[sizeof(report_verify_error) + 10];
+ 509              		.loc 1 139 5 view .LVU96
+ 140:Tests/mocks/Src/mock_eeprom_io.c **** 
+ 141:Tests/mocks/Src/mock_eeprom_io.c ****     if (set_expectation_count == get_expectation_count)
+ 510              		.loc 1 141 5 view .LVU97
+ 511              		.loc 1 141 31 is_stmt 0 view .LVU98
+ 512 0000 084B     		ldr	r3, .L62
+ 513 0002 1A68     		ldr	r2, [r3]
+ 514 0004 084B     		ldr	r3, .L62+4
+ 515 0006 1B68     		ldr	r3, [r3]
+ 516              		.loc 1 141 8 view .LVU99
+ 517 0008 9A42     		cmp	r2, r3
+ 518 000a 00D1     		bne	.L61
+ 519 000c 7047     		bx	lr
+ 520              	.L61:
+ 138:Tests/mocks/Src/mock_eeprom_io.c ****     char *message[sizeof(report_verify_error) + 10];
+ 521              		.loc 1 138 1 view .LVU100
+ 522 000e 00B5     		push	{lr}
+ 523              	.LCFI11:
+ 524              		.cfi_def_cfa_offset 4
+ARM GAS  /tmp/ccCBHk9y.s 			page 13
+
+
+ 525              		.cfi_offset 14, -4
+ 526 0010 8FB0     		sub	sp, sp, #60
+ 527              	.LCFI12:
+ 528              		.cfi_def_cfa_offset 64
+ 142:Tests/mocks/Src/mock_eeprom_io.c ****         return;
+ 143:Tests/mocks/Src/mock_eeprom_io.c ****     
+ 144:Tests/mocks/Src/mock_eeprom_io.c ****     sprintf(
+ 529              		.loc 1 144 5 is_stmt 1 view .LVU101
+ 530 0012 0649     		ldr	r1, .L62+8
+ 531 0014 6846     		mov	r0, sp
+ 532 0016 FFF7FEFF 		bl	sprintf
+ 533              	.LVL33:
+ 145:Tests/mocks/Src/mock_eeprom_io.c ****         message,
+ 146:Tests/mocks/Src/mock_eeprom_io.c ****         report_verify_error,
+ 147:Tests/mocks/Src/mock_eeprom_io.c ****         set_expectation_count,
+ 148:Tests/mocks/Src/mock_eeprom_io.c ****         get_expectation_count
+ 149:Tests/mocks/Src/mock_eeprom_io.c ****     );
+ 150:Tests/mocks/Src/mock_eeprom_io.c ****     FAIL(message);
+ 534              		.loc 1 150 5 view .LVU102
+ 535 001a 9621     		movs	r1, #150
+ 536 001c 6846     		mov	r0, sp
+ 537 001e FFF7FEFF 		bl	UnityFail
+ 538              	.LVL34:
+ 539              	.L63:
+ 540 0022 00BF     		.align	2
+ 541              	.L62:
+ 542 0024 00000000 		.word	set_expectation_count
+ 543 0028 00000000 		.word	get_expectation_count
+ 544 002c 00000000 		.word	.LC4
+ 545              		.cfi_endproc
+ 546              	.LFE9:
+ 548              		.section	.text.eeprom_io_read,"ax",%progbits
+ 549              		.align	1
+ 550              		.global	eeprom_io_read
+ 551              		.syntax unified
+ 552              		.thumb
+ 553              		.thumb_func
+ 555              	eeprom_io_read:
+ 556              	.LVL35:
+ 557              	.LFB10:
+ 151:Tests/mocks/Src/mock_eeprom_io.c **** }
+ 152:Tests/mocks/Src/mock_eeprom_io.c **** 
+ 153:Tests/mocks/Src/mock_eeprom_io.c **** // Implementations from eeprom_io --------------------------------------------
+ 154:Tests/mocks/Src/mock_eeprom_io.c **** 
+ 155:Tests/mocks/Src/mock_eeprom_io.c **** eeprom_status eeprom_io_read(
+ 156:Tests/mocks/Src/mock_eeprom_io.c ****     uint8_t *const data,
+ 157:Tests/mocks/Src/mock_eeprom_io.c ****     const uint8_t data_size
+ 158:Tests/mocks/Src/mock_eeprom_io.c **** )
+ 159:Tests/mocks/Src/mock_eeprom_io.c **** {
+ 558              		.loc 1 159 1 view -0
+ 559              		.cfi_startproc
+ 560              		@ args = 0, pretend = 0, frame = 16
+ 561              		@ frame_needed = 0, uses_anonymous_args = 0
+ 562              		.loc 1 159 1 is_stmt 0 view .LVU104
+ 563 0000 70B5     		push	{r4, r5, r6, lr}
+ 564              	.LCFI13:
+ 565              		.cfi_def_cfa_offset 16
+ARM GAS  /tmp/ccCBHk9y.s 			page 14
+
+
+ 566              		.cfi_offset 4, -16
+ 567              		.cfi_offset 5, -12
+ 568              		.cfi_offset 6, -8
+ 569              		.cfi_offset 14, -4
+ 570 0002 84B0     		sub	sp, sp, #16
+ 571              	.LCFI14:
+ 572              		.cfi_def_cfa_offset 32
+ 573 0004 0546     		mov	r5, r0
+ 574 0006 0E46     		mov	r6, r1
+ 160:Tests/mocks/Src/mock_eeprom_io.c ****     expectation current_expectation = expectations[get_expectation_count];
+ 575              		.loc 1 160 5 is_stmt 1 view .LVU105
+ 576              		.loc 1 160 51 is_stmt 0 view .LVU106
+ 577 0008 164B     		ldr	r3, .L68
+ 578 000a 1A68     		ldr	r2, [r3]
+ 579 000c 02EB4202 		add	r2, r2, r2, lsl #1
+ 580 0010 154B     		ldr	r3, .L68+4
+ 581 0012 1B68     		ldr	r3, [r3]
+ 582 0014 03EB8203 		add	r3, r3, r2, lsl #2
+ 583              		.loc 1 160 17 view .LVU107
+ 584 0018 01AC     		add	r4, sp, #4
+ 585 001a 93E80700 		ldm	r3, {r0, r1, r2}
+ 586              	.LVL36:
+ 587              		.loc 1 160 17 view .LVU108
+ 588 001e 84E80700 		stm	r4, {r0, r1, r2}
+ 161:Tests/mocks/Src/mock_eeprom_io.c **** 
+ 162:Tests/mocks/Src/mock_eeprom_io.c ****     fail_when_no_init();
+ 589              		.loc 1 162 5 is_stmt 1 view .LVU109
+ 590 0022 FFF7FEFF 		bl	fail_when_no_init
+ 591              	.LVL37:
+ 163:Tests/mocks/Src/mock_eeprom_io.c ****     check_kind(&current_expectation, IO_READ);
+ 592              		.loc 1 163 5 view .LVU110
+ 593 0026 0021     		movs	r1, #0
+ 594 0028 2046     		mov	r0, r4
+ 595 002a FFF7FEFF 		bl	check_kind
+ 596              	.LVL38:
+ 164:Tests/mocks/Src/mock_eeprom_io.c ****     check_data(&current_expectation, data);
+ 597              		.loc 1 164 5 view .LVU111
+ 598 002e 2946     		mov	r1, r5
+ 599 0030 2046     		mov	r0, r4
+ 600 0032 FFF7FEFF 		bl	check_data
+ 601              	.LVL39:
+ 165:Tests/mocks/Src/mock_eeprom_io.c **** 
+ 166:Tests/mocks/Src/mock_eeprom_io.c ****     //data = expectations[get_expectation_count++].data;
+ 167:Tests/mocks/Src/mock_eeprom_io.c ****     for (uint8_t i = 0; i < data_size; i++)
+ 602              		.loc 1 167 5 view .LVU112
+ 603              	.LBB3:
+ 604              		.loc 1 167 10 view .LVU113
+ 605              		.loc 1 167 18 is_stmt 0 view .LVU114
+ 606 0036 0023     		movs	r3, #0
+ 607              		.loc 1 167 5 view .LVU115
+ 608 0038 0EE0     		b	.L65
+ 609              	.LVL40:
+ 610              	.L66:
+ 168:Tests/mocks/Src/mock_eeprom_io.c ****         data[i] = expectations[get_expectation_count++].data[i];
+ 611              		.loc 1 168 9 is_stmt 1 view .LVU116
+ 612              		.loc 1 168 31 is_stmt 0 view .LVU117
+ 613 003a 0B4A     		ldr	r2, .L68+4
+ARM GAS  /tmp/ccCBHk9y.s 			page 15
+
+
+ 614 003c 1468     		ldr	r4, [r2]
+ 615              		.loc 1 168 53 view .LVU118
+ 616 003e 0949     		ldr	r1, .L68
+ 617 0040 0A68     		ldr	r2, [r1]
+ 618 0042 501C     		adds	r0, r2, #1
+ 619 0044 0860     		str	r0, [r1]
+ 620              		.loc 1 168 31 view .LVU119
+ 621 0046 02EB4202 		add	r2, r2, r2, lsl #1
+ 622 004a 04EB8202 		add	r2, r4, r2, lsl #2
+ 623              		.loc 1 168 56 view .LVU120
+ 624 004e 5268     		ldr	r2, [r2, #4]
+ 625              		.loc 1 168 61 view .LVU121
+ 626 0050 D25C     		ldrb	r2, [r2, r3]	@ zero_extendqisi2
+ 627              		.loc 1 168 17 view .LVU122
+ 628 0052 EA54     		strb	r2, [r5, r3]
+ 167:Tests/mocks/Src/mock_eeprom_io.c ****         data[i] = expectations[get_expectation_count++].data[i];
+ 629              		.loc 1 167 41 is_stmt 1 discriminator 3 view .LVU123
+ 630 0054 0133     		adds	r3, r3, #1
+ 631              	.LVL41:
+ 167:Tests/mocks/Src/mock_eeprom_io.c ****         data[i] = expectations[get_expectation_count++].data[i];
+ 632              		.loc 1 167 41 is_stmt 0 discriminator 3 view .LVU124
+ 633 0056 DBB2     		uxtb	r3, r3
+ 634              	.LVL42:
+ 635              	.L65:
+ 167:Tests/mocks/Src/mock_eeprom_io.c ****         data[i] = expectations[get_expectation_count++].data[i];
+ 636              		.loc 1 167 27 is_stmt 1 discriminator 1 view .LVU125
+ 637 0058 B342     		cmp	r3, r6
+ 638 005a EED3     		bcc	.L66
+ 639              	.LBE3:
+ 169:Tests/mocks/Src/mock_eeprom_io.c ****     return EEPROM_OK;
+ 640              		.loc 1 169 5 view .LVU126
+ 170:Tests/mocks/Src/mock_eeprom_io.c **** }
+ 641              		.loc 1 170 1 is_stmt 0 view .LVU127
+ 642 005c 0020     		movs	r0, #0
+ 643 005e 04B0     		add	sp, sp, #16
+ 644              	.LCFI15:
+ 645              		.cfi_def_cfa_offset 16
+ 646              		@ sp needed
+ 647 0060 70BD     		pop	{r4, r5, r6, pc}
+ 648              	.LVL43:
+ 649              	.L69:
+ 650              		.loc 1 170 1 view .LVU128
+ 651 0062 00BF     		.align	2
+ 652              	.L68:
+ 653 0064 00000000 		.word	get_expectation_count
+ 654 0068 00000000 		.word	expectations
+ 655              		.cfi_endproc
+ 656              	.LFE10:
+ 658              		.section	.text.eeprom_io_write,"ax",%progbits
+ 659              		.align	1
+ 660              		.global	eeprom_io_write
+ 661              		.syntax unified
+ 662              		.thumb
+ 663              		.thumb_func
+ 665              	eeprom_io_write:
+ 666              	.LVL44:
+ 667              	.LFB11:
+ARM GAS  /tmp/ccCBHk9y.s 			page 16
+
+
+ 171:Tests/mocks/Src/mock_eeprom_io.c **** 
+ 172:Tests/mocks/Src/mock_eeprom_io.c **** eeprom_status eeprom_io_write(
+ 173:Tests/mocks/Src/mock_eeprom_io.c ****     const uint8_t *const data,
+ 174:Tests/mocks/Src/mock_eeprom_io.c ****     const uint8_t data_size
+ 175:Tests/mocks/Src/mock_eeprom_io.c **** )
+ 176:Tests/mocks/Src/mock_eeprom_io.c **** {
+ 668              		.loc 1 176 1 is_stmt 1 view -0
+ 669              		.cfi_startproc
+ 670              		@ args = 0, pretend = 0, frame = 16
+ 671              		@ frame_needed = 0, uses_anonymous_args = 0
+ 672              		.loc 1 176 1 is_stmt 0 view .LVU130
+ 673 0000 70B5     		push	{r4, r5, r6, lr}
+ 674              	.LCFI16:
+ 675              		.cfi_def_cfa_offset 16
+ 676              		.cfi_offset 4, -16
+ 677              		.cfi_offset 5, -12
+ 678              		.cfi_offset 6, -8
+ 679              		.cfi_offset 14, -4
+ 680 0002 84B0     		sub	sp, sp, #16
+ 681              	.LCFI17:
+ 682              		.cfi_def_cfa_offset 32
+ 683 0004 0646     		mov	r6, r0
+ 177:Tests/mocks/Src/mock_eeprom_io.c ****     expectation current_expectation = expectations[get_expectation_count];
+ 684              		.loc 1 177 5 is_stmt 1 view .LVU131
+ 685              		.loc 1 177 51 is_stmt 0 view .LVU132
+ 686 0006 0E4D     		ldr	r5, .L72
+ 687 0008 2A68     		ldr	r2, [r5]
+ 688 000a 02EB4202 		add	r2, r2, r2, lsl #1
+ 689 000e 0D4B     		ldr	r3, .L72+4
+ 690 0010 1B68     		ldr	r3, [r3]
+ 691 0012 03EB8203 		add	r3, r3, r2, lsl #2
+ 692              		.loc 1 177 17 view .LVU133
+ 693 0016 01AC     		add	r4, sp, #4
+ 694 0018 93E80700 		ldm	r3, {r0, r1, r2}
+ 695              	.LVL45:
+ 696              		.loc 1 177 17 view .LVU134
+ 697 001c 84E80700 		stm	r4, {r0, r1, r2}
+ 178:Tests/mocks/Src/mock_eeprom_io.c **** 
+ 179:Tests/mocks/Src/mock_eeprom_io.c ****     fail_when_no_init();
+ 698              		.loc 1 179 5 is_stmt 1 view .LVU135
+ 699 0020 FFF7FEFF 		bl	fail_when_no_init
+ 700              	.LVL46:
+ 180:Tests/mocks/Src/mock_eeprom_io.c ****     check_kind(&current_expectation, IO_WRITE);
+ 701              		.loc 1 180 5 view .LVU136
+ 702 0024 0121     		movs	r1, #1
+ 703 0026 2046     		mov	r0, r4
+ 704 0028 FFF7FEFF 		bl	check_kind
+ 705              	.LVL47:
+ 181:Tests/mocks/Src/mock_eeprom_io.c ****     check_data(&current_expectation, data);
+ 706              		.loc 1 181 5 view .LVU137
+ 707 002c 3146     		mov	r1, r6
+ 708 002e 2046     		mov	r0, r4
+ 709 0030 FFF7FEFF 		bl	check_data
+ 710              	.LVL48:
+ 182:Tests/mocks/Src/mock_eeprom_io.c **** 
+ 183:Tests/mocks/Src/mock_eeprom_io.c ****     get_expectation_count++;
+ 711              		.loc 1 183 5 view .LVU138
+ARM GAS  /tmp/ccCBHk9y.s 			page 17
+
+
+ 712              		.loc 1 183 26 is_stmt 0 view .LVU139
+ 713 0034 2B68     		ldr	r3, [r5]
+ 714 0036 0133     		adds	r3, r3, #1
+ 715 0038 2B60     		str	r3, [r5]
+ 184:Tests/mocks/Src/mock_eeprom_io.c **** 
+ 185:Tests/mocks/Src/mock_eeprom_io.c ****     return EEPROM_OK;
+ 716              		.loc 1 185 5 is_stmt 1 view .LVU140
+ 186:Tests/mocks/Src/mock_eeprom_io.c **** }
+ 717              		.loc 1 186 1 is_stmt 0 view .LVU141
+ 718 003a 0020     		movs	r0, #0
+ 719 003c 04B0     		add	sp, sp, #16
+ 720              	.LCFI18:
+ 721              		.cfi_def_cfa_offset 16
+ 722              		@ sp needed
+ 723 003e 70BD     		pop	{r4, r5, r6, pc}
+ 724              	.LVL49:
+ 725              	.L73:
+ 726              		.loc 1 186 1 view .LVU142
+ 727              		.align	2
+ 728              	.L72:
+ 729 0040 00000000 		.word	get_expectation_count
+ 730 0044 00000000 		.word	expectations
+ 731              		.cfi_endproc
+ 732              	.LFE11:
+ 734              		.section	.bss.get_expectation_count,"aw",%nobits
+ 735              		.align	2
+ 738              	get_expectation_count:
+ 739 0000 00000000 		.space	4
+ 740              		.section	.bss.set_expectation_count,"aw",%nobits
+ 741              		.align	2
+ 744              	set_expectation_count:
+ 745 0000 00000000 		.space	4
+ 746              		.section	.bss.expectations,"aw",%nobits
+ 747              		.align	2
+ 750              	expectations:
+ 751 0000 00000000 		.space	4
+ 752              		.text
+ 753              	.Letext0:
+ 754              		.file 2 "/usr/local/src/arm-gnu-toolchain-13.2/arm-none-eabi/include/machine/_default_types.h"
+ 755              		.file 3 "/usr/local/src/arm-gnu-toolchain-13.2/arm-none-eabi/include/sys/_stdint.h"
+ 756              		.file 4 "External/eeprom_driver/Inc/eeprom_defs.h"
+ 757              		.file 5 "/usr/local/src/arm-gnu-toolchain-13.2/lib/gcc/arm-none-eabi/13.2.1/include/stddef.h"
+ 758              		.file 6 "External/Unity-2.5.2/src/unity_internals.h"
+ 759              		.file 7 "External/Unity-2.5.2/extras/memory/src/unity_memory.h"
+ 760              		.file 8 "<built-in>"
+ARM GAS  /tmp/ccCBHk9y.s 			page 18
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 mock_eeprom_io.c
+     /tmp/ccCBHk9y.s:19     .text.record_expectation:00000000 $t
+     /tmp/ccCBHk9y.s:24     .text.record_expectation:00000000 record_expectation
+     /tmp/ccCBHk9y.s:63     .text.record_expectation:00000024 $d
+     /tmp/ccCBHk9y.s:744    .bss.set_expectation_count:00000000 set_expectation_count
+     /tmp/ccCBHk9y.s:750    .bss.expectations:00000000 expectations
+     /tmp/ccCBHk9y.s:69     .rodata.fail_when_no_init.str1.4:00000000 $d
+     /tmp/ccCBHk9y.s:73     .text.fail_when_no_init:00000000 $t
+     /tmp/ccCBHk9y.s:78     .text.fail_when_no_init:00000000 fail_when_no_init
+     /tmp/ccCBHk9y.s:106    .text.fail_when_no_init:00000014 $d
+     /tmp/ccCBHk9y.s:112    .rodata.fail_when_no_room_for_expectations.str1.4:00000000 $d
+     /tmp/ccCBHk9y.s:116    .text.fail_when_no_room_for_expectations:00000000 $t
+     /tmp/ccCBHk9y.s:121    .text.fail_when_no_room_for_expectations:00000000 fail_when_no_room_for_expectations
+     /tmp/ccCBHk9y.s:153    .text.fail_when_no_room_for_expectations:00000018 $d
+     /tmp/ccCBHk9y.s:159    .rodata.check_kind.str1.4:00000000 $d
+     /tmp/ccCBHk9y.s:163    .text.check_kind:00000000 $t
+     /tmp/ccCBHk9y.s:168    .text.check_kind:00000000 check_kind
+     /tmp/ccCBHk9y.s:211    .text.check_kind:00000020 $d
+     /tmp/ccCBHk9y.s:738    .bss.get_expectation_count:00000000 get_expectation_count
+     /tmp/ccCBHk9y.s:217    .rodata.check_data.str1.4:00000000 $d
+     /tmp/ccCBHk9y.s:221    .text.check_data:00000000 $t
+     /tmp/ccCBHk9y.s:226    .text.check_data:00000000 check_data
+     /tmp/ccCBHk9y.s:314    .text.check_data:0000003c $d
+     /tmp/ccCBHk9y.s:320    .text.mock_eeprom_io_create:00000000 $t
+     /tmp/ccCBHk9y.s:326    .text.mock_eeprom_io_create:00000000 mock_eeprom_io_create
+     /tmp/ccCBHk9y.s:367    .text.mock_eeprom_io_create:0000001c $d
+     /tmp/ccCBHk9y.s:372    .text.mock_eeprom_io_destroy:00000000 $t
+     /tmp/ccCBHk9y.s:378    .text.mock_eeprom_io_destroy:00000000 mock_eeprom_io_destroy
+     /tmp/ccCBHk9y.s:409    .text.mock_eeprom_io_destroy:00000014 $d
+     /tmp/ccCBHk9y.s:414    .text.mock_eeprom_io_expect_write:00000000 $t
+     /tmp/ccCBHk9y.s:420    .text.mock_eeprom_io_expect_write:00000000 mock_eeprom_io_expect_write
+     /tmp/ccCBHk9y.s:453    .text.mock_eeprom_io_expect_read_then_return:00000000 $t
+     /tmp/ccCBHk9y.s:459    .text.mock_eeprom_io_expect_read_then_return:00000000 mock_eeprom_io_expect_read_then_return
+     /tmp/ccCBHk9y.s:492    .rodata.mock_eeprom_io_verify_complete.str1.4:00000000 $d
+     /tmp/ccCBHk9y.s:497    .text.mock_eeprom_io_verify_complete:00000000 $t
+     /tmp/ccCBHk9y.s:503    .text.mock_eeprom_io_verify_complete:00000000 mock_eeprom_io_verify_complete
+     /tmp/ccCBHk9y.s:542    .text.mock_eeprom_io_verify_complete:00000024 $d
+     /tmp/ccCBHk9y.s:549    .text.eeprom_io_read:00000000 $t
+     /tmp/ccCBHk9y.s:555    .text.eeprom_io_read:00000000 eeprom_io_read
+     /tmp/ccCBHk9y.s:653    .text.eeprom_io_read:00000064 $d
+     /tmp/ccCBHk9y.s:659    .text.eeprom_io_write:00000000 $t
+     /tmp/ccCBHk9y.s:665    .text.eeprom_io_write:00000000 eeprom_io_write
+     /tmp/ccCBHk9y.s:729    .text.eeprom_io_write:00000040 $d
+     /tmp/ccCBHk9y.s:735    .bss.get_expectation_count:00000000 $d
+     /tmp/ccCBHk9y.s:741    .bss.set_expectation_count:00000000 $d
+     /tmp/ccCBHk9y.s:747    .bss.expectations:00000000 $d
+
+UNDEFINED SYMBOLS
+UnityFail
+sprintf
+unity_free
+unity_calloc

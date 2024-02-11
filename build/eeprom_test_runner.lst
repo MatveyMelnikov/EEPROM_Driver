@@ -1,0 +1,54 @@
+ARM GAS  /tmp/ccXubXhj.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"eeprom_test_runner.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "Tests/target_tests/eeprom_driver/eeprom_test_runner.c"
+  18              		.section	.text.TEST_eeprom_driver_GROUP_RUNNER,"ax",%progbits
+  19              		.align	1
+  20              		.global	TEST_eeprom_driver_GROUP_RUNNER
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	TEST_eeprom_driver_GROUP_RUNNER:
+  26              	.LFB0:
+   1:Tests/target_tests/eeprom_driver/eeprom_test_runner.c **** #include "unity_fixture.h"
+   2:Tests/target_tests/eeprom_driver/eeprom_test_runner.c **** 
+   3:Tests/target_tests/eeprom_driver/eeprom_test_runner.c **** TEST_GROUP_RUNNER(eeprom_driver)
+   4:Tests/target_tests/eeprom_driver/eeprom_test_runner.c **** {
+  27              		.loc 1 4 1 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+   5:Tests/target_tests/eeprom_driver/eeprom_test_runner.c ****     //RUN_TEST_CASE(eeprom_driver, success_test);
+   6:Tests/target_tests/eeprom_driver/eeprom_test_runner.c **** }...
+  32              		.loc 1 6 1 view .LVU1
+  33 0000 7047     		bx	lr
+  34              		.cfi_endproc
+  35              	.LFE0:
+  37              		.text
+  38              	.Letext0:
+ARM GAS  /tmp/ccXubXhj.s 			page 2
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 eeprom_test_runner.c
+     /tmp/ccXubXhj.s:19     .text.TEST_eeprom_driver_GROUP_RUNNER:00000000 $t
+     /tmp/ccXubXhj.s:25     .text.TEST_eeprom_driver_GROUP_RUNNER:00000000 TEST_eeprom_driver_GROUP_RUNNER
+
+NO UNDEFINED SYMBOLS

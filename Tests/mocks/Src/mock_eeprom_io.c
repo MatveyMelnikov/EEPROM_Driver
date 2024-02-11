@@ -7,9 +7,9 @@
 
 typedef struct
 {
-    const int kind;
-    const uint8_t *const data;
-    const uint8_t data_size
+    int kind;
+    const uint8_t * data;
+    uint8_t data_size
 } expectation;
 
 enum
@@ -105,7 +105,7 @@ static void check_data(
 void mock_eeprom_io_create(const uint8_t max_expectations)
 {
     if (expectations != NULL)
-        free(expectations)
+        free(expectations);
     expectations = calloc(max_expectations, sizeof(expectation));
 }
 
@@ -160,10 +160,13 @@ eeprom_status eeprom_io_read(
     expectation current_expectation = expectations[get_expectation_count];
 
     fail_when_no_init();
-    check_kind(&current_expectation, FLASH_READ);
+    check_kind(&current_expectation, IO_READ);
     check_data(&current_expectation, data);
 
-    return expectations[get_expectation_count++].data;
+    //data = expectations[get_expectation_count++].data;
+    for (uint8_t i = 0; i < data_size; i++)
+        data[i] = expectations[get_expectation_count++].data[i];
+    return EEPROM_OK;
 }
 
 eeprom_status eeprom_io_write(
@@ -174,9 +177,11 @@ eeprom_status eeprom_io_write(
     expectation current_expectation = expectations[get_expectation_count];
 
     fail_when_no_init();
-    check_kind(&current_expectation, FLASH_WRITE);
+    check_kind(&current_expectation, IO_WRITE);
     check_data(&current_expectation, data);
 
     get_expectation_count++;
+
+    return EEPROM_OK;
 }
 
