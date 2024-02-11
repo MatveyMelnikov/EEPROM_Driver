@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccCBHk9y.s 			page 1
+ARM GAS  /tmp/ccSthZdI.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccCBHk9y.s 			page 1
   30:Tests/mocks/Src/mock_eeprom_io.c **** static char *report_data_error = "Error data in MockIO."
   31:Tests/mocks/Src/mock_eeprom_io.c ****     " Expected %u, but got %u";
   32:Tests/mocks/Src/mock_eeprom_io.c **** 
-ARM GAS  /tmp/ccCBHk9y.s 			page 2
+ARM GAS  /tmp/ccSthZdI.s 			page 2
 
 
   33:Tests/mocks/Src/mock_eeprom_io.c **** static expectation *expectations = NULL;
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccCBHk9y.s 			page 1
   63:Tests/mocks/Src/mock_eeprom_io.c ****     expectations[set_expectation_count].data_size = data_size;
   51              		.loc 1 63 5 is_stmt 1 view .LVU7
   52              		.loc 1 63 51 is_stmt 0 view .LVU8
-ARM GAS  /tmp/ccCBHk9y.s 			page 3
+ARM GAS  /tmp/ccSthZdI.s 			page 3
 
 
   53 001a 8CF80820 		strb	r2, [ip, #8]
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccCBHk9y.s 			page 1
   44:Tests/mocks/Src/mock_eeprom_io.c **** }
   98              		.loc 1 44 9 is_stmt 1 view .LVU17
   99 000a 2C21     		movs	r1, #44
-ARM GAS  /tmp/ccCBHk9y.s 			page 4
+ARM GAS  /tmp/ccSthZdI.s 			page 4
 
 
  100 000c 0248     		ldr	r0, .L9+4
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccCBHk9y.s 			page 1
  145              		.loc 1 51 9 is_stmt 1 view .LVU24
  146 0010 3321     		movs	r1, #51
  147 0012 0248     		ldr	r0, .L15+4
-ARM GAS  /tmp/ccCBHk9y.s 			page 5
+ARM GAS  /tmp/ccSthZdI.s 			page 5
 
 
  148 0014 FFF7FEFF 		bl	UnityFail
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccCBHk9y.s 			page 1
   73:Tests/mocks/Src/mock_eeprom_io.c **** 
   74:Tests/mocks/Src/mock_eeprom_io.c ****     sprintf(message, report_kind_error, get_expectation_count);
  192              		.loc 1 74 5 is_stmt 1 view .LVU31
-ARM GAS  /tmp/ccCBHk9y.s 			page 6
+ARM GAS  /tmp/ccSthZdI.s 			page 6
 
 
  193 000c 044B     		ldr	r3, .L24
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccCBHk9y.s 			page 1
  234              		.loc 1 85 5 view .LVU37
   86:Tests/mocks/Src/mock_eeprom_io.c ****     for (uint8_t i = 0; i < current_expectation->data_size; i++)
  235              		.loc 1 86 5 view .LVU38
-ARM GAS  /tmp/ccCBHk9y.s 			page 7
+ARM GAS  /tmp/ccSthZdI.s 			page 7
 
 
  236              	.LBB2:
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccCBHk9y.s 			page 1
  280              		.loc 1 95 5 is_stmt 1 view .LVU56
  281              		.loc 1 95 8 is_stmt 0 view .LVU57
  282 0020 03B1     		cbz	r3, .L38
-ARM GAS  /tmp/ccCBHk9y.s 			page 8
+ARM GAS  /tmp/ccSthZdI.s 			page 8
 
 
  283 0022 7047     		bx	lr
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccCBHk9y.s 			page 1
  105:Tests/mocks/Src/mock_eeprom_io.c **** void mock_eeprom_io_create(const uint8_t max_expectations)
  106:Tests/mocks/Src/mock_eeprom_io.c **** {
  329              		.loc 1 106 1 view -0
-ARM GAS  /tmp/ccCBHk9y.s 			page 9
+ARM GAS  /tmp/ccSthZdI.s 			page 9
 
 
  330              		.cfi_startproc
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccCBHk9y.s 			page 1
  113:Tests/mocks/Src/mock_eeprom_io.c **** {
  380              		.loc 1 113 1 is_stmt 1 view -0
  381              		.cfi_startproc
-ARM GAS  /tmp/ccCBHk9y.s 			page 10
+ARM GAS  /tmp/ccSthZdI.s 			page 10
 
 
  382              		@ args = 0, pretend = 0, frame = 0
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccCBHk9y.s 			page 1
  428 0000 38B5     		push	{r3, r4, r5, lr}
  429              	.LCFI9:
  430              		.cfi_def_cfa_offset 16
-ARM GAS  /tmp/ccCBHk9y.s 			page 11
+ARM GAS  /tmp/ccSthZdI.s 			page 11
 
 
  431              		.cfi_offset 3, -16
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccCBHk9y.s 			page 1
  477 0006 FFF7FEFF 		bl	fail_when_no_room_for_expectations
  478              	.LVL31:
  134:Tests/mocks/Src/mock_eeprom_io.c ****     record_expectation(IO_READ, data, data_size);
-ARM GAS  /tmp/ccCBHk9y.s 			page 12
+ARM GAS  /tmp/ccSthZdI.s 			page 12
 
 
  479              		.loc 1 134 5 view .LVU92
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccCBHk9y.s 			page 1
  522 000e 00B5     		push	{lr}
  523              	.LCFI11:
  524              		.cfi_def_cfa_offset 4
-ARM GAS  /tmp/ccCBHk9y.s 			page 13
+ARM GAS  /tmp/ccSthZdI.s 			page 13
 
 
  525              		.cfi_offset 14, -4
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccCBHk9y.s 			page 1
  563 0000 70B5     		push	{r4, r5, r6, lr}
  564              	.LCFI13:
  565              		.cfi_def_cfa_offset 16
-ARM GAS  /tmp/ccCBHk9y.s 			page 14
+ARM GAS  /tmp/ccSthZdI.s 			page 14
 
 
  566              		.cfi_offset 4, -16
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccCBHk9y.s 			page 1
  611              		.loc 1 168 9 is_stmt 1 view .LVU116
  612              		.loc 1 168 31 is_stmt 0 view .LVU117
  613 003a 0B4A     		ldr	r2, .L68+4
-ARM GAS  /tmp/ccCBHk9y.s 			page 15
+ARM GAS  /tmp/ccSthZdI.s 			page 15
 
 
  614 003c 1468     		ldr	r4, [r2]
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccCBHk9y.s 			page 1
  665              	eeprom_io_write:
  666              	.LVL44:
  667              	.LFB11:
-ARM GAS  /tmp/ccCBHk9y.s 			page 16
+ARM GAS  /tmp/ccSthZdI.s 			page 16
 
 
  171:Tests/mocks/Src/mock_eeprom_io.c **** 
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccCBHk9y.s 			page 1
  182:Tests/mocks/Src/mock_eeprom_io.c **** 
  183:Tests/mocks/Src/mock_eeprom_io.c ****     get_expectation_count++;
  711              		.loc 1 183 5 view .LVU138
-ARM GAS  /tmp/ccCBHk9y.s 			page 17
+ARM GAS  /tmp/ccSthZdI.s 			page 17
 
 
  712              		.loc 1 183 26 is_stmt 0 view .LVU139
@@ -1006,56 +1006,56 @@ ARM GAS  /tmp/ccCBHk9y.s 			page 1
  758              		.file 6 "External/Unity-2.5.2/src/unity_internals.h"
  759              		.file 7 "External/Unity-2.5.2/extras/memory/src/unity_memory.h"
  760              		.file 8 "<built-in>"
-ARM GAS  /tmp/ccCBHk9y.s 			page 18
+ARM GAS  /tmp/ccSthZdI.s 			page 18
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 mock_eeprom_io.c
-     /tmp/ccCBHk9y.s:19     .text.record_expectation:00000000 $t
-     /tmp/ccCBHk9y.s:24     .text.record_expectation:00000000 record_expectation
-     /tmp/ccCBHk9y.s:63     .text.record_expectation:00000024 $d
-     /tmp/ccCBHk9y.s:744    .bss.set_expectation_count:00000000 set_expectation_count
-     /tmp/ccCBHk9y.s:750    .bss.expectations:00000000 expectations
-     /tmp/ccCBHk9y.s:69     .rodata.fail_when_no_init.str1.4:00000000 $d
-     /tmp/ccCBHk9y.s:73     .text.fail_when_no_init:00000000 $t
-     /tmp/ccCBHk9y.s:78     .text.fail_when_no_init:00000000 fail_when_no_init
-     /tmp/ccCBHk9y.s:106    .text.fail_when_no_init:00000014 $d
-     /tmp/ccCBHk9y.s:112    .rodata.fail_when_no_room_for_expectations.str1.4:00000000 $d
-     /tmp/ccCBHk9y.s:116    .text.fail_when_no_room_for_expectations:00000000 $t
-     /tmp/ccCBHk9y.s:121    .text.fail_when_no_room_for_expectations:00000000 fail_when_no_room_for_expectations
-     /tmp/ccCBHk9y.s:153    .text.fail_when_no_room_for_expectations:00000018 $d
-     /tmp/ccCBHk9y.s:159    .rodata.check_kind.str1.4:00000000 $d
-     /tmp/ccCBHk9y.s:163    .text.check_kind:00000000 $t
-     /tmp/ccCBHk9y.s:168    .text.check_kind:00000000 check_kind
-     /tmp/ccCBHk9y.s:211    .text.check_kind:00000020 $d
-     /tmp/ccCBHk9y.s:738    .bss.get_expectation_count:00000000 get_expectation_count
-     /tmp/ccCBHk9y.s:217    .rodata.check_data.str1.4:00000000 $d
-     /tmp/ccCBHk9y.s:221    .text.check_data:00000000 $t
-     /tmp/ccCBHk9y.s:226    .text.check_data:00000000 check_data
-     /tmp/ccCBHk9y.s:314    .text.check_data:0000003c $d
-     /tmp/ccCBHk9y.s:320    .text.mock_eeprom_io_create:00000000 $t
-     /tmp/ccCBHk9y.s:326    .text.mock_eeprom_io_create:00000000 mock_eeprom_io_create
-     /tmp/ccCBHk9y.s:367    .text.mock_eeprom_io_create:0000001c $d
-     /tmp/ccCBHk9y.s:372    .text.mock_eeprom_io_destroy:00000000 $t
-     /tmp/ccCBHk9y.s:378    .text.mock_eeprom_io_destroy:00000000 mock_eeprom_io_destroy
-     /tmp/ccCBHk9y.s:409    .text.mock_eeprom_io_destroy:00000014 $d
-     /tmp/ccCBHk9y.s:414    .text.mock_eeprom_io_expect_write:00000000 $t
-     /tmp/ccCBHk9y.s:420    .text.mock_eeprom_io_expect_write:00000000 mock_eeprom_io_expect_write
-     /tmp/ccCBHk9y.s:453    .text.mock_eeprom_io_expect_read_then_return:00000000 $t
-     /tmp/ccCBHk9y.s:459    .text.mock_eeprom_io_expect_read_then_return:00000000 mock_eeprom_io_expect_read_then_return
-     /tmp/ccCBHk9y.s:492    .rodata.mock_eeprom_io_verify_complete.str1.4:00000000 $d
-     /tmp/ccCBHk9y.s:497    .text.mock_eeprom_io_verify_complete:00000000 $t
-     /tmp/ccCBHk9y.s:503    .text.mock_eeprom_io_verify_complete:00000000 mock_eeprom_io_verify_complete
-     /tmp/ccCBHk9y.s:542    .text.mock_eeprom_io_verify_complete:00000024 $d
-     /tmp/ccCBHk9y.s:549    .text.eeprom_io_read:00000000 $t
-     /tmp/ccCBHk9y.s:555    .text.eeprom_io_read:00000000 eeprom_io_read
-     /tmp/ccCBHk9y.s:653    .text.eeprom_io_read:00000064 $d
-     /tmp/ccCBHk9y.s:659    .text.eeprom_io_write:00000000 $t
-     /tmp/ccCBHk9y.s:665    .text.eeprom_io_write:00000000 eeprom_io_write
-     /tmp/ccCBHk9y.s:729    .text.eeprom_io_write:00000040 $d
-     /tmp/ccCBHk9y.s:735    .bss.get_expectation_count:00000000 $d
-     /tmp/ccCBHk9y.s:741    .bss.set_expectation_count:00000000 $d
-     /tmp/ccCBHk9y.s:747    .bss.expectations:00000000 $d
+     /tmp/ccSthZdI.s:19     .text.record_expectation:00000000 $t
+     /tmp/ccSthZdI.s:24     .text.record_expectation:00000000 record_expectation
+     /tmp/ccSthZdI.s:63     .text.record_expectation:00000024 $d
+     /tmp/ccSthZdI.s:744    .bss.set_expectation_count:00000000 set_expectation_count
+     /tmp/ccSthZdI.s:750    .bss.expectations:00000000 expectations
+     /tmp/ccSthZdI.s:69     .rodata.fail_when_no_init.str1.4:00000000 $d
+     /tmp/ccSthZdI.s:73     .text.fail_when_no_init:00000000 $t
+     /tmp/ccSthZdI.s:78     .text.fail_when_no_init:00000000 fail_when_no_init
+     /tmp/ccSthZdI.s:106    .text.fail_when_no_init:00000014 $d
+     /tmp/ccSthZdI.s:112    .rodata.fail_when_no_room_for_expectations.str1.4:00000000 $d
+     /tmp/ccSthZdI.s:116    .text.fail_when_no_room_for_expectations:00000000 $t
+     /tmp/ccSthZdI.s:121    .text.fail_when_no_room_for_expectations:00000000 fail_when_no_room_for_expectations
+     /tmp/ccSthZdI.s:153    .text.fail_when_no_room_for_expectations:00000018 $d
+     /tmp/ccSthZdI.s:159    .rodata.check_kind.str1.4:00000000 $d
+     /tmp/ccSthZdI.s:163    .text.check_kind:00000000 $t
+     /tmp/ccSthZdI.s:168    .text.check_kind:00000000 check_kind
+     /tmp/ccSthZdI.s:211    .text.check_kind:00000020 $d
+     /tmp/ccSthZdI.s:738    .bss.get_expectation_count:00000000 get_expectation_count
+     /tmp/ccSthZdI.s:217    .rodata.check_data.str1.4:00000000 $d
+     /tmp/ccSthZdI.s:221    .text.check_data:00000000 $t
+     /tmp/ccSthZdI.s:226    .text.check_data:00000000 check_data
+     /tmp/ccSthZdI.s:314    .text.check_data:0000003c $d
+     /tmp/ccSthZdI.s:320    .text.mock_eeprom_io_create:00000000 $t
+     /tmp/ccSthZdI.s:326    .text.mock_eeprom_io_create:00000000 mock_eeprom_io_create
+     /tmp/ccSthZdI.s:367    .text.mock_eeprom_io_create:0000001c $d
+     /tmp/ccSthZdI.s:372    .text.mock_eeprom_io_destroy:00000000 $t
+     /tmp/ccSthZdI.s:378    .text.mock_eeprom_io_destroy:00000000 mock_eeprom_io_destroy
+     /tmp/ccSthZdI.s:409    .text.mock_eeprom_io_destroy:00000014 $d
+     /tmp/ccSthZdI.s:414    .text.mock_eeprom_io_expect_write:00000000 $t
+     /tmp/ccSthZdI.s:420    .text.mock_eeprom_io_expect_write:00000000 mock_eeprom_io_expect_write
+     /tmp/ccSthZdI.s:453    .text.mock_eeprom_io_expect_read_then_return:00000000 $t
+     /tmp/ccSthZdI.s:459    .text.mock_eeprom_io_expect_read_then_return:00000000 mock_eeprom_io_expect_read_then_return
+     /tmp/ccSthZdI.s:492    .rodata.mock_eeprom_io_verify_complete.str1.4:00000000 $d
+     /tmp/ccSthZdI.s:497    .text.mock_eeprom_io_verify_complete:00000000 $t
+     /tmp/ccSthZdI.s:503    .text.mock_eeprom_io_verify_complete:00000000 mock_eeprom_io_verify_complete
+     /tmp/ccSthZdI.s:542    .text.mock_eeprom_io_verify_complete:00000024 $d
+     /tmp/ccSthZdI.s:549    .text.eeprom_io_read:00000000 $t
+     /tmp/ccSthZdI.s:555    .text.eeprom_io_read:00000000 eeprom_io_read
+     /tmp/ccSthZdI.s:653    .text.eeprom_io_read:00000064 $d
+     /tmp/ccSthZdI.s:659    .text.eeprom_io_write:00000000 $t
+     /tmp/ccSthZdI.s:665    .text.eeprom_io_write:00000000 eeprom_io_write
+     /tmp/ccSthZdI.s:729    .text.eeprom_io_write:00000040 $d
+     /tmp/ccSthZdI.s:735    .bss.get_expectation_count:00000000 $d
+     /tmp/ccSthZdI.s:741    .bss.set_expectation_count:00000000 $d
+     /tmp/ccSthZdI.s:747    .bss.expectations:00000000 $d
 
 UNDEFINED SYMBOLS
 UnityFail

@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccxyfcOs.s 			page 1
+ARM GAS  /tmp/ccwUXpTb.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccxyfcOs.s 			page 1
   31:Tests/target_tests.c **** }
   32:Tests/target_tests.c **** 
   33:Tests/target_tests.c **** void SystemClock_Config(void)
-ARM GAS  /tmp/ccxyfcOs.s 			page 2
+ARM GAS  /tmp/ccwUXpTb.s 			page 2
 
 
   34:Tests/target_tests.c **** {
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccxyfcOs.s 			page 1
   35              	.LBB4:
   36              		.loc 1 78 3 view .LVU2
   37              		.loc 1 78 3 view .LVU3
-ARM GAS  /tmp/ccxyfcOs.s 			page 3
+ARM GAS  /tmp/ccwUXpTb.s 			page 3
 
 
   38 0002 064B     		ldr	r3, .L3
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccxyfcOs.s 			page 1
   88 0006 08BD     		pop	{r3, pc}
   89              		.cfi_endproc
   90              	.LFE69:
-ARM GAS  /tmp/ccxyfcOs.s 			page 4
+ARM GAS  /tmp/ccwUXpTb.s 			page 4
 
 
   92              		.section	.text.unity_config_put_c,"ax",%progbits
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccxyfcOs.s 			page 1
  143              		.thumb_func
  145              	_kill:
  146              	.LFB71:
-ARM GAS  /tmp/ccxyfcOs.s 			page 5
+ARM GAS  /tmp/ccwUXpTb.s 			page 5
 
 
   90:Tests/target_tests.c **** 
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccxyfcOs.s 			page 1
  192              		@ args = 0, pretend = 0, frame = 0
  193              		@ frame_needed = 0, uses_anonymous_args = 0
  194              		@ link register save eliminated.
-ARM GAS  /tmp/ccxyfcOs.s 			page 6
+ARM GAS  /tmp/ccwUXpTb.s 			page 6
 
 
  195              	.L14:
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccxyfcOs.s 			page 1
   21:Drivers/CMSIS/Include/cmsis_gcc.h ****  * See the License for the specific language governing permissions and
   22:Drivers/CMSIS/Include/cmsis_gcc.h ****  * limitations under the License.
   23:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
-ARM GAS  /tmp/ccxyfcOs.s 			page 7
+ARM GAS  /tmp/ccwUXpTb.s 			page 7
 
 
   24:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccxyfcOs.s 			page 1
   78:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT16_WRITE
   79:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic push
   80:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wpacked"
-ARM GAS  /tmp/ccxyfcOs.s 			page 8
+ARM GAS  /tmp/ccwUXpTb.s 			page 8
 
 
   81:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wattributes"
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccxyfcOs.s 			page 1
  135:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  136:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Disable IRQ Interrupts
  137:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Disables IRQ interrupts by setting the I-bit in the CPSR.
-ARM GAS  /tmp/ccxyfcOs.s 			page 9
+ARM GAS  /tmp/ccwUXpTb.s 			page 9
 
 
  138:Drivers/CMSIS/Include/cmsis_gcc.h ****            Can only be executed in Privileged modes.
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccxyfcOs.s 			page 1
  264              		.loc 1 63 24 is_stmt 0 view .LVU40
  265 0008 4FF4E133 		mov	r3, #115200
  266 000c 4360     		str	r3, [r0, #4]
-ARM GAS  /tmp/ccxyfcOs.s 			page 10
+ARM GAS  /tmp/ccwUXpTb.s 			page 10
 
 
   64:Tests/target_tests.c ****   huart1.Init.StopBits = UART_STOPBITS_1;
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccxyfcOs.s 			page 1
  304              		.cfi_endproc
  305              	.LFE67:
  307              		.section	.text.SystemClock_Config,"ax",%progbits
-ARM GAS  /tmp/ccxyfcOs.s 			page 11
+ARM GAS  /tmp/ccwUXpTb.s 			page 11
 
 
  308              		.align	1
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccxyfcOs.s 			page 1
  352 0022 1023     		movs	r3, #16
  353 0024 0B93     		str	r3, [sp, #44]
   41:Tests/target_tests.c ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
-ARM GAS  /tmp/ccxyfcOs.s 			page 12
+ARM GAS  /tmp/ccwUXpTb.s 			page 12
 
 
  354              		.loc 1 41 3 is_stmt 1 view .LVU69
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccxyfcOs.s 			page 1
  391              		@ sp needed
  392 0046 5DF804FB 		ldr	pc, [sp], #4
  393              	.L27:
-ARM GAS  /tmp/ccxyfcOs.s 			page 13
+ARM GAS  /tmp/ccwUXpTb.s 			page 13
 
 
  394              	.LCFI10:
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccxyfcOs.s 			page 1
  441 0018 FFF7FEFF 		bl	UnityMain
  442              	.LVL15:
   31:Tests/target_tests.c **** 
-ARM GAS  /tmp/ccxyfcOs.s 			page 14
+ARM GAS  /tmp/ccwUXpTb.s 			page 14
 
 
  443              		.loc 1 31 1 view .LVU96
@@ -811,37 +811,37 @@ ARM GAS  /tmp/ccxyfcOs.s 			page 1
  469              		.file 11 "External/Unity-2.5.2/extras/fixture/src/unity_fixture.h"
  470              		.file 12 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h"
  471              		.file 13 "<built-in>"
-ARM GAS  /tmp/ccxyfcOs.s 			page 15
+ARM GAS  /tmp/ccwUXpTb.s 			page 15
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 target_tests.c
-     /tmp/ccxyfcOs.s:19     .text.MX_GPIO_Init:00000000 $t
-     /tmp/ccxyfcOs.s:24     .text.MX_GPIO_Init:00000000 MX_GPIO_Init
-     /tmp/ccxyfcOs.s:59     .text.MX_GPIO_Init:0000001c $d
-     /tmp/ccxyfcOs.s:64     .text.run_all_tests:00000000 $t
-     /tmp/ccxyfcOs.s:69     .text.run_all_tests:00000000 run_all_tests
-     /tmp/ccxyfcOs.s:93     .text.unity_config_put_c:00000000 $t
-     /tmp/ccxyfcOs.s:99     .text.unity_config_put_c:00000000 unity_config_put_c
-     /tmp/ccxyfcOs.s:134    .text.unity_config_put_c:0000001c $d
-     /tmp/ccxyfcOs.s:457    .bss.huart1:00000000 huart1
-     /tmp/ccxyfcOs.s:139    .text._kill:00000000 $t
-     /tmp/ccxyfcOs.s:145    .text._kill:00000000 _kill
-     /tmp/ccxyfcOs.s:160    .text._getpid:00000000 $t
-     /tmp/ccxyfcOs.s:166    .text._getpid:00000000 _getpid
-     /tmp/ccxyfcOs.s:181    .text._exit:00000000 $t
-     /tmp/ccxyfcOs.s:187    .text._exit:00000000 _exit
-     /tmp/ccxyfcOs.s:204    .text.Error_Handler:00000000 $t
-     /tmp/ccxyfcOs.s:210    .text.Error_Handler:00000000 Error_Handler
-     /tmp/ccxyfcOs.s:242    .text.MX_USART1_UART_Init:00000000 $t
-     /tmp/ccxyfcOs.s:247    .text.MX_USART1_UART_Init:00000000 MX_USART1_UART_Init
-     /tmp/ccxyfcOs.s:302    .text.MX_USART1_UART_Init:0000002c $d
-     /tmp/ccxyfcOs.s:308    .text.SystemClock_Config:00000000 $t
-     /tmp/ccxyfcOs.s:314    .text.SystemClock_Config:00000000 SystemClock_Config
-     /tmp/ccxyfcOs.s:407    .text.main:00000000 $t
-     /tmp/ccxyfcOs.s:413    .text.main:00000000 main
-     /tmp/ccxyfcOs.s:448    .text.main:00000020 $d
-     /tmp/ccxyfcOs.s:454    .bss.huart1:00000000 $d
+     /tmp/ccwUXpTb.s:19     .text.MX_GPIO_Init:00000000 $t
+     /tmp/ccwUXpTb.s:24     .text.MX_GPIO_Init:00000000 MX_GPIO_Init
+     /tmp/ccwUXpTb.s:59     .text.MX_GPIO_Init:0000001c $d
+     /tmp/ccwUXpTb.s:64     .text.run_all_tests:00000000 $t
+     /tmp/ccwUXpTb.s:69     .text.run_all_tests:00000000 run_all_tests
+     /tmp/ccwUXpTb.s:93     .text.unity_config_put_c:00000000 $t
+     /tmp/ccwUXpTb.s:99     .text.unity_config_put_c:00000000 unity_config_put_c
+     /tmp/ccwUXpTb.s:134    .text.unity_config_put_c:0000001c $d
+     /tmp/ccwUXpTb.s:457    .bss.huart1:00000000 huart1
+     /tmp/ccwUXpTb.s:139    .text._kill:00000000 $t
+     /tmp/ccwUXpTb.s:145    .text._kill:00000000 _kill
+     /tmp/ccwUXpTb.s:160    .text._getpid:00000000 $t
+     /tmp/ccwUXpTb.s:166    .text._getpid:00000000 _getpid
+     /tmp/ccwUXpTb.s:181    .text._exit:00000000 $t
+     /tmp/ccwUXpTb.s:187    .text._exit:00000000 _exit
+     /tmp/ccwUXpTb.s:204    .text.Error_Handler:00000000 $t
+     /tmp/ccwUXpTb.s:210    .text.Error_Handler:00000000 Error_Handler
+     /tmp/ccwUXpTb.s:242    .text.MX_USART1_UART_Init:00000000 $t
+     /tmp/ccwUXpTb.s:247    .text.MX_USART1_UART_Init:00000000 MX_USART1_UART_Init
+     /tmp/ccwUXpTb.s:302    .text.MX_USART1_UART_Init:0000002c $d
+     /tmp/ccwUXpTb.s:308    .text.SystemClock_Config:00000000 $t
+     /tmp/ccwUXpTb.s:314    .text.SystemClock_Config:00000000 SystemClock_Config
+     /tmp/ccwUXpTb.s:407    .text.main:00000000 $t
+     /tmp/ccwUXpTb.s:413    .text.main:00000000 main
+     /tmp/ccwUXpTb.s:448    .text.main:00000020 $d
+     /tmp/ccwUXpTb.s:454    .bss.huart1:00000000 $d
 
 UNDEFINED SYMBOLS
 TEST_eeprom_driver_GROUP_RUNNER

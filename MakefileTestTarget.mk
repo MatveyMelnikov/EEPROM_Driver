@@ -163,16 +163,16 @@ vpath %.s $(sort $(dir $(ASM_SOURCES)))
 OBJECTS += $(addprefix $(BUILD_DIR)/,$(notdir $(ASMM_SOURCES:.S=.o)))
 vpath %.S $(sort $(dir $(ASMM_SOURCES)))
 
-# Замена Makefile (он здесь вызывается) на MakefileTarget.mk
-$(BUILD_DIR)/%.o: %.c MakefileTarget.mk | $(BUILD_DIR) 
+# Замена Makefile (он здесь вызывается) на MakefileTestTarget.mk
+$(BUILD_DIR)/%.o: %.c MakefileTestTarget.mk | $(BUILD_DIR) 
 	$(CC) -c $(CFLAGS) -Wa,-a,-ad,-alms=$(BUILD_DIR)/$(notdir $(<:.c=.lst)) $< -o $@
 
-$(BUILD_DIR)/%.o: %.s MakefileTarget.mk | $(BUILD_DIR)
+$(BUILD_DIR)/%.o: %.s MakefileTestTarget.mk | $(BUILD_DIR)
 	$(AS) -c $(CFLAGS) $< -o $@
-$(BUILD_DIR)/%.o: %.S MakefileTarget.mk | $(BUILD_DIR)
+$(BUILD_DIR)/%.o: %.S MakefileTestTarget.mk | $(BUILD_DIR)
 	$(AS) -c $(CFLAGS) $< -o $@
 
-$(BUILD_DIR)/$(TARGET).elf: $(OBJECTS) MakefileTarget.mk
+$(BUILD_DIR)/$(TARGET).elf: $(OBJECTS) MakefileTestTarget.mk
 	$(CC) $(OBJECTS) $(LDFLAGS) -o $@
 	$(SZ) $@
 

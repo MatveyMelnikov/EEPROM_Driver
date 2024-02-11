@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccrLSXG2.s 			page 1
+ARM GAS  /tmp/ccyzfYuB.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccrLSXG2.s 			page 1
   19:External/Unity-2.5.2/extras/fixture/src/unity_fixture.c **** void tearDown(void) { /*does nothing*/ }
   20:External/Unity-2.5.2/extras/fixture/src/unity_fixture.c **** 
   21:External/Unity-2.5.2/extras/fixture/src/unity_fixture.c **** static void announceTestRun(unsigned int runNumber)
-ARM GAS  /tmp/ccrLSXG2.s 			page 2
+ARM GAS  /tmp/ccyzfYuB.s 			page 2
 
 
   22:External/Unity-2.5.2/extras/fixture/src/unity_fixture.c **** {
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccrLSXG2.s 			page 1
   81 0034 00000000 		.word	UnityFixture
   82              		.cfi_endproc
   83              	.LFE2:
-ARM GAS  /tmp/ccrLSXG2.s 			page 3
+ARM GAS  /tmp/ccyzfYuB.s 			page 3
 
 
   85              		.section	.text.selected,"ax",%progbits
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccrLSXG2.s 			page 1
  114              		.loc 1 53 12 view .LVU17
  115 000a FFF7FEFF 		bl	strstr
  116              	.LVL12:
-ARM GAS  /tmp/ccrLSXG2.s 			page 4
+ARM GAS  /tmp/ccyzfYuB.s 			page 4
 
 
  117              		.loc 1 53 37 discriminator 1 view .LVU18
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccrLSXG2.s 			page 1
  166 000c 08BD     		pop	{r3, pc}
  167              	.L15:
  168 000e 00BF     		.align	2
-ARM GAS  /tmp/ccrLSXG2.s 			page 5
+ARM GAS  /tmp/ccyzfYuB.s 			page 5
 
 
  169              	.L14:
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccrLSXG2.s 			page 1
  221              		.cfi_startproc
  222              		@ args = 0, pretend = 0, frame = 0
  223              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccrLSXG2.s 			page 6
+ARM GAS  /tmp/ccyzfYuB.s 			page 6
 
 
  224              		@ link register save eliminated.
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccrLSXG2.s 			page 1
   85:External/Unity-2.5.2/extras/fixture/src/unity_fixture.c ****         #endif
   86:External/Unity-2.5.2/extras/fixture/src/unity_fixture.c ****         }
   87:External/Unity-2.5.2/extras/fixture/src/unity_fixture.c ****         else if (UnityFixture.Silent)
-ARM GAS  /tmp/ccrLSXG2.s 			page 7
+ARM GAS  /tmp/ccyzfYuB.s 			page 7
 
 
   88:External/Unity-2.5.2/extras/fixture/src/unity_fixture.c ****         {
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccrLSXG2.s 			page 1
  280              		.loc 1 120 8 discriminator 1 view .LVU43
  281 000c 80B1     		cbz	r0, .L22
  282              		.loc 1 120 31 discriminator 1 view .LVU44
-ARM GAS  /tmp/ccrLSXG2.s 			page 8
+ARM GAS  /tmp/ccyzfYuB.s 			page 8
 
 
  283 000e 2046     		mov	r0, r4
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccrLSXG2.s 			page 1
  318              		.loc 1 126 13 is_stmt 1 view .LVU59
  319 0032 2846     		mov	r0, r5
  320 0034 FFF7FEFF 		bl	UnityPrint
-ARM GAS  /tmp/ccrLSXG2.s 			page 9
+ARM GAS  /tmp/ccyzfYuB.s 			page 9
 
 
  321              	.LVL26:
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccrLSXG2.s 			page 1
  153:External/Unity-2.5.2/extras/fixture/src/unity_fixture.c ****     pointer_index = 0;
  360              		.loc 1 153 5 view .LVU65
  361              		.loc 1 153 19 is_stmt 0 view .LVU66
-ARM GAS  /tmp/ccrLSXG2.s 			page 10
+ARM GAS  /tmp/ccyzfYuB.s 			page 10
 
 
  362 0000 014B     		ldr	r3, .L31
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccrLSXG2.s 			page 1
  163:External/Unity-2.5.2/extras/fixture/src/unity_fixture.c ****     {
  164:External/Unity-2.5.2/extras/fixture/src/unity_fixture.c ****         pointer_store[pointer_index].pointer = pointer;
  405              		.loc 1 164 9 is_stmt 1 view .LVU73
-ARM GAS  /tmp/ccrLSXG2.s 			page 11
+ARM GAS  /tmp/ccyzfYuB.s 			page 11
 
 
  406              		.loc 1 164 46 is_stmt 0 view .LVU74
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccrLSXG2.s 			page 1
  452              		.thumb_func
  454              	UnityPointer_UndoAllSets:
  455              	.LFB11:
-ARM GAS  /tmp/ccrLSXG2.s 			page 12
+ARM GAS  /tmp/ccyzfYuB.s 			page 12
 
 
  170:External/Unity-2.5.2/extras/fixture/src/unity_fixture.c **** 
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccrLSXG2.s 			page 1
  499 0003 00       		.align	2
  500              	.LC4:
  501 0004 2D2D6865 		.ascii	"--help\000"
-ARM GAS  /tmp/ccrLSXG2.s 			page 13
+ARM GAS  /tmp/ccyzfYuB.s 			page 13
 
 
  501      6C7000
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccrLSXG2.s 			page 1
  522      696E6720 
  522      4E414D45 
  522      00
-ARM GAS  /tmp/ccrLSXG2.s 			page 14
+ARM GAS  /tmp/ccyzfYuB.s 			page 14
 
 
  523              		.align	2
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccrLSXG2.s 			page 1
  555              		.global	UnityGetCommandLineOptions
  556              		.syntax unified
  557              		.thumb
-ARM GAS  /tmp/ccrLSXG2.s 			page 15
+ARM GAS  /tmp/ccyzfYuB.s 			page 15
 
 
  558              		.thumb_func
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccrLSXG2.s 			page 1
  191:External/Unity-2.5.2/extras/fixture/src/unity_fixture.c ****         return 0;
  192:External/Unity-2.5.2/extras/fixture/src/unity_fixture.c **** 
  193:External/Unity-2.5.2/extras/fixture/src/unity_fixture.c ****     for (i = 1; i < argc; )
-ARM GAS  /tmp/ccrLSXG2.s 			page 16
+ARM GAS  /tmp/ccyzfYuB.s 			page 16
 
 
  602              		.loc 1 193 12 view .LVU113
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccrLSXG2.s 			page 1
  646              	.LVL47:
  204:External/Unity-2.5.2/extras/fixture/src/unity_fixture.c ****             UnityPrint("Optional flags:");
  647              		.loc 1 204 13 view .LVU124
-ARM GAS  /tmp/ccrLSXG2.s 			page 17
+ARM GAS  /tmp/ccyzfYuB.s 			page 17
 
 
  648 005c 6848     		ldr	r0, .L66+12
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccrLSXG2.s 			page 1
  212:External/Unity-2.5.2/extras/fixture/src/unity_fixture.c ****             UnityPrint("  -n NAME     Only run tests whose name contains the string NAME");
  695              		.loc 1 212 13 view .LVU136
  696 00a4 5A48     		ldr	r0, .L66+28
-ARM GAS  /tmp/ccrLSXG2.s 			page 18
+ARM GAS  /tmp/ccyzfYuB.s 			page 18
 
 
  697 00a6 FFF7FEFF 		bl	UnityPrint
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccrLSXG2.s 			page 1
  225:External/Unity-2.5.2/extras/fixture/src/unity_fixture.c ****             UnityPrint("More information about Unity: https://www.throwtheswitch.org/unity");
  739              		.loc 1 225 13 view .LVU147
  740 00e6 4D48     		ldr	r0, .L66+40
-ARM GAS  /tmp/ccrLSXG2.s 			page 19
+ARM GAS  /tmp/ccyzfYuB.s 			page 19
 
 
  741 00e8 FFF7FEFF 		bl	UnityPrint
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccrLSXG2.s 			page 1
  265:External/Unity-2.5.2/extras/fixture/src/unity_fixture.c ****                     UnityFixture.RepeatCount = 0;
  266:External/Unity-2.5.2/extras/fixture/src/unity_fixture.c ****                     while (argv[i][digit] >= '0' && argv[i][digit] <= '9')
  267:External/Unity-2.5.2/extras/fixture/src/unity_fixture.c ****                     {
-ARM GAS  /tmp/ccrLSXG2.s 			page 20
+ARM GAS  /tmp/ccyzfYuB.s 			page 20
 
 
  268:External/Unity-2.5.2/extras/fixture/src/unity_fixture.c ****                         UnityFixture.RepeatCount *= 10;
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccrLSXG2.s 			page 1
  785 0118 2046     		mov	r0, r4
  786 011a FFF7FEFF 		bl	strcmp
  787              	.LVL78:
-ARM GAS  /tmp/ccrLSXG2.s 			page 21
+ARM GAS  /tmp/ccyzfYuB.s 			page 21
 
 
  195:External/Unity-2.5.2/extras/fixture/src/unity_fixture.c ****         {
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccrLSXG2.s 			page 1
  242:External/Unity-2.5.2/extras/fixture/src/unity_fixture.c ****             if (i >= argc)
  828              		.loc 1 242 13 is_stmt 1 view .LVU177
  242:External/Unity-2.5.2/extras/fixture/src/unity_fixture.c ****             if (i >= argc)
-ARM GAS  /tmp/ccrLSXG2.s 			page 22
+ARM GAS  /tmp/ccyzfYuB.s 			page 22
 
 
  829              		.loc 1 242 14 is_stmt 0 view .LVU178
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccrLSXG2.s 			page 1
  253:External/Unity-2.5.2/extras/fixture/src/unity_fixture.c ****             i++;
  867              		.loc 1 253 13 is_stmt 1 view .LVU195
  253:External/Unity-2.5.2/extras/fixture/src/unity_fixture.c ****             i++;
-ARM GAS  /tmp/ccrLSXG2.s 			page 23
+ARM GAS  /tmp/ccyzfYuB.s 			page 23
 
 
  868              		.loc 1 253 43 is_stmt 0 view .LVU196
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccrLSXG2.s 			page 1
  906 019a 57F82320 		ldr	r2, [r7, r3, lsl #2]
  262:External/Unity-2.5.2/extras/fixture/src/unity_fixture.c ****                 {
  907              		.loc 1 262 21 view .LVU213
-ARM GAS  /tmp/ccrLSXG2.s 			page 24
+ARM GAS  /tmp/ccyzfYuB.s 			page 24
 
 
  908 019e 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccrLSXG2.s 			page 1
  947 01c2 805C     		ldrb	r0, [r0, r2]	@ zero_extendqisi2
  269:External/Unity-2.5.2/extras/fixture/src/unity_fixture.c ****                     }
  948              		.loc 1 269 84 view .LVU229
-ARM GAS  /tmp/ccrLSXG2.s 			page 25
+ARM GAS  /tmp/ccyzfYuB.s 			page 25
 
 
  949 01c4 3038     		subs	r0, r0, #48
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccrLSXG2.s 			page 1
  989              	.L64:
  281:External/Unity-2.5.2/extras/fixture/src/unity_fixture.c **** }
  990              		.loc 1 281 12 view .LVU244
-ARM GAS  /tmp/ccrLSXG2.s 			page 26
+ARM GAS  /tmp/ccyzfYuB.s 			page 26
 
 
  991 01e4 0020     		movs	r0, #0
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccrLSXG2.s 			page 1
   31:External/Unity-2.5.2/extras/fixture/src/unity_fixture.c ****     int result = UnityGetCommandLineOptions(argc, argv);
  1043              		.loc 1 31 1 is_stmt 1 view -0
  1044              		.cfi_startproc
-ARM GAS  /tmp/ccrLSXG2.s 			page 27
+ARM GAS  /tmp/ccyzfYuB.s 			page 27
 
 
  1045              		@ args = 0, pretend = 0, frame = 0
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccrLSXG2.s 			page 1
  1086 0020 A342     		cmp	r3, r4
  1087 0022 0ED9     		bls	.L74
   39:External/Unity-2.5.2/extras/fixture/src/unity_fixture.c ****         announceTestRun(r);
-ARM GAS  /tmp/ccrLSXG2.s 			page 28
+ARM GAS  /tmp/ccyzfYuB.s 			page 28
 
 
  1088              		.loc 1 39 9 is_stmt 1 view .LVU263
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccrLSXG2.s 			page 1
  1133 0000 2000     		.ascii	" \000"
  1134              		.section	.text.UnityConcludeFixtureTest,"ax",%progbits
  1135              		.align	1
-ARM GAS  /tmp/ccrLSXG2.s 			page 29
+ARM GAS  /tmp/ccyzfYuB.s 			page 29
 
 
  1136              		.global	UnityConcludeFixtureTest
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccrLSXG2.s 			page 1
  1177              	.LVL118:
  297:External/Unity-2.5.2/extras/fixture/src/unity_fixture.c ****             UNITY_EXEC_TIME_STOP();
  1178              		.loc 1 297 13 view .LVU286
-ARM GAS  /tmp/ccrLSXG2.s 			page 30
+ARM GAS  /tmp/ccyzfYuB.s 			page 30
 
 
  1179              		.loc 1 297 13 view .LVU287
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccrLSXG2.s 			page 1
  1216              		.loc 1 309 30 is_stmt 0 view .LVU302
  1217 0048 5A62     		str	r2, [r3, #36]
  310:External/Unity-2.5.2/extras/fixture/src/unity_fixture.c **** }
-ARM GAS  /tmp/ccrLSXG2.s 			page 31
+ARM GAS  /tmp/ccyzfYuB.s 			page 31
 
 
  1218              		.loc 1 310 1 view .LVU303
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccrLSXG2.s 			page 1
  1267 0002 84B0     		sub	sp, sp, #16
  1268              	.LCFI11:
  1269              		.cfi_def_cfa_offset 24
-ARM GAS  /tmp/ccrLSXG2.s 			page 32
+ARM GAS  /tmp/ccyzfYuB.s 			page 32
 
 
  1270 0004 0190     		str	r0, [sp, #4]
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccrLSXG2.s 			page 1
  1308              		.loc 1 87 14 is_stmt 1 view .LVU326
   87:External/Unity-2.5.2/extras/fixture/src/unity_fixture.c ****         {
  1309              		.loc 1 87 30 is_stmt 0 view .LVU327
-ARM GAS  /tmp/ccrLSXG2.s 			page 33
+ARM GAS  /tmp/ccyzfYuB.s 			page 33
 
 
  1310 0030 174B     		ldr	r3, .L97+4
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccrLSXG2.s 			page 1
  1349              	.LVL134:
  106:External/Unity-2.5.2/extras/fixture/src/unity_fixture.c ****         {
  1350              		.loc 1 106 12 discriminator 1 view .LVU343
-ARM GAS  /tmp/ccrLSXG2.s 			page 34
+ARM GAS  /tmp/ccyzfYuB.s 			page 34
 
 
  1351 005a 08B9     		cbnz	r0, .L91
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccrLSXG2.s 			page 1
  1396              	.L96:
  112:External/Unity-2.5.2/extras/fixture/src/unity_fixture.c ****         }
  1397              		.loc 1 112 13 view .LVU353
-ARM GAS  /tmp/ccrLSXG2.s 			page 35
+ARM GAS  /tmp/ccyzfYuB.s 			page 35
 
 
  1398 0086 FFF7FEFF 		bl	UnityPointer_UndoAllSets
@@ -2083,67 +2083,67 @@ ARM GAS  /tmp/ccrLSXG2.s 			page 1
  1436              		.file 7 "/usr/local/src/arm-gnu-toolchain-13.2/arm-none-eabi/include/string.h"
  1437              		.file 8 "/usr/local/src/arm-gnu-toolchain-13.2/arm-none-eabi/include/setjmp.h"
  1438              		.file 9 "Tests/unity_config.h"
-ARM GAS  /tmp/ccrLSXG2.s 			page 36
+ARM GAS  /tmp/ccyzfYuB.s 			page 36
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 unity_fixture.c
-     /tmp/ccrLSXG2.s:19     .rodata.announceTestRun.str1.4:00000000 $d
-     /tmp/ccrLSXG2.s:26     .text.announceTestRun:00000000 $t
-     /tmp/ccrLSXG2.s:31     .text.announceTestRun:00000000 announceTestRun
-     /tmp/ccrLSXG2.s:79     .text.announceTestRun:0000002c $d
-     /tmp/ccrLSXG2.s:1427   .bss.UnityFixture:00000000 UnityFixture
-     /tmp/ccrLSXG2.s:86     .text.selected:00000000 $t
-     /tmp/ccrLSXG2.s:91     .text.selected:00000000 selected
-     /tmp/ccrLSXG2.s:138    .text.testSelected:00000000 $t
-     /tmp/ccrLSXG2.s:143    .text.testSelected:00000000 testSelected
-     /tmp/ccrLSXG2.s:170    .text.testSelected:00000010 $d
-     /tmp/ccrLSXG2.s:175    .text.groupSelected:00000000 $t
-     /tmp/ccrLSXG2.s:180    .text.groupSelected:00000000 groupSelected
-     /tmp/ccrLSXG2.s:207    .text.groupSelected:00000010 $d
-     /tmp/ccrLSXG2.s:212    .text.setUp:00000000 $t
-     /tmp/ccrLSXG2.s:218    .text.setUp:00000000 setUp
-     /tmp/ccrLSXG2.s:231    .text.tearDown:00000000 $t
-     /tmp/ccrLSXG2.s:237    .text.tearDown:00000000 tearDown
-     /tmp/ccrLSXG2.s:250    .text.UnityIgnoreTest:00000000 $t
-     /tmp/ccrLSXG2.s:256    .text.UnityIgnoreTest:00000000 UnityIgnoreTest
-     /tmp/ccrLSXG2.s:341    .text.UnityIgnoreTest:00000050 $d
-     /tmp/ccrLSXG2.s:347    .text.UnityPointer_Init:00000000 $t
-     /tmp/ccrLSXG2.s:353    .text.UnityPointer_Init:00000000 UnityPointer_Init
-     /tmp/ccrLSXG2.s:370    .text.UnityPointer_Init:00000008 $d
-     /tmp/ccrLSXG2.s:1414   .bss.pointer_index:00000000 pointer_index
-     /tmp/ccrLSXG2.s:375    .rodata.UnityPointer_Set.str1.4:00000000 $d
-     /tmp/ccrLSXG2.s:379    .text.UnityPointer_Set:00000000 $t
-     /tmp/ccrLSXG2.s:385    .text.UnityPointer_Set:00000000 UnityPointer_Set
-     /tmp/ccrLSXG2.s:441    .text.UnityPointer_Set:00000030 $d
-     /tmp/ccrLSXG2.s:1420   .bss.pointer_store:00000000 pointer_store
-     /tmp/ccrLSXG2.s:448    .text.UnityPointer_UndoAllSets:00000000 $t
-     /tmp/ccrLSXG2.s:454    .text.UnityPointer_UndoAllSets:00000000 UnityPointer_UndoAllSets
-     /tmp/ccrLSXG2.s:490    .text.UnityPointer_UndoAllSets:00000020 $d
-     /tmp/ccrLSXG2.s:496    .rodata.UnityGetCommandLineOptions.str1.4:00000000 $d
-     /tmp/ccrLSXG2.s:554    .text.UnityGetCommandLineOptions:00000000 $t
-     /tmp/ccrLSXG2.s:560    .text.UnityGetCommandLineOptions:00000000 UnityGetCommandLineOptions
-     /tmp/ccrLSXG2.s:1012   .text.UnityGetCommandLineOptions:000001f4 $d
-     /tmp/ccrLSXG2.s:1034   .text.UnityMain:00000000 $t
-     /tmp/ccrLSXG2.s:1040   .text.UnityMain:00000000 UnityMain
-     /tmp/ccrLSXG2.s:1125   .text.UnityMain:00000048 $d
-     /tmp/ccrLSXG2.s:1131   .rodata.UnityConcludeFixtureTest.str1.4:00000000 $d
-     /tmp/ccrLSXG2.s:1135   .text.UnityConcludeFixtureTest:00000000 $t
-     /tmp/ccrLSXG2.s:1141   .text.UnityConcludeFixtureTest:00000000 UnityConcludeFixtureTest
-     /tmp/ccrLSXG2.s:1240   .text.UnityConcludeFixtureTest:00000064 $d
-     /tmp/ccrLSXG2.s:1248   .text.UnityTestRunner:00000000 $t
-     /tmp/ccrLSXG2.s:1254   .text.UnityTestRunner:00000000 UnityTestRunner
-     /tmp/ccrLSXG2.s:1404   .text.UnityTestRunner:0000008c $d
-     /tmp/ccrLSXG2.s:1411   .bss.pointer_index:00000000 $d
-     /tmp/ccrLSXG2.s:1417   .bss.pointer_store:00000000 $d
-     /tmp/ccrLSXG2.s:1424   .bss.UnityFixture:00000000 $d
+     /tmp/ccyzfYuB.s:19     .rodata.announceTestRun.str1.4:00000000 $d
+     /tmp/ccyzfYuB.s:26     .text.announceTestRun:00000000 $t
+     /tmp/ccyzfYuB.s:31     .text.announceTestRun:00000000 announceTestRun
+     /tmp/ccyzfYuB.s:79     .text.announceTestRun:0000002c $d
+     /tmp/ccyzfYuB.s:1427   .bss.UnityFixture:00000000 UnityFixture
+     /tmp/ccyzfYuB.s:86     .text.selected:00000000 $t
+     /tmp/ccyzfYuB.s:91     .text.selected:00000000 selected
+     /tmp/ccyzfYuB.s:138    .text.testSelected:00000000 $t
+     /tmp/ccyzfYuB.s:143    .text.testSelected:00000000 testSelected
+     /tmp/ccyzfYuB.s:170    .text.testSelected:00000010 $d
+     /tmp/ccyzfYuB.s:175    .text.groupSelected:00000000 $t
+     /tmp/ccyzfYuB.s:180    .text.groupSelected:00000000 groupSelected
+     /tmp/ccyzfYuB.s:207    .text.groupSelected:00000010 $d
+     /tmp/ccyzfYuB.s:212    .text.setUp:00000000 $t
+     /tmp/ccyzfYuB.s:218    .text.setUp:00000000 setUp
+     /tmp/ccyzfYuB.s:231    .text.tearDown:00000000 $t
+     /tmp/ccyzfYuB.s:237    .text.tearDown:00000000 tearDown
+     /tmp/ccyzfYuB.s:250    .text.UnityIgnoreTest:00000000 $t
+     /tmp/ccyzfYuB.s:256    .text.UnityIgnoreTest:00000000 UnityIgnoreTest
+     /tmp/ccyzfYuB.s:341    .text.UnityIgnoreTest:00000050 $d
+     /tmp/ccyzfYuB.s:347    .text.UnityPointer_Init:00000000 $t
+     /tmp/ccyzfYuB.s:353    .text.UnityPointer_Init:00000000 UnityPointer_Init
+     /tmp/ccyzfYuB.s:370    .text.UnityPointer_Init:00000008 $d
+     /tmp/ccyzfYuB.s:1414   .bss.pointer_index:00000000 pointer_index
+     /tmp/ccyzfYuB.s:375    .rodata.UnityPointer_Set.str1.4:00000000 $d
+     /tmp/ccyzfYuB.s:379    .text.UnityPointer_Set:00000000 $t
+     /tmp/ccyzfYuB.s:385    .text.UnityPointer_Set:00000000 UnityPointer_Set
+     /tmp/ccyzfYuB.s:441    .text.UnityPointer_Set:00000030 $d
+     /tmp/ccyzfYuB.s:1420   .bss.pointer_store:00000000 pointer_store
+     /tmp/ccyzfYuB.s:448    .text.UnityPointer_UndoAllSets:00000000 $t
+     /tmp/ccyzfYuB.s:454    .text.UnityPointer_UndoAllSets:00000000 UnityPointer_UndoAllSets
+     /tmp/ccyzfYuB.s:490    .text.UnityPointer_UndoAllSets:00000020 $d
+     /tmp/ccyzfYuB.s:496    .rodata.UnityGetCommandLineOptions.str1.4:00000000 $d
+     /tmp/ccyzfYuB.s:554    .text.UnityGetCommandLineOptions:00000000 $t
+     /tmp/ccyzfYuB.s:560    .text.UnityGetCommandLineOptions:00000000 UnityGetCommandLineOptions
+     /tmp/ccyzfYuB.s:1012   .text.UnityGetCommandLineOptions:000001f4 $d
+     /tmp/ccyzfYuB.s:1034   .text.UnityMain:00000000 $t
+     /tmp/ccyzfYuB.s:1040   .text.UnityMain:00000000 UnityMain
+     /tmp/ccyzfYuB.s:1125   .text.UnityMain:00000048 $d
+     /tmp/ccyzfYuB.s:1131   .rodata.UnityConcludeFixtureTest.str1.4:00000000 $d
+     /tmp/ccyzfYuB.s:1135   .text.UnityConcludeFixtureTest:00000000 $t
+     /tmp/ccyzfYuB.s:1141   .text.UnityConcludeFixtureTest:00000000 UnityConcludeFixtureTest
+     /tmp/ccyzfYuB.s:1240   .text.UnityConcludeFixtureTest:00000064 $d
+     /tmp/ccyzfYuB.s:1248   .text.UnityTestRunner:00000000 $t
+     /tmp/ccyzfYuB.s:1254   .text.UnityTestRunner:00000000 UnityTestRunner
+     /tmp/ccyzfYuB.s:1404   .text.UnityTestRunner:0000008c $d
+     /tmp/ccyzfYuB.s:1411   .bss.pointer_index:00000000 $d
+     /tmp/ccyzfYuB.s:1417   .bss.pointer_store:00000000 $d
+     /tmp/ccyzfYuB.s:1424   .bss.UnityFixture:00000000 $d
 
 UNDEFINED SYMBOLS
 UnityPrint
 UnityPrintNumberUnsigned
 unity_config_put_c
 strstr
-ARM GAS  /tmp/ccrLSXG2.s 			page 37
+ARM GAS  /tmp/ccyzfYuB.s 			page 37
 
 
 Unity

@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccaHj8Ah.s 			page 1
+ARM GAS  /tmp/ccArC0IQ.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccaHj8Ah.s 			page 1
   30:External/Unity-2.5.2/extras/memory/src/unity_memory.c **** void UnityMalloc_MakeMallocFailAfterCount(int countdown)
   31:External/Unity-2.5.2/extras/memory/src/unity_memory.c **** {
   32:External/Unity-2.5.2/extras/memory/src/unity_memory.c ****     malloc_fail_countdown = countdown;
-ARM GAS  /tmp/ccaHj8Ah.s 			page 2
+ARM GAS  /tmp/ccArC0IQ.s 			page 2
 
 
   33:External/Unity-2.5.2/extras/memory/src/unity_memory.c **** }
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccaHj8Ah.s 			page 1
   49              		.thumb
   50              		.thumb_func
   52              	isOverrun:
-ARM GAS  /tmp/ccaHj8Ah.s 			page 3
+ARM GAS  /tmp/ccArC0IQ.s 			page 3
 
 
   53              	.LVL3:
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccaHj8Ah.s 			page 1
   64              		.cfi_offset 14, -4
  109:External/Unity-2.5.2/extras/memory/src/unity_memory.c ****     Guard* guard = (Guard*)mem;
   65              		.loc 1 109 5 is_stmt 1 view .LVU9
-ARM GAS  /tmp/ccaHj8Ah.s 			page 4
+ARM GAS  /tmp/ccArC0IQ.s 			page 4
 
 
   66              	.LVL4:
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccaHj8Ah.s 			page 1
  114              		@ args = 0, pretend = 0, frame = 0
  115              		@ frame_needed = 0, uses_anonymous_args = 0
  116              		.loc 1 117 1 is_stmt 0 view .LVU23
-ARM GAS  /tmp/ccaHj8Ah.s 			page 5
+ARM GAS  /tmp/ccArC0IQ.s 			page 5
 
 
  117 0000 08B5     		push	{r3, lr}
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccaHj8Ah.s 			page 1
  154              	.LFB0:
   16:External/Unity-2.5.2/extras/memory/src/unity_memory.c ****     malloc_count = 0;
  155              		.loc 1 16 1 is_stmt 1 view -0
-ARM GAS  /tmp/ccaHj8Ah.s 			page 6
+ARM GAS  /tmp/ccArC0IQ.s 			page 6
 
 
  156              		.cfi_startproc
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccaHj8Ah.s 			page 1
   23:External/Unity-2.5.2/extras/memory/src/unity_memory.c ****     if (malloc_count != 0)
  202              		.loc 1 23 5 view .LVU38
   23:External/Unity-2.5.2/extras/memory/src/unity_memory.c ****     if (malloc_count != 0)
-ARM GAS  /tmp/ccaHj8Ah.s 			page 7
+ARM GAS  /tmp/ccArC0IQ.s 			page 7
 
 
  203              		.loc 1 23 27 is_stmt 0 view .LVU39
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccaHj8Ah.s 			page 1
   33:External/Unity-2.5.2/extras/memory/src/unity_memory.c **** 
  251              		.loc 1 33 1 view .LVU48
  252 0004 7047     		bx	lr
-ARM GAS  /tmp/ccaHj8Ah.s 			page 8
+ARM GAS  /tmp/ccArC0IQ.s 			page 8
 
 
  253              	.L23:
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccaHj8Ah.s 			page 1
   75:External/Unity-2.5.2/extras/memory/src/unity_memory.c ****     {
  299              		.loc 1 75 31 is_stmt 0 view .LVU59
  300 000c 0F4B     		ldr	r3, .L30
-ARM GAS  /tmp/ccaHj8Ah.s 			page 9
+ARM GAS  /tmp/ccArC0IQ.s 			page 9
 
 
  301 000e 1B68     		ldr	r3, [r3]
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccaHj8Ah.s 			page 1
  101:External/Unity-2.5.2/extras/memory/src/unity_memory.c ****     memcpy(&mem[size], end, sizeof(end));
  338              		.loc 1 101 5 is_stmt 1 view .LVU77
  101:External/Unity-2.5.2/extras/memory/src/unity_memory.c ****     memcpy(&mem[size], end, sizeof(end));
-ARM GAS  /tmp/ccaHj8Ah.s 			page 10
+ARM GAS  /tmp/ccArC0IQ.s 			page 10
 
 
  339              		.loc 1 101 9 is_stmt 0 view .LVU78
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccaHj8Ah.s 			page 1
  385              	.LFB7:
  137:External/Unity-2.5.2/extras/memory/src/unity_memory.c **** 
  138:External/Unity-2.5.2/extras/memory/src/unity_memory.c **** void unity_free(void* mem)
-ARM GAS  /tmp/ccaHj8Ah.s 			page 11
+ARM GAS  /tmp/ccArC0IQ.s 			page 11
 
 
  139:External/Unity-2.5.2/extras/memory/src/unity_memory.c **** {
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccaHj8Ah.s 			page 1
  423              		.loc 1 151 9 is_stmt 1 view .LVU98
  424 0016 034B     		ldr	r3, .L39
  425 0018 1969     		ldr	r1, [r3, #16]
-ARM GAS  /tmp/ccaHj8Ah.s 			page 12
+ARM GAS  /tmp/ccArC0IQ.s 			page 12
 
 
  426 001a 0348     		ldr	r0, .L39+4
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccaHj8Ah.s 			page 1
  476              		.loc 1 158 5 is_stmt 1 view .LVU105
  477              		.loc 1 158 8 is_stmt 0 view .LVU106
  478 000c 0546     		mov	r5, r0
-ARM GAS  /tmp/ccaHj8Ah.s 			page 13
+ARM GAS  /tmp/ccArC0IQ.s 			page 13
 
 
  479 000e 18B1     		cbz	r0, .L41
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccaHj8Ah.s 			page 1
  523              		.loc 1 166 5 view .LVU114
  167:External/Unity-2.5.2/extras/memory/src/unity_memory.c **** 
  168:External/Unity-2.5.2/extras/memory/src/unity_memory.c ****     if (oldMem == NULL) return unity_malloc(size);
-ARM GAS  /tmp/ccaHj8Ah.s 			page 14
+ARM GAS  /tmp/ccArC0IQ.s 			page 14
 
 
  524              		.loc 1 168 5 view .LVU115
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccaHj8Ah.s 			page 1
  198:External/Unity-2.5.2/extras/memory/src/unity_memory.c ****     if (newMem == NULL) return NULL; /* Do not release old memory */
  199:External/Unity-2.5.2/extras/memory/src/unity_memory.c ****     memcpy(newMem, oldMem, guard->size);
  200:External/Unity-2.5.2/extras/memory/src/unity_memory.c ****     release_memory(oldMem);
-ARM GAS  /tmp/ccaHj8Ah.s 			page 15
+ARM GAS  /tmp/ccArC0IQ.s 			page 15
 
 
  201:External/Unity-2.5.2/extras/memory/src/unity_memory.c ****     return newMem;
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccaHj8Ah.s 			page 1
  589 0040 2046     		mov	r0, r4
  590 0042 FFF7FEFF 		bl	unity_malloc
  591              	.LVL48:
-ARM GAS  /tmp/ccaHj8Ah.s 			page 16
+ARM GAS  /tmp/ccArC0IQ.s 			page 16
 
 
  198:External/Unity-2.5.2/extras/memory/src/unity_memory.c ****     memcpy(newMem, oldMem, guard->size);
@@ -954,49 +954,49 @@ ARM GAS  /tmp/ccaHj8Ah.s 			page 1
  642              		.file 5 "/usr/local/src/arm-gnu-toolchain-13.2/arm-none-eabi/include/string.h"
  643              		.file 6 "/usr/local/src/arm-gnu-toolchain-13.2/arm-none-eabi/include/stdlib.h"
  644              		.file 7 "<built-in>"
-ARM GAS  /tmp/ccaHj8Ah.s 			page 17
+ARM GAS  /tmp/ccArC0IQ.s 			page 17
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 unity_memory.c
-     /tmp/ccaHj8Ah.s:19     .text.unity_size_round_up:00000000 $t
-     /tmp/ccaHj8Ah.s:24     .text.unity_size_round_up:00000000 unity_size_round_up
-     /tmp/ccaHj8Ah.s:47     .text.isOverrun:00000000 $t
-     /tmp/ccaHj8Ah.s:52     .text.isOverrun:00000000 isOverrun
-     /tmp/ccaHj8Ah.s:99     .text.isOverrun:00000020 $d
-     /tmp/ccaHj8Ah.s:623    .rodata.end:00000000 end
-     /tmp/ccaHj8Ah.s:104    .text.release_memory:00000000 $t
-     /tmp/ccaHj8Ah.s:109    .text.release_memory:00000000 release_memory
-     /tmp/ccaHj8Ah.s:142    .text.release_memory:00000014 $d
-     /tmp/ccaHj8Ah.s:635    .bss.malloc_count:00000000 malloc_count
-     /tmp/ccaHj8Ah.s:147    .text.UnityMalloc_StartTest:00000000 $t
-     /tmp/ccaHj8Ah.s:153    .text.UnityMalloc_StartTest:00000000 UnityMalloc_StartTest
-     /tmp/ccaHj8Ah.s:175    .text.UnityMalloc_StartTest:00000010 $d
-     /tmp/ccaHj8Ah.s:629    .data.malloc_fail_countdown:00000000 malloc_fail_countdown
-     /tmp/ccaHj8Ah.s:181    .rodata.UnityMalloc_EndTest.str1.4:00000000 $d
-     /tmp/ccaHj8Ah.s:185    .text.UnityMalloc_EndTest:00000000 $t
-     /tmp/ccaHj8Ah.s:191    .text.UnityMalloc_EndTest:00000000 UnityMalloc_EndTest
-     /tmp/ccaHj8Ah.s:225    .text.UnityMalloc_EndTest:0000001c $d
-     /tmp/ccaHj8Ah.s:233    .text.UnityMalloc_MakeMallocFailAfterCount:00000000 $t
-     /tmp/ccaHj8Ah.s:239    .text.UnityMalloc_MakeMallocFailAfterCount:00000000 UnityMalloc_MakeMallocFailAfterCount
-     /tmp/ccaHj8Ah.s:256    .text.UnityMalloc_MakeMallocFailAfterCount:00000008 $d
-     /tmp/ccaHj8Ah.s:261    .rodata.unity_malloc.str1.4:00000000 $d
-     /tmp/ccaHj8Ah.s:265    .text.unity_malloc:00000000 $t
-     /tmp/ccaHj8Ah.s:271    .text.unity_malloc:00000000 unity_malloc
-     /tmp/ccaHj8Ah.s:366    .text.unity_malloc:0000004c $d
-     /tmp/ccaHj8Ah.s:373    .rodata.unity_free.str1.4:00000000 $d
-     /tmp/ccaHj8Ah.s:377    .text.unity_free:00000000 $t
-     /tmp/ccaHj8Ah.s:383    .text.unity_free:00000000 unity_free
-     /tmp/ccaHj8Ah.s:441    .text.unity_free:00000024 $d
-     /tmp/ccaHj8Ah.s:447    .text.unity_calloc:00000000 $t
-     /tmp/ccaHj8Ah.s:453    .text.unity_calloc:00000000 unity_calloc
-     /tmp/ccaHj8Ah.s:495    .rodata.unity_realloc.str1.4:00000000 $d
-     /tmp/ccaHj8Ah.s:499    .text.unity_realloc:00000000 $t
-     /tmp/ccaHj8Ah.s:505    .text.unity_realloc:00000000 unity_realloc
-     /tmp/ccaHj8Ah.s:614    .text.unity_realloc:00000060 $d
-     /tmp/ccaHj8Ah.s:620    .rodata.end:00000000 $d
-     /tmp/ccaHj8Ah.s:626    .data.malloc_fail_countdown:00000000 $d
-     /tmp/ccaHj8Ah.s:632    .bss.malloc_count:00000000 $d
+     /tmp/ccArC0IQ.s:19     .text.unity_size_round_up:00000000 $t
+     /tmp/ccArC0IQ.s:24     .text.unity_size_round_up:00000000 unity_size_round_up
+     /tmp/ccArC0IQ.s:47     .text.isOverrun:00000000 $t
+     /tmp/ccArC0IQ.s:52     .text.isOverrun:00000000 isOverrun
+     /tmp/ccArC0IQ.s:99     .text.isOverrun:00000020 $d
+     /tmp/ccArC0IQ.s:623    .rodata.end:00000000 end
+     /tmp/ccArC0IQ.s:104    .text.release_memory:00000000 $t
+     /tmp/ccArC0IQ.s:109    .text.release_memory:00000000 release_memory
+     /tmp/ccArC0IQ.s:142    .text.release_memory:00000014 $d
+     /tmp/ccArC0IQ.s:635    .bss.malloc_count:00000000 malloc_count
+     /tmp/ccArC0IQ.s:147    .text.UnityMalloc_StartTest:00000000 $t
+     /tmp/ccArC0IQ.s:153    .text.UnityMalloc_StartTest:00000000 UnityMalloc_StartTest
+     /tmp/ccArC0IQ.s:175    .text.UnityMalloc_StartTest:00000010 $d
+     /tmp/ccArC0IQ.s:629    .data.malloc_fail_countdown:00000000 malloc_fail_countdown
+     /tmp/ccArC0IQ.s:181    .rodata.UnityMalloc_EndTest.str1.4:00000000 $d
+     /tmp/ccArC0IQ.s:185    .text.UnityMalloc_EndTest:00000000 $t
+     /tmp/ccArC0IQ.s:191    .text.UnityMalloc_EndTest:00000000 UnityMalloc_EndTest
+     /tmp/ccArC0IQ.s:225    .text.UnityMalloc_EndTest:0000001c $d
+     /tmp/ccArC0IQ.s:233    .text.UnityMalloc_MakeMallocFailAfterCount:00000000 $t
+     /tmp/ccArC0IQ.s:239    .text.UnityMalloc_MakeMallocFailAfterCount:00000000 UnityMalloc_MakeMallocFailAfterCount
+     /tmp/ccArC0IQ.s:256    .text.UnityMalloc_MakeMallocFailAfterCount:00000008 $d
+     /tmp/ccArC0IQ.s:261    .rodata.unity_malloc.str1.4:00000000 $d
+     /tmp/ccArC0IQ.s:265    .text.unity_malloc:00000000 $t
+     /tmp/ccArC0IQ.s:271    .text.unity_malloc:00000000 unity_malloc
+     /tmp/ccArC0IQ.s:366    .text.unity_malloc:0000004c $d
+     /tmp/ccArC0IQ.s:373    .rodata.unity_free.str1.4:00000000 $d
+     /tmp/ccArC0IQ.s:377    .text.unity_free:00000000 $t
+     /tmp/ccArC0IQ.s:383    .text.unity_free:00000000 unity_free
+     /tmp/ccArC0IQ.s:441    .text.unity_free:00000024 $d
+     /tmp/ccArC0IQ.s:447    .text.unity_calloc:00000000 $t
+     /tmp/ccArC0IQ.s:453    .text.unity_calloc:00000000 unity_calloc
+     /tmp/ccArC0IQ.s:495    .rodata.unity_realloc.str1.4:00000000 $d
+     /tmp/ccArC0IQ.s:499    .text.unity_realloc:00000000 $t
+     /tmp/ccArC0IQ.s:505    .text.unity_realloc:00000000 unity_realloc
+     /tmp/ccArC0IQ.s:614    .text.unity_realloc:00000060 $d
+     /tmp/ccArC0IQ.s:620    .rodata.end:00000000 $d
+     /tmp/ccArC0IQ.s:626    .data.malloc_fail_countdown:00000000 $d
+     /tmp/ccArC0IQ.s:632    .bss.malloc_count:00000000 $d
 
 UNDEFINED SYMBOLS
 strcmp

@@ -7,12 +7,12 @@ TEST_GROUP(eeprom_driver);
 TEST_SETUP(eeprom_driver)
 {
     mock_eeprom_io_create(10);
-    eeprom_create(void);
+    //eeprom_driver_create(void);
 }
 
 TEST_TEAR_DOWN(eeprom_driver)
 {
-    eeprom_destroy(void);
+    //eeprom_driver_destroy(void);
     mock_eeprom_io_destroy();
 }
 

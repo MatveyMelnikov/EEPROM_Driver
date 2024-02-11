@@ -4,8 +4,11 @@
 CFLAGS = -DTEST -DUNITY_INCLUDE_CONFIG_H
 TESTS_DIR = Tests
 UNITY_DIR = External/Unity-2.5.2
+EEPROM_DRIVER = External/eeprom_driver
+FOR_TARGET = N
 
 C_INCLUDES += \
+-I$(EEPROM_DRIVER)/Inc \
 -I$(UNITY_DIR)/src \
 -I$(UNITY_DIR)/extras/fixture/src \
 -I$(UNITY_DIR)/extras/memory/src \
@@ -14,6 +17,8 @@ C_INCLUDES += \
 -I$(TESTS_DIR)/fakes/Inc
 
 C_SOURCES += \
+$(EEPROM_DRIVER)/Src/eeprom_driver.c \
+$(EEPROM_DRIVER)/Src/eeprom_isr.c \
 $(UNITY_DIR)/src/unity.c \
 $(UNITY_DIR)/extras/fixture/src/unity_fixture.c \
 $(UNITY_DIR)/extras/memory/src/unity_memory.c \
@@ -26,11 +31,11 @@ $(TESTS_DIR)/target_tests.c \
 $(TESTS_DIR)/target_tests/eeprom_driver/eeprom_test_runner.c \
 $(TESTS_DIR)/target_tests/eeprom_driver/eeprom_test.c
 
-include MakefileTarget.mk
+include MakefileTestTarget.mk
 else
 C_SOURCES += \
 $(TESTS_DIR)/host_tests.c \
 $(TESTS_DIR)/host_tests/eeprom_driver/eeprom_test_runner.c \
 $(TESTS_DIR)/host_tests/eeprom_driver/eeprom_test.c
-include MakefileHost.mk
+include MakefileTestHost.mk
 endif
