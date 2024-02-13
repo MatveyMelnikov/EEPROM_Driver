@@ -4,9 +4,12 @@
 #include "unity_config.h"
 #include "unity_fixture.h"
 
+I2C_HandleTypeDef hi2c2;
 UART_HandleTypeDef huart1;
+I2C_HandleTypeDef *i2c = &hi2c2; // For eeprom_io
 
 void SystemClock_Config(void);
+static void MX_I2C2_Init(void);
 static void MX_GPIO_Init(void);
 static void MX_USART1_UART_Init(void);
 static void run_all_tests(void);
@@ -25,6 +28,7 @@ int main(void)
   SystemClock_Config();
 
   MX_GPIO_Init();
+  MX_I2C2_Init();
   MX_USART1_UART_Init();
 
   return UnityMain(0, NULL, run_all_tests);
@@ -57,6 +61,23 @@ void SystemClock_Config(void)
   }
 }
 
+static void MX_I2C2_Init(void)
+{
+  hi2c2.Instance = I2C2;
+  hi2c2.Init.ClockSpeed = 100000;
+  hi2c2.Init.DutyCycle = I2C_DUTYCYCLE_2;
+  hi2c2.Init.OwnAddress1 = 0;
+  hi2c2.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
+  hi2c2.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+  hi2c2.Init.OwnAddress2 = 0;
+  hi2c2.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+  hi2c2.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
+  if (HAL_I2C_Init(&hi2c2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+}
+
 static void MX_USART1_UART_Init(void)
 {
   huart1.Instance = USART1;
@@ -75,6 +96,7 @@ static void MX_USART1_UART_Init(void)
 
 static void MX_GPIO_Init(void)
 {
+  __HAL_RCC_GPIOB_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
 }
 

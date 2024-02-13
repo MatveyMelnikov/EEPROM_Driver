@@ -5,125 +5,135 @@
 #include <stdint.h>
 #include <string.h>
 
-// HAL_StatusTypeDef eeprom_byte_write(
-//     const I2C_HandleTypeDef *const i2c,
-//     uint16_t addr,
-//     uint8_t data
-// )
-// {
-//     const uint8_t sent_data[3] = { 
-//         *((uint8_t*)&addr),
-//         *((uint8_t*)&addr + 1),
-//         data
-//     };
-//     // memcpy(&sent_data, (uint8_t*)&addr, 2);
-//     // memcpy(&sent_data + 2, &data, 1);
+// Static functions ----------------------------------------------------------
 
-//     HAL_StatusTypeDef status = HAL_I2C_Master_Transmit(
-//         i2c, DEV_ADDR, &sent_data, 3, EEPROM_TIMEOUT
-//     );
-//     HAL_Delay(WRITE_CYCLE_TIMEOUT);
+static uint16_t invert_address(uint16_t addr)
+{
+    return (addr << 8) | (addr >> 8);
+}
 
-//     return status;
-// }
+// The data word address lower 6 bits are internally incremented
+// following the receipt of each data word
+// (ATMEL AT24C8C128 datasheet pg. 7).
+static uint16_t get_num_of_start_remaining_bytes(
+    const uint16_t addr,
+    uint16_t size
+)
+{
+    //uint16_t result = 0x3f - (addr & 0x3f);
+    //uint16_t result = 0x40 - (addr & 0x3f);
+    uint8_t a = addr & 0x3f;
+    uint16_t result = 0x40 - a;
+    if (result > size)
+        result = size;
 
-// HAL_StatusTypeDef eeprom_page_write(
-//     const I2C_HandleTypeDef *const i2c,
-//     uint16_t addr,
-//     const uint8_t *const data,
-//     uint16_t size
-// )
-// {
-//     struct 
-//     {
-//         uint16_t addr;
-//         uint8_t part[64];
-//     } sent_part;
+    return result;
+}
 
-//     sent_part.addr = addr;
+static eeprom_status send_page(
+    const uint16_t addr,
+    const uint8_t *const data,
+    uint16_t data_size,
+    uint8_t *const buffer
+)
+{
+    uint16_t inverted_addr = invert_address(addr);
 
-//     // Divide the data into parts of 64 bytes 
-//     // (more than that cannot be written*)
-//     // *AT24C128 datasheet 7 page (page write)
-//     HAL_StatusTypeDef status = HAL_OK;
-//     for (uint16_t i = 0; i < size / 64; i++)
-//     {
-//         memcpy((uint8_t*)&sent_part.part, data, 64);
+    memcpy(buffer, (uint8_t*)&inverted_addr, sizeof(inverted_addr));
+    memcpy(buffer + 2, data, data_size); // first 2 bytes - addr
+    eeprom_status status = eeprom_io_write(buffer, data_size + 2);
+    eeprom_delay(WRITE_CYCLE_TIMEOUT);
 
-//         status |= HAL_I2C_Master_Transmit(
-//             i2c, DEV_ADDR, (uint8_t*)&sent_part, 66, EEPROM_TIMEOUT
-//         );        
-//     }
+    return status;
+}
 
-//     HAL_Delay(WRITE_CYCLE_TIMEOUT);
-// }
+// The data word address lower 6 bits are internally incremented
+// following the receipt of each data word
+// (ATMEL AT24C8C128 datasheet pg. 7).
+// We send the data and add padding to the address in which the
+// data is sent and to the pointer to the data
+static eeprom_status send_start_bytes(
+    uint16_t *current_addr,
+    uint8_t **current_data_ptr,
+    const uint16_t size,
+    uint16_t *const remaining_size,
+    uint8_t *const buffer
+)
+{
+    uint16_t start_bytes_num = get_num_of_start_remaining_bytes(
+        *current_addr,
+        size
+    );
+    eeprom_status status = send_page(
+        *current_addr,
+        *current_data_ptr,
+        start_bytes_num,
+        buffer
+    );
 
-// HAL_StatusTypeDef eeprom_current_address_read(
-//     const I2C_HandleTypeDef *const i2c,
-//     uint8_t *const data
-// )
-// {
+    *remaining_size -= start_bytes_num;
+    *current_addr += start_bytes_num;
+    *current_data_ptr += start_bytes_num;
 
-// }
+    return status;
+}
 
-// HAL_StatusTypeDef eeprom_random_read(
-//     const I2C_HandleTypeDef *const i2c,
-//     uint16_t addr,
-//     uint8_t *const data
-// )
-// {
+// Sending an incomplete page to align the data to 64 bytes.
+// We send the data and add padding to the address in which the
+// data is sent and to the pointer to the data
+static eeprom_status send_offset_bytes(
+    uint16_t *current_addr,
+    uint8_t **current_data_ptr,
+    uint16_t *const remaining_size,
+    uint8_t *const buffer
+)
+{
+    uint16_t offset = *remaining_size % 64;
 
-// }
-
-// HAL_StatusTypeDef EEPROM_sequential_read(
-//     const I2C_HandleTypeDef *const i2c,
-//     uint8_t data
-// )
-// {
-
-// }
-
-// HAL_StatusTypeDef eeprom_check_link(const I2C_HandleTypeDef *const i2c)
-// {
-//     static uint8_t data[] = { 0x0, 0x0, 0x55 };
-//     static uint8_t result = 0x0;
-
-//     HAL_StatusTypeDef status = HAL_I2C_Master_Transmit(
-//         i2c, DEV_ADDR, &data, 3, EEPROM_TIMEOUT
-//     );
-//     HAL_Delay(WRITE_CYCLE_TIMEOUT);
+    if (offset == 0)
+        return EEPROM_OK;
     
-//     if (status)
-//         return status;
+    eeprom_status status = send_page(
+        *current_addr,
+        *current_data_ptr,
+        offset,
+        buffer
+    );
 
-//     status = HAL_I2C_Master_Transmit(
-//         i2c, DEV_ADDR, &data, 2, EEPROM_TIMEOUT
-//     );
-//     status |= HAL_I2C_Master_Receive(
-//         i2c, DEV_ADDR, &result, 1, EEPROM_TIMEOUT
-//     );
+    *remaining_size -= offset;
+    *current_addr += offset;
+    *current_data_ptr += offset;
 
-//     if (result != 0x55)
-//         status |= HAL_ERROR;
-//     return status;
-// }
+    return status;
+}
 
 // Implementations -----------------------------------------------------------
+
+eeprom_status eeprom_addr_write(
+    uint16_t addr
+)
+{
+    uint16_t inverted_address = invert_address(addr);
+    return eeprom_io_write((uint8_t*)&inverted_address, sizeof(addr));
+}
 
 eeprom_status eeprom_byte_write(
     uint16_t addr,
     uint8_t data
 )
 {
-    const uint8_t sent_data[] = { 
-        *((uint8_t*)&addr),
-        *((uint8_t*)&addr + 1),
-        data
-    };
+    struct 
+    {
+        uint16_t addr;
+        uint8_t data;
+    } sent_data;
+
+    sent_data.addr = invert_address(addr);
+    sent_data.data = data;
 
     eeprom_status status = eeprom_io_write(
         (uint8_t*)&sent_data,
-        sizeof(sent_data)
+        3
     );
     eeprom_delay(WRITE_CYCLE_TIMEOUT);
 
@@ -131,30 +141,144 @@ eeprom_status eeprom_byte_write(
 }
 
 eeprom_status eeprom_page_write(
-    uint16_t addr,
+    const uint16_t addr,
     const uint8_t *const data,
     uint16_t size
 )
 {
-    struct 
-    {
-        uint16_t addr;
-        uint8_t part[64];
-    } sent_part;
+    // uint16_t current_addr = addr;
+    // uint8_t *current_data_ptr = data;
+    // struct 
+    // {
+    //     uint16_t addr;
+    //     uint8_t data[64];
+    // } sent_page;
 
-    sent_part.addr = addr;
+    // sent_page.addr = invert_address(addr);
+
+    // // Divide the data into parts of 64 bytes 
+    // // (more than that cannot be written)
+    // // (ATMEL AT24C8C128 datasheet pg. 7)
+    // eeprom_status status = EEPROM_OK;
+
+    // // The data word address lower 6 bits are internally incremented
+    // // following the receipt of each data word
+    // // (ATMEL AT24C8C128 datasheet pg. 7)
+    // // uint16_t num_of_remaining_bytes = 0x3f - (addr & 0x3f);
+    // // memcpy((uint8_t*)&sent_page.data, data, num_of_remaining_bytes);
+    // // status |= eeprom_io_write((uint8_t*)&sent_page, num_of_remaining_bytes + 2);
+    // // eeprom_delay(WRITE_CYCLE_TIMEOUT);
+
+    // uint16_t remaining_bytes = get_num_of_start_remaining_bytes(addr, size);
+    // status |= send_page(
+    //     current_addr, current_data_ptr, remaining_bytes, (uint8_t*)&sent_page
+    // );
+
+    // if (remaining_bytes == size)
+    
+
+
+    // uint16_t offset = size % 64;
+
+    // // Send the partial page first and align the data
+    // if (offset != 0)
+    // {
+    //     memcpy(
+    //         (uint8_t*)&sent_page.data + num_of_remaining_bytes,
+    //         data,
+    //         offset
+    //     );
+    //     status |= eeprom_io_write((uint8_t*)&sent_page, offset + 2);
+    //     eeprom_delay(WRITE_CYCLE_TIMEOUT);
+    // }
+
+    // for (uint16_t i = 0; i < (size / 64); i++)
+    // {
+    //     memcpy(
+    //         (uint8_t*)&sent_page.data,
+    //         data + offset + (i * 64),
+    //         64
+    //     );
+
+    //     status |= eeprom_io_write((uint8_t*)&sent_page, 66);
+    //     eeprom_delay(WRITE_CYCLE_TIMEOUT);
+    // }
+
+    uint16_t current_addr = addr;
+    uint8_t *current_data_ptr = (uint8_t*)data;
+    uint16_t remaining_size = size;
+
+    // struct 
+    // {
+    //     uint16_t addr;
+    //     uint8_t data[64];
+    // } sent_page;
+    uint8_t buffer[66];
 
     // Divide the data into parts of 64 bytes 
     // (more than that cannot be written)
     // (ATMEL AT24C8C128 datasheet pg. 7)
     eeprom_status status = EEPROM_OK;
-    for (uint16_t i = 0; i < size / 64; i++)
-    {
-        memcpy((uint8_t*)&sent_part.part, data, 64);
 
-        status |= eeprom_io_write((uint8_t*)&sent_part, 66);
+    // The data word address lower 6 bits are internally incremented
+    // following the receipt of each data word
+    // (ATMEL AT24C8C128 datasheet pg. 7)
+    // uint16_t num_of_remaining_bytes = 0x3f - (addr & 0x3f);
+    // memcpy((uint8_t*)&sent_page.data, data, num_of_remaining_bytes);
+    // status |= eeprom_io_write((uint8_t*)&sent_page, num_of_remaining_bytes + 2);
+    // eeprom_delay(WRITE_CYCLE_TIMEOUT);
+
+    status |= send_start_bytes(
+        &current_addr,
+        &current_data_ptr,
+        size,
+        &remaining_size,
+        buffer
+    );
+    
+    if (remaining_size == 0)
+        return status;
+
+    // uint16_t offset = size % 64;
+
+    // // Send the partial page first and align the data
+    // if (offset != 0)
+    // {
+    //     memcpy(
+    //         (uint8_t*)&sent_page.data + num_of_remaining_bytes,
+    //         data,
+    //         offset
+    //     );
+    //     status |= eeprom_io_write((uint8_t*)&sent_page, offset + 2);
+    //     eeprom_delay(WRITE_CYCLE_TIMEOUT);
+    // }
+
+    status |= send_offset_bytes(
+        &current_addr,
+        &current_data_ptr,
+        &remaining_size,
+        buffer
+    );
+
+    for (uint16_t i = 0; i < (remaining_size / 64); i++)
+    {
+        // memcpy(
+        //     (uint8_t*)&sent_page.data,
+        //     data + offset + (i * 64),
+        //     64
+        // );
+
+        // status |= eeprom_io_write((uint8_t*)&sent_page, 66);
+        // eeprom_delay(WRITE_CYCLE_TIMEOUT);
+        send_page(
+            current_addr,
+            current_data_ptr,
+            64,
+            buffer
+        );
+        current_addr += 64;
+        current_data_ptr += 64;
     }
-    eeprom_delay(WRITE_CYCLE_TIMEOUT);
 
     return status;
 }
@@ -163,7 +287,7 @@ eeprom_status eeprom_current_address_read(
     uint8_t *const data
 )
 {
-    return EEPROM_OK;
+    return eeprom_io_read(data, 1);
 }
 
 eeprom_status eeprom_random_byte_read(
@@ -171,26 +295,19 @@ eeprom_status eeprom_random_byte_read(
     uint8_t *const data
 )
 {
-    struct 
-    {
-        uint16_t addr;
-        uint8_t dummy;
-    } set_addr_cmd = { .addr = addr, .dummy = 0xff };
-
-    eeprom_status status = eeprom_io_write(
-        (uint8_t*)&set_addr_cmd,
-        sizeof(set_addr_cmd)
-    );
+    eeprom_status status = eeprom_addr_write(addr);
     status |= eeprom_io_read(data, 1);
 
     return status;
 }
 
+// Before this function you need to specify the address with another command
 eeprom_status eeprom_sequential_read(
-    uint8_t data
+    uint8_t *const data,
+    const uint16_t size
 )
 {
-    return EEPROM_OK;
+    return eeprom_io_read(data, size);
 }
 
 eeprom_status eeprom_check_link(void)

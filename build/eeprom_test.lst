@@ -1,0 +1,2337 @@
+ARM GAS  /tmp/ccpF3mx8.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"eeprom_test.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "Tests/target_tests/eeprom_driver/eeprom_test.c"
+  18              		.section	.text.TEST_eeprom_driver_SETUP,"ax",%progbits
+  19              		.align	1
+  20              		.global	TEST_eeprom_driver_SETUP
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	TEST_eeprom_driver_SETUP:
+  26              	.LFB1:
+   1:Tests/target_tests/eeprom_driver/eeprom_test.c **** #include "unity_fixture.h"
+   2:Tests/target_tests/eeprom_driver/eeprom_test.c **** #include "eeprom_driver.h"
+   3:Tests/target_tests/eeprom_driver/eeprom_test.c **** #include "eeprom_io.h"
+   4:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+   5:Tests/target_tests/eeprom_driver/eeprom_test.c **** // Static functions ----------------------------------------------------------
+   6:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+   7:Tests/target_tests/eeprom_driver/eeprom_test.c **** static void check_data(
+   8:Tests/target_tests/eeprom_driver/eeprom_test.c ****     const uint8_t *const expected,
+   9:Tests/target_tests/eeprom_driver/eeprom_test.c ****     const uint8_t *const actual,
+  10:Tests/target_tests/eeprom_driver/eeprom_test.c ****     const uint16_t data_size
+  11:Tests/target_tests/eeprom_driver/eeprom_test.c **** )
+  12:Tests/target_tests/eeprom_driver/eeprom_test.c **** {
+  13:Tests/target_tests/eeprom_driver/eeprom_test.c ****     for (uint16_t i = 0; i < data_size; i++)
+  14:Tests/target_tests/eeprom_driver/eeprom_test.c ****         TEST_ASSERT_BYTES_EQUAL(expected[i], actual[i]);
+  15:Tests/target_tests/eeprom_driver/eeprom_test.c **** }
+  16:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+  17:Tests/target_tests/eeprom_driver/eeprom_test.c **** // Tests ---------------------------------------------------------------------
+  18:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+  19:Tests/target_tests/eeprom_driver/eeprom_test.c **** TEST_GROUP(eeprom_driver);
+  20:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+  21:Tests/target_tests/eeprom_driver/eeprom_test.c **** TEST_SETUP(eeprom_driver)
+  22:Tests/target_tests/eeprom_driver/eeprom_test.c **** {
+  27              		.loc 1 22 1 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  23:Tests/target_tests/eeprom_driver/eeprom_test.c **** }
+  32              		.loc 1 23 1 view .LVU1
+  33 0000 7047     		bx	lr
+  34              		.cfi_endproc
+  35              	.LFE1:
+ARM GAS  /tmp/ccpF3mx8.s 			page 2
+
+
+  37              		.section	.text.TEST_eeprom_driver_TEAR_DOWN,"ax",%progbits
+  38              		.align	1
+  39              		.global	TEST_eeprom_driver_TEAR_DOWN
+  40              		.syntax unified
+  41              		.thumb
+  42              		.thumb_func
+  44              	TEST_eeprom_driver_TEAR_DOWN:
+  45              	.LFB2:
+  24:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+  25:Tests/target_tests/eeprom_driver/eeprom_test.c **** TEST_TEAR_DOWN(eeprom_driver)
+  26:Tests/target_tests/eeprom_driver/eeprom_test.c **** {
+  46              		.loc 1 26 1 view -0
+  47              		.cfi_startproc
+  48              		@ args = 0, pretend = 0, frame = 0
+  49              		@ frame_needed = 0, uses_anonymous_args = 0
+  50              		@ link register save eliminated.
+  27:Tests/target_tests/eeprom_driver/eeprom_test.c **** }
+  51              		.loc 1 27 1 view .LVU3
+  52 0000 7047     		bx	lr
+  53              		.cfi_endproc
+  54              	.LFE2:
+  56              		.section	.text.TEST_eeprom_driver_check_link_success_,"ax",%progbits
+  57              		.align	1
+  58              		.global	TEST_eeprom_driver_check_link_success_
+  59              		.syntax unified
+  60              		.thumb
+  61              		.thumb_func
+  63              	TEST_eeprom_driver_check_link_success_:
+  64              	.LFB4:
+  28:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+  29:Tests/target_tests/eeprom_driver/eeprom_test.c **** TEST(eeprom_driver, check_link_success)
+  30:Tests/target_tests/eeprom_driver/eeprom_test.c **** {
+  65              		.loc 1 30 1 view -0
+  66              		.cfi_startproc
+  67              		@ args = 0, pretend = 0, frame = 0
+  68              		@ frame_needed = 0, uses_anonymous_args = 0
+  69 0000 00B5     		push	{lr}
+  70              	.LCFI0:
+  71              		.cfi_def_cfa_offset 4
+  72              		.cfi_offset 14, -4
+  73 0002 83B0     		sub	sp, sp, #12
+  74              	.LCFI1:
+  75              		.cfi_def_cfa_offset 16
+  31:Tests/target_tests/eeprom_driver/eeprom_test.c ****     eeprom_status status = eeprom_check_link();
+  76              		.loc 1 31 5 view .LVU5
+  77              		.loc 1 31 28 is_stmt 0 view .LVU6
+  78 0004 FFF7FEFF 		bl	eeprom_check_link
+  79              	.LVL0:
+  80 0008 0146     		mov	r1, r0
+  81              	.LVL1:
+  32:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+  33:Tests/target_tests/eeprom_driver/eeprom_test.c ****     TEST_ASSERT_EQUAL(EEPROM_OK, status);
+  82              		.loc 1 33 5 is_stmt 1 view .LVU7
+  83 000a 1423     		movs	r3, #20
+  84 000c 0093     		str	r3, [sp]
+  85 000e 2123     		movs	r3, #33
+  86 0010 0022     		movs	r2, #0
+ARM GAS  /tmp/ccpF3mx8.s 			page 3
+
+
+  87 0012 1046     		mov	r0, r2
+  88 0014 FFF7FEFF 		bl	UnityAssertEqualNumber
+  89              	.LVL2:
+  34:Tests/target_tests/eeprom_driver/eeprom_test.c **** }
+  90              		.loc 1 34 1 is_stmt 0 view .LVU8
+  91 0018 03B0     		add	sp, sp, #12
+  92              	.LCFI2:
+  93              		.cfi_def_cfa_offset 4
+  94              		@ sp needed
+  95 001a 5DF804FB 		ldr	pc, [sp], #4
+  96              		.cfi_endproc
+  97              	.LFE4:
+  99              		.section	.text.check_data,"ax",%progbits
+ 100              		.align	1
+ 101              		.syntax unified
+ 102              		.thumb
+ 103              		.thumb_func
+ 105              	check_data:
+ 106              	.LVL3:
+ 107              	.LFB0:
+  12:Tests/target_tests/eeprom_driver/eeprom_test.c ****     for (uint16_t i = 0; i < data_size; i++)
+ 108              		.loc 1 12 1 is_stmt 1 view -0
+ 109              		.cfi_startproc
+ 110              		@ args = 0, pretend = 0, frame = 0
+ 111              		@ frame_needed = 0, uses_anonymous_args = 0
+  12:Tests/target_tests/eeprom_driver/eeprom_test.c ****     for (uint16_t i = 0; i < data_size; i++)
+ 112              		.loc 1 12 1 is_stmt 0 view .LVU10
+ 113 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 114              	.LCFI3:
+ 115              		.cfi_def_cfa_offset 20
+ 116              		.cfi_offset 4, -20
+ 117              		.cfi_offset 5, -16
+ 118              		.cfi_offset 6, -12
+ 119              		.cfi_offset 7, -8
+ 120              		.cfi_offset 14, -4
+ 121 0002 83B0     		sub	sp, sp, #12
+ 122              	.LCFI4:
+ 123              		.cfi_def_cfa_offset 32
+ 124 0004 0746     		mov	r7, r0
+ 125 0006 0E46     		mov	r6, r1
+ 126 0008 1546     		mov	r5, r2
+  13:Tests/target_tests/eeprom_driver/eeprom_test.c ****         TEST_ASSERT_BYTES_EQUAL(expected[i], actual[i]);
+ 127              		.loc 1 13 5 is_stmt 1 view .LVU11
+ 128              	.LBB2:
+  13:Tests/target_tests/eeprom_driver/eeprom_test.c ****         TEST_ASSERT_BYTES_EQUAL(expected[i], actual[i]);
+ 129              		.loc 1 13 10 view .LVU12
+ 130              	.LVL4:
+  13:Tests/target_tests/eeprom_driver/eeprom_test.c ****         TEST_ASSERT_BYTES_EQUAL(expected[i], actual[i]);
+ 131              		.loc 1 13 19 is_stmt 0 view .LVU13
+ 132 000a 0024     		movs	r4, #0
+  13:Tests/target_tests/eeprom_driver/eeprom_test.c ****         TEST_ASSERT_BYTES_EQUAL(expected[i], actual[i]);
+ 133              		.loc 1 13 5 view .LVU14
+ 134 000c 09E0     		b	.L6
+ 135              	.LVL5:
+ 136              	.L7:
+  14:Tests/target_tests/eeprom_driver/eeprom_test.c **** }
+ 137              		.loc 1 14 9 is_stmt 1 view .LVU15
+ARM GAS  /tmp/ccpF3mx8.s 			page 4
+
+
+ 138 000e 4123     		movs	r3, #65
+ 139 0010 0093     		str	r3, [sp]
+ 140 0012 0E23     		movs	r3, #14
+ 141 0014 0022     		movs	r2, #0
+ 142 0016 3157     		ldrsb	r1, [r6, r4]
+ 143 0018 3857     		ldrsb	r0, [r7, r4]
+ 144 001a FFF7FEFF 		bl	UnityAssertEqualNumber
+ 145              	.LVL6:
+  13:Tests/target_tests/eeprom_driver/eeprom_test.c ****         TEST_ASSERT_BYTES_EQUAL(expected[i], actual[i]);
+ 146              		.loc 1 13 42 discriminator 3 view .LVU16
+ 147 001e 0134     		adds	r4, r4, #1
+ 148              	.LVL7:
+  13:Tests/target_tests/eeprom_driver/eeprom_test.c ****         TEST_ASSERT_BYTES_EQUAL(expected[i], actual[i]);
+ 149              		.loc 1 13 42 is_stmt 0 discriminator 3 view .LVU17
+ 150 0020 A4B2     		uxth	r4, r4
+ 151              	.LVL8:
+ 152              	.L6:
+  13:Tests/target_tests/eeprom_driver/eeprom_test.c ****         TEST_ASSERT_BYTES_EQUAL(expected[i], actual[i]);
+ 153              		.loc 1 13 28 is_stmt 1 discriminator 1 view .LVU18
+ 154 0022 AC42     		cmp	r4, r5
+ 155 0024 F3D3     		bcc	.L7
+ 156              	.LBE2:
+  15:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+ 157              		.loc 1 15 1 is_stmt 0 view .LVU19
+ 158 0026 03B0     		add	sp, sp, #12
+ 159              	.LCFI5:
+ 160              		.cfi_def_cfa_offset 20
+ 161              		@ sp needed
+ 162 0028 F0BD     		pop	{r4, r5, r6, r7, pc}
+  15:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+ 163              		.loc 1 15 1 view .LVU20
+ 164              		.cfi_endproc
+ 165              	.LFE0:
+ 167              		.section	.text.TEST_eeprom_driver_random_write_and_read_byte_success_,"ax",%progbits
+ 168              		.align	1
+ 169              		.global	TEST_eeprom_driver_random_write_and_read_byte_success_
+ 170              		.syntax unified
+ 171              		.thumb
+ 172              		.thumb_func
+ 174              	TEST_eeprom_driver_random_write_and_read_byte_success_:
+ 175              	.LFB6:
+  35:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+  36:Tests/target_tests/eeprom_driver/eeprom_test.c **** TEST(eeprom_driver, random_write_and_read_byte_success)
+  37:Tests/target_tests/eeprom_driver/eeprom_test.c **** {
+ 176              		.loc 1 37 1 is_stmt 1 view -0
+ 177              		.cfi_startproc
+ 178              		@ args = 0, pretend = 0, frame = 8
+ 179              		@ frame_needed = 0, uses_anonymous_args = 0
+ 180 0000 30B5     		push	{r4, r5, lr}
+ 181              	.LCFI6:
+ 182              		.cfi_def_cfa_offset 12
+ 183              		.cfi_offset 4, -12
+ 184              		.cfi_offset 5, -8
+ 185              		.cfi_offset 14, -4
+ 186 0002 85B0     		sub	sp, sp, #20
+ 187              	.LCFI7:
+ 188              		.cfi_def_cfa_offset 32
+ARM GAS  /tmp/ccpF3mx8.s 			page 5
+
+
+  38:Tests/target_tests/eeprom_driver/eeprom_test.c ****     uint8_t received_data = 0x0U;
+ 189              		.loc 1 38 5 view .LVU22
+ 190              		.loc 1 38 13 is_stmt 0 view .LVU23
+ 191 0004 0025     		movs	r5, #0
+ 192 0006 8DF80F50 		strb	r5, [sp, #15]
+  39:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+  40:Tests/target_tests/eeprom_driver/eeprom_test.c ****     eeprom_status status = eeprom_byte_write(0xaa55, 0x54);
+ 193              		.loc 1 40 5 is_stmt 1 view .LVU24
+ 194              		.loc 1 40 28 is_stmt 0 view .LVU25
+ 195 000a 5421     		movs	r1, #84
+ 196 000c 4AF65520 		movw	r0, #43605
+ 197 0010 FFF7FEFF 		bl	eeprom_byte_write
+ 198              	.LVL9:
+ 199 0014 0446     		mov	r4, r0
+ 200              	.LVL10:
+  41:Tests/target_tests/eeprom_driver/eeprom_test.c ****     status |= eeprom_random_byte_read(0xaa55, &received_data);
+ 201              		.loc 1 41 5 is_stmt 1 view .LVU26
+ 202              		.loc 1 41 15 is_stmt 0 view .LVU27
+ 203 0016 0DF10F01 		add	r1, sp, #15
+ 204 001a 4AF65520 		movw	r0, #43605
+ 205 001e FFF7FEFF 		bl	eeprom_random_byte_read
+ 206              	.LVL11:
+ 207              		.loc 1 41 12 discriminator 1 view .LVU28
+ 208 0022 44EA0001 		orr	r1, r4, r0
+ 209              	.LVL12:
+  42:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+  43:Tests/target_tests/eeprom_driver/eeprom_test.c ****     TEST_ASSERT_EQUAL(EEPROM_OK, status);
+ 210              		.loc 1 43 5 is_stmt 1 view .LVU29
+ 211 0026 1423     		movs	r3, #20
+ 212 0028 0093     		str	r3, [sp]
+ 213 002a 2B23     		movs	r3, #43
+ 214 002c 2A46     		mov	r2, r5
+ 215 002e C9B2     		uxtb	r1, r1
+ 216              		.loc 1 43 5 is_stmt 0 view .LVU30
+ 217 0030 2846     		mov	r0, r5
+ 218 0032 FFF7FEFF 		bl	UnityAssertEqualNumber
+ 219              	.LVL13:
+  44:Tests/target_tests/eeprom_driver/eeprom_test.c ****     TEST_ASSERT_BYTES_EQUAL(0x54, received_data);
+ 220              		.loc 1 44 5 is_stmt 1 view .LVU31
+ 221 0036 4123     		movs	r3, #65
+ 222 0038 0093     		str	r3, [sp]
+ 223 003a 2C23     		movs	r3, #44
+ 224 003c 2A46     		mov	r2, r5
+ 225 003e 9DF90F10 		ldrsb	r1, [sp, #15]
+ 226 0042 5420     		movs	r0, #84
+ 227 0044 FFF7FEFF 		bl	UnityAssertEqualNumber
+ 228              	.LVL14:
+  45:Tests/target_tests/eeprom_driver/eeprom_test.c **** }
+ 229              		.loc 1 45 1 is_stmt 0 view .LVU32
+ 230 0048 05B0     		add	sp, sp, #20
+ 231              	.LCFI8:
+ 232              		.cfi_def_cfa_offset 12
+ 233              		@ sp needed
+ 234 004a 30BD     		pop	{r4, r5, pc}
+ 235              		.loc 1 45 1 view .LVU33
+ 236              		.cfi_endproc
+ 237              	.LFE6:
+ARM GAS  /tmp/ccpF3mx8.s 			page 6
+
+
+ 239              		.section	.text.TEST_eeprom_driver_current_address_read_byte_success_,"ax",%progbits
+ 240              		.align	1
+ 241              		.global	TEST_eeprom_driver_current_address_read_byte_success_
+ 242              		.syntax unified
+ 243              		.thumb
+ 244              		.thumb_func
+ 246              	TEST_eeprom_driver_current_address_read_byte_success_:
+ 247              	.LFB8:
+  46:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+  47:Tests/target_tests/eeprom_driver/eeprom_test.c **** TEST(eeprom_driver, current_address_read_byte_success)
+  48:Tests/target_tests/eeprom_driver/eeprom_test.c **** {
+ 248              		.loc 1 48 1 is_stmt 1 view -0
+ 249              		.cfi_startproc
+ 250              		@ args = 0, pretend = 0, frame = 8
+ 251              		@ frame_needed = 0, uses_anonymous_args = 0
+ 252 0000 30B5     		push	{r4, r5, lr}
+ 253              	.LCFI9:
+ 254              		.cfi_def_cfa_offset 12
+ 255              		.cfi_offset 4, -12
+ 256              		.cfi_offset 5, -8
+ 257              		.cfi_offset 14, -4
+ 258 0002 85B0     		sub	sp, sp, #20
+ 259              	.LCFI10:
+ 260              		.cfi_def_cfa_offset 32
+  49:Tests/target_tests/eeprom_driver/eeprom_test.c ****     uint8_t result_data = 0x0;
+ 261              		.loc 1 49 5 view .LVU35
+ 262              		.loc 1 49 13 is_stmt 0 view .LVU36
+ 263 0004 0025     		movs	r5, #0
+ 264 0006 8DF80F50 		strb	r5, [sp, #15]
+  50:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+  51:Tests/target_tests/eeprom_driver/eeprom_test.c ****     eeprom_status status = eeprom_byte_write(0x45, 0x54);
+ 265              		.loc 1 51 5 is_stmt 1 view .LVU37
+ 266              		.loc 1 51 28 is_stmt 0 view .LVU38
+ 267 000a 5421     		movs	r1, #84
+ 268 000c 4520     		movs	r0, #69
+ 269 000e FFF7FEFF 		bl	eeprom_byte_write
+ 270              	.LVL15:
+ 271 0012 0446     		mov	r4, r0
+ 272              	.LVL16:
+  52:Tests/target_tests/eeprom_driver/eeprom_test.c ****     status |= eeprom_addr_write(0x45);
+ 273              		.loc 1 52 5 is_stmt 1 view .LVU39
+ 274              		.loc 1 52 15 is_stmt 0 view .LVU40
+ 275 0014 4520     		movs	r0, #69
+ 276 0016 FFF7FEFF 		bl	eeprom_addr_write
+ 277              	.LVL17:
+ 278              		.loc 1 52 12 discriminator 1 view .LVU41
+ 279 001a 0443     		orrs	r4, r4, r0
+ 280              	.LVL18:
+ 281              		.loc 1 52 12 discriminator 1 view .LVU42
+ 282 001c E4B2     		uxtb	r4, r4
+ 283              	.LVL19:
+  53:Tests/target_tests/eeprom_driver/eeprom_test.c ****     status |= eeprom_current_address_read(&result_data);
+ 284              		.loc 1 53 5 is_stmt 1 view .LVU43
+ 285              		.loc 1 53 15 is_stmt 0 view .LVU44
+ 286 001e 0DF10F00 		add	r0, sp, #15
+ 287 0022 FFF7FEFF 		bl	eeprom_current_address_read
+ 288              	.LVL20:
+ARM GAS  /tmp/ccpF3mx8.s 			page 7
+
+
+ 289              		.loc 1 53 12 discriminator 1 view .LVU45
+ 290 0026 44EA0001 		orr	r1, r4, r0
+ 291              	.LVL21:
+  54:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+  55:Tests/target_tests/eeprom_driver/eeprom_test.c ****     TEST_ASSERT_EQUAL(EEPROM_OK, status);
+ 292              		.loc 1 55 5 is_stmt 1 view .LVU46
+ 293 002a 1424     		movs	r4, #20
+ 294 002c 0094     		str	r4, [sp]
+ 295 002e 3723     		movs	r3, #55
+ 296 0030 2A46     		mov	r2, r5
+ 297 0032 C9B2     		uxtb	r1, r1
+ 298              		.loc 1 55 5 is_stmt 0 view .LVU47
+ 299 0034 2846     		mov	r0, r5
+ 300 0036 FFF7FEFF 		bl	UnityAssertEqualNumber
+ 301              	.LVL22:
+  56:Tests/target_tests/eeprom_driver/eeprom_test.c ****     TEST_ASSERT_EQUAL(0x54, result_data);
+ 302              		.loc 1 56 5 is_stmt 1 view .LVU48
+ 303 003a 0094     		str	r4, [sp]
+ 304 003c 3823     		movs	r3, #56
+ 305 003e 2A46     		mov	r2, r5
+ 306 0040 9DF80F10 		ldrb	r1, [sp, #15]	@ zero_extendqisi2
+ 307 0044 5420     		movs	r0, #84
+ 308 0046 FFF7FEFF 		bl	UnityAssertEqualNumber
+ 309              	.LVL23:
+  57:Tests/target_tests/eeprom_driver/eeprom_test.c **** }
+ 310              		.loc 1 57 1 is_stmt 0 view .LVU49
+ 311 004a 05B0     		add	sp, sp, #20
+ 312              	.LCFI11:
+ 313              		.cfi_def_cfa_offset 12
+ 314              		@ sp needed
+ 315 004c 30BD     		pop	{r4, r5, pc}
+ 316              		.cfi_endproc
+ 317              	.LFE8:
+ 319              		.section	.text.TEST_eeprom_driver_multiple_current_address_read_byte_success_,"ax",%progbits
+ 320              		.align	1
+ 321              		.global	TEST_eeprom_driver_multiple_current_address_read_byte_success_
+ 322              		.syntax unified
+ 323              		.thumb
+ 324              		.thumb_func
+ 326              	TEST_eeprom_driver_multiple_current_address_read_byte_success_:
+ 327              	.LFB10:
+  58:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+  59:Tests/target_tests/eeprom_driver/eeprom_test.c **** TEST(eeprom_driver, multiple_current_address_read_byte_success)
+  60:Tests/target_tests/eeprom_driver/eeprom_test.c **** {
+ 328              		.loc 1 60 1 is_stmt 1 view -0
+ 329              		.cfi_startproc
+ 330              		@ args = 0, pretend = 0, frame = 8
+ 331              		@ frame_needed = 0, uses_anonymous_args = 0
+ 332 0000 10B5     		push	{r4, lr}
+ 333              	.LCFI12:
+ 334              		.cfi_def_cfa_offset 8
+ 335              		.cfi_offset 4, -8
+ 336              		.cfi_offset 14, -4
+ 337 0002 84B0     		sub	sp, sp, #16
+ 338              	.LCFI13:
+ 339              		.cfi_def_cfa_offset 24
+  61:Tests/target_tests/eeprom_driver/eeprom_test.c ****     uint8_t data[4] = { 0x54, 0xaa, 0x01, 0x02 };
+ARM GAS  /tmp/ccpF3mx8.s 			page 8
+
+
+ 340              		.loc 1 61 5 view .LVU51
+ 341              		.loc 1 61 13 is_stmt 0 view .LVU52
+ 342 0004 234B     		ldr	r3, .L15
+ 343 0006 0393     		str	r3, [sp, #12]
+  62:Tests/target_tests/eeprom_driver/eeprom_test.c ****     uint8_t result_data[4];
+ 344              		.loc 1 62 5 is_stmt 1 view .LVU53
+  63:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+  64:Tests/target_tests/eeprom_driver/eeprom_test.c ****     // eeprom_status status = eeprom_page_write(0x0055, data, sizeof(data)); // OK
+  65:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+  66:Tests/target_tests/eeprom_driver/eeprom_test.c ****     // status |= eeprom_addr_write(0x55);
+  67:Tests/target_tests/eeprom_driver/eeprom_test.c ****     // status |= eeprom_current_address_read(result_data);
+  68:Tests/target_tests/eeprom_driver/eeprom_test.c ****     // status |= eeprom_current_address_read(result_data + 1);
+  69:Tests/target_tests/eeprom_driver/eeprom_test.c ****     // status |= eeprom_current_address_read(result_data + 2);
+  70:Tests/target_tests/eeprom_driver/eeprom_test.c ****     // status |= eeprom_current_address_read(result_data + 3);
+  71:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+  72:Tests/target_tests/eeprom_driver/eeprom_test.c ****     eeprom_status status = eeprom_byte_write(0x0055, data[0]);
+ 345              		.loc 1 72 5 view .LVU54
+ 346              		.loc 1 72 28 is_stmt 0 view .LVU55
+ 347 0008 5421     		movs	r1, #84
+ 348 000a 5520     		movs	r0, #85
+ 349 000c FFF7FEFF 		bl	eeprom_byte_write
+ 350              	.LVL24:
+ 351 0010 0446     		mov	r4, r0
+ 352              	.LVL25:
+  73:Tests/target_tests/eeprom_driver/eeprom_test.c ****     status |= eeprom_byte_write(0x0055 + 1, data[1]);
+ 353              		.loc 1 73 5 is_stmt 1 view .LVU56
+ 354              		.loc 1 73 15 is_stmt 0 view .LVU57
+ 355 0012 9DF80D10 		ldrb	r1, [sp, #13]	@ zero_extendqisi2
+ 356 0016 5620     		movs	r0, #86
+ 357 0018 FFF7FEFF 		bl	eeprom_byte_write
+ 358              	.LVL26:
+ 359              		.loc 1 73 12 discriminator 1 view .LVU58
+ 360 001c 0443     		orrs	r4, r4, r0
+ 361              	.LVL27:
+ 362              		.loc 1 73 12 discriminator 1 view .LVU59
+ 363 001e E4B2     		uxtb	r4, r4
+ 364              	.LVL28:
+  74:Tests/target_tests/eeprom_driver/eeprom_test.c ****     status |= eeprom_byte_write(0x0055 + 2, data[2]);
+ 365              		.loc 1 74 5 is_stmt 1 view .LVU60
+ 366              		.loc 1 74 15 is_stmt 0 view .LVU61
+ 367 0020 9DF80E10 		ldrb	r1, [sp, #14]	@ zero_extendqisi2
+ 368 0024 5720     		movs	r0, #87
+ 369 0026 FFF7FEFF 		bl	eeprom_byte_write
+ 370              	.LVL29:
+ 371              		.loc 1 74 12 discriminator 1 view .LVU62
+ 372 002a 0443     		orrs	r4, r4, r0
+ 373              	.LVL30:
+ 374              		.loc 1 74 12 discriminator 1 view .LVU63
+ 375 002c E4B2     		uxtb	r4, r4
+ 376              	.LVL31:
+  75:Tests/target_tests/eeprom_driver/eeprom_test.c ****     status |= eeprom_byte_write(0x0055 + 3, data[3]);
+ 377              		.loc 1 75 5 is_stmt 1 view .LVU64
+ 378              		.loc 1 75 15 is_stmt 0 view .LVU65
+ 379 002e 9DF80F10 		ldrb	r1, [sp, #15]	@ zero_extendqisi2
+ 380 0032 5820     		movs	r0, #88
+ 381 0034 FFF7FEFF 		bl	eeprom_byte_write
+ 382              	.LVL32:
+ARM GAS  /tmp/ccpF3mx8.s 			page 9
+
+
+ 383              		.loc 1 75 12 discriminator 1 view .LVU66
+ 384 0038 0443     		orrs	r4, r4, r0
+ 385              	.LVL33:
+ 386              		.loc 1 75 12 discriminator 1 view .LVU67
+ 387 003a E4B2     		uxtb	r4, r4
+ 388              	.LVL34:
+  76:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+  77:Tests/target_tests/eeprom_driver/eeprom_test.c ****     status |= eeprom_addr_write(0x55);
+ 389              		.loc 1 77 5 is_stmt 1 view .LVU68
+ 390              		.loc 1 77 15 is_stmt 0 view .LVU69
+ 391 003c 5520     		movs	r0, #85
+ 392 003e FFF7FEFF 		bl	eeprom_addr_write
+ 393              	.LVL35:
+ 394              		.loc 1 77 12 discriminator 1 view .LVU70
+ 395 0042 0443     		orrs	r4, r4, r0
+ 396              	.LVL36:
+ 397              		.loc 1 77 12 discriminator 1 view .LVU71
+ 398 0044 E4B2     		uxtb	r4, r4
+ 399              	.LVL37:
+  78:Tests/target_tests/eeprom_driver/eeprom_test.c ****     status |= eeprom_current_address_read(result_data);
+ 400              		.loc 1 78 5 is_stmt 1 view .LVU72
+ 401              		.loc 1 78 15 is_stmt 0 view .LVU73
+ 402 0046 02A8     		add	r0, sp, #8
+ 403 0048 FFF7FEFF 		bl	eeprom_current_address_read
+ 404              	.LVL38:
+ 405              		.loc 1 78 12 discriminator 1 view .LVU74
+ 406 004c 0443     		orrs	r4, r4, r0
+ 407              	.LVL39:
+ 408              		.loc 1 78 12 discriminator 1 view .LVU75
+ 409 004e E4B2     		uxtb	r4, r4
+ 410              	.LVL40:
+  79:Tests/target_tests/eeprom_driver/eeprom_test.c ****     status |= eeprom_current_address_read(result_data + 1);
+ 411              		.loc 1 79 5 is_stmt 1 view .LVU76
+ 412              		.loc 1 79 15 is_stmt 0 view .LVU77
+ 413 0050 0DF10900 		add	r0, sp, #9
+ 414 0054 FFF7FEFF 		bl	eeprom_current_address_read
+ 415              	.LVL41:
+ 416              		.loc 1 79 12 discriminator 1 view .LVU78
+ 417 0058 0443     		orrs	r4, r4, r0
+ 418              	.LVL42:
+ 419              		.loc 1 79 12 discriminator 1 view .LVU79
+ 420 005a E4B2     		uxtb	r4, r4
+ 421              	.LVL43:
+  80:Tests/target_tests/eeprom_driver/eeprom_test.c ****     status |= eeprom_current_address_read(result_data + 2);
+ 422              		.loc 1 80 5 is_stmt 1 view .LVU80
+ 423              		.loc 1 80 15 is_stmt 0 view .LVU81
+ 424 005c 0DF10A00 		add	r0, sp, #10
+ 425 0060 FFF7FEFF 		bl	eeprom_current_address_read
+ 426              	.LVL44:
+ 427              		.loc 1 80 12 discriminator 1 view .LVU82
+ 428 0064 0443     		orrs	r4, r4, r0
+ 429              	.LVL45:
+ 430              		.loc 1 80 12 discriminator 1 view .LVU83
+ 431 0066 E4B2     		uxtb	r4, r4
+ 432              	.LVL46:
+  81:Tests/target_tests/eeprom_driver/eeprom_test.c ****     status |= eeprom_current_address_read(result_data + 3);
+ 433              		.loc 1 81 5 is_stmt 1 view .LVU84
+ARM GAS  /tmp/ccpF3mx8.s 			page 10
+
+
+ 434              		.loc 1 81 15 is_stmt 0 view .LVU85
+ 435 0068 0DF10B00 		add	r0, sp, #11
+ 436 006c FFF7FEFF 		bl	eeprom_current_address_read
+ 437              	.LVL47:
+ 438              		.loc 1 81 12 discriminator 1 view .LVU86
+ 439 0070 44EA0001 		orr	r1, r4, r0
+ 440              	.LVL48:
+  82:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+  83:Tests/target_tests/eeprom_driver/eeprom_test.c ****     TEST_ASSERT_EQUAL(EEPROM_OK, status);
+ 441              		.loc 1 83 5 is_stmt 1 view .LVU87
+ 442 0074 1423     		movs	r3, #20
+ 443 0076 0093     		str	r3, [sp]
+ 444 0078 5323     		movs	r3, #83
+ 445 007a 0022     		movs	r2, #0
+ 446 007c C9B2     		uxtb	r1, r1
+ 447              		.loc 1 83 5 is_stmt 0 view .LVU88
+ 448 007e 1046     		mov	r0, r2
+ 449 0080 FFF7FEFF 		bl	UnityAssertEqualNumber
+ 450              	.LVL49:
+  84:Tests/target_tests/eeprom_driver/eeprom_test.c ****     //TEST_ASSERT_EQUAL(0x54, result_data);
+  85:Tests/target_tests/eeprom_driver/eeprom_test.c ****     check_data(data, result_data, 4);
+ 451              		.loc 1 85 5 is_stmt 1 view .LVU89
+ 452 0084 0422     		movs	r2, #4
+ 453 0086 02A9     		add	r1, sp, #8
+ 454 0088 03A8     		add	r0, sp, #12
+ 455 008a FFF7FEFF 		bl	check_data
+ 456              	.LVL50:
+  86:Tests/target_tests/eeprom_driver/eeprom_test.c **** }
+ 457              		.loc 1 86 1 is_stmt 0 view .LVU90
+ 458 008e 04B0     		add	sp, sp, #16
+ 459              	.LCFI14:
+ 460              		.cfi_def_cfa_offset 8
+ 461              		@ sp needed
+ 462 0090 10BD     		pop	{r4, pc}
+ 463              	.L16:
+ 464              		.loc 1 86 1 view .LVU91
+ 465 0092 00BF     		.align	2
+ 466              	.L15:
+ 467 0094 54AA0102 		.word	33663572
+ 468              		.cfi_endproc
+ 469              	.LFE10:
+ 471              		.section	.text.TEST_eeprom_driver_page_8_sequential_read_success_,"ax",%progbits
+ 472              		.align	1
+ 473              		.global	TEST_eeprom_driver_page_8_sequential_read_success_
+ 474              		.syntax unified
+ 475              		.thumb
+ 476              		.thumb_func
+ 478              	TEST_eeprom_driver_page_8_sequential_read_success_:
+ 479              	.LFB12:
+  87:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+  88:Tests/target_tests/eeprom_driver/eeprom_test.c **** TEST(eeprom_driver, page_8_sequential_read_success)
+  89:Tests/target_tests/eeprom_driver/eeprom_test.c **** {
+ 480              		.loc 1 89 1 is_stmt 1 view -0
+ 481              		.cfi_startproc
+ 482              		@ args = 0, pretend = 0, frame = 8
+ 483              		@ frame_needed = 0, uses_anonymous_args = 0
+ 484 0000 30B5     		push	{r4, r5, lr}
+ARM GAS  /tmp/ccpF3mx8.s 			page 11
+
+
+ 485              	.LCFI15:
+ 486              		.cfi_def_cfa_offset 12
+ 487              		.cfi_offset 4, -12
+ 488              		.cfi_offset 5, -8
+ 489              		.cfi_offset 14, -4
+ 490 0002 85B0     		sub	sp, sp, #20
+ 491              	.LCFI16:
+ 492              		.cfi_def_cfa_offset 32
+  90:Tests/target_tests/eeprom_driver/eeprom_test.c ****     uint8_t test_data[] = { 0x55, 0x01, 0xaa, 0x02 };
+ 493              		.loc 1 90 5 view .LVU93
+ 494              		.loc 1 90 13 is_stmt 0 view .LVU94
+ 495 0004 164B     		ldr	r3, .L21
+ 496 0006 0393     		str	r3, [sp, #12]
+  91:Tests/target_tests/eeprom_driver/eeprom_test.c ****     uint8_t data[4];
+ 497              		.loc 1 91 5 is_stmt 1 view .LVU95
+  92:Tests/target_tests/eeprom_driver/eeprom_test.c ****     uint16_t addr = 0x44;
+ 498              		.loc 1 92 5 view .LVU96
+ 499              	.LVL51:
+  93:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+  94:Tests/target_tests/eeprom_driver/eeprom_test.c ****     eeprom_status status = EEPROM_OK;
+ 500              		.loc 1 94 5 view .LVU97
+  95:Tests/target_tests/eeprom_driver/eeprom_test.c ****     for (uint8_t i = 0; i < 4; i++)
+ 501              		.loc 1 95 5 view .LVU98
+ 502              	.LBB3:
+ 503              		.loc 1 95 10 view .LVU99
+ 504              		.loc 1 95 18 is_stmt 0 view .LVU100
+ 505 0008 0024     		movs	r4, #0
+ 506              	.LBE3:
+  94:Tests/target_tests/eeprom_driver/eeprom_test.c ****     for (uint8_t i = 0; i < 4; i++)
+ 507              		.loc 1 94 19 view .LVU101
+ 508 000a 2546     		mov	r5, r4
+ 509              	.LBB4:
+ 510              		.loc 1 95 5 view .LVU102
+ 511 000c 0CE0     		b	.L18
+ 512              	.LVL52:
+ 513              	.L19:
+  96:Tests/target_tests/eeprom_driver/eeprom_test.c ****         status |= eeprom_byte_write(addr + i, test_data[i]);
+ 514              		.loc 1 96 9 is_stmt 1 view .LVU103
+ 515              		.loc 1 96 19 is_stmt 0 view .LVU104
+ 516 000e 04F11003 		add	r3, r4, #16
+ 517 0012 6B44     		add	r3, sp, r3
+ 518 0014 13F8041C 		ldrb	r1, [r3, #-4]	@ zero_extendqisi2
+ 519 0018 04F14400 		add	r0, r4, #68
+ 520 001c FFF7FEFF 		bl	eeprom_byte_write
+ 521              	.LVL53:
+ 522              		.loc 1 96 16 discriminator 1 view .LVU105
+ 523 0020 0543     		orrs	r5, r5, r0
+ 524              	.LVL54:
+ 525              		.loc 1 96 16 discriminator 1 view .LVU106
+ 526 0022 EDB2     		uxtb	r5, r5
+ 527              	.LVL55:
+  95:Tests/target_tests/eeprom_driver/eeprom_test.c ****     for (uint8_t i = 0; i < 4; i++)
+ 528              		.loc 1 95 33 is_stmt 1 discriminator 3 view .LVU107
+ 529 0024 0134     		adds	r4, r4, #1
+ 530              	.LVL56:
+  95:Tests/target_tests/eeprom_driver/eeprom_test.c ****     for (uint8_t i = 0; i < 4; i++)
+ 531              		.loc 1 95 33 is_stmt 0 discriminator 3 view .LVU108
+ARM GAS  /tmp/ccpF3mx8.s 			page 12
+
+
+ 532 0026 E4B2     		uxtb	r4, r4
+ 533              	.LVL57:
+ 534              	.L18:
+  95:Tests/target_tests/eeprom_driver/eeprom_test.c ****     for (uint8_t i = 0; i < 4; i++)
+ 535              		.loc 1 95 27 is_stmt 1 discriminator 1 view .LVU109
+ 536 0028 032C     		cmp	r4, #3
+ 537 002a F0D9     		bls	.L19
+ 538              	.LBE4:
+  97:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+  98:Tests/target_tests/eeprom_driver/eeprom_test.c ****     status |= eeprom_addr_write(addr);
+ 539              		.loc 1 98 5 view .LVU110
+ 540              		.loc 1 98 15 is_stmt 0 view .LVU111
+ 541 002c 4420     		movs	r0, #68
+ 542 002e FFF7FEFF 		bl	eeprom_addr_write
+ 543              	.LVL58:
+ 544              		.loc 1 98 12 discriminator 1 view .LVU112
+ 545 0032 0543     		orrs	r5, r5, r0
+ 546              	.LVL59:
+ 547              		.loc 1 98 12 discriminator 1 view .LVU113
+ 548 0034 EDB2     		uxtb	r5, r5
+ 549              	.LVL60:
+  99:Tests/target_tests/eeprom_driver/eeprom_test.c ****     status |= eeprom_sequential_read(data, 4);
+ 550              		.loc 1 99 5 is_stmt 1 view .LVU114
+ 551              		.loc 1 99 15 is_stmt 0 view .LVU115
+ 552 0036 0421     		movs	r1, #4
+ 553 0038 02A8     		add	r0, sp, #8
+ 554 003a FFF7FEFF 		bl	eeprom_sequential_read
+ 555              	.LVL61:
+ 556              		.loc 1 99 12 discriminator 1 view .LVU116
+ 557 003e 0543     		orrs	r5, r5, r0
+ 558              	.LVL62:
+ 100:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+ 101:Tests/target_tests/eeprom_driver/eeprom_test.c ****     TEST_ASSERT_EQUAL(EEPROM_OK, status);
+ 559              		.loc 1 101 5 is_stmt 1 view .LVU117
+ 560 0040 1423     		movs	r3, #20
+ 561 0042 0093     		str	r3, [sp]
+ 562 0044 6523     		movs	r3, #101
+ 563 0046 0022     		movs	r2, #0
+ 564 0048 E9B2     		uxtb	r1, r5
+ 565 004a 1046     		mov	r0, r2
+ 566 004c FFF7FEFF 		bl	UnityAssertEqualNumber
+ 567              	.LVL63:
+ 102:Tests/target_tests/eeprom_driver/eeprom_test.c ****     check_data(test_data, data, 4);
+ 568              		.loc 1 102 5 view .LVU118
+ 569 0050 0422     		movs	r2, #4
+ 570 0052 02A9     		add	r1, sp, #8
+ 571 0054 03A8     		add	r0, sp, #12
+ 572 0056 FFF7FEFF 		bl	check_data
+ 573              	.LVL64:
+ 103:Tests/target_tests/eeprom_driver/eeprom_test.c **** }
+ 574              		.loc 1 103 1 is_stmt 0 view .LVU119
+ 575 005a 05B0     		add	sp, sp, #20
+ 576              	.LCFI17:
+ 577              		.cfi_def_cfa_offset 12
+ 578              		@ sp needed
+ 579 005c 30BD     		pop	{r4, r5, pc}
+ 580              	.LVL65:
+ARM GAS  /tmp/ccpF3mx8.s 			page 13
+
+
+ 581              	.L22:
+ 582              		.loc 1 103 1 view .LVU120
+ 583 005e 00BF     		.align	2
+ 584              	.L21:
+ 585 0060 5501AA02 		.word	44695893
+ 586              		.cfi_endproc
+ 587              	.LFE12:
+ 589              		.section	.text.TEST_eeprom_driver_page_68_sequential_read_success_,"ax",%progbits
+ 590              		.align	1
+ 591              		.global	TEST_eeprom_driver_page_68_sequential_read_success_
+ 592              		.syntax unified
+ 593              		.thumb
+ 594              		.thumb_func
+ 596              	TEST_eeprom_driver_page_68_sequential_read_success_:
+ 597              	.LFB14:
+ 104:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+ 105:Tests/target_tests/eeprom_driver/eeprom_test.c **** TEST(eeprom_driver, page_68_sequential_read_success)
+ 106:Tests/target_tests/eeprom_driver/eeprom_test.c **** {
+ 598              		.loc 1 106 1 is_stmt 1 view -0
+ 599              		.cfi_startproc
+ 600              		@ args = 0, pretend = 0, frame = 72
+ 601              		@ frame_needed = 0, uses_anonymous_args = 0
+ 602 0000 30B5     		push	{r4, r5, lr}
+ 603              	.LCFI18:
+ 604              		.cfi_def_cfa_offset 12
+ 605              		.cfi_offset 4, -12
+ 606              		.cfi_offset 5, -8
+ 607              		.cfi_offset 14, -4
+ 608 0002 95B0     		sub	sp, sp, #84
+ 609              	.LCFI19:
+ 610              		.cfi_def_cfa_offset 96
+ 107:Tests/target_tests/eeprom_driver/eeprom_test.c ****     uint8_t test_data[] = { 0x55, 0x01, 0xaa, 0x02 };
+ 611              		.loc 1 107 5 view .LVU122
+ 612              		.loc 1 107 13 is_stmt 0 view .LVU123
+ 613 0004 1E4B     		ldr	r3, .L27
+ 614 0006 1393     		str	r3, [sp, #76]
+ 108:Tests/target_tests/eeprom_driver/eeprom_test.c ****     uint8_t data[68];
+ 615              		.loc 1 108 5 is_stmt 1 view .LVU124
+ 109:Tests/target_tests/eeprom_driver/eeprom_test.c ****     uint16_t addr = 0x68;
+ 616              		.loc 1 109 5 view .LVU125
+ 617              	.LVL66:
+ 110:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+ 111:Tests/target_tests/eeprom_driver/eeprom_test.c ****     eeprom_status status = EEPROM_OK;
+ 618              		.loc 1 111 5 view .LVU126
+ 112:Tests/target_tests/eeprom_driver/eeprom_test.c ****     for (uint8_t i = 0; i < 4; i++)
+ 619              		.loc 1 112 5 view .LVU127
+ 620              	.LBB5:
+ 621              		.loc 1 112 10 view .LVU128
+ 622              		.loc 1 112 18 is_stmt 0 view .LVU129
+ 623 0008 0024     		movs	r4, #0
+ 624              	.LBE5:
+ 111:Tests/target_tests/eeprom_driver/eeprom_test.c ****     for (uint8_t i = 0; i < 4; i++)
+ 625              		.loc 1 111 19 view .LVU130
+ 626 000a 2546     		mov	r5, r4
+ 627              	.LBB6:
+ 628              		.loc 1 112 5 view .LVU131
+ 629 000c 0CE0     		b	.L24
+ARM GAS  /tmp/ccpF3mx8.s 			page 14
+
+
+ 630              	.LVL67:
+ 631              	.L25:
+ 113:Tests/target_tests/eeprom_driver/eeprom_test.c ****         status |= eeprom_byte_write(addr + i, test_data[i]);
+ 632              		.loc 1 113 9 is_stmt 1 view .LVU132
+ 633              		.loc 1 113 19 is_stmt 0 view .LVU133
+ 634 000e 04F15003 		add	r3, r4, #80
+ 635 0012 6B44     		add	r3, sp, r3
+ 636 0014 13F8041C 		ldrb	r1, [r3, #-4]	@ zero_extendqisi2
+ 637 0018 04F16800 		add	r0, r4, #104
+ 638 001c FFF7FEFF 		bl	eeprom_byte_write
+ 639              	.LVL68:
+ 640              		.loc 1 113 16 discriminator 1 view .LVU134
+ 641 0020 0543     		orrs	r5, r5, r0
+ 642              	.LVL69:
+ 643              		.loc 1 113 16 discriminator 1 view .LVU135
+ 644 0022 EDB2     		uxtb	r5, r5
+ 645              	.LVL70:
+ 112:Tests/target_tests/eeprom_driver/eeprom_test.c ****     for (uint8_t i = 0; i < 4; i++)
+ 646              		.loc 1 112 33 is_stmt 1 discriminator 3 view .LVU136
+ 647 0024 0134     		adds	r4, r4, #1
+ 648              	.LVL71:
+ 112:Tests/target_tests/eeprom_driver/eeprom_test.c ****     for (uint8_t i = 0; i < 4; i++)
+ 649              		.loc 1 112 33 is_stmt 0 discriminator 3 view .LVU137
+ 650 0026 E4B2     		uxtb	r4, r4
+ 651              	.LVL72:
+ 652              	.L24:
+ 112:Tests/target_tests/eeprom_driver/eeprom_test.c ****     for (uint8_t i = 0; i < 4; i++)
+ 653              		.loc 1 112 27 is_stmt 1 discriminator 1 view .LVU138
+ 654 0028 032C     		cmp	r4, #3
+ 655 002a F0D9     		bls	.L25
+ 656              	.LBE6:
+ 114:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+ 115:Tests/target_tests/eeprom_driver/eeprom_test.c ****     status |= eeprom_byte_write(addr + 60, 0x47);
+ 657              		.loc 1 115 5 view .LVU139
+ 658              		.loc 1 115 15 is_stmt 0 view .LVU140
+ 659 002c 4721     		movs	r1, #71
+ 660 002e A420     		movs	r0, #164
+ 661 0030 FFF7FEFF 		bl	eeprom_byte_write
+ 662              	.LVL73:
+ 663              		.loc 1 115 12 discriminator 1 view .LVU141
+ 664 0034 45EA0004 		orr	r4, r5, r0
+ 665              	.LVL74:
+ 666              		.loc 1 115 12 discriminator 1 view .LVU142
+ 667 0038 E4B2     		uxtb	r4, r4
+ 668              	.LVL75:
+ 116:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+ 117:Tests/target_tests/eeprom_driver/eeprom_test.c ****     status |= eeprom_addr_write(addr);
+ 669              		.loc 1 117 5 is_stmt 1 view .LVU143
+ 670              		.loc 1 117 15 is_stmt 0 view .LVU144
+ 671 003a 6820     		movs	r0, #104
+ 672 003c FFF7FEFF 		bl	eeprom_addr_write
+ 673              	.LVL76:
+ 674              		.loc 1 117 12 discriminator 1 view .LVU145
+ 675 0040 0443     		orrs	r4, r4, r0
+ 676              	.LVL77:
+ 677              		.loc 1 117 12 discriminator 1 view .LVU146
+ 678 0042 E4B2     		uxtb	r4, r4
+ARM GAS  /tmp/ccpF3mx8.s 			page 15
+
+
+ 679              	.LVL78:
+ 118:Tests/target_tests/eeprom_driver/eeprom_test.c ****     status |= eeprom_sequential_read(data, 68);
+ 680              		.loc 1 118 5 is_stmt 1 view .LVU147
+ 681              		.loc 1 118 15 is_stmt 0 view .LVU148
+ 682 0044 4421     		movs	r1, #68
+ 683 0046 02A8     		add	r0, sp, #8
+ 684 0048 FFF7FEFF 		bl	eeprom_sequential_read
+ 685              	.LVL79:
+ 686              		.loc 1 118 12 discriminator 1 view .LVU149
+ 687 004c 44EA0001 		orr	r1, r4, r0
+ 688              	.LVL80:
+ 119:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+ 120:Tests/target_tests/eeprom_driver/eeprom_test.c ****     TEST_ASSERT_EQUAL(EEPROM_OK, status);
+ 689              		.loc 1 120 5 is_stmt 1 view .LVU150
+ 690 0050 1423     		movs	r3, #20
+ 691 0052 0093     		str	r3, [sp]
+ 692 0054 7823     		movs	r3, #120
+ 693 0056 0022     		movs	r2, #0
+ 694 0058 C9B2     		uxtb	r1, r1
+ 695              		.loc 1 120 5 is_stmt 0 view .LVU151
+ 696 005a 1046     		mov	r0, r2
+ 697 005c FFF7FEFF 		bl	UnityAssertEqualNumber
+ 698              	.LVL81:
+ 121:Tests/target_tests/eeprom_driver/eeprom_test.c ****     check_data(test_data, data, 4);
+ 699              		.loc 1 121 5 is_stmt 1 view .LVU152
+ 700 0060 0422     		movs	r2, #4
+ 701 0062 02A9     		add	r1, sp, #8
+ 702 0064 13A8     		add	r0, sp, #76
+ 703 0066 FFF7FEFF 		bl	check_data
+ 704              	.LVL82:
+ 122:Tests/target_tests/eeprom_driver/eeprom_test.c ****     TEST_ASSERT_BYTES_EQUAL(0x47, data[60]);
+ 705              		.loc 1 122 5 view .LVU153
+ 706 006a 4123     		movs	r3, #65
+ 707 006c 0093     		str	r3, [sp]
+ 708 006e 7A23     		movs	r3, #122
+ 709 0070 0022     		movs	r2, #0
+ 710 0072 9DF94410 		ldrsb	r1, [sp, #68]
+ 711 0076 4720     		movs	r0, #71
+ 712 0078 FFF7FEFF 		bl	UnityAssertEqualNumber
+ 713              	.LVL83:
+ 123:Tests/target_tests/eeprom_driver/eeprom_test.c **** }
+ 714              		.loc 1 123 1 is_stmt 0 view .LVU154
+ 715 007c 15B0     		add	sp, sp, #84
+ 716              	.LCFI20:
+ 717              		.cfi_def_cfa_offset 12
+ 718              		@ sp needed
+ 719 007e 30BD     		pop	{r4, r5, pc}
+ 720              	.L28:
+ 721              		.loc 1 123 1 view .LVU155
+ 722              		.align	2
+ 723              	.L27:
+ 724 0080 5501AA02 		.word	44695893
+ 725              		.cfi_endproc
+ 726              	.LFE14:
+ 728              		.section	.text.TEST_eeprom_driver_page_128_sequential_read_success_,"ax",%progbits
+ 729              		.align	1
+ 730              		.global	TEST_eeprom_driver_page_128_sequential_read_success_
+ARM GAS  /tmp/ccpF3mx8.s 			page 16
+
+
+ 731              		.syntax unified
+ 732              		.thumb
+ 733              		.thumb_func
+ 735              	TEST_eeprom_driver_page_128_sequential_read_success_:
+ 736              	.LFB16:
+ 124:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+ 125:Tests/target_tests/eeprom_driver/eeprom_test.c **** TEST(eeprom_driver, page_128_sequential_read_success)
+ 126:Tests/target_tests/eeprom_driver/eeprom_test.c **** {
+ 737              		.loc 1 126 1 is_stmt 1 view -0
+ 738              		.cfi_startproc
+ 739              		@ args = 0, pretend = 0, frame = 136
+ 740              		@ frame_needed = 0, uses_anonymous_args = 0
+ 741 0000 30B5     		push	{r4, r5, lr}
+ 742              	.LCFI21:
+ 743              		.cfi_def_cfa_offset 12
+ 744              		.cfi_offset 4, -12
+ 745              		.cfi_offset 5, -8
+ 746              		.cfi_offset 14, -4
+ 747 0002 A5B0     		sub	sp, sp, #148
+ 748              	.LCFI22:
+ 749              		.cfi_def_cfa_offset 160
+ 127:Tests/target_tests/eeprom_driver/eeprom_test.c ****     uint8_t test_data[] = { 0x34, 0x02, 0x55, 0xaa };
+ 750              		.loc 1 127 5 view .LVU157
+ 751              		.loc 1 127 13 is_stmt 0 view .LVU158
+ 752 0004 254B     		ldr	r3, .L33
+ 753 0006 2393     		str	r3, [sp, #140]
+ 128:Tests/target_tests/eeprom_driver/eeprom_test.c ****     uint8_t data[128];
+ 754              		.loc 1 128 5 is_stmt 1 view .LVU159
+ 129:Tests/target_tests/eeprom_driver/eeprom_test.c ****     uint16_t addr = 0x75;
+ 755              		.loc 1 129 5 view .LVU160
+ 756              	.LVL84:
+ 130:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+ 131:Tests/target_tests/eeprom_driver/eeprom_test.c ****     eeprom_status status = EEPROM_OK;
+ 757              		.loc 1 131 5 view .LVU161
+ 132:Tests/target_tests/eeprom_driver/eeprom_test.c ****     for (uint8_t i = 0; i < 4; i++)
+ 758              		.loc 1 132 5 view .LVU162
+ 759              	.LBB7:
+ 760              		.loc 1 132 10 view .LVU163
+ 761              		.loc 1 132 18 is_stmt 0 view .LVU164
+ 762 0008 0025     		movs	r5, #0
+ 763              	.LBE7:
+ 131:Tests/target_tests/eeprom_driver/eeprom_test.c ****     for (uint8_t i = 0; i < 4; i++)
+ 764              		.loc 1 131 19 view .LVU165
+ 765 000a 2C46     		mov	r4, r5
+ 766              	.LBB8:
+ 767              		.loc 1 132 5 view .LVU166
+ 768 000c 0CE0     		b	.L30
+ 769              	.LVL85:
+ 770              	.L31:
+ 133:Tests/target_tests/eeprom_driver/eeprom_test.c ****         status |= eeprom_byte_write(addr + i, test_data[i]);
+ 771              		.loc 1 133 9 is_stmt 1 view .LVU167
+ 772              		.loc 1 133 19 is_stmt 0 view .LVU168
+ 773 000e 05F19003 		add	r3, r5, #144
+ 774 0012 6B44     		add	r3, sp, r3
+ 775 0014 13F8041C 		ldrb	r1, [r3, #-4]	@ zero_extendqisi2
+ 776 0018 05F17500 		add	r0, r5, #117
+ 777 001c FFF7FEFF 		bl	eeprom_byte_write
+ARM GAS  /tmp/ccpF3mx8.s 			page 17
+
+
+ 778              	.LVL86:
+ 779              		.loc 1 133 16 discriminator 1 view .LVU169
+ 780 0020 0443     		orrs	r4, r4, r0
+ 781              	.LVL87:
+ 782              		.loc 1 133 16 discriminator 1 view .LVU170
+ 783 0022 E4B2     		uxtb	r4, r4
+ 784              	.LVL88:
+ 132:Tests/target_tests/eeprom_driver/eeprom_test.c ****     for (uint8_t i = 0; i < 4; i++)
+ 785              		.loc 1 132 33 is_stmt 1 discriminator 3 view .LVU171
+ 786 0024 0135     		adds	r5, r5, #1
+ 787              	.LVL89:
+ 132:Tests/target_tests/eeprom_driver/eeprom_test.c ****     for (uint8_t i = 0; i < 4; i++)
+ 788              		.loc 1 132 33 is_stmt 0 discriminator 3 view .LVU172
+ 789 0026 EDB2     		uxtb	r5, r5
+ 790              	.LVL90:
+ 791              	.L30:
+ 132:Tests/target_tests/eeprom_driver/eeprom_test.c ****     for (uint8_t i = 0; i < 4; i++)
+ 792              		.loc 1 132 27 is_stmt 1 discriminator 1 view .LVU173
+ 793 0028 032D     		cmp	r5, #3
+ 794 002a F0D9     		bls	.L31
+ 795              	.LBE8:
+ 134:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+ 135:Tests/target_tests/eeprom_driver/eeprom_test.c ****     status |= eeprom_byte_write(addr + 60, 0x26);
+ 796              		.loc 1 135 5 view .LVU174
+ 797              		.loc 1 135 15 is_stmt 0 view .LVU175
+ 798 002c 2621     		movs	r1, #38
+ 799 002e B120     		movs	r0, #177
+ 800 0030 FFF7FEFF 		bl	eeprom_byte_write
+ 801              	.LVL91:
+ 802              		.loc 1 135 12 discriminator 1 view .LVU176
+ 803 0034 0443     		orrs	r4, r4, r0
+ 804              	.LVL92:
+ 805              		.loc 1 135 12 discriminator 1 view .LVU177
+ 806 0036 E4B2     		uxtb	r4, r4
+ 807              	.LVL93:
+ 136:Tests/target_tests/eeprom_driver/eeprom_test.c ****     status |= eeprom_byte_write(addr + 111, 0x45);
+ 808              		.loc 1 136 5 is_stmt 1 view .LVU178
+ 809              		.loc 1 136 15 is_stmt 0 view .LVU179
+ 810 0038 4521     		movs	r1, #69
+ 811 003a E420     		movs	r0, #228
+ 812 003c FFF7FEFF 		bl	eeprom_byte_write
+ 813              	.LVL94:
+ 814              		.loc 1 136 12 discriminator 1 view .LVU180
+ 815 0040 0443     		orrs	r4, r4, r0
+ 816              	.LVL95:
+ 817              		.loc 1 136 12 discriminator 1 view .LVU181
+ 818 0042 E4B2     		uxtb	r4, r4
+ 819              	.LVL96:
+ 137:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+ 138:Tests/target_tests/eeprom_driver/eeprom_test.c ****     status |= eeprom_addr_write(addr);
+ 820              		.loc 1 138 5 is_stmt 1 view .LVU182
+ 821              		.loc 1 138 15 is_stmt 0 view .LVU183
+ 822 0044 7520     		movs	r0, #117
+ 823 0046 FFF7FEFF 		bl	eeprom_addr_write
+ 824              	.LVL97:
+ 825              		.loc 1 138 12 discriminator 1 view .LVU184
+ 826 004a 0443     		orrs	r4, r4, r0
+ARM GAS  /tmp/ccpF3mx8.s 			page 18
+
+
+ 827              	.LVL98:
+ 828              		.loc 1 138 12 discriminator 1 view .LVU185
+ 829 004c E4B2     		uxtb	r4, r4
+ 830              	.LVL99:
+ 139:Tests/target_tests/eeprom_driver/eeprom_test.c ****     status |= eeprom_sequential_read(data, 128);
+ 831              		.loc 1 139 5 is_stmt 1 view .LVU186
+ 832              		.loc 1 139 15 is_stmt 0 view .LVU187
+ 833 004e 8021     		movs	r1, #128
+ 834 0050 03A8     		add	r0, sp, #12
+ 835 0052 FFF7FEFF 		bl	eeprom_sequential_read
+ 836              	.LVL100:
+ 837              		.loc 1 139 12 discriminator 1 view .LVU188
+ 838 0056 44EA0001 		orr	r1, r4, r0
+ 839              	.LVL101:
+ 140:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+ 141:Tests/target_tests/eeprom_driver/eeprom_test.c ****     TEST_ASSERT_EQUAL(EEPROM_OK, status);
+ 840              		.loc 1 141 5 is_stmt 1 view .LVU189
+ 841 005a 1423     		movs	r3, #20
+ 842 005c 0093     		str	r3, [sp]
+ 843 005e 8D23     		movs	r3, #141
+ 844 0060 0022     		movs	r2, #0
+ 845 0062 C9B2     		uxtb	r1, r1
+ 846              		.loc 1 141 5 is_stmt 0 view .LVU190
+ 847 0064 1046     		mov	r0, r2
+ 848 0066 FFF7FEFF 		bl	UnityAssertEqualNumber
+ 849              	.LVL102:
+ 142:Tests/target_tests/eeprom_driver/eeprom_test.c ****     check_data(test_data, data, 4);
+ 850              		.loc 1 142 5 is_stmt 1 view .LVU191
+ 851 006a 0422     		movs	r2, #4
+ 852 006c 03A9     		add	r1, sp, #12
+ 853 006e 23A8     		add	r0, sp, #140
+ 854 0070 FFF7FEFF 		bl	check_data
+ 855              	.LVL103:
+ 143:Tests/target_tests/eeprom_driver/eeprom_test.c ****     TEST_ASSERT_BYTES_EQUAL(0x26, data[60]);
+ 856              		.loc 1 143 5 view .LVU192
+ 857 0074 4124     		movs	r4, #65
+ 858              		.loc 1 143 5 is_stmt 0 view .LVU193
+ 859 0076 0094     		str	r4, [sp]
+ 860 0078 8F23     		movs	r3, #143
+ 861 007a 0022     		movs	r2, #0
+ 862 007c 9DF94810 		ldrsb	r1, [sp, #72]
+ 863 0080 2620     		movs	r0, #38
+ 864 0082 FFF7FEFF 		bl	UnityAssertEqualNumber
+ 865              	.LVL104:
+ 144:Tests/target_tests/eeprom_driver/eeprom_test.c ****     TEST_ASSERT_BYTES_EQUAL(0x45, data[111]);
+ 866              		.loc 1 144 5 is_stmt 1 view .LVU194
+ 867 0086 0094     		str	r4, [sp]
+ 868 0088 9023     		movs	r3, #144
+ 869 008a 0022     		movs	r2, #0
+ 870 008c 9DF97B10 		ldrsb	r1, [sp, #123]
+ 871 0090 4520     		movs	r0, #69
+ 872 0092 FFF7FEFF 		bl	UnityAssertEqualNumber
+ 873              	.LVL105:
+ 145:Tests/target_tests/eeprom_driver/eeprom_test.c **** }
+ 874              		.loc 1 145 1 is_stmt 0 view .LVU195
+ 875 0096 25B0     		add	sp, sp, #148
+ 876              	.LCFI23:
+ARM GAS  /tmp/ccpF3mx8.s 			page 19
+
+
+ 877              		.cfi_def_cfa_offset 12
+ 878              		@ sp needed
+ 879 0098 30BD     		pop	{r4, r5, pc}
+ 880              	.LVL106:
+ 881              	.L34:
+ 882              		.loc 1 145 1 view .LVU196
+ 883 009a 00BF     		.align	2
+ 884              	.L33:
+ 885 009c 340255AA 		.word	-1437269452
+ 886              		.cfi_endproc
+ 887              	.LFE16:
+ 889              		.section	.text.TEST_eeprom_driver_page_8_write_success_,"ax",%progbits
+ 890              		.align	1
+ 891              		.global	TEST_eeprom_driver_page_8_write_success_
+ 892              		.syntax unified
+ 893              		.thumb
+ 894              		.thumb_func
+ 896              	TEST_eeprom_driver_page_8_write_success_:
+ 897              	.LFB18:
+ 146:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+ 147:Tests/target_tests/eeprom_driver/eeprom_test.c **** TEST(eeprom_driver, page_8_write_success)
+ 148:Tests/target_tests/eeprom_driver/eeprom_test.c **** {
+ 898              		.loc 1 148 1 is_stmt 1 view -0
+ 899              		.cfi_startproc
+ 900              		@ args = 0, pretend = 0, frame = 16
+ 901              		@ frame_needed = 0, uses_anonymous_args = 0
+ 902 0000 30B5     		push	{r4, r5, lr}
+ 903              	.LCFI24:
+ 904              		.cfi_def_cfa_offset 12
+ 905              		.cfi_offset 4, -12
+ 906              		.cfi_offset 5, -8
+ 907              		.cfi_offset 14, -4
+ 908 0002 87B0     		sub	sp, sp, #28
+ 909              	.LCFI25:
+ 910              		.cfi_def_cfa_offset 40
+ 149:Tests/target_tests/eeprom_driver/eeprom_test.c ****     uint16_t addr = 0xaa44;
+ 911              		.loc 1 149 5 view .LVU198
+ 912              	.LVL107:
+ 150:Tests/target_tests/eeprom_driver/eeprom_test.c ****     uint8_t data[8] = {
+ 913              		.loc 1 150 5 view .LVU199
+ 914              		.loc 1 150 13 is_stmt 0 view .LVU200
+ 915 0004 184B     		ldr	r3, .L37
+ 916 0006 04AD     		add	r5, sp, #16
+ 917 0008 93E80300 		ldm	r3, {r0, r1}
+ 918 000c 85E80300 		stm	r5, {r0, r1}
+ 151:Tests/target_tests/eeprom_driver/eeprom_test.c ****         0xff, 0xaa, 0xff, 0x0,
+ 152:Tests/target_tests/eeprom_driver/eeprom_test.c ****         0x0, 0xff, 0xaa, 0x55
+ 153:Tests/target_tests/eeprom_driver/eeprom_test.c ****     };
+ 154:Tests/target_tests/eeprom_driver/eeprom_test.c ****     uint8_t result[8];
+ 919              		.loc 1 154 5 is_stmt 1 view .LVU201
+ 155:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+ 156:Tests/target_tests/eeprom_driver/eeprom_test.c ****     eeprom_status status = eeprom_page_write(addr, data, sizeof(data));
+ 920              		.loc 1 156 5 view .LVU202
+ 921              		.loc 1 156 28 is_stmt 0 view .LVU203
+ 922 0010 0822     		movs	r2, #8
+ 923 0012 2946     		mov	r1, r5
+ 924 0014 4AF64420 		movw	r0, #43588
+ARM GAS  /tmp/ccpF3mx8.s 			page 20
+
+
+ 925 0018 FFF7FEFF 		bl	eeprom_page_write
+ 926              	.LVL108:
+ 927 001c 0446     		mov	r4, r0
+ 928              	.LVL109:
+ 157:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+ 158:Tests/target_tests/eeprom_driver/eeprom_test.c ****     status |= eeprom_random_byte_read(addr, result);
+ 929              		.loc 1 158 5 is_stmt 1 view .LVU204
+ 930              		.loc 1 158 15 is_stmt 0 view .LVU205
+ 931 001e 02A9     		add	r1, sp, #8
+ 932 0020 4AF64420 		movw	r0, #43588
+ 933 0024 FFF7FEFF 		bl	eeprom_random_byte_read
+ 934              	.LVL110:
+ 935              		.loc 1 158 12 discriminator 1 view .LVU206
+ 936 0028 0443     		orrs	r4, r4, r0
+ 937              	.LVL111:
+ 938              		.loc 1 158 12 discriminator 1 view .LVU207
+ 939 002a E4B2     		uxtb	r4, r4
+ 940              	.LVL112:
+ 159:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+ 160:Tests/target_tests/eeprom_driver/eeprom_test.c ****     status |= eeprom_addr_write(addr);
+ 941              		.loc 1 160 5 is_stmt 1 view .LVU208
+ 942              		.loc 1 160 15 is_stmt 0 view .LVU209
+ 943 002c 4AF64420 		movw	r0, #43588
+ 944 0030 FFF7FEFF 		bl	eeprom_addr_write
+ 945              	.LVL113:
+ 946              		.loc 1 160 12 discriminator 1 view .LVU210
+ 947 0034 0443     		orrs	r4, r4, r0
+ 948              	.LVL114:
+ 949              		.loc 1 160 12 discriminator 1 view .LVU211
+ 950 0036 E4B2     		uxtb	r4, r4
+ 951              	.LVL115:
+ 161:Tests/target_tests/eeprom_driver/eeprom_test.c ****     status |= eeprom_sequential_read(result, 8);
+ 952              		.loc 1 161 5 is_stmt 1 view .LVU212
+ 953              		.loc 1 161 15 is_stmt 0 view .LVU213
+ 954 0038 0821     		movs	r1, #8
+ 955 003a 0DEB0100 		add	r0, sp, r1
+ 956 003e FFF7FEFF 		bl	eeprom_sequential_read
+ 957              	.LVL116:
+ 958              		.loc 1 161 12 discriminator 1 view .LVU214
+ 959 0042 44EA0001 		orr	r1, r4, r0
+ 960              	.LVL117:
+ 162:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+ 163:Tests/target_tests/eeprom_driver/eeprom_test.c ****     TEST_ASSERT_EQUAL(EEPROM_OK, status);
+ 961              		.loc 1 163 5 is_stmt 1 view .LVU215
+ 962 0046 1423     		movs	r3, #20
+ 963 0048 0093     		str	r3, [sp]
+ 964 004a A323     		movs	r3, #163
+ 965 004c 0022     		movs	r2, #0
+ 966 004e C9B2     		uxtb	r1, r1
+ 967              		.loc 1 163 5 is_stmt 0 view .LVU216
+ 968 0050 1046     		mov	r0, r2
+ 969 0052 FFF7FEFF 		bl	UnityAssertEqualNumber
+ 970              	.LVL118:
+ 164:Tests/target_tests/eeprom_driver/eeprom_test.c ****     check_data(data, result, 8);
+ 971              		.loc 1 164 5 is_stmt 1 view .LVU217
+ 972 0056 0822     		movs	r2, #8
+ 973 0058 0DEB0201 		add	r1, sp, r2
+ARM GAS  /tmp/ccpF3mx8.s 			page 21
+
+
+ 974 005c 2846     		mov	r0, r5
+ 975 005e FFF7FEFF 		bl	check_data
+ 976              	.LVL119:
+ 165:Tests/target_tests/eeprom_driver/eeprom_test.c **** }
+ 977              		.loc 1 165 1 is_stmt 0 view .LVU218
+ 978 0062 07B0     		add	sp, sp, #28
+ 979              	.LCFI26:
+ 980              		.cfi_def_cfa_offset 12
+ 981              		@ sp needed
+ 982 0064 30BD     		pop	{r4, r5, pc}
+ 983              	.L38:
+ 984              		.loc 1 165 1 view .LVU219
+ 985 0066 00BF     		.align	2
+ 986              	.L37:
+ 987 0068 00000000 		.word	.LANCHOR0
+ 988              		.cfi_endproc
+ 989              	.LFE18:
+ 991              		.section	.text.TEST_eeprom_driver_page_68_write_success_,"ax",%progbits
+ 992              		.align	1
+ 993              		.global	TEST_eeprom_driver_page_68_write_success_
+ 994              		.syntax unified
+ 995              		.thumb
+ 996              		.thumb_func
+ 998              	TEST_eeprom_driver_page_68_write_success_:
+ 999              	.LFB20:
+ 166:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+ 167:Tests/target_tests/eeprom_driver/eeprom_test.c **** TEST(eeprom_driver, page_68_write_success)
+ 168:Tests/target_tests/eeprom_driver/eeprom_test.c **** {
+ 1000              		.loc 1 168 1 is_stmt 1 view -0
+ 1001              		.cfi_startproc
+ 1002              		@ args = 0, pretend = 0, frame = 136
+ 1003              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1004 0000 10B5     		push	{r4, lr}
+ 1005              	.LCFI27:
+ 1006              		.cfi_def_cfa_offset 8
+ 1007              		.cfi_offset 4, -8
+ 1008              		.cfi_offset 14, -4
+ 1009 0002 A4B0     		sub	sp, sp, #144
+ 1010              	.LCFI28:
+ 1011              		.cfi_def_cfa_offset 152
+ 169:Tests/target_tests/eeprom_driver/eeprom_test.c ****     uint16_t addr = 0xaa55;
+ 1012              		.loc 1 169 5 view .LVU221
+ 1013              	.LVL120:
+ 170:Tests/target_tests/eeprom_driver/eeprom_test.c ****     uint8_t data[68] = {
+ 1014              		.loc 1 170 5 view .LVU222
+ 1015              		.loc 1 170 13 is_stmt 0 view .LVU223
+ 1016 0004 194A     		ldr	r2, .L41
+ 1017 0006 13AB     		add	r3, sp, #76
+ 1018 0008 9068     		ldr	r0, [r2, #8]	@ unaligned
+ 1019 000a D168     		ldr	r1, [r2, #12]	@ unaligned
+ 1020 000c 03C3     		stmia	r3!, {r0, r1}
+ 1021 000e 127C     		ldrb	r2, [r2, #16]	@ zero_extendqisi2
+ 1022 0010 1A70     		strb	r2, [r3]
+ 1023 0012 3B22     		movs	r2, #59
+ 1024 0014 0021     		movs	r1, #0
+ 1025 0016 0DF15500 		add	r0, sp, #85
+ 1026 001a FFF7FEFF 		bl	memset
+ARM GAS  /tmp/ccpF3mx8.s 			page 22
+
+
+ 1027              	.LVL121:
+ 171:Tests/target_tests/eeprom_driver/eeprom_test.c ****         0xff, 0xaa, 0xff, 0x0,
+ 172:Tests/target_tests/eeprom_driver/eeprom_test.c ****         0x0, 0xff, 0xaa, 0x55
+ 173:Tests/target_tests/eeprom_driver/eeprom_test.c ****     };
+ 174:Tests/target_tests/eeprom_driver/eeprom_test.c ****     uint8_t result[68];  
+ 1028              		.loc 1 174 5 is_stmt 1 view .LVU224
+ 175:Tests/target_tests/eeprom_driver/eeprom_test.c ****     memset(data + 8, 0xaa, 60);
+ 1029              		.loc 1 175 5 view .LVU225
+ 1030 001e 3C22     		movs	r2, #60
+ 1031 0020 AA21     		movs	r1, #170
+ 1032 0022 15A8     		add	r0, sp, #84
+ 1033 0024 FFF7FEFF 		bl	memset
+ 1034              	.LVL122:
+ 176:Tests/target_tests/eeprom_driver/eeprom_test.c ****     
+ 177:Tests/target_tests/eeprom_driver/eeprom_test.c ****     eeprom_status status = eeprom_page_write(addr, data, 68);
+ 1035              		.loc 1 177 5 view .LVU226
+ 1036              		.loc 1 177 28 is_stmt 0 view .LVU227
+ 1037 0028 4422     		movs	r2, #68
+ 1038 002a 13A9     		add	r1, sp, #76
+ 1039 002c 4AF65520 		movw	r0, #43605
+ 1040 0030 FFF7FEFF 		bl	eeprom_page_write
+ 1041              	.LVL123:
+ 1042 0034 0446     		mov	r4, r0
+ 1043              	.LVL124:
+ 178:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+ 179:Tests/target_tests/eeprom_driver/eeprom_test.c ****     status |= eeprom_addr_write(addr);
+ 1044              		.loc 1 179 5 is_stmt 1 view .LVU228
+ 1045              		.loc 1 179 15 is_stmt 0 view .LVU229
+ 1046 0036 4AF65520 		movw	r0, #43605
+ 1047 003a FFF7FEFF 		bl	eeprom_addr_write
+ 1048              	.LVL125:
+ 1049              		.loc 1 179 12 discriminator 1 view .LVU230
+ 1050 003e 0443     		orrs	r4, r4, r0
+ 1051              	.LVL126:
+ 1052              		.loc 1 179 12 discriminator 1 view .LVU231
+ 1053 0040 E4B2     		uxtb	r4, r4
+ 1054              	.LVL127:
+ 180:Tests/target_tests/eeprom_driver/eeprom_test.c ****     status |= eeprom_sequential_read(result, 68);
+ 1055              		.loc 1 180 5 is_stmt 1 view .LVU232
+ 1056              		.loc 1 180 15 is_stmt 0 view .LVU233
+ 1057 0042 4421     		movs	r1, #68
+ 1058 0044 02A8     		add	r0, sp, #8
+ 1059 0046 FFF7FEFF 		bl	eeprom_sequential_read
+ 1060              	.LVL128:
+ 1061              		.loc 1 180 12 discriminator 1 view .LVU234
+ 1062 004a 44EA0001 		orr	r1, r4, r0
+ 1063              	.LVL129:
+ 181:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+ 182:Tests/target_tests/eeprom_driver/eeprom_test.c ****     TEST_ASSERT_EQUAL(EEPROM_OK, status);
+ 1064              		.loc 1 182 5 is_stmt 1 view .LVU235
+ 1065 004e 1423     		movs	r3, #20
+ 1066 0050 0093     		str	r3, [sp]
+ 1067 0052 B623     		movs	r3, #182
+ 1068 0054 0022     		movs	r2, #0
+ 1069 0056 C9B2     		uxtb	r1, r1
+ 1070              		.loc 1 182 5 is_stmt 0 view .LVU236
+ 1071 0058 1046     		mov	r0, r2
+ARM GAS  /tmp/ccpF3mx8.s 			page 23
+
+
+ 1072 005a FFF7FEFF 		bl	UnityAssertEqualNumber
+ 1073              	.LVL130:
+ 183:Tests/target_tests/eeprom_driver/eeprom_test.c ****     check_data(data, result, 68);
+ 1074              		.loc 1 183 5 is_stmt 1 view .LVU237
+ 1075 005e 4422     		movs	r2, #68
+ 1076 0060 02A9     		add	r1, sp, #8
+ 1077 0062 13A8     		add	r0, sp, #76
+ 1078 0064 FFF7FEFF 		bl	check_data
+ 1079              	.LVL131:
+ 184:Tests/target_tests/eeprom_driver/eeprom_test.c **** }
+ 1080              		.loc 1 184 1 is_stmt 0 view .LVU238
+ 1081 0068 24B0     		add	sp, sp, #144
+ 1082              	.LCFI29:
+ 1083              		.cfi_def_cfa_offset 8
+ 1084              		@ sp needed
+ 1085 006a 10BD     		pop	{r4, pc}
+ 1086              	.L42:
+ 1087              		.loc 1 184 1 view .LVU239
+ 1088              		.align	2
+ 1089              	.L41:
+ 1090 006c 00000000 		.word	.LANCHOR0
+ 1091              		.cfi_endproc
+ 1092              	.LFE20:
+ 1094              		.section	.text.TEST_eeprom_driver_page_128_write_success_,"ax",%progbits
+ 1095              		.align	1
+ 1096              		.global	TEST_eeprom_driver_page_128_write_success_
+ 1097              		.syntax unified
+ 1098              		.thumb
+ 1099              		.thumb_func
+ 1101              	TEST_eeprom_driver_page_128_write_success_:
+ 1102              	.LFB22:
+ 185:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+ 186:Tests/target_tests/eeprom_driver/eeprom_test.c **** TEST(eeprom_driver, page_128_write_success)
+ 187:Tests/target_tests/eeprom_driver/eeprom_test.c **** {
+ 1103              		.loc 1 187 1 is_stmt 1 view -0
+ 1104              		.cfi_startproc
+ 1105              		@ args = 0, pretend = 0, frame = 256
+ 1106              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1107 0000 10B5     		push	{r4, lr}
+ 1108              	.LCFI30:
+ 1109              		.cfi_def_cfa_offset 8
+ 1110              		.cfi_offset 4, -8
+ 1111              		.cfi_offset 14, -4
+ 1112 0002 C2B0     		sub	sp, sp, #264
+ 1113              	.LCFI31:
+ 1114              		.cfi_def_cfa_offset 272
+ 188:Tests/target_tests/eeprom_driver/eeprom_test.c ****     uint16_t addr = 0x0155;
+ 1115              		.loc 1 188 5 view .LVU241
+ 1116              	.LVL132:
+ 189:Tests/target_tests/eeprom_driver/eeprom_test.c ****     uint8_t data[128] = {
+ 1117              		.loc 1 189 5 view .LVU242
+ 1118              		.loc 1 189 13 is_stmt 0 view .LVU243
+ 1119 0004 1B4A     		ldr	r2, .L45
+ 1120 0006 22AB     		add	r3, sp, #136
+ 1121 0008 5069     		ldr	r0, [r2, #20]	@ unaligned
+ 1122 000a 9169     		ldr	r1, [r2, #24]	@ unaligned
+ 1123 000c 03C3     		stmia	r3!, {r0, r1}
+ARM GAS  /tmp/ccpF3mx8.s 			page 24
+
+
+ 1124 000e 127F     		ldrb	r2, [r2, #28]	@ zero_extendqisi2
+ 1125 0010 1A70     		strb	r2, [r3]
+ 1126 0012 7722     		movs	r2, #119
+ 1127 0014 0021     		movs	r1, #0
+ 1128 0016 0DF19100 		add	r0, sp, #145
+ 1129 001a FFF7FEFF 		bl	memset
+ 1130              	.LVL133:
+ 190:Tests/target_tests/eeprom_driver/eeprom_test.c ****         0x33, 0x44, 0x66, 0x77,
+ 191:Tests/target_tests/eeprom_driver/eeprom_test.c ****         0x0, 0xaa, 0xaa, 0x55
+ 192:Tests/target_tests/eeprom_driver/eeprom_test.c ****     };
+ 193:Tests/target_tests/eeprom_driver/eeprom_test.c ****     memset(data + 8, 0xaa, 120);
+ 1131              		.loc 1 193 5 is_stmt 1 view .LVU244
+ 1132 001e 7822     		movs	r2, #120
+ 1133 0020 AA21     		movs	r1, #170
+ 1134 0022 24A8     		add	r0, sp, #144
+ 1135 0024 FFF7FEFF 		bl	memset
+ 1136              	.LVL134:
+ 194:Tests/target_tests/eeprom_driver/eeprom_test.c ****     data[100] = 0x55;
+ 1137              		.loc 1 194 5 view .LVU245
+ 1138              		.loc 1 194 15 is_stmt 0 view .LVU246
+ 1139 0028 5523     		movs	r3, #85
+ 1140 002a 8DF8EC30 		strb	r3, [sp, #236]
+ 195:Tests/target_tests/eeprom_driver/eeprom_test.c ****     uint8_t result[128];
+ 1141              		.loc 1 195 5 is_stmt 1 view .LVU247
+ 196:Tests/target_tests/eeprom_driver/eeprom_test.c ****     
+ 197:Tests/target_tests/eeprom_driver/eeprom_test.c ****     eeprom_status status = eeprom_page_write(addr, data, sizeof(data));
+ 1142              		.loc 1 197 5 view .LVU248
+ 1143              		.loc 1 197 28 is_stmt 0 view .LVU249
+ 1144 002e 8022     		movs	r2, #128
+ 1145 0030 22A9     		add	r1, sp, #136
+ 1146 0032 40F25510 		movw	r0, #341
+ 1147 0036 FFF7FEFF 		bl	eeprom_page_write
+ 1148              	.LVL135:
+ 1149 003a 0446     		mov	r4, r0
+ 1150              	.LVL136:
+ 198:Tests/target_tests/eeprom_driver/eeprom_test.c ****     
+ 199:Tests/target_tests/eeprom_driver/eeprom_test.c ****     status |= eeprom_addr_write(addr);
+ 1151              		.loc 1 199 5 is_stmt 1 view .LVU250
+ 1152              		.loc 1 199 15 is_stmt 0 view .LVU251
+ 1153 003c 40F25510 		movw	r0, #341
+ 1154 0040 FFF7FEFF 		bl	eeprom_addr_write
+ 1155              	.LVL137:
+ 1156              		.loc 1 199 12 discriminator 1 view .LVU252
+ 1157 0044 0443     		orrs	r4, r4, r0
+ 1158              	.LVL138:
+ 1159              		.loc 1 199 12 discriminator 1 view .LVU253
+ 1160 0046 E4B2     		uxtb	r4, r4
+ 1161              	.LVL139:
+ 200:Tests/target_tests/eeprom_driver/eeprom_test.c ****     status |= eeprom_sequential_read(result, 128);
+ 1162              		.loc 1 200 5 is_stmt 1 view .LVU254
+ 1163              		.loc 1 200 15 is_stmt 0 view .LVU255
+ 1164 0048 8021     		movs	r1, #128
+ 1165 004a 02A8     		add	r0, sp, #8
+ 1166 004c FFF7FEFF 		bl	eeprom_sequential_read
+ 1167              	.LVL140:
+ 1168              		.loc 1 200 12 discriminator 1 view .LVU256
+ 1169 0050 44EA0001 		orr	r1, r4, r0
+ARM GAS  /tmp/ccpF3mx8.s 			page 25
+
+
+ 1170              	.LVL141:
+ 201:Tests/target_tests/eeprom_driver/eeprom_test.c **** 
+ 202:Tests/target_tests/eeprom_driver/eeprom_test.c ****     TEST_ASSERT_EQUAL(EEPROM_OK, status);
+ 1171              		.loc 1 202 5 is_stmt 1 view .LVU257
+ 1172 0054 1423     		movs	r3, #20
+ 1173 0056 0093     		str	r3, [sp]
+ 1174 0058 CA23     		movs	r3, #202
+ 1175 005a 0022     		movs	r2, #0
+ 1176 005c C9B2     		uxtb	r1, r1
+ 1177              		.loc 1 202 5 is_stmt 0 view .LVU258
+ 1178 005e 1046     		mov	r0, r2
+ 1179 0060 FFF7FEFF 		bl	UnityAssertEqualNumber
+ 1180              	.LVL142:
+ 203:Tests/target_tests/eeprom_driver/eeprom_test.c ****     check_data(data, result, 128);
+ 1181              		.loc 1 203 5 is_stmt 1 view .LVU259
+ 1182 0064 8022     		movs	r2, #128
+ 1183 0066 02A9     		add	r1, sp, #8
+ 1184 0068 22A8     		add	r0, sp, #136
+ 1185 006a FFF7FEFF 		bl	check_data
+ 1186              	.LVL143:
+ 204:Tests/target_tests/eeprom_driver/eeprom_test.c **** }
+ 1187              		.loc 1 204 1 is_stmt 0 view .LVU260
+ 1188 006e 42B0     		add	sp, sp, #264
+ 1189              	.LCFI32:
+ 1190              		.cfi_def_cfa_offset 8
+ 1191              		@ sp needed
+ 1192 0070 10BD     		pop	{r4, pc}
+ 1193              	.L46:
+ 1194              		.loc 1 204 1 view .LVU261
+ 1195 0072 00BF     		.align	2
+ 1196              	.L45:
+ 1197 0074 00000000 		.word	.LANCHOR0
+ 1198              		.cfi_endproc
+ 1199              	.LFE22:
+ 1201              		.section	.rodata.TEST_eeprom_driver_check_link_success_run.str1.4,"aMS",%progbits,1
+ 1202              		.align	2
+ 1203              	.LC3:
+ 1204 0000 54455354 		.ascii	"TEST(eeprom_driver, check_link_success)\000"
+ 1204      28656570 
+ 1204      726F6D5F 
+ 1204      64726976 
+ 1204      65722C20 
+ 1205              		.align	2
+ 1206              	.LC4:
+ 1207 0028 54657374 		.ascii	"Tests/target_tests/eeprom_driver/eeprom_test.c\000"
+ 1207      732F7461 
+ 1207      72676574 
+ 1207      5F746573 
+ 1207      74732F65 
+ 1208 0057 00       		.align	2
+ 1209              	.LC5:
+ 1210 0058 63686563 		.ascii	"check_link_success\000"
+ 1210      6B5F6C69 
+ 1210      6E6B5F73 
+ 1210      75636365 
+ 1210      737300
+ 1211 006b 00       		.align	2
+ARM GAS  /tmp/ccpF3mx8.s 			page 26
+
+
+ 1212              	.LC6:
+ 1213 006c 65657072 		.ascii	"eeprom_driver\000"
+ 1213      6F6D5F64 
+ 1213      72697665 
+ 1213      7200
+ 1214              		.section	.text.TEST_eeprom_driver_check_link_success_run,"ax",%progbits
+ 1215              		.align	1
+ 1216              		.global	TEST_eeprom_driver_check_link_success_run
+ 1217              		.syntax unified
+ 1218              		.thumb
+ 1219              		.thumb_func
+ 1221              	TEST_eeprom_driver_check_link_success_run:
+ 1222              	.LFB3:
+  29:Tests/target_tests/eeprom_driver/eeprom_test.c **** {
+ 1223              		.loc 1 29 1 is_stmt 1 view -0
+ 1224              		.cfi_startproc
+ 1225              		@ args = 0, pretend = 0, frame = 0
+ 1226              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1227 0000 00B5     		push	{lr}
+ 1228              	.LCFI33:
+ 1229              		.cfi_def_cfa_offset 4
+ 1230              		.cfi_offset 14, -4
+ 1231 0002 85B0     		sub	sp, sp, #20
+ 1232              	.LCFI34:
+ 1233              		.cfi_def_cfa_offset 24
+  29:Tests/target_tests/eeprom_driver/eeprom_test.c **** {
+ 1234              		.loc 1 29 1 view .LVU263
+ 1235 0004 1D23     		movs	r3, #29
+ 1236 0006 0393     		str	r3, [sp, #12]
+ 1237 0008 074B     		ldr	r3, .L49
+ 1238 000a 0293     		str	r3, [sp, #8]
+ 1239 000c 074B     		ldr	r3, .L49+4
+ 1240 000e 0193     		str	r3, [sp, #4]
+ 1241 0010 074B     		ldr	r3, .L49+8
+ 1242 0012 0093     		str	r3, [sp]
+ 1243 0014 074B     		ldr	r3, .L49+12
+ 1244 0016 084A     		ldr	r2, .L49+16
+ 1245 0018 0849     		ldr	r1, .L49+20
+ 1246 001a 0948     		ldr	r0, .L49+24
+ 1247 001c FFF7FEFF 		bl	UnityTestRunner
+ 1248              	.LVL144:
+ 1249 0020 05B0     		add	sp, sp, #20
+ 1250              	.LCFI35:
+ 1251              		.cfi_def_cfa_offset 4
+ 1252              		@ sp needed
+ 1253 0022 5DF804FB 		ldr	pc, [sp], #4
+ 1254              	.L50:
+ 1255 0026 00BF     		.align	2
+ 1256              	.L49:
+ 1257 0028 28000000 		.word	.LC4
+ 1258 002c 58000000 		.word	.LC5
+ 1259 0030 6C000000 		.word	.LC6
+ 1260 0034 00000000 		.word	.LC3
+ 1261 0038 00000000 		.word	TEST_eeprom_driver_TEAR_DOWN
+ 1262 003c 00000000 		.word	TEST_eeprom_driver_check_link_success_
+ 1263 0040 00000000 		.word	TEST_eeprom_driver_SETUP
+ 1264              		.cfi_endproc
+ARM GAS  /tmp/ccpF3mx8.s 			page 27
+
+
+ 1265              	.LFE3:
+ 1267              		.section	.rodata.TEST_eeprom_driver_random_write_and_read_byte_success_run.str1.4,"aMS",%progbits,
+ 1268              		.align	2
+ 1269              	.LC7:
+ 1270 0000 54455354 		.ascii	"TEST(eeprom_driver, random_write_and_read_byte_succ"
+ 1270      28656570 
+ 1270      726F6D5F 
+ 1270      64726976 
+ 1270      65722C20 
+ 1271 0033 65737329 		.ascii	"ess)\000"
+ 1271      00
+ 1272              		.align	2
+ 1273              	.LC8:
+ 1274 0038 72616E64 		.ascii	"random_write_and_read_byte_success\000"
+ 1274      6F6D5F77 
+ 1274      72697465 
+ 1274      5F616E64 
+ 1274      5F726561 
+ 1275              		.section	.text.TEST_eeprom_driver_random_write_and_read_byte_success_run,"ax",%progbits
+ 1276              		.align	1
+ 1277              		.global	TEST_eeprom_driver_random_write_and_read_byte_success_run
+ 1278              		.syntax unified
+ 1279              		.thumb
+ 1280              		.thumb_func
+ 1282              	TEST_eeprom_driver_random_write_and_read_byte_success_run:
+ 1283              	.LFB5:
+  36:Tests/target_tests/eeprom_driver/eeprom_test.c **** {
+ 1284              		.loc 1 36 1 view -0
+ 1285              		.cfi_startproc
+ 1286              		@ args = 0, pretend = 0, frame = 0
+ 1287              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1288 0000 00B5     		push	{lr}
+ 1289              	.LCFI36:
+ 1290              		.cfi_def_cfa_offset 4
+ 1291              		.cfi_offset 14, -4
+ 1292 0002 85B0     		sub	sp, sp, #20
+ 1293              	.LCFI37:
+ 1294              		.cfi_def_cfa_offset 24
+  36:Tests/target_tests/eeprom_driver/eeprom_test.c **** {
+ 1295              		.loc 1 36 1 view .LVU265
+ 1296 0004 2423     		movs	r3, #36
+ 1297 0006 0393     		str	r3, [sp, #12]
+ 1298 0008 074B     		ldr	r3, .L53
+ 1299 000a 0293     		str	r3, [sp, #8]
+ 1300 000c 074B     		ldr	r3, .L53+4
+ 1301 000e 0193     		str	r3, [sp, #4]
+ 1302 0010 074B     		ldr	r3, .L53+8
+ 1303 0012 0093     		str	r3, [sp]
+ 1304 0014 074B     		ldr	r3, .L53+12
+ 1305 0016 084A     		ldr	r2, .L53+16
+ 1306 0018 0849     		ldr	r1, .L53+20
+ 1307 001a 0948     		ldr	r0, .L53+24
+ 1308 001c FFF7FEFF 		bl	UnityTestRunner
+ 1309              	.LVL145:
+ 1310 0020 05B0     		add	sp, sp, #20
+ 1311              	.LCFI38:
+ 1312              		.cfi_def_cfa_offset 4
+ARM GAS  /tmp/ccpF3mx8.s 			page 28
+
+
+ 1313              		@ sp needed
+ 1314 0022 5DF804FB 		ldr	pc, [sp], #4
+ 1315              	.L54:
+ 1316 0026 00BF     		.align	2
+ 1317              	.L53:
+ 1318 0028 28000000 		.word	.LC4
+ 1319 002c 38000000 		.word	.LC8
+ 1320 0030 6C000000 		.word	.LC6
+ 1321 0034 00000000 		.word	.LC7
+ 1322 0038 00000000 		.word	TEST_eeprom_driver_TEAR_DOWN
+ 1323 003c 00000000 		.word	TEST_eeprom_driver_random_write_and_read_byte_success_
+ 1324 0040 00000000 		.word	TEST_eeprom_driver_SETUP
+ 1325              		.cfi_endproc
+ 1326              	.LFE5:
+ 1328              		.section	.rodata.TEST_eeprom_driver_current_address_read_byte_success_run.str1.4,"aMS",%progbits,1
+ 1329              		.align	2
+ 1330              	.LC9:
+ 1331 0000 54455354 		.ascii	"TEST(eeprom_driver, current_address_read_byte_succe"
+ 1331      28656570 
+ 1331      726F6D5F 
+ 1331      64726976 
+ 1331      65722C20 
+ 1332 0033 73732900 		.ascii	"ss)\000"
+ 1333 0037 00       		.align	2
+ 1334              	.LC10:
+ 1335 0038 63757272 		.ascii	"current_address_read_byte_success\000"
+ 1335      656E745F 
+ 1335      61646472 
+ 1335      6573735F 
+ 1335      72656164 
+ 1336              		.section	.text.TEST_eeprom_driver_current_address_read_byte_success_run,"ax",%progbits
+ 1337              		.align	1
+ 1338              		.global	TEST_eeprom_driver_current_address_read_byte_success_run
+ 1339              		.syntax unified
+ 1340              		.thumb
+ 1341              		.thumb_func
+ 1343              	TEST_eeprom_driver_current_address_read_byte_success_run:
+ 1344              	.LFB7:
+  47:Tests/target_tests/eeprom_driver/eeprom_test.c **** {
+ 1345              		.loc 1 47 1 view -0
+ 1346              		.cfi_startproc
+ 1347              		@ args = 0, pretend = 0, frame = 0
+ 1348              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1349 0000 00B5     		push	{lr}
+ 1350              	.LCFI39:
+ 1351              		.cfi_def_cfa_offset 4
+ 1352              		.cfi_offset 14, -4
+ 1353 0002 85B0     		sub	sp, sp, #20
+ 1354              	.LCFI40:
+ 1355              		.cfi_def_cfa_offset 24
+  47:Tests/target_tests/eeprom_driver/eeprom_test.c **** {
+ 1356              		.loc 1 47 1 view .LVU267
+ 1357 0004 2F23     		movs	r3, #47
+ 1358 0006 0393     		str	r3, [sp, #12]
+ 1359 0008 074B     		ldr	r3, .L57
+ 1360 000a 0293     		str	r3, [sp, #8]
+ 1361 000c 074B     		ldr	r3, .L57+4
+ARM GAS  /tmp/ccpF3mx8.s 			page 29
+
+
+ 1362 000e 0193     		str	r3, [sp, #4]
+ 1363 0010 074B     		ldr	r3, .L57+8
+ 1364 0012 0093     		str	r3, [sp]
+ 1365 0014 074B     		ldr	r3, .L57+12
+ 1366 0016 084A     		ldr	r2, .L57+16
+ 1367 0018 0849     		ldr	r1, .L57+20
+ 1368 001a 0948     		ldr	r0, .L57+24
+ 1369 001c FFF7FEFF 		bl	UnityTestRunner
+ 1370              	.LVL146:
+ 1371 0020 05B0     		add	sp, sp, #20
+ 1372              	.LCFI41:
+ 1373              		.cfi_def_cfa_offset 4
+ 1374              		@ sp needed
+ 1375 0022 5DF804FB 		ldr	pc, [sp], #4
+ 1376              	.L58:
+ 1377 0026 00BF     		.align	2
+ 1378              	.L57:
+ 1379 0028 28000000 		.word	.LC4
+ 1380 002c 38000000 		.word	.LC10
+ 1381 0030 6C000000 		.word	.LC6
+ 1382 0034 00000000 		.word	.LC9
+ 1383 0038 00000000 		.word	TEST_eeprom_driver_TEAR_DOWN
+ 1384 003c 00000000 		.word	TEST_eeprom_driver_current_address_read_byte_success_
+ 1385 0040 00000000 		.word	TEST_eeprom_driver_SETUP
+ 1386              		.cfi_endproc
+ 1387              	.LFE7:
+ 1389              		.section	.rodata.TEST_eeprom_driver_multiple_current_address_read_byte_success_run.str1.4,"aMS",%p
+ 1390              		.align	2
+ 1391              	.LC11:
+ 1392 0000 54455354 		.ascii	"TEST(eeprom_driver, multiple_current_address_read_b"
+ 1392      28656570 
+ 1392      726F6D5F 
+ 1392      64726976 
+ 1392      65722C20 
+ 1393 0033 7974655F 		.ascii	"yte_success)\000"
+ 1393      73756363 
+ 1393      65737329 
+ 1393      00
+ 1394              		.align	2
+ 1395              	.LC12:
+ 1396 0040 6D756C74 		.ascii	"multiple_current_address_read_byte_success\000"
+ 1396      69706C65 
+ 1396      5F637572 
+ 1396      72656E74 
+ 1396      5F616464 
+ 1397              		.section	.text.TEST_eeprom_driver_multiple_current_address_read_byte_success_run,"ax",%progbits
+ 1398              		.align	1
+ 1399              		.global	TEST_eeprom_driver_multiple_current_address_read_byte_success_run
+ 1400              		.syntax unified
+ 1401              		.thumb
+ 1402              		.thumb_func
+ 1404              	TEST_eeprom_driver_multiple_current_address_read_byte_success_run:
+ 1405              	.LFB9:
+  59:Tests/target_tests/eeprom_driver/eeprom_test.c **** {
+ 1406              		.loc 1 59 1 view -0
+ 1407              		.cfi_startproc
+ 1408              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  /tmp/ccpF3mx8.s 			page 30
+
+
+ 1409              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1410 0000 00B5     		push	{lr}
+ 1411              	.LCFI42:
+ 1412              		.cfi_def_cfa_offset 4
+ 1413              		.cfi_offset 14, -4
+ 1414 0002 85B0     		sub	sp, sp, #20
+ 1415              	.LCFI43:
+ 1416              		.cfi_def_cfa_offset 24
+  59:Tests/target_tests/eeprom_driver/eeprom_test.c **** {
+ 1417              		.loc 1 59 1 view .LVU269
+ 1418 0004 3B23     		movs	r3, #59
+ 1419 0006 0393     		str	r3, [sp, #12]
+ 1420 0008 074B     		ldr	r3, .L61
+ 1421 000a 0293     		str	r3, [sp, #8]
+ 1422 000c 074B     		ldr	r3, .L61+4
+ 1423 000e 0193     		str	r3, [sp, #4]
+ 1424 0010 074B     		ldr	r3, .L61+8
+ 1425 0012 0093     		str	r3, [sp]
+ 1426 0014 074B     		ldr	r3, .L61+12
+ 1427 0016 084A     		ldr	r2, .L61+16
+ 1428 0018 0849     		ldr	r1, .L61+20
+ 1429 001a 0948     		ldr	r0, .L61+24
+ 1430 001c FFF7FEFF 		bl	UnityTestRunner
+ 1431              	.LVL147:
+ 1432 0020 05B0     		add	sp, sp, #20
+ 1433              	.LCFI44:
+ 1434              		.cfi_def_cfa_offset 4
+ 1435              		@ sp needed
+ 1436 0022 5DF804FB 		ldr	pc, [sp], #4
+ 1437              	.L62:
+ 1438 0026 00BF     		.align	2
+ 1439              	.L61:
+ 1440 0028 28000000 		.word	.LC4
+ 1441 002c 40000000 		.word	.LC12
+ 1442 0030 6C000000 		.word	.LC6
+ 1443 0034 00000000 		.word	.LC11
+ 1444 0038 00000000 		.word	TEST_eeprom_driver_TEAR_DOWN
+ 1445 003c 00000000 		.word	TEST_eeprom_driver_multiple_current_address_read_byte_success_
+ 1446 0040 00000000 		.word	TEST_eeprom_driver_SETUP
+ 1447              		.cfi_endproc
+ 1448              	.LFE9:
+ 1450              		.section	.rodata.TEST_eeprom_driver_page_8_sequential_read_success_run.str1.4,"aMS",%progbits,1
+ 1451              		.align	2
+ 1452              	.LC13:
+ 1453 0000 54455354 		.ascii	"TEST(eeprom_driver, page_8_sequential_read_success)"
+ 1453      28656570 
+ 1453      726F6D5F 
+ 1453      64726976 
+ 1453      65722C20 
+ 1454 0033 00       		.ascii	"\000"
+ 1455              		.align	2
+ 1456              	.LC14:
+ 1457 0034 70616765 		.ascii	"page_8_sequential_read_success\000"
+ 1457      5F385F73 
+ 1457      65717565 
+ 1457      6E746961 
+ 1457      6C5F7265 
+ARM GAS  /tmp/ccpF3mx8.s 			page 31
+
+
+ 1458              		.section	.text.TEST_eeprom_driver_page_8_sequential_read_success_run,"ax",%progbits
+ 1459              		.align	1
+ 1460              		.global	TEST_eeprom_driver_page_8_sequential_read_success_run
+ 1461              		.syntax unified
+ 1462              		.thumb
+ 1463              		.thumb_func
+ 1465              	TEST_eeprom_driver_page_8_sequential_read_success_run:
+ 1466              	.LFB11:
+  88:Tests/target_tests/eeprom_driver/eeprom_test.c **** {
+ 1467              		.loc 1 88 1 view -0
+ 1468              		.cfi_startproc
+ 1469              		@ args = 0, pretend = 0, frame = 0
+ 1470              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1471 0000 00B5     		push	{lr}
+ 1472              	.LCFI45:
+ 1473              		.cfi_def_cfa_offset 4
+ 1474              		.cfi_offset 14, -4
+ 1475 0002 85B0     		sub	sp, sp, #20
+ 1476              	.LCFI46:
+ 1477              		.cfi_def_cfa_offset 24
+  88:Tests/target_tests/eeprom_driver/eeprom_test.c **** {
+ 1478              		.loc 1 88 1 view .LVU271
+ 1479 0004 5823     		movs	r3, #88
+ 1480 0006 0393     		str	r3, [sp, #12]
+ 1481 0008 074B     		ldr	r3, .L65
+ 1482 000a 0293     		str	r3, [sp, #8]
+ 1483 000c 074B     		ldr	r3, .L65+4
+ 1484 000e 0193     		str	r3, [sp, #4]
+ 1485 0010 074B     		ldr	r3, .L65+8
+ 1486 0012 0093     		str	r3, [sp]
+ 1487 0014 074B     		ldr	r3, .L65+12
+ 1488 0016 084A     		ldr	r2, .L65+16
+ 1489 0018 0849     		ldr	r1, .L65+20
+ 1490 001a 0948     		ldr	r0, .L65+24
+ 1491 001c FFF7FEFF 		bl	UnityTestRunner
+ 1492              	.LVL148:
+ 1493 0020 05B0     		add	sp, sp, #20
+ 1494              	.LCFI47:
+ 1495              		.cfi_def_cfa_offset 4
+ 1496              		@ sp needed
+ 1497 0022 5DF804FB 		ldr	pc, [sp], #4
+ 1498              	.L66:
+ 1499 0026 00BF     		.align	2
+ 1500              	.L65:
+ 1501 0028 28000000 		.word	.LC4
+ 1502 002c 34000000 		.word	.LC14
+ 1503 0030 6C000000 		.word	.LC6
+ 1504 0034 00000000 		.word	.LC13
+ 1505 0038 00000000 		.word	TEST_eeprom_driver_TEAR_DOWN
+ 1506 003c 00000000 		.word	TEST_eeprom_driver_page_8_sequential_read_success_
+ 1507 0040 00000000 		.word	TEST_eeprom_driver_SETUP
+ 1508              		.cfi_endproc
+ 1509              	.LFE11:
+ 1511              		.section	.rodata.TEST_eeprom_driver_page_68_sequential_read_success_run.str1.4,"aMS",%progbits,1
+ 1512              		.align	2
+ 1513              	.LC15:
+ 1514 0000 54455354 		.ascii	"TEST(eeprom_driver, page_68_sequential_read_success"
+ARM GAS  /tmp/ccpF3mx8.s 			page 32
+
+
+ 1514      28656570 
+ 1514      726F6D5F 
+ 1514      64726976 
+ 1514      65722C20 
+ 1515 0033 2900     		.ascii	")\000"
+ 1516 0035 000000   		.align	2
+ 1517              	.LC16:
+ 1518 0038 70616765 		.ascii	"page_68_sequential_read_success\000"
+ 1518      5F36385F 
+ 1518      73657175 
+ 1518      656E7469 
+ 1518      616C5F72 
+ 1519              		.section	.text.TEST_eeprom_driver_page_68_sequential_read_success_run,"ax",%progbits
+ 1520              		.align	1
+ 1521              		.global	TEST_eeprom_driver_page_68_sequential_read_success_run
+ 1522              		.syntax unified
+ 1523              		.thumb
+ 1524              		.thumb_func
+ 1526              	TEST_eeprom_driver_page_68_sequential_read_success_run:
+ 1527              	.LFB13:
+ 105:Tests/target_tests/eeprom_driver/eeprom_test.c **** {
+ 1528              		.loc 1 105 1 view -0
+ 1529              		.cfi_startproc
+ 1530              		@ args = 0, pretend = 0, frame = 0
+ 1531              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1532 0000 00B5     		push	{lr}
+ 1533              	.LCFI48:
+ 1534              		.cfi_def_cfa_offset 4
+ 1535              		.cfi_offset 14, -4
+ 1536 0002 85B0     		sub	sp, sp, #20
+ 1537              	.LCFI49:
+ 1538              		.cfi_def_cfa_offset 24
+ 105:Tests/target_tests/eeprom_driver/eeprom_test.c **** {
+ 1539              		.loc 1 105 1 view .LVU273
+ 1540 0004 6923     		movs	r3, #105
+ 1541 0006 0393     		str	r3, [sp, #12]
+ 1542 0008 074B     		ldr	r3, .L69
+ 1543 000a 0293     		str	r3, [sp, #8]
+ 1544 000c 074B     		ldr	r3, .L69+4
+ 1545 000e 0193     		str	r3, [sp, #4]
+ 1546 0010 074B     		ldr	r3, .L69+8
+ 1547 0012 0093     		str	r3, [sp]
+ 1548 0014 074B     		ldr	r3, .L69+12
+ 1549 0016 084A     		ldr	r2, .L69+16
+ 1550 0018 0849     		ldr	r1, .L69+20
+ 1551 001a 0948     		ldr	r0, .L69+24
+ 1552 001c FFF7FEFF 		bl	UnityTestRunner
+ 1553              	.LVL149:
+ 1554 0020 05B0     		add	sp, sp, #20
+ 1555              	.LCFI50:
+ 1556              		.cfi_def_cfa_offset 4
+ 1557              		@ sp needed
+ 1558 0022 5DF804FB 		ldr	pc, [sp], #4
+ 1559              	.L70:
+ 1560 0026 00BF     		.align	2
+ 1561              	.L69:
+ 1562 0028 28000000 		.word	.LC4
+ARM GAS  /tmp/ccpF3mx8.s 			page 33
+
+
+ 1563 002c 38000000 		.word	.LC16
+ 1564 0030 6C000000 		.word	.LC6
+ 1565 0034 00000000 		.word	.LC15
+ 1566 0038 00000000 		.word	TEST_eeprom_driver_TEAR_DOWN
+ 1567 003c 00000000 		.word	TEST_eeprom_driver_page_68_sequential_read_success_
+ 1568 0040 00000000 		.word	TEST_eeprom_driver_SETUP
+ 1569              		.cfi_endproc
+ 1570              	.LFE13:
+ 1572              		.section	.rodata.TEST_eeprom_driver_page_128_sequential_read_success_run.str1.4,"aMS",%progbits,1
+ 1573              		.align	2
+ 1574              	.LC17:
+ 1575 0000 54455354 		.ascii	"TEST(eeprom_driver, page_128_sequential_read_succes"
+ 1575      28656570 
+ 1575      726F6D5F 
+ 1575      64726976 
+ 1575      65722C20 
+ 1576 0033 732900   		.ascii	"s)\000"
+ 1577 0036 0000     		.align	2
+ 1578              	.LC18:
+ 1579 0038 70616765 		.ascii	"page_128_sequential_read_success\000"
+ 1579      5F313238 
+ 1579      5F736571 
+ 1579      75656E74 
+ 1579      69616C5F 
+ 1580              		.section	.text.TEST_eeprom_driver_page_128_sequential_read_success_run,"ax",%progbits
+ 1581              		.align	1
+ 1582              		.global	TEST_eeprom_driver_page_128_sequential_read_success_run
+ 1583              		.syntax unified
+ 1584              		.thumb
+ 1585              		.thumb_func
+ 1587              	TEST_eeprom_driver_page_128_sequential_read_success_run:
+ 1588              	.LFB15:
+ 125:Tests/target_tests/eeprom_driver/eeprom_test.c **** {
+ 1589              		.loc 1 125 1 view -0
+ 1590              		.cfi_startproc
+ 1591              		@ args = 0, pretend = 0, frame = 0
+ 1592              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1593 0000 00B5     		push	{lr}
+ 1594              	.LCFI51:
+ 1595              		.cfi_def_cfa_offset 4
+ 1596              		.cfi_offset 14, -4
+ 1597 0002 85B0     		sub	sp, sp, #20
+ 1598              	.LCFI52:
+ 1599              		.cfi_def_cfa_offset 24
+ 125:Tests/target_tests/eeprom_driver/eeprom_test.c **** {
+ 1600              		.loc 1 125 1 view .LVU275
+ 1601 0004 7D23     		movs	r3, #125
+ 1602 0006 0393     		str	r3, [sp, #12]
+ 1603 0008 074B     		ldr	r3, .L73
+ 1604 000a 0293     		str	r3, [sp, #8]
+ 1605 000c 074B     		ldr	r3, .L73+4
+ 1606 000e 0193     		str	r3, [sp, #4]
+ 1607 0010 074B     		ldr	r3, .L73+8
+ 1608 0012 0093     		str	r3, [sp]
+ 1609 0014 074B     		ldr	r3, .L73+12
+ 1610 0016 084A     		ldr	r2, .L73+16
+ 1611 0018 0849     		ldr	r1, .L73+20
+ARM GAS  /tmp/ccpF3mx8.s 			page 34
+
+
+ 1612 001a 0948     		ldr	r0, .L73+24
+ 1613 001c FFF7FEFF 		bl	UnityTestRunner
+ 1614              	.LVL150:
+ 1615 0020 05B0     		add	sp, sp, #20
+ 1616              	.LCFI53:
+ 1617              		.cfi_def_cfa_offset 4
+ 1618              		@ sp needed
+ 1619 0022 5DF804FB 		ldr	pc, [sp], #4
+ 1620              	.L74:
+ 1621 0026 00BF     		.align	2
+ 1622              	.L73:
+ 1623 0028 28000000 		.word	.LC4
+ 1624 002c 38000000 		.word	.LC18
+ 1625 0030 6C000000 		.word	.LC6
+ 1626 0034 00000000 		.word	.LC17
+ 1627 0038 00000000 		.word	TEST_eeprom_driver_TEAR_DOWN
+ 1628 003c 00000000 		.word	TEST_eeprom_driver_page_128_sequential_read_success_
+ 1629 0040 00000000 		.word	TEST_eeprom_driver_SETUP
+ 1630              		.cfi_endproc
+ 1631              	.LFE15:
+ 1633              		.section	.rodata.TEST_eeprom_driver_page_8_write_success_run.str1.4,"aMS",%progbits,1
+ 1634              		.align	2
+ 1635              	.LC19:
+ 1636 0000 54455354 		.ascii	"TEST(eeprom_driver, page_8_write_success)\000"
+ 1636      28656570 
+ 1636      726F6D5F 
+ 1636      64726976 
+ 1636      65722C20 
+ 1637 002a 0000     		.align	2
+ 1638              	.LC20:
+ 1639 002c 70616765 		.ascii	"page_8_write_success\000"
+ 1639      5F385F77 
+ 1639      72697465 
+ 1639      5F737563 
+ 1639      63657373 
+ 1640              		.section	.text.TEST_eeprom_driver_page_8_write_success_run,"ax",%progbits
+ 1641              		.align	1
+ 1642              		.global	TEST_eeprom_driver_page_8_write_success_run
+ 1643              		.syntax unified
+ 1644              		.thumb
+ 1645              		.thumb_func
+ 1647              	TEST_eeprom_driver_page_8_write_success_run:
+ 1648              	.LFB17:
+ 147:Tests/target_tests/eeprom_driver/eeprom_test.c **** {
+ 1649              		.loc 1 147 1 view -0
+ 1650              		.cfi_startproc
+ 1651              		@ args = 0, pretend = 0, frame = 0
+ 1652              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1653 0000 00B5     		push	{lr}
+ 1654              	.LCFI54:
+ 1655              		.cfi_def_cfa_offset 4
+ 1656              		.cfi_offset 14, -4
+ 1657 0002 85B0     		sub	sp, sp, #20
+ 1658              	.LCFI55:
+ 1659              		.cfi_def_cfa_offset 24
+ 147:Tests/target_tests/eeprom_driver/eeprom_test.c **** {
+ 1660              		.loc 1 147 1 view .LVU277
+ARM GAS  /tmp/ccpF3mx8.s 			page 35
+
+
+ 1661 0004 9323     		movs	r3, #147
+ 1662 0006 0393     		str	r3, [sp, #12]
+ 1663 0008 074B     		ldr	r3, .L77
+ 1664 000a 0293     		str	r3, [sp, #8]
+ 1665 000c 074B     		ldr	r3, .L77+4
+ 1666 000e 0193     		str	r3, [sp, #4]
+ 1667 0010 074B     		ldr	r3, .L77+8
+ 1668 0012 0093     		str	r3, [sp]
+ 1669 0014 074B     		ldr	r3, .L77+12
+ 1670 0016 084A     		ldr	r2, .L77+16
+ 1671 0018 0849     		ldr	r1, .L77+20
+ 1672 001a 0948     		ldr	r0, .L77+24
+ 1673 001c FFF7FEFF 		bl	UnityTestRunner
+ 1674              	.LVL151:
+ 1675 0020 05B0     		add	sp, sp, #20
+ 1676              	.LCFI56:
+ 1677              		.cfi_def_cfa_offset 4
+ 1678              		@ sp needed
+ 1679 0022 5DF804FB 		ldr	pc, [sp], #4
+ 1680              	.L78:
+ 1681 0026 00BF     		.align	2
+ 1682              	.L77:
+ 1683 0028 28000000 		.word	.LC4
+ 1684 002c 2C000000 		.word	.LC20
+ 1685 0030 6C000000 		.word	.LC6
+ 1686 0034 00000000 		.word	.LC19
+ 1687 0038 00000000 		.word	TEST_eeprom_driver_TEAR_DOWN
+ 1688 003c 00000000 		.word	TEST_eeprom_driver_page_8_write_success_
+ 1689 0040 00000000 		.word	TEST_eeprom_driver_SETUP
+ 1690              		.cfi_endproc
+ 1691              	.LFE17:
+ 1693              		.section	.rodata.TEST_eeprom_driver_page_68_write_success_run.str1.4,"aMS",%progbits,1
+ 1694              		.align	2
+ 1695              	.LC21:
+ 1696 0000 54455354 		.ascii	"TEST(eeprom_driver, page_68_write_success)\000"
+ 1696      28656570 
+ 1696      726F6D5F 
+ 1696      64726976 
+ 1696      65722C20 
+ 1697 002b 00       		.align	2
+ 1698              	.LC22:
+ 1699 002c 70616765 		.ascii	"page_68_write_success\000"
+ 1699      5F36385F 
+ 1699      77726974 
+ 1699      655F7375 
+ 1699      63636573 
+ 1700              		.section	.text.TEST_eeprom_driver_page_68_write_success_run,"ax",%progbits
+ 1701              		.align	1
+ 1702              		.global	TEST_eeprom_driver_page_68_write_success_run
+ 1703              		.syntax unified
+ 1704              		.thumb
+ 1705              		.thumb_func
+ 1707              	TEST_eeprom_driver_page_68_write_success_run:
+ 1708              	.LFB19:
+ 167:Tests/target_tests/eeprom_driver/eeprom_test.c **** {
+ 1709              		.loc 1 167 1 view -0
+ 1710              		.cfi_startproc
+ARM GAS  /tmp/ccpF3mx8.s 			page 36
+
+
+ 1711              		@ args = 0, pretend = 0, frame = 0
+ 1712              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1713 0000 00B5     		push	{lr}
+ 1714              	.LCFI57:
+ 1715              		.cfi_def_cfa_offset 4
+ 1716              		.cfi_offset 14, -4
+ 1717 0002 85B0     		sub	sp, sp, #20
+ 1718              	.LCFI58:
+ 1719              		.cfi_def_cfa_offset 24
+ 167:Tests/target_tests/eeprom_driver/eeprom_test.c **** {
+ 1720              		.loc 1 167 1 view .LVU279
+ 1721 0004 A723     		movs	r3, #167
+ 1722 0006 0393     		str	r3, [sp, #12]
+ 1723 0008 074B     		ldr	r3, .L81
+ 1724 000a 0293     		str	r3, [sp, #8]
+ 1725 000c 074B     		ldr	r3, .L81+4
+ 1726 000e 0193     		str	r3, [sp, #4]
+ 1727 0010 074B     		ldr	r3, .L81+8
+ 1728 0012 0093     		str	r3, [sp]
+ 1729 0014 074B     		ldr	r3, .L81+12
+ 1730 0016 084A     		ldr	r2, .L81+16
+ 1731 0018 0849     		ldr	r1, .L81+20
+ 1732 001a 0948     		ldr	r0, .L81+24
+ 1733 001c FFF7FEFF 		bl	UnityTestRunner
+ 1734              	.LVL152:
+ 1735 0020 05B0     		add	sp, sp, #20
+ 1736              	.LCFI59:
+ 1737              		.cfi_def_cfa_offset 4
+ 1738              		@ sp needed
+ 1739 0022 5DF804FB 		ldr	pc, [sp], #4
+ 1740              	.L82:
+ 1741 0026 00BF     		.align	2
+ 1742              	.L81:
+ 1743 0028 28000000 		.word	.LC4
+ 1744 002c 2C000000 		.word	.LC22
+ 1745 0030 6C000000 		.word	.LC6
+ 1746 0034 00000000 		.word	.LC21
+ 1747 0038 00000000 		.word	TEST_eeprom_driver_TEAR_DOWN
+ 1748 003c 00000000 		.word	TEST_eeprom_driver_page_68_write_success_
+ 1749 0040 00000000 		.word	TEST_eeprom_driver_SETUP
+ 1750              		.cfi_endproc
+ 1751              	.LFE19:
+ 1753              		.section	.rodata.TEST_eeprom_driver_page_128_write_success_run.str1.4,"aMS",%progbits,1
+ 1754              		.align	2
+ 1755              	.LC23:
+ 1756 0000 54455354 		.ascii	"TEST(eeprom_driver, page_128_write_success)\000"
+ 1756      28656570 
+ 1756      726F6D5F 
+ 1756      64726976 
+ 1756      65722C20 
+ 1757              		.align	2
+ 1758              	.LC24:
+ 1759 002c 70616765 		.ascii	"page_128_write_success\000"
+ 1759      5F313238 
+ 1759      5F777269 
+ 1759      74655F73 
+ 1759      75636365 
+ARM GAS  /tmp/ccpF3mx8.s 			page 37
+
+
+ 1760              		.section	.text.TEST_eeprom_driver_page_128_write_success_run,"ax",%progbits
+ 1761              		.align	1
+ 1762              		.global	TEST_eeprom_driver_page_128_write_success_run
+ 1763              		.syntax unified
+ 1764              		.thumb
+ 1765              		.thumb_func
+ 1767              	TEST_eeprom_driver_page_128_write_success_run:
+ 1768              	.LFB21:
+ 186:Tests/target_tests/eeprom_driver/eeprom_test.c **** {
+ 1769              		.loc 1 186 1 view -0
+ 1770              		.cfi_startproc
+ 1771              		@ args = 0, pretend = 0, frame = 0
+ 1772              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1773 0000 00B5     		push	{lr}
+ 1774              	.LCFI60:
+ 1775              		.cfi_def_cfa_offset 4
+ 1776              		.cfi_offset 14, -4
+ 1777 0002 85B0     		sub	sp, sp, #20
+ 1778              	.LCFI61:
+ 1779              		.cfi_def_cfa_offset 24
+ 186:Tests/target_tests/eeprom_driver/eeprom_test.c **** {
+ 1780              		.loc 1 186 1 view .LVU281
+ 1781 0004 BA23     		movs	r3, #186
+ 1782 0006 0393     		str	r3, [sp, #12]
+ 1783 0008 074B     		ldr	r3, .L85
+ 1784 000a 0293     		str	r3, [sp, #8]
+ 1785 000c 074B     		ldr	r3, .L85+4
+ 1786 000e 0193     		str	r3, [sp, #4]
+ 1787 0010 074B     		ldr	r3, .L85+8
+ 1788 0012 0093     		str	r3, [sp]
+ 1789 0014 074B     		ldr	r3, .L85+12
+ 1790 0016 084A     		ldr	r2, .L85+16
+ 1791 0018 0849     		ldr	r1, .L85+20
+ 1792 001a 0948     		ldr	r0, .L85+24
+ 1793 001c FFF7FEFF 		bl	UnityTestRunner
+ 1794              	.LVL153:
+ 1795 0020 05B0     		add	sp, sp, #20
+ 1796              	.LCFI62:
+ 1797              		.cfi_def_cfa_offset 4
+ 1798              		@ sp needed
+ 1799 0022 5DF804FB 		ldr	pc, [sp], #4
+ 1800              	.L86:
+ 1801 0026 00BF     		.align	2
+ 1802              	.L85:
+ 1803 0028 28000000 		.word	.LC4
+ 1804 002c 2C000000 		.word	.LC24
+ 1805 0030 6C000000 		.word	.LC6
+ 1806 0034 00000000 		.word	.LC23
+ 1807 0038 00000000 		.word	TEST_eeprom_driver_TEAR_DOWN
+ 1808 003c 00000000 		.word	TEST_eeprom_driver_page_128_write_success_
+ 1809 0040 00000000 		.word	TEST_eeprom_driver_SETUP
+ 1810              		.cfi_endproc
+ 1811              	.LFE21:
+ 1813              		.section	.rodata
+ 1814              		.align	2
+ 1815              		.set	.LANCHOR0,. + 0
+ 1816              	.LC0:
+ARM GAS  /tmp/ccpF3mx8.s 			page 38
+
+
+ 1817 0000 FFAAFF00 		.ascii	"\377\252\377\000\000\377\252U"
+ 1817      00FFAA55 
+ 1818              	.LC1:
+ 1819 0008 FFAAFF00 		.ascii	"\377\252\377\000\000\377\252U\000"
+ 1819      00FFAA55 
+ 1819      00
+ 1820 0011 000000   		.space	3
+ 1821              	.LC2:
+ 1822 0014 33446677 		.ascii	"3Dfw\000\252\252U\000"
+ 1822      00AAAA55 
+ 1822      00
+ 1823              		.text
+ 1824              	.Letext0:
+ 1825              		.file 2 "/usr/local/src/arm-gnu-toolchain-13.2/arm-none-eabi/include/machine/_default_types.h"
+ 1826              		.file 3 "/usr/local/src/arm-gnu-toolchain-13.2/arm-none-eabi/include/sys/_stdint.h"
+ 1827              		.file 4 "External/Unity-2.5.2/src/unity_internals.h"
+ 1828              		.file 5 "External/Unity-2.5.2/extras/fixture/src/unity_fixture_internals.h"
+ 1829              		.file 6 "External/eeprom_driver/Inc/eeprom_defs.h"
+ 1830              		.file 7 "External/eeprom_driver/Inc/eeprom_driver.h"
+ 1831              		.file 8 "<built-in>"
+ARM GAS  /tmp/ccpF3mx8.s 			page 39
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 eeprom_test.c
+     /tmp/ccpF3mx8.s:19     .text.TEST_eeprom_driver_SETUP:00000000 $t
+     /tmp/ccpF3mx8.s:25     .text.TEST_eeprom_driver_SETUP:00000000 TEST_eeprom_driver_SETUP
+     /tmp/ccpF3mx8.s:38     .text.TEST_eeprom_driver_TEAR_DOWN:00000000 $t
+     /tmp/ccpF3mx8.s:44     .text.TEST_eeprom_driver_TEAR_DOWN:00000000 TEST_eeprom_driver_TEAR_DOWN
+     /tmp/ccpF3mx8.s:57     .text.TEST_eeprom_driver_check_link_success_:00000000 $t
+     /tmp/ccpF3mx8.s:63     .text.TEST_eeprom_driver_check_link_success_:00000000 TEST_eeprom_driver_check_link_success_
+     /tmp/ccpF3mx8.s:100    .text.check_data:00000000 $t
+     /tmp/ccpF3mx8.s:105    .text.check_data:00000000 check_data
+     /tmp/ccpF3mx8.s:168    .text.TEST_eeprom_driver_random_write_and_read_byte_success_:00000000 $t
+     /tmp/ccpF3mx8.s:174    .text.TEST_eeprom_driver_random_write_and_read_byte_success_:00000000 TEST_eeprom_driver_random_write_and_read_byte_success_
+     /tmp/ccpF3mx8.s:240    .text.TEST_eeprom_driver_current_address_read_byte_success_:00000000 $t
+     /tmp/ccpF3mx8.s:246    .text.TEST_eeprom_driver_current_address_read_byte_success_:00000000 TEST_eeprom_driver_current_address_read_byte_success_
+     /tmp/ccpF3mx8.s:320    .text.TEST_eeprom_driver_multiple_current_address_read_byte_success_:00000000 $t
+     /tmp/ccpF3mx8.s:326    .text.TEST_eeprom_driver_multiple_current_address_read_byte_success_:00000000 TEST_eeprom_driver_multiple_current_address_read_byte_success_
+     /tmp/ccpF3mx8.s:467    .text.TEST_eeprom_driver_multiple_current_address_read_byte_success_:00000094 $d
+     /tmp/ccpF3mx8.s:472    .text.TEST_eeprom_driver_page_8_sequential_read_success_:00000000 $t
+     /tmp/ccpF3mx8.s:478    .text.TEST_eeprom_driver_page_8_sequential_read_success_:00000000 TEST_eeprom_driver_page_8_sequential_read_success_
+     /tmp/ccpF3mx8.s:585    .text.TEST_eeprom_driver_page_8_sequential_read_success_:00000060 $d
+     /tmp/ccpF3mx8.s:590    .text.TEST_eeprom_driver_page_68_sequential_read_success_:00000000 $t
+     /tmp/ccpF3mx8.s:596    .text.TEST_eeprom_driver_page_68_sequential_read_success_:00000000 TEST_eeprom_driver_page_68_sequential_read_success_
+     /tmp/ccpF3mx8.s:724    .text.TEST_eeprom_driver_page_68_sequential_read_success_:00000080 $d
+     /tmp/ccpF3mx8.s:729    .text.TEST_eeprom_driver_page_128_sequential_read_success_:00000000 $t
+     /tmp/ccpF3mx8.s:735    .text.TEST_eeprom_driver_page_128_sequential_read_success_:00000000 TEST_eeprom_driver_page_128_sequential_read_success_
+     /tmp/ccpF3mx8.s:885    .text.TEST_eeprom_driver_page_128_sequential_read_success_:0000009c $d
+     /tmp/ccpF3mx8.s:890    .text.TEST_eeprom_driver_page_8_write_success_:00000000 $t
+     /tmp/ccpF3mx8.s:896    .text.TEST_eeprom_driver_page_8_write_success_:00000000 TEST_eeprom_driver_page_8_write_success_
+     /tmp/ccpF3mx8.s:987    .text.TEST_eeprom_driver_page_8_write_success_:00000068 $d
+     /tmp/ccpF3mx8.s:992    .text.TEST_eeprom_driver_page_68_write_success_:00000000 $t
+     /tmp/ccpF3mx8.s:998    .text.TEST_eeprom_driver_page_68_write_success_:00000000 TEST_eeprom_driver_page_68_write_success_
+     /tmp/ccpF3mx8.s:1090   .text.TEST_eeprom_driver_page_68_write_success_:0000006c $d
+     /tmp/ccpF3mx8.s:1095   .text.TEST_eeprom_driver_page_128_write_success_:00000000 $t
+     /tmp/ccpF3mx8.s:1101   .text.TEST_eeprom_driver_page_128_write_success_:00000000 TEST_eeprom_driver_page_128_write_success_
+     /tmp/ccpF3mx8.s:1197   .text.TEST_eeprom_driver_page_128_write_success_:00000074 $d
+     /tmp/ccpF3mx8.s:1202   .rodata.TEST_eeprom_driver_check_link_success_run.str1.4:00000000 $d
+     /tmp/ccpF3mx8.s:1215   .text.TEST_eeprom_driver_check_link_success_run:00000000 $t
+     /tmp/ccpF3mx8.s:1221   .text.TEST_eeprom_driver_check_link_success_run:00000000 TEST_eeprom_driver_check_link_success_run
+     /tmp/ccpF3mx8.s:1257   .text.TEST_eeprom_driver_check_link_success_run:00000028 $d
+     /tmp/ccpF3mx8.s:1268   .rodata.TEST_eeprom_driver_random_write_and_read_byte_success_run.str1.4:00000000 $d
+     /tmp/ccpF3mx8.s:1276   .text.TEST_eeprom_driver_random_write_and_read_byte_success_run:00000000 $t
+     /tmp/ccpF3mx8.s:1282   .text.TEST_eeprom_driver_random_write_and_read_byte_success_run:00000000 TEST_eeprom_driver_random_write_and_read_byte_success_run
+     /tmp/ccpF3mx8.s:1318   .text.TEST_eeprom_driver_random_write_and_read_byte_success_run:00000028 $d
+     /tmp/ccpF3mx8.s:1329   .rodata.TEST_eeprom_driver_current_address_read_byte_success_run.str1.4:00000000 $d
+     /tmp/ccpF3mx8.s:1337   .text.TEST_eeprom_driver_current_address_read_byte_success_run:00000000 $t
+     /tmp/ccpF3mx8.s:1343   .text.TEST_eeprom_driver_current_address_read_byte_success_run:00000000 TEST_eeprom_driver_current_address_read_byte_success_run
+     /tmp/ccpF3mx8.s:1379   .text.TEST_eeprom_driver_current_address_read_byte_success_run:00000028 $d
+     /tmp/ccpF3mx8.s:1390   .rodata.TEST_eeprom_driver_multiple_current_address_read_byte_success_run.str1.4:00000000 $d
+     /tmp/ccpF3mx8.s:1398   .text.TEST_eeprom_driver_multiple_current_address_read_byte_success_run:00000000 $t
+     /tmp/ccpF3mx8.s:1404   .text.TEST_eeprom_driver_multiple_current_address_read_byte_success_run:00000000 TEST_eeprom_driver_multiple_current_address_read_byte_success_run
+     /tmp/ccpF3mx8.s:1440   .text.TEST_eeprom_driver_multiple_current_address_read_byte_success_run:00000028 $d
+     /tmp/ccpF3mx8.s:1451   .rodata.TEST_eeprom_driver_page_8_sequential_read_success_run.str1.4:00000000 $d
+     /tmp/ccpF3mx8.s:1459   .text.TEST_eeprom_driver_page_8_sequential_read_success_run:00000000 $t
+     /tmp/ccpF3mx8.s:1465   .text.TEST_eeprom_driver_page_8_sequential_read_success_run:00000000 TEST_eeprom_driver_page_8_sequential_read_success_run
+     /tmp/ccpF3mx8.s:1501   .text.TEST_eeprom_driver_page_8_sequential_read_success_run:00000028 $d
+     /tmp/ccpF3mx8.s:1512   .rodata.TEST_eeprom_driver_page_68_sequential_read_success_run.str1.4:00000000 $d
+     /tmp/ccpF3mx8.s:1520   .text.TEST_eeprom_driver_page_68_sequential_read_success_run:00000000 $t
+ARM GAS  /tmp/ccpF3mx8.s 			page 40
+
+
+     /tmp/ccpF3mx8.s:1526   .text.TEST_eeprom_driver_page_68_sequential_read_success_run:00000000 TEST_eeprom_driver_page_68_sequential_read_success_run
+     /tmp/ccpF3mx8.s:1562   .text.TEST_eeprom_driver_page_68_sequential_read_success_run:00000028 $d
+     /tmp/ccpF3mx8.s:1573   .rodata.TEST_eeprom_driver_page_128_sequential_read_success_run.str1.4:00000000 $d
+     /tmp/ccpF3mx8.s:1581   .text.TEST_eeprom_driver_page_128_sequential_read_success_run:00000000 $t
+     /tmp/ccpF3mx8.s:1587   .text.TEST_eeprom_driver_page_128_sequential_read_success_run:00000000 TEST_eeprom_driver_page_128_sequential_read_success_run
+     /tmp/ccpF3mx8.s:1623   .text.TEST_eeprom_driver_page_128_sequential_read_success_run:00000028 $d
+     /tmp/ccpF3mx8.s:1634   .rodata.TEST_eeprom_driver_page_8_write_success_run.str1.4:00000000 $d
+     /tmp/ccpF3mx8.s:1641   .text.TEST_eeprom_driver_page_8_write_success_run:00000000 $t
+     /tmp/ccpF3mx8.s:1647   .text.TEST_eeprom_driver_page_8_write_success_run:00000000 TEST_eeprom_driver_page_8_write_success_run
+     /tmp/ccpF3mx8.s:1683   .text.TEST_eeprom_driver_page_8_write_success_run:00000028 $d
+     /tmp/ccpF3mx8.s:1694   .rodata.TEST_eeprom_driver_page_68_write_success_run.str1.4:00000000 $d
+     /tmp/ccpF3mx8.s:1701   .text.TEST_eeprom_driver_page_68_write_success_run:00000000 $t
+     /tmp/ccpF3mx8.s:1707   .text.TEST_eeprom_driver_page_68_write_success_run:00000000 TEST_eeprom_driver_page_68_write_success_run
+     /tmp/ccpF3mx8.s:1743   .text.TEST_eeprom_driver_page_68_write_success_run:00000028 $d
+     /tmp/ccpF3mx8.s:1754   .rodata.TEST_eeprom_driver_page_128_write_success_run.str1.4:00000000 $d
+     /tmp/ccpF3mx8.s:1761   .text.TEST_eeprom_driver_page_128_write_success_run:00000000 $t
+     /tmp/ccpF3mx8.s:1767   .text.TEST_eeprom_driver_page_128_write_success_run:00000000 TEST_eeprom_driver_page_128_write_success_run
+     /tmp/ccpF3mx8.s:1803   .text.TEST_eeprom_driver_page_128_write_success_run:00000028 $d
+     /tmp/ccpF3mx8.s:1814   .rodata:00000000 $d
+
+UNDEFINED SYMBOLS
+eeprom_check_link
+UnityAssertEqualNumber
+eeprom_byte_write
+eeprom_random_byte_read
+eeprom_addr_write
+eeprom_current_address_read
+eeprom_sequential_read
+eeprom_page_write
+memset
+UnityTestRunner

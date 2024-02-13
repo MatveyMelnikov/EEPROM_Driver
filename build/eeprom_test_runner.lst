@@ -1,0 +1,153 @@
+ARM GAS  /tmp/cc7wdZAJ.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"eeprom_test_runner.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "Tests/target_tests/eeprom_driver/eeprom_test_runner.c"
+  18              		.section	.text.TEST_eeprom_driver_GROUP_RUNNER,"ax",%progbits
+  19              		.align	1
+  20              		.global	TEST_eeprom_driver_GROUP_RUNNER
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	TEST_eeprom_driver_GROUP_RUNNER:
+  26              	.LFB0:
+   1:Tests/target_tests/eeprom_driver/eeprom_test_runner.c **** #include "unity_fixture.h"
+   2:Tests/target_tests/eeprom_driver/eeprom_test_runner.c **** 
+   3:Tests/target_tests/eeprom_driver/eeprom_test_runner.c **** TEST_GROUP_RUNNER(eeprom_driver)
+   4:Tests/target_tests/eeprom_driver/eeprom_test_runner.c **** {
+  27              		.loc 1 4 1 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 08B5     		push	{r3, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 3, -8
+  35              		.cfi_offset 14, -4
+  36              	.LBB2:
+   5:Tests/target_tests/eeprom_driver/eeprom_test_runner.c ****     RUN_TEST_CASE(eeprom_driver, check_link_success);
+  37              		.loc 1 5 5 view .LVU1
+  38              		.loc 1 5 5 view .LVU2
+  39 0002 FFF7FEFF 		bl	TEST_eeprom_driver_check_link_success_run
+  40              	.LVL0:
+  41              	.LBE2:
+  42              		.loc 1 5 53 discriminator 1 view .LVU3
+  43              	.LBB3:
+   6:Tests/target_tests/eeprom_driver/eeprom_test_runner.c ****     RUN_TEST_CASE(eeprom_driver, random_write_and_read_byte_success);
+  44              		.loc 1 6 5 view .LVU4
+  45              		.loc 1 6 5 view .LVU5
+  46 0006 FFF7FEFF 		bl	TEST_eeprom_driver_random_write_and_read_byte_success_run
+  47              	.LVL1:
+  48              	.LBE3:
+  49              		.loc 1 6 69 discriminator 1 view .LVU6
+  50              	.LBB4:
+   7:Tests/target_tests/eeprom_driver/eeprom_test_runner.c ****     RUN_TEST_CASE(eeprom_driver, current_address_read_byte_success);
+  51              		.loc 1 7 5 view .LVU7
+ARM GAS  /tmp/cc7wdZAJ.s 			page 2
+
+
+  52              		.loc 1 7 5 view .LVU8
+  53 000a FFF7FEFF 		bl	TEST_eeprom_driver_current_address_read_byte_success_run
+  54              	.LVL2:
+  55              	.LBE4:
+  56              		.loc 1 7 68 discriminator 1 view .LVU9
+  57              	.LBB5:
+   8:Tests/target_tests/eeprom_driver/eeprom_test_runner.c ****     RUN_TEST_CASE(eeprom_driver, multiple_current_address_read_byte_success);
+  58              		.loc 1 8 5 view .LVU10
+  59              		.loc 1 8 5 view .LVU11
+  60 000e FFF7FEFF 		bl	TEST_eeprom_driver_multiple_current_address_read_byte_success_run
+  61              	.LVL3:
+  62              	.LBE5:
+  63              		.loc 1 8 77 discriminator 1 view .LVU12
+  64              	.LBB6:
+   9:Tests/target_tests/eeprom_driver/eeprom_test_runner.c ****     RUN_TEST_CASE(eeprom_driver, page_8_sequential_read_success);
+  65              		.loc 1 9 5 view .LVU13
+  66              		.loc 1 9 5 view .LVU14
+  67 0012 FFF7FEFF 		bl	TEST_eeprom_driver_page_8_sequential_read_success_run
+  68              	.LVL4:
+  69              	.LBE6:
+  70              		.loc 1 9 65 discriminator 1 view .LVU15
+  71              	.LBB7:
+  10:Tests/target_tests/eeprom_driver/eeprom_test_runner.c ****     RUN_TEST_CASE(eeprom_driver, page_68_sequential_read_success);
+  72              		.loc 1 10 5 view .LVU16
+  73              		.loc 1 10 5 view .LVU17
+  74 0016 FFF7FEFF 		bl	TEST_eeprom_driver_page_68_sequential_read_success_run
+  75              	.LVL5:
+  76              	.LBE7:
+  77              		.loc 1 10 66 discriminator 1 view .LVU18
+  78              	.LBB8:
+  11:Tests/target_tests/eeprom_driver/eeprom_test_runner.c ****     RUN_TEST_CASE(eeprom_driver, page_128_sequential_read_success);
+  79              		.loc 1 11 5 view .LVU19
+  80              		.loc 1 11 5 view .LVU20
+  81 001a FFF7FEFF 		bl	TEST_eeprom_driver_page_128_sequential_read_success_run
+  82              	.LVL6:
+  83              	.LBE8:
+  84              		.loc 1 11 67 discriminator 1 view .LVU21
+  85              	.LBB9:
+  12:Tests/target_tests/eeprom_driver/eeprom_test_runner.c ****     RUN_TEST_CASE(eeprom_driver, page_8_write_success);
+  86              		.loc 1 12 5 view .LVU22
+  87              		.loc 1 12 5 view .LVU23
+  88 001e FFF7FEFF 		bl	TEST_eeprom_driver_page_8_write_success_run
+  89              	.LVL7:
+  90              	.LBE9:
+  91              		.loc 1 12 55 discriminator 1 view .LVU24
+  92              	.LBB10:
+  13:Tests/target_tests/eeprom_driver/eeprom_test_runner.c ****     RUN_TEST_CASE(eeprom_driver, page_68_write_success);
+  93              		.loc 1 13 5 view .LVU25
+  94              		.loc 1 13 5 view .LVU26
+  95 0022 FFF7FEFF 		bl	TEST_eeprom_driver_page_68_write_success_run
+  96              	.LVL8:
+  97              	.LBE10:
+  98              		.loc 1 13 56 discriminator 1 view .LVU27
+  99              	.LBB11:
+  14:Tests/target_tests/eeprom_driver/eeprom_test_runner.c ****     RUN_TEST_CASE(eeprom_driver, page_128_write_success);
+ 100              		.loc 1 14 5 view .LVU28
+ 101              		.loc 1 14 5 view .LVU29
+ARM GAS  /tmp/cc7wdZAJ.s 			page 3
+
+
+ 102 0026 FFF7FEFF 		bl	TEST_eeprom_driver_page_128_write_success_run
+ 103              	.LVL9:
+ 104              	.LBE11:
+ 105              		.loc 1 14 57 discriminator 1 view .LVU30
+  15:Tests/target_tests/eeprom_driver/eeprom_test_runner.c **** }...
+ 106              		.loc 1 15 1 is_stmt 0 view .LVU31
+ 107 002a 08BD     		pop	{r3, pc}
+ 108              		.cfi_endproc
+ 109              	.LFE0:
+ 111              		.text
+ 112              	.Letext0:
+ARM GAS  /tmp/cc7wdZAJ.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 eeprom_test_runner.c
+     /tmp/cc7wdZAJ.s:19     .text.TEST_eeprom_driver_GROUP_RUNNER:00000000 $t
+     /tmp/cc7wdZAJ.s:25     .text.TEST_eeprom_driver_GROUP_RUNNER:00000000 TEST_eeprom_driver_GROUP_RUNNER
+
+UNDEFINED SYMBOLS
+TEST_eeprom_driver_check_link_success_run
+TEST_eeprom_driver_random_write_and_read_byte_success_run
+TEST_eeprom_driver_current_address_read_byte_success_run
+TEST_eeprom_driver_multiple_current_address_read_byte_success_run
+TEST_eeprom_driver_page_8_sequential_read_success_run
+TEST_eeprom_driver_page_68_sequential_read_success_run
+TEST_eeprom_driver_page_128_sequential_read_success_run
+TEST_eeprom_driver_page_8_write_success_run
+TEST_eeprom_driver_page_68_write_success_run
+TEST_eeprom_driver_page_128_write_success_run

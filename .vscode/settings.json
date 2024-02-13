@@ -11,5 +11,6 @@
         "mock_eeprom_io.h": "c",
         "eeprom_io.h": "c",
         "unity_fixture.h": "c"
-    }
+    },
+    "cortex-debug.variableUseNaturalFormat": false
 }

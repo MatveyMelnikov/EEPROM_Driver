@@ -4,6 +4,7 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <stdbool.h>
+#include <string.h>
 
 typedef struct
 {
@@ -166,9 +167,9 @@ eeprom_status eeprom_io_read(
     fail_when_no_init();
     check_kind(&current_expectation, IO_READ);
 
-    //data = expectations[get_expectation_count++].data;
-    for (uint8_t i = 0; i < data_size; i++)
-        data[i] = expectations[get_expectation_count++].data[i];
+    memcpy(data, current_expectation.data, data_size);
+    
+    get_expectation_count++;
     return EEPROM_OK;
 }
 

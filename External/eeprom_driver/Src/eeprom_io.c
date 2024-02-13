@@ -20,6 +20,6 @@ eeprom_status eeprom_io_write(
 )
 {
     return (eeprom_status)HAL_I2C_Master_Transmit(
-        i2c, DEV_ADDR, data, data_size, EEPROM_TIMEOUT
+        i2c, DEV_ADDR, (uint8_t*)data, data_size, EEPROM_TIMEOUT
     );
 }

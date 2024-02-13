@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccuHymKT.s 			page 1
+ARM GAS  /tmp/ccgCDWnC.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -18,15 +18,14 @@ ARM GAS  /tmp/ccuHymKT.s 			page 1
   15              	.Ltext0:
   16              		.cfi_sections	.debug_frame
   17              		.file 1 "External/eeprom_driver/Src/eeprom_driver.c"
-  18              		.section	.text.eeprom_byte_write,"ax",%progbits
+  18              		.section	.text.invert_address,"ax",%progbits
   19              		.align	1
-  20              		.global	eeprom_byte_write
-  21              		.syntax unified
-  22              		.thumb
-  23              		.thumb_func
-  25              	eeprom_byte_write:
-  26              	.LVL0:
-  27              	.LFB0:
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	invert_address:
+  25              	.LVL0:
+  26              	.LFB0:
    1:External/eeprom_driver/Src/eeprom_driver.c **** #include "eeprom_driver.h"
    2:External/eeprom_driver/Src/eeprom_driver.c **** #include "eeprom_defs.h"
    3:External/eeprom_driver/Src/eeprom_driver.c **** #include "eeprom_io.h"
@@ -34,633 +33,1143 @@ ARM GAS  /tmp/ccuHymKT.s 			page 1
    5:External/eeprom_driver/Src/eeprom_driver.c **** #include <stdint.h>
    6:External/eeprom_driver/Src/eeprom_driver.c **** #include <string.h>
    7:External/eeprom_driver/Src/eeprom_driver.c **** 
-   8:External/eeprom_driver/Src/eeprom_driver.c **** // HAL_StatusTypeDef eeprom_byte_write(
-   9:External/eeprom_driver/Src/eeprom_driver.c **** //     const I2C_HandleTypeDef *const i2c,
-  10:External/eeprom_driver/Src/eeprom_driver.c **** //     uint16_t addr,
-  11:External/eeprom_driver/Src/eeprom_driver.c **** //     uint8_t data
-  12:External/eeprom_driver/Src/eeprom_driver.c **** // )
-  13:External/eeprom_driver/Src/eeprom_driver.c **** // {
-  14:External/eeprom_driver/Src/eeprom_driver.c **** //     const uint8_t sent_data[3] = { 
-  15:External/eeprom_driver/Src/eeprom_driver.c **** //         *((uint8_t*)&addr),
-  16:External/eeprom_driver/Src/eeprom_driver.c **** //         *((uint8_t*)&addr + 1),
-  17:External/eeprom_driver/Src/eeprom_driver.c **** //         data
-  18:External/eeprom_driver/Src/eeprom_driver.c **** //     };
-  19:External/eeprom_driver/Src/eeprom_driver.c **** //     // memcpy(&sent_data, (uint8_t*)&addr, 2);
-  20:External/eeprom_driver/Src/eeprom_driver.c **** //     // memcpy(&sent_data + 2, &data, 1);
-  21:External/eeprom_driver/Src/eeprom_driver.c **** 
-  22:External/eeprom_driver/Src/eeprom_driver.c **** //     HAL_StatusTypeDef status = HAL_I2C_Master_Transmit(
-  23:External/eeprom_driver/Src/eeprom_driver.c **** //         i2c, DEV_ADDR, &sent_data, 3, EEPROM_TIMEOUT
-  24:External/eeprom_driver/Src/eeprom_driver.c **** //     );
-  25:External/eeprom_driver/Src/eeprom_driver.c **** //     HAL_Delay(WRITE_CYCLE_TIMEOUT);
-  26:External/eeprom_driver/Src/eeprom_driver.c **** 
-  27:External/eeprom_driver/Src/eeprom_driver.c **** //     return status;
-  28:External/eeprom_driver/Src/eeprom_driver.c **** // }
+   8:External/eeprom_driver/Src/eeprom_driver.c **** // Static functions ----------------------------------------------------------
+   9:External/eeprom_driver/Src/eeprom_driver.c **** 
+  10:External/eeprom_driver/Src/eeprom_driver.c **** static uint16_t invert_address(uint16_t addr)
+  11:External/eeprom_driver/Src/eeprom_driver.c **** {
+  27              		.loc 1 11 1 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  12:External/eeprom_driver/Src/eeprom_driver.c ****     return (addr << 8) | (addr >> 8);
+  32              		.loc 1 12 5 view .LVU1
+  33              		.loc 1 12 24 is_stmt 0 view .LVU2
+  34 0000 0302     		lsls	r3, r0, #8
+  35 0002 43EA1020 		orr	r0, r3, r0, lsr #8
+  36              	.LVL1:
+  13:External/eeprom_driver/Src/eeprom_driver.c **** }
+  37              		.loc 1 13 1 view .LVU3
+  38 0006 80B2     		uxth	r0, r0
+  39 0008 7047     		bx	lr
+  40              		.cfi_endproc
+  41              	.LFE0:
+  43              		.section	.text.get_num_of_start_remaining_bytes,"ax",%progbits
+  44              		.align	1
+  45              		.syntax unified
+  46              		.thumb
+ARM GAS  /tmp/ccgCDWnC.s 			page 2
+
+
+  47              		.thumb_func
+  49              	get_num_of_start_remaining_bytes:
+  50              	.LVL2:
+  51              	.LFB1:
+  14:External/eeprom_driver/Src/eeprom_driver.c **** 
+  15:External/eeprom_driver/Src/eeprom_driver.c **** // The data word address lower 6 bits are internally incremented
+  16:External/eeprom_driver/Src/eeprom_driver.c **** // following the receipt of each data word
+  17:External/eeprom_driver/Src/eeprom_driver.c **** // (ATMEL AT24C8C128 datasheet pg. 7).
+  18:External/eeprom_driver/Src/eeprom_driver.c **** static uint16_t get_num_of_start_remaining_bytes(
+  19:External/eeprom_driver/Src/eeprom_driver.c ****     const uint16_t addr,
+  20:External/eeprom_driver/Src/eeprom_driver.c ****     uint16_t size
+  21:External/eeprom_driver/Src/eeprom_driver.c **** )
+  22:External/eeprom_driver/Src/eeprom_driver.c **** {
+  52              		.loc 1 22 1 is_stmt 1 view -0
+  53              		.cfi_startproc
+  54              		@ args = 0, pretend = 0, frame = 0
+  55              		@ frame_needed = 0, uses_anonymous_args = 0
+  56              		@ link register save eliminated.
+  57              		.loc 1 22 1 is_stmt 0 view .LVU5
+  58 0000 0346     		mov	r3, r0
+  59 0002 0846     		mov	r0, r1
+  60              	.LVL3:
+  23:External/eeprom_driver/Src/eeprom_driver.c ****     //uint16_t result = 0x3f - (addr & 0x3f);
+  24:External/eeprom_driver/Src/eeprom_driver.c ****     //uint16_t result = 0x40 - (addr & 0x3f);
+  25:External/eeprom_driver/Src/eeprom_driver.c ****     uint8_t a = addr & 0x3f;
+  61              		.loc 1 25 5 is_stmt 1 view .LVU6
+  62              		.loc 1 25 13 is_stmt 0 view .LVU7
+  63 0004 03F03F03 		and	r3, r3, #63
+  64              	.LVL4:
+  26:External/eeprom_driver/Src/eeprom_driver.c ****     uint16_t result = 0x40 - a;
+  65              		.loc 1 26 5 is_stmt 1 view .LVU8
+  66              		.loc 1 26 14 is_stmt 0 view .LVU9
+  67 0008 C3F14003 		rsb	r3, r3, #64
+  68              	.LVL5:
+  69              		.loc 1 26 14 view .LVU10
+  70 000c 9BB2     		uxth	r3, r3
+  71              	.LVL6:
+  27:External/eeprom_driver/Src/eeprom_driver.c ****     if (result > size)
+  72              		.loc 1 27 5 is_stmt 1 view .LVU11
+  73              		.loc 1 27 8 is_stmt 0 view .LVU12
+  74 000e 8B42     		cmp	r3, r1
+  75 0010 00D8     		bhi	.L3
+  26:External/eeprom_driver/Src/eeprom_driver.c ****     uint16_t result = 0x40 - a;
+  76              		.loc 1 26 14 view .LVU13
+  77 0012 1846     		mov	r0, r3
+  78              	.L3:
+  79              	.LVL7:
+  28:External/eeprom_driver/Src/eeprom_driver.c ****         result = size;
   29:External/eeprom_driver/Src/eeprom_driver.c **** 
-  30:External/eeprom_driver/Src/eeprom_driver.c **** // HAL_StatusTypeDef eeprom_page_write(
-  31:External/eeprom_driver/Src/eeprom_driver.c **** //     const I2C_HandleTypeDef *const i2c,
-ARM GAS  /tmp/ccuHymKT.s 			page 2
+  30:External/eeprom_driver/Src/eeprom_driver.c ****     return result;
+  80              		.loc 1 30 5 is_stmt 1 view .LVU14
+  31:External/eeprom_driver/Src/eeprom_driver.c **** }
+  81              		.loc 1 31 1 is_stmt 0 view .LVU15
+  82 0014 7047     		bx	lr
+  83              		.cfi_endproc
+  84              	.LFE1:
+  86              		.section	.text.send_page,"ax",%progbits
+ARM GAS  /tmp/ccgCDWnC.s 			page 3
 
 
-  32:External/eeprom_driver/Src/eeprom_driver.c **** //     uint16_t addr,
-  33:External/eeprom_driver/Src/eeprom_driver.c **** //     const uint8_t *const data,
-  34:External/eeprom_driver/Src/eeprom_driver.c **** //     uint16_t size
-  35:External/eeprom_driver/Src/eeprom_driver.c **** // )
-  36:External/eeprom_driver/Src/eeprom_driver.c **** // {
-  37:External/eeprom_driver/Src/eeprom_driver.c **** //     struct 
-  38:External/eeprom_driver/Src/eeprom_driver.c **** //     {
-  39:External/eeprom_driver/Src/eeprom_driver.c **** //         uint16_t addr;
-  40:External/eeprom_driver/Src/eeprom_driver.c **** //         uint8_t part[64];
-  41:External/eeprom_driver/Src/eeprom_driver.c **** //     } sent_part;
-  42:External/eeprom_driver/Src/eeprom_driver.c **** 
-  43:External/eeprom_driver/Src/eeprom_driver.c **** //     sent_part.addr = addr;
-  44:External/eeprom_driver/Src/eeprom_driver.c **** 
-  45:External/eeprom_driver/Src/eeprom_driver.c **** //     // Divide the data into parts of 64 bytes 
-  46:External/eeprom_driver/Src/eeprom_driver.c **** //     // (more than that cannot be written*)
-  47:External/eeprom_driver/Src/eeprom_driver.c **** //     // *AT24C128 datasheet 7 page (page write)
-  48:External/eeprom_driver/Src/eeprom_driver.c **** //     HAL_StatusTypeDef status = HAL_OK;
-  49:External/eeprom_driver/Src/eeprom_driver.c **** //     for (uint16_t i = 0; i < size / 64; i++)
-  50:External/eeprom_driver/Src/eeprom_driver.c **** //     {
-  51:External/eeprom_driver/Src/eeprom_driver.c **** //         memcpy((uint8_t*)&sent_part.part, data, 64);
-  52:External/eeprom_driver/Src/eeprom_driver.c **** 
-  53:External/eeprom_driver/Src/eeprom_driver.c **** //         status |= HAL_I2C_Master_Transmit(
-  54:External/eeprom_driver/Src/eeprom_driver.c **** //             i2c, DEV_ADDR, (uint8_t*)&sent_part, 66, EEPROM_TIMEOUT
-  55:External/eeprom_driver/Src/eeprom_driver.c **** //         );        
-  56:External/eeprom_driver/Src/eeprom_driver.c **** //     }
-  57:External/eeprom_driver/Src/eeprom_driver.c **** 
-  58:External/eeprom_driver/Src/eeprom_driver.c **** //     HAL_Delay(WRITE_CYCLE_TIMEOUT);
-  59:External/eeprom_driver/Src/eeprom_driver.c **** // }
-  60:External/eeprom_driver/Src/eeprom_driver.c **** 
-  61:External/eeprom_driver/Src/eeprom_driver.c **** // HAL_StatusTypeDef eeprom_current_address_read(
-  62:External/eeprom_driver/Src/eeprom_driver.c **** //     const I2C_HandleTypeDef *const i2c,
-  63:External/eeprom_driver/Src/eeprom_driver.c **** //     uint8_t *const data
-  64:External/eeprom_driver/Src/eeprom_driver.c **** // )
-  65:External/eeprom_driver/Src/eeprom_driver.c **** // {
-  66:External/eeprom_driver/Src/eeprom_driver.c **** 
-  67:External/eeprom_driver/Src/eeprom_driver.c **** // }
-  68:External/eeprom_driver/Src/eeprom_driver.c **** 
-  69:External/eeprom_driver/Src/eeprom_driver.c **** // HAL_StatusTypeDef eeprom_random_read(
-  70:External/eeprom_driver/Src/eeprom_driver.c **** //     const I2C_HandleTypeDef *const i2c,
-  71:External/eeprom_driver/Src/eeprom_driver.c **** //     uint16_t addr,
-  72:External/eeprom_driver/Src/eeprom_driver.c **** //     uint8_t *const data
-  73:External/eeprom_driver/Src/eeprom_driver.c **** // )
-  74:External/eeprom_driver/Src/eeprom_driver.c **** // {
-  75:External/eeprom_driver/Src/eeprom_driver.c **** 
-  76:External/eeprom_driver/Src/eeprom_driver.c **** // }
+  87              		.align	1
+  88              		.syntax unified
+  89              		.thumb
+  90              		.thumb_func
+  92              	send_page:
+  93              	.LVL8:
+  94              	.LFB2:
+  32:External/eeprom_driver/Src/eeprom_driver.c **** 
+  33:External/eeprom_driver/Src/eeprom_driver.c **** static eeprom_status send_page(
+  34:External/eeprom_driver/Src/eeprom_driver.c ****     const uint16_t addr,
+  35:External/eeprom_driver/Src/eeprom_driver.c ****     const uint8_t *const data,
+  36:External/eeprom_driver/Src/eeprom_driver.c ****     uint16_t data_size,
+  37:External/eeprom_driver/Src/eeprom_driver.c ****     uint8_t *const buffer
+  38:External/eeprom_driver/Src/eeprom_driver.c **** )
+  39:External/eeprom_driver/Src/eeprom_driver.c **** {
+  95              		.loc 1 39 1 is_stmt 1 view -0
+  96              		.cfi_startproc
+  97              		@ args = 0, pretend = 0, frame = 0
+  98              		@ frame_needed = 0, uses_anonymous_args = 0
+  99              		.loc 1 39 1 is_stmt 0 view .LVU17
+ 100 0000 70B5     		push	{r4, r5, r6, lr}
+ 101              	.LCFI0:
+ 102              		.cfi_def_cfa_offset 16
+ 103              		.cfi_offset 4, -16
+ 104              		.cfi_offset 5, -12
+ 105              		.cfi_offset 6, -8
+ 106              		.cfi_offset 14, -4
+ 107 0002 0E46     		mov	r6, r1
+ 108 0004 1446     		mov	r4, r2
+ 109 0006 1D46     		mov	r5, r3
+  40:External/eeprom_driver/Src/eeprom_driver.c ****     uint16_t inverted_addr = invert_address(addr);
+ 110              		.loc 1 40 5 is_stmt 1 view .LVU18
+ 111              		.loc 1 40 30 is_stmt 0 view .LVU19
+ 112 0008 FFF7FEFF 		bl	invert_address
+ 113              	.LVL9:
+  41:External/eeprom_driver/Src/eeprom_driver.c **** 
+  42:External/eeprom_driver/Src/eeprom_driver.c ****     memcpy(buffer, (uint8_t*)&inverted_addr, sizeof(inverted_addr));
+ 114              		.loc 1 42 5 is_stmt 1 view .LVU20
+ 115 000c 2B46     		mov	r3, r5
+ 116 000e 23F8020B 		strh	r0, [r3], #2	@ unaligned
+  43:External/eeprom_driver/Src/eeprom_driver.c ****     memcpy(buffer + 2, data, data_size); // first 2 bytes - addr
+ 117              		.loc 1 43 5 view .LVU21
+ 118 0012 2246     		mov	r2, r4
+ 119 0014 3146     		mov	r1, r6
+ 120 0016 1846     		mov	r0, r3
+ 121              	.LVL10:
+ 122              		.loc 1 43 5 is_stmt 0 view .LVU22
+ 123 0018 FFF7FEFF 		bl	memcpy
+ 124              	.LVL11:
+  44:External/eeprom_driver/Src/eeprom_driver.c ****     eeprom_status status = eeprom_io_write(buffer, data_size + 2);
+ 125              		.loc 1 44 5 is_stmt 1 view .LVU23
+ 126              		.loc 1 44 28 is_stmt 0 view .LVU24
+ 127 001c A11C     		adds	r1, r4, #2
+ 128 001e C9B2     		uxtb	r1, r1
+ 129 0020 2846     		mov	r0, r5
+ 130 0022 FFF7FEFF 		bl	eeprom_io_write
+ 131              	.LVL12:
+ARM GAS  /tmp/ccgCDWnC.s 			page 4
+
+
+ 132 0026 0446     		mov	r4, r0
+ 133              	.LVL13:
+  45:External/eeprom_driver/Src/eeprom_driver.c ****     eeprom_delay(WRITE_CYCLE_TIMEOUT);
+ 134              		.loc 1 45 5 is_stmt 1 view .LVU25
+ 135 0028 1420     		movs	r0, #20
+ 136 002a FFF7FEFF 		bl	eeprom_delay
+ 137              	.LVL14:
+  46:External/eeprom_driver/Src/eeprom_driver.c **** 
+  47:External/eeprom_driver/Src/eeprom_driver.c ****     return status;
+ 138              		.loc 1 47 5 view .LVU26
+  48:External/eeprom_driver/Src/eeprom_driver.c **** }
+ 139              		.loc 1 48 1 is_stmt 0 view .LVU27
+ 140 002e 2046     		mov	r0, r4
+ 141 0030 70BD     		pop	{r4, r5, r6, pc}
+ 142              		.loc 1 48 1 view .LVU28
+ 143              		.cfi_endproc
+ 144              	.LFE2:
+ 146              		.section	.text.send_start_bytes,"ax",%progbits
+ 147              		.align	1
+ 148              		.syntax unified
+ 149              		.thumb
+ 150              		.thumb_func
+ 152              	send_start_bytes:
+ 153              	.LVL15:
+ 154              	.LFB3:
+  49:External/eeprom_driver/Src/eeprom_driver.c **** 
+  50:External/eeprom_driver/Src/eeprom_driver.c **** // The data word address lower 6 bits are internally incremented
+  51:External/eeprom_driver/Src/eeprom_driver.c **** // following the receipt of each data word
+  52:External/eeprom_driver/Src/eeprom_driver.c **** // (ATMEL AT24C8C128 datasheet pg. 7).
+  53:External/eeprom_driver/Src/eeprom_driver.c **** // We send the data and add padding to the address in which the
+  54:External/eeprom_driver/Src/eeprom_driver.c **** // data is sent and to the pointer to the data
+  55:External/eeprom_driver/Src/eeprom_driver.c **** static eeprom_status send_start_bytes(
+  56:External/eeprom_driver/Src/eeprom_driver.c ****     uint16_t *current_addr,
+  57:External/eeprom_driver/Src/eeprom_driver.c ****     uint8_t **current_data_ptr,
+  58:External/eeprom_driver/Src/eeprom_driver.c ****     const uint16_t size,
+  59:External/eeprom_driver/Src/eeprom_driver.c ****     uint16_t *const remaining_size,
+  60:External/eeprom_driver/Src/eeprom_driver.c ****     uint8_t *const buffer
+  61:External/eeprom_driver/Src/eeprom_driver.c **** )
+  62:External/eeprom_driver/Src/eeprom_driver.c **** {
+ 155              		.loc 1 62 1 is_stmt 1 view -0
+ 156              		.cfi_startproc
+ 157              		@ args = 4, pretend = 0, frame = 0
+ 158              		@ frame_needed = 0, uses_anonymous_args = 0
+ 159              		.loc 1 62 1 is_stmt 0 view .LVU30
+ 160 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 161              	.LCFI1:
+ 162              		.cfi_def_cfa_offset 24
+ 163              		.cfi_offset 4, -24
+ 164              		.cfi_offset 5, -20
+ 165              		.cfi_offset 6, -16
+ 166              		.cfi_offset 7, -12
+ 167              		.cfi_offset 8, -8
+ 168              		.cfi_offset 14, -4
+ 169 0004 0646     		mov	r6, r0
+ 170 0006 0D46     		mov	r5, r1
+ 171 0008 1F46     		mov	r7, r3
+  63:External/eeprom_driver/Src/eeprom_driver.c ****     uint16_t start_bytes_num = get_num_of_start_remaining_bytes(
+ARM GAS  /tmp/ccgCDWnC.s 			page 5
+
+
+ 172              		.loc 1 63 5 is_stmt 1 view .LVU31
+ 173              		.loc 1 63 32 is_stmt 0 view .LVU32
+ 174 000a B0F80080 		ldrh	r8, [r0]
+ 175 000e 1146     		mov	r1, r2
+ 176              	.LVL16:
+ 177              		.loc 1 63 32 view .LVU33
+ 178 0010 4046     		mov	r0, r8
+ 179              	.LVL17:
+ 180              		.loc 1 63 32 view .LVU34
+ 181 0012 FFF7FEFF 		bl	get_num_of_start_remaining_bytes
+ 182              	.LVL18:
+ 183              		.loc 1 63 32 view .LVU35
+ 184 0016 0446     		mov	r4, r0
+ 185              	.LVL19:
+  64:External/eeprom_driver/Src/eeprom_driver.c ****         *current_addr,
+  65:External/eeprom_driver/Src/eeprom_driver.c ****         size
+  66:External/eeprom_driver/Src/eeprom_driver.c ****     );
+  67:External/eeprom_driver/Src/eeprom_driver.c ****     eeprom_status status = send_page(
+ 186              		.loc 1 67 5 is_stmt 1 view .LVU36
+ 187              		.loc 1 67 28 is_stmt 0 view .LVU37
+ 188 0018 069B     		ldr	r3, [sp, #24]
+ 189 001a 0246     		mov	r2, r0
+ 190 001c 2968     		ldr	r1, [r5]
+ 191 001e 4046     		mov	r0, r8
+ 192              	.LVL20:
+ 193              		.loc 1 67 28 view .LVU38
+ 194 0020 FFF7FEFF 		bl	send_page
+ 195              	.LVL21:
+  68:External/eeprom_driver/Src/eeprom_driver.c ****         *current_addr,
+  69:External/eeprom_driver/Src/eeprom_driver.c ****         *current_data_ptr,
+  70:External/eeprom_driver/Src/eeprom_driver.c ****         start_bytes_num,
+  71:External/eeprom_driver/Src/eeprom_driver.c ****         buffer
+  72:External/eeprom_driver/Src/eeprom_driver.c ****     );
+  73:External/eeprom_driver/Src/eeprom_driver.c **** 
+  74:External/eeprom_driver/Src/eeprom_driver.c ****     *remaining_size -= start_bytes_num;
+ 196              		.loc 1 74 5 is_stmt 1 view .LVU39
+ 197 0024 3B88     		ldrh	r3, [r7]
+ 198              		.loc 1 74 21 is_stmt 0 view .LVU40
+ 199 0026 1B1B     		subs	r3, r3, r4
+ 200 0028 3B80     		strh	r3, [r7]	@ movhi
+  75:External/eeprom_driver/Src/eeprom_driver.c ****     *current_addr += start_bytes_num;
+ 201              		.loc 1 75 5 is_stmt 1 view .LVU41
+ 202 002a 3388     		ldrh	r3, [r6]
+ 203              		.loc 1 75 19 is_stmt 0 view .LVU42
+ 204 002c 2344     		add	r3, r3, r4
+ 205 002e 3380     		strh	r3, [r6]	@ movhi
+  76:External/eeprom_driver/Src/eeprom_driver.c ****     *current_data_ptr += start_bytes_num;
+ 206              		.loc 1 76 5 is_stmt 1 view .LVU43
+ 207 0030 2B68     		ldr	r3, [r5]
+ 208              		.loc 1 76 23 is_stmt 0 view .LVU44
+ 209 0032 2344     		add	r3, r3, r4
+ 210 0034 2B60     		str	r3, [r5]
   77:External/eeprom_driver/Src/eeprom_driver.c **** 
-  78:External/eeprom_driver/Src/eeprom_driver.c **** // HAL_StatusTypeDef EEPROM_sequential_read(
-  79:External/eeprom_driver/Src/eeprom_driver.c **** //     const I2C_HandleTypeDef *const i2c,
-  80:External/eeprom_driver/Src/eeprom_driver.c **** //     uint8_t data
-  81:External/eeprom_driver/Src/eeprom_driver.c **** // )
-  82:External/eeprom_driver/Src/eeprom_driver.c **** // {
-  83:External/eeprom_driver/Src/eeprom_driver.c **** 
-  84:External/eeprom_driver/Src/eeprom_driver.c **** // }
-  85:External/eeprom_driver/Src/eeprom_driver.c **** 
-  86:External/eeprom_driver/Src/eeprom_driver.c **** // HAL_StatusTypeDef eeprom_check_link(const I2C_HandleTypeDef *const i2c)
-  87:External/eeprom_driver/Src/eeprom_driver.c **** // {
-  88:External/eeprom_driver/Src/eeprom_driver.c **** //     static uint8_t data[] = { 0x0, 0x0, 0x55 };
-ARM GAS  /tmp/ccuHymKT.s 			page 3
+  78:External/eeprom_driver/Src/eeprom_driver.c ****     return status;
+ 211              		.loc 1 78 5 is_stmt 1 view .LVU45
+  79:External/eeprom_driver/Src/eeprom_driver.c **** }
+ 212              		.loc 1 79 1 is_stmt 0 view .LVU46
+ARM GAS  /tmp/ccgCDWnC.s 			page 6
 
 
-  89:External/eeprom_driver/Src/eeprom_driver.c **** //     static uint8_t result = 0x0;
-  90:External/eeprom_driver/Src/eeprom_driver.c **** 
-  91:External/eeprom_driver/Src/eeprom_driver.c **** //     HAL_StatusTypeDef status = HAL_I2C_Master_Transmit(
-  92:External/eeprom_driver/Src/eeprom_driver.c **** //         i2c, DEV_ADDR, &data, 3, EEPROM_TIMEOUT
-  93:External/eeprom_driver/Src/eeprom_driver.c **** //     );
-  94:External/eeprom_driver/Src/eeprom_driver.c **** //     HAL_Delay(WRITE_CYCLE_TIMEOUT);
+ 213 0036 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 214              		.loc 1 79 1 view .LVU47
+ 215              		.cfi_endproc
+ 216              	.LFE3:
+ 218              		.section	.text.send_offset_bytes,"ax",%progbits
+ 219              		.align	1
+ 220              		.syntax unified
+ 221              		.thumb
+ 222              		.thumb_func
+ 224              	send_offset_bytes:
+ 225              	.LVL22:
+ 226              	.LFB4:
+  80:External/eeprom_driver/Src/eeprom_driver.c **** 
+  81:External/eeprom_driver/Src/eeprom_driver.c **** // Sending an incomplete page to align the data to 64 bytes.
+  82:External/eeprom_driver/Src/eeprom_driver.c **** // We send the data and add padding to the address in which the
+  83:External/eeprom_driver/Src/eeprom_driver.c **** // data is sent and to the pointer to the data
+  84:External/eeprom_driver/Src/eeprom_driver.c **** static eeprom_status send_offset_bytes(
+  85:External/eeprom_driver/Src/eeprom_driver.c ****     uint16_t *current_addr,
+  86:External/eeprom_driver/Src/eeprom_driver.c ****     uint8_t **current_data_ptr,
+  87:External/eeprom_driver/Src/eeprom_driver.c ****     uint16_t *const remaining_size,
+  88:External/eeprom_driver/Src/eeprom_driver.c ****     uint8_t *const buffer
+  89:External/eeprom_driver/Src/eeprom_driver.c **** )
+  90:External/eeprom_driver/Src/eeprom_driver.c **** {
+ 227              		.loc 1 90 1 is_stmt 1 view -0
+ 228              		.cfi_startproc
+ 229              		@ args = 0, pretend = 0, frame = 0
+ 230              		@ frame_needed = 0, uses_anonymous_args = 0
+ 231              		.loc 1 90 1 is_stmt 0 view .LVU49
+ 232 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 233              	.LCFI2:
+ 234              		.cfi_def_cfa_offset 24
+ 235              		.cfi_offset 3, -24
+ 236              		.cfi_offset 4, -20
+ 237              		.cfi_offset 5, -16
+ 238              		.cfi_offset 6, -12
+ 239              		.cfi_offset 7, -8
+ 240              		.cfi_offset 14, -4
+  91:External/eeprom_driver/Src/eeprom_driver.c ****     uint16_t offset = *remaining_size % 64;
+ 241              		.loc 1 91 5 is_stmt 1 view .LVU50
+ 242              		.loc 1 91 23 is_stmt 0 view .LVU51
+ 243 0002 B2F800C0 		ldrh	ip, [r2]
+ 244              	.LVL23:
+  92:External/eeprom_driver/Src/eeprom_driver.c **** 
+  93:External/eeprom_driver/Src/eeprom_driver.c ****     if (offset == 0)
+ 245              		.loc 1 93 5 is_stmt 1 view .LVU52
+ 246              		.loc 1 93 8 is_stmt 0 view .LVU53
+ 247 0006 1CF03F04 		ands	r4, ip, #63
+ 248 000a 01D1     		bne	.L12
+  94:External/eeprom_driver/Src/eeprom_driver.c ****         return EEPROM_OK;
+ 249              		.loc 1 94 16 view .LVU54
+ 250 000c 0020     		movs	r0, #0
+ 251              	.LVL24:
+ 252              	.L9:
   95:External/eeprom_driver/Src/eeprom_driver.c ****     
-  96:External/eeprom_driver/Src/eeprom_driver.c **** //     if (status)
-  97:External/eeprom_driver/Src/eeprom_driver.c **** //         return status;
-  98:External/eeprom_driver/Src/eeprom_driver.c **** 
-  99:External/eeprom_driver/Src/eeprom_driver.c **** //     status = HAL_I2C_Master_Transmit(
- 100:External/eeprom_driver/Src/eeprom_driver.c **** //         i2c, DEV_ADDR, &data, 2, EEPROM_TIMEOUT
- 101:External/eeprom_driver/Src/eeprom_driver.c **** //     );
- 102:External/eeprom_driver/Src/eeprom_driver.c **** //     status |= HAL_I2C_Master_Receive(
- 103:External/eeprom_driver/Src/eeprom_driver.c **** //         i2c, DEV_ADDR, &result, 1, EEPROM_TIMEOUT
- 104:External/eeprom_driver/Src/eeprom_driver.c **** //     );
+  96:External/eeprom_driver/Src/eeprom_driver.c ****     eeprom_status status = send_page(
+  97:External/eeprom_driver/Src/eeprom_driver.c ****         *current_addr,
+  98:External/eeprom_driver/Src/eeprom_driver.c ****         *current_data_ptr,
+ARM GAS  /tmp/ccgCDWnC.s 			page 7
+
+
+  99:External/eeprom_driver/Src/eeprom_driver.c ****         offset,
+ 100:External/eeprom_driver/Src/eeprom_driver.c ****         buffer
+ 101:External/eeprom_driver/Src/eeprom_driver.c ****     );
+ 102:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 103:External/eeprom_driver/Src/eeprom_driver.c ****     *remaining_size -= offset;
+ 104:External/eeprom_driver/Src/eeprom_driver.c ****     *current_addr += offset;
+ 105:External/eeprom_driver/Src/eeprom_driver.c ****     *current_data_ptr += offset;
+ 106:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 107:External/eeprom_driver/Src/eeprom_driver.c ****     return status;
+ 108:External/eeprom_driver/Src/eeprom_driver.c **** }
+ 253              		.loc 1 108 1 view .LVU55
+ 254 000e F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 255              	.LVL25:
+ 256              	.L12:
+ 257              		.loc 1 108 1 view .LVU56
+ 258 0010 0746     		mov	r7, r0
+ 259 0012 0E46     		mov	r6, r1
+ 260 0014 1546     		mov	r5, r2
+  96:External/eeprom_driver/Src/eeprom_driver.c ****         *current_addr,
+ 261              		.loc 1 96 5 is_stmt 1 view .LVU57
+  96:External/eeprom_driver/Src/eeprom_driver.c ****         *current_addr,
+ 262              		.loc 1 96 28 is_stmt 0 view .LVU58
+ 263 0016 2246     		mov	r2, r4
+ 264              	.LVL26:
+  96:External/eeprom_driver/Src/eeprom_driver.c ****         *current_addr,
+ 265              		.loc 1 96 28 view .LVU59
+ 266 0018 0968     		ldr	r1, [r1]
+ 267              	.LVL27:
+  96:External/eeprom_driver/Src/eeprom_driver.c ****         *current_addr,
+ 268              		.loc 1 96 28 view .LVU60
+ 269 001a 0088     		ldrh	r0, [r0]
+ 270              	.LVL28:
+  96:External/eeprom_driver/Src/eeprom_driver.c ****         *current_addr,
+ 271              		.loc 1 96 28 view .LVU61
+ 272 001c FFF7FEFF 		bl	send_page
+ 273              	.LVL29:
+ 103:External/eeprom_driver/Src/eeprom_driver.c ****     *current_addr += offset;
+ 274              		.loc 1 103 5 is_stmt 1 view .LVU62
+ 275 0020 2B88     		ldrh	r3, [r5]
+ 103:External/eeprom_driver/Src/eeprom_driver.c ****     *current_addr += offset;
+ 276              		.loc 1 103 21 is_stmt 0 view .LVU63
+ 277 0022 1B1B     		subs	r3, r3, r4
+ 278 0024 2B80     		strh	r3, [r5]	@ movhi
+ 104:External/eeprom_driver/Src/eeprom_driver.c ****     *current_data_ptr += offset;
+ 279              		.loc 1 104 5 is_stmt 1 view .LVU64
+ 280 0026 3B88     		ldrh	r3, [r7]
+ 104:External/eeprom_driver/Src/eeprom_driver.c ****     *current_data_ptr += offset;
+ 281              		.loc 1 104 19 is_stmt 0 view .LVU65
+ 282 0028 2344     		add	r3, r3, r4
+ 283 002a 3B80     		strh	r3, [r7]	@ movhi
  105:External/eeprom_driver/Src/eeprom_driver.c **** 
- 106:External/eeprom_driver/Src/eeprom_driver.c **** //     if (result != 0x55)
- 107:External/eeprom_driver/Src/eeprom_driver.c **** //         status |= HAL_ERROR;
- 108:External/eeprom_driver/Src/eeprom_driver.c **** //     return status;
- 109:External/eeprom_driver/Src/eeprom_driver.c **** // }
- 110:External/eeprom_driver/Src/eeprom_driver.c **** 
- 111:External/eeprom_driver/Src/eeprom_driver.c **** // Implementations -----------------------------------------------------------
- 112:External/eeprom_driver/Src/eeprom_driver.c **** 
- 113:External/eeprom_driver/Src/eeprom_driver.c **** eeprom_status eeprom_byte_write(
- 114:External/eeprom_driver/Src/eeprom_driver.c ****     uint16_t addr,
- 115:External/eeprom_driver/Src/eeprom_driver.c ****     uint8_t data
- 116:External/eeprom_driver/Src/eeprom_driver.c **** )
- 117:External/eeprom_driver/Src/eeprom_driver.c **** {
-  28              		.loc 1 117 1 view -0
-  29              		.cfi_startproc
-  30              		@ args = 0, pretend = 0, frame = 8
-  31              		@ frame_needed = 0, uses_anonymous_args = 0
-  32              		.loc 1 117 1 is_stmt 0 view .LVU1
-  33 0000 10B5     		push	{r4, lr}
-  34              	.LCFI0:
-  35              		.cfi_def_cfa_offset 8
-  36              		.cfi_offset 4, -8
-  37              		.cfi_offset 14, -4
-  38 0002 82B0     		sub	sp, sp, #8
-  39              	.LCFI1:
-  40              		.cfi_def_cfa_offset 16
- 118:External/eeprom_driver/Src/eeprom_driver.c ****     const uint8_t sent_data[] = { 
-  41              		.loc 1 118 5 is_stmt 1 view .LVU2
-  42              		.loc 1 118 19 is_stmt 0 view .LVU3
-  43 0004 8DF80400 		strb	r0, [sp, #4]
-  44 0008 C0F30720 		ubfx	r0, r0, #8, #8
-  45              	.LVL1:
-  46              		.loc 1 118 19 view .LVU4
-  47 000c 8DF80500 		strb	r0, [sp, #5]
-  48 0010 8DF80610 		strb	r1, [sp, #6]
- 119:External/eeprom_driver/Src/eeprom_driver.c ****         *((uint8_t*)&addr),
- 120:External/eeprom_driver/Src/eeprom_driver.c ****         *((uint8_t*)&addr + 1),
- 121:External/eeprom_driver/Src/eeprom_driver.c ****         data
- 122:External/eeprom_driver/Src/eeprom_driver.c ****     };
- 123:External/eeprom_driver/Src/eeprom_driver.c **** 
- 124:External/eeprom_driver/Src/eeprom_driver.c ****     eeprom_status status = eeprom_io_write(
-ARM GAS  /tmp/ccuHymKT.s 			page 4
+ 284              		.loc 1 105 5 is_stmt 1 view .LVU66
+ 285 002c 3368     		ldr	r3, [r6]
+ 105:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 286              		.loc 1 105 23 is_stmt 0 view .LVU67
+ 287 002e 2344     		add	r3, r3, r4
+ 288 0030 3360     		str	r3, [r6]
+ARM GAS  /tmp/ccgCDWnC.s 			page 8
 
 
-  49              		.loc 1 124 5 is_stmt 1 view .LVU5
-  50              		.loc 1 124 28 is_stmt 0 view .LVU6
-  51 0014 0321     		movs	r1, #3
-  52              	.LVL2:
-  53              		.loc 1 124 28 view .LVU7
-  54 0016 01A8     		add	r0, sp, #4
-  55 0018 FFF7FEFF 		bl	eeprom_io_write
-  56              	.LVL3:
-  57              		.loc 1 124 28 view .LVU8
-  58 001c 0446     		mov	r4, r0
-  59              	.LVL4:
- 125:External/eeprom_driver/Src/eeprom_driver.c ****         (uint8_t*)&sent_data,
- 126:External/eeprom_driver/Src/eeprom_driver.c ****         sizeof(sent_data)
- 127:External/eeprom_driver/Src/eeprom_driver.c ****     );
- 128:External/eeprom_driver/Src/eeprom_driver.c ****     eeprom_delay(WRITE_CYCLE_TIMEOUT);
-  60              		.loc 1 128 5 is_stmt 1 view .LVU9
-  61 001e 1420     		movs	r0, #20
-  62 0020 FFF7FEFF 		bl	eeprom_delay
-  63              	.LVL5:
- 129:External/eeprom_driver/Src/eeprom_driver.c **** 
- 130:External/eeprom_driver/Src/eeprom_driver.c ****     return status;
-  64              		.loc 1 130 5 view .LVU10
- 131:External/eeprom_driver/Src/eeprom_driver.c **** }
-  65              		.loc 1 131 1 is_stmt 0 view .LVU11
-  66 0024 2046     		mov	r0, r4
-  67 0026 02B0     		add	sp, sp, #8
-  68              	.LCFI2:
-  69              		.cfi_def_cfa_offset 8
-  70              		@ sp needed
-  71 0028 10BD     		pop	{r4, pc}
-  72              		.loc 1 131 1 view .LVU12
-  73              		.cfi_endproc
-  74              	.LFE0:
-  76              		.section	.text.eeprom_page_write,"ax",%progbits
-  77              		.align	1
-  78              		.global	eeprom_page_write
-  79              		.syntax unified
-  80              		.thumb
-  81              		.thumb_func
-  83              	eeprom_page_write:
-  84              	.LVL6:
-  85              	.LFB1:
- 132:External/eeprom_driver/Src/eeprom_driver.c **** 
- 133:External/eeprom_driver/Src/eeprom_driver.c **** eeprom_status eeprom_page_write(
- 134:External/eeprom_driver/Src/eeprom_driver.c ****     uint16_t addr,
- 135:External/eeprom_driver/Src/eeprom_driver.c ****     const uint8_t *const data,
- 136:External/eeprom_driver/Src/eeprom_driver.c ****     uint16_t size
- 137:External/eeprom_driver/Src/eeprom_driver.c **** )
- 138:External/eeprom_driver/Src/eeprom_driver.c **** {
-  86              		.loc 1 138 1 is_stmt 1 view -0
-  87              		.cfi_startproc
-  88              		@ args = 0, pretend = 0, frame = 72
-  89              		@ frame_needed = 0, uses_anonymous_args = 0
-  90              		.loc 1 138 1 is_stmt 0 view .LVU14
-  91 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
-  92              	.LCFI3:
-  93              		.cfi_def_cfa_offset 24
-ARM GAS  /tmp/ccuHymKT.s 			page 5
+ 107:External/eeprom_driver/Src/eeprom_driver.c **** }
+ 289              		.loc 1 107 5 is_stmt 1 view .LVU68
+ 107:External/eeprom_driver/Src/eeprom_driver.c **** }
+ 290              		.loc 1 107 12 is_stmt 0 view .LVU69
+ 291 0032 ECE7     		b	.L9
+ 292              		.cfi_endproc
+ 293              	.LFE4:
+ 295              		.section	.text.eeprom_addr_write,"ax",%progbits
+ 296              		.align	1
+ 297              		.global	eeprom_addr_write
+ 298              		.syntax unified
+ 299              		.thumb
+ 300              		.thumb_func
+ 302              	eeprom_addr_write:
+ 303              	.LVL30:
+ 304              	.LFB5:
+ 109:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 110:External/eeprom_driver/Src/eeprom_driver.c **** // Implementations -----------------------------------------------------------
+ 111:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 112:External/eeprom_driver/Src/eeprom_driver.c **** eeprom_status eeprom_addr_write(
+ 113:External/eeprom_driver/Src/eeprom_driver.c ****     uint16_t addr
+ 114:External/eeprom_driver/Src/eeprom_driver.c **** )
+ 115:External/eeprom_driver/Src/eeprom_driver.c **** {
+ 305              		.loc 1 115 1 is_stmt 1 view -0
+ 306              		.cfi_startproc
+ 307              		@ args = 0, pretend = 0, frame = 8
+ 308              		@ frame_needed = 0, uses_anonymous_args = 0
+ 309              		.loc 1 115 1 is_stmt 0 view .LVU71
+ 310 0000 00B5     		push	{lr}
+ 311              	.LCFI3:
+ 312              		.cfi_def_cfa_offset 4
+ 313              		.cfi_offset 14, -4
+ 314 0002 83B0     		sub	sp, sp, #12
+ 315              	.LCFI4:
+ 316              		.cfi_def_cfa_offset 16
+ 116:External/eeprom_driver/Src/eeprom_driver.c ****     uint16_t inverted_address = invert_address(addr);
+ 317              		.loc 1 116 5 is_stmt 1 view .LVU72
+ 318              		.loc 1 116 33 is_stmt 0 view .LVU73
+ 319 0004 FFF7FEFF 		bl	invert_address
+ 320              	.LVL31:
+ 321              		.loc 1 116 14 discriminator 1 view .LVU74
+ 322 0008 ADF80600 		strh	r0, [sp, #6]	@ movhi
+ 117:External/eeprom_driver/Src/eeprom_driver.c ****     return eeprom_io_write((uint8_t*)&inverted_address, sizeof(addr));
+ 323              		.loc 1 117 5 is_stmt 1 view .LVU75
+ 324              		.loc 1 117 12 is_stmt 0 view .LVU76
+ 325 000c 0221     		movs	r1, #2
+ 326 000e 0DF10600 		add	r0, sp, #6
+ 327 0012 FFF7FEFF 		bl	eeprom_io_write
+ 328              	.LVL32:
+ 118:External/eeprom_driver/Src/eeprom_driver.c **** }
+ 329              		.loc 1 118 1 view .LVU77
+ 330 0016 03B0     		add	sp, sp, #12
+ 331              	.LCFI5:
+ 332              		.cfi_def_cfa_offset 4
+ 333              		@ sp needed
+ 334 0018 5DF804FB 		ldr	pc, [sp], #4
+ 335              		.cfi_endproc
+ARM GAS  /tmp/ccgCDWnC.s 			page 9
 
 
-  94              		.cfi_offset 4, -24
-  95              		.cfi_offset 5, -20
-  96              		.cfi_offset 6, -16
-  97              		.cfi_offset 7, -12
-  98              		.cfi_offset 8, -8
-  99              		.cfi_offset 14, -4
- 100 0004 92B0     		sub	sp, sp, #72
- 101              	.LCFI4:
- 102              		.cfi_def_cfa_offset 96
- 103 0006 0D46     		mov	r5, r1
- 104 0008 1746     		mov	r7, r2
- 139:External/eeprom_driver/Src/eeprom_driver.c ****     struct 
- 105              		.loc 1 139 5 is_stmt 1 view .LVU15
- 140:External/eeprom_driver/Src/eeprom_driver.c ****     {
- 141:External/eeprom_driver/Src/eeprom_driver.c ****         uint16_t addr;
- 142:External/eeprom_driver/Src/eeprom_driver.c ****         uint8_t part[64];
- 143:External/eeprom_driver/Src/eeprom_driver.c ****     } sent_part;
- 144:External/eeprom_driver/Src/eeprom_driver.c **** 
- 145:External/eeprom_driver/Src/eeprom_driver.c ****     sent_part.addr = addr;
- 106              		.loc 1 145 5 view .LVU16
- 107              		.loc 1 145 20 is_stmt 0 view .LVU17
- 108 000a ADF80400 		strh	r0, [sp, #4]	@ movhi
- 146:External/eeprom_driver/Src/eeprom_driver.c **** 
- 147:External/eeprom_driver/Src/eeprom_driver.c ****     // Divide the data into parts of 64 bytes 
- 148:External/eeprom_driver/Src/eeprom_driver.c ****     // (more than that cannot be written)
- 149:External/eeprom_driver/Src/eeprom_driver.c ****     // (ATMEL AT24C8C128 datasheet pg. 7)
- 150:External/eeprom_driver/Src/eeprom_driver.c ****     eeprom_status status = EEPROM_OK;
- 109              		.loc 1 150 5 is_stmt 1 view .LVU18
- 110              	.LVL7:
- 151:External/eeprom_driver/Src/eeprom_driver.c ****     for (uint16_t i = 0; i < size / 64; i++)
- 111              		.loc 1 151 5 view .LVU19
- 112              	.LBB2:
- 113              		.loc 1 151 10 view .LVU20
- 114              		.loc 1 151 19 is_stmt 0 view .LVU21
- 115 000e 0024     		movs	r4, #0
- 116              	.LBE2:
- 150:External/eeprom_driver/Src/eeprom_driver.c ****     for (uint16_t i = 0; i < size / 64; i++)
- 117              		.loc 1 150 19 view .LVU22
- 118 0010 2646     		mov	r6, r4
- 119              	.LBB3:
- 120              		.loc 1 151 5 view .LVU23
- 121 0012 1EE0     		b	.L4
- 122              	.LVL8:
- 123              	.L6:
- 152:External/eeprom_driver/Src/eeprom_driver.c ****     {
- 153:External/eeprom_driver/Src/eeprom_driver.c ****         memcpy((uint8_t*)&sent_part.part, data, 64);
- 124              		.loc 1 153 9 is_stmt 1 view .LVU24
- 125 0014 2B46     		mov	r3, r5
- 126 0016 0DF1060C 		add	ip, sp, #6
- 127 001a 05F14008 		add	r8, r5, #64
- 128              	.L5:
- 129 001e D3F800E0 		ldr	lr, [r3]	@ unaligned
- 130 0022 5868     		ldr	r0, [r3, #4]	@ unaligned
- 131 0024 9968     		ldr	r1, [r3, #8]	@ unaligned
- 132 0026 DA68     		ldr	r2, [r3, #12]	@ unaligned
- 133 0028 CCF800E0 		str	lr, [ip]	@ unaligned
- 134 002c CCF80400 		str	r0, [ip, #4]	@ unaligned
-ARM GAS  /tmp/ccuHymKT.s 			page 6
+ 336              	.LFE5:
+ 338              		.section	.text.eeprom_byte_write,"ax",%progbits
+ 339              		.align	1
+ 340              		.global	eeprom_byte_write
+ 341              		.syntax unified
+ 342              		.thumb
+ 343              		.thumb_func
+ 345              	eeprom_byte_write:
+ 346              	.LVL33:
+ 347              	.LFB6:
+ 119:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 120:External/eeprom_driver/Src/eeprom_driver.c **** eeprom_status eeprom_byte_write(
+ 121:External/eeprom_driver/Src/eeprom_driver.c ****     uint16_t addr,
+ 122:External/eeprom_driver/Src/eeprom_driver.c ****     uint8_t data
+ 123:External/eeprom_driver/Src/eeprom_driver.c **** )
+ 124:External/eeprom_driver/Src/eeprom_driver.c **** {
+ 348              		.loc 1 124 1 is_stmt 1 view -0
+ 349              		.cfi_startproc
+ 350              		@ args = 0, pretend = 0, frame = 8
+ 351              		@ frame_needed = 0, uses_anonymous_args = 0
+ 352              		.loc 1 124 1 is_stmt 0 view .LVU79
+ 353 0000 10B5     		push	{r4, lr}
+ 354              	.LCFI6:
+ 355              		.cfi_def_cfa_offset 8
+ 356              		.cfi_offset 4, -8
+ 357              		.cfi_offset 14, -4
+ 358 0002 82B0     		sub	sp, sp, #8
+ 359              	.LCFI7:
+ 360              		.cfi_def_cfa_offset 16
+ 361 0004 0C46     		mov	r4, r1
+ 125:External/eeprom_driver/Src/eeprom_driver.c ****     struct 
+ 362              		.loc 1 125 5 is_stmt 1 view .LVU80
+ 126:External/eeprom_driver/Src/eeprom_driver.c ****     {
+ 127:External/eeprom_driver/Src/eeprom_driver.c ****         uint16_t addr;
+ 128:External/eeprom_driver/Src/eeprom_driver.c ****         uint8_t data;
+ 129:External/eeprom_driver/Src/eeprom_driver.c ****     } sent_data;
+ 130:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 131:External/eeprom_driver/Src/eeprom_driver.c ****     sent_data.addr = invert_address(addr);
+ 363              		.loc 1 131 5 view .LVU81
+ 364              		.loc 1 131 22 is_stmt 0 view .LVU82
+ 365 0006 FFF7FEFF 		bl	invert_address
+ 366              	.LVL34:
+ 367              		.loc 1 131 20 discriminator 1 view .LVU83
+ 368 000a ADF80400 		strh	r0, [sp, #4]	@ movhi
+ 132:External/eeprom_driver/Src/eeprom_driver.c ****     sent_data.data = data;
+ 369              		.loc 1 132 5 is_stmt 1 view .LVU84
+ 370              		.loc 1 132 20 is_stmt 0 view .LVU85
+ 371 000e 8DF80640 		strb	r4, [sp, #6]
+ 133:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 134:External/eeprom_driver/Src/eeprom_driver.c ****     eeprom_status status = eeprom_io_write(
+ 372              		.loc 1 134 5 is_stmt 1 view .LVU86
+ 373              		.loc 1 134 28 is_stmt 0 view .LVU87
+ 374 0012 0321     		movs	r1, #3
+ 375 0014 01A8     		add	r0, sp, #4
+ 376 0016 FFF7FEFF 		bl	eeprom_io_write
+ 377              	.LVL35:
+ 378 001a 0446     		mov	r4, r0
+ARM GAS  /tmp/ccgCDWnC.s 			page 10
 
 
- 135 0030 CCF80810 		str	r1, [ip, #8]	@ unaligned
- 136 0034 CCF80C20 		str	r2, [ip, #12]	@ unaligned
- 137 0038 1033     		adds	r3, r3, #16
- 138 003a 0CF1100C 		add	ip, ip, #16
- 139 003e 4345     		cmp	r3, r8
- 140 0040 EDD1     		bne	.L5
- 154:External/eeprom_driver/Src/eeprom_driver.c **** 
- 155:External/eeprom_driver/Src/eeprom_driver.c ****         status |= eeprom_io_write((uint8_t*)&sent_part, 66);
- 141              		.loc 1 155 9 view .LVU25
- 142              		.loc 1 155 19 is_stmt 0 view .LVU26
- 143 0042 4221     		movs	r1, #66
- 144 0044 01A8     		add	r0, sp, #4
- 145 0046 FFF7FEFF 		bl	eeprom_io_write
- 146              	.LVL9:
- 147              		.loc 1 155 16 discriminator 1 view .LVU27
- 148 004a 3043     		orrs	r0, r0, r6
- 149 004c C6B2     		uxtb	r6, r0
- 150              	.LVL10:
- 151:External/eeprom_driver/Src/eeprom_driver.c ****     {
- 151              		.loc 1 151 42 is_stmt 1 discriminator 3 view .LVU28
- 152 004e 0134     		adds	r4, r4, #1
- 153              	.LVL11:
- 151:External/eeprom_driver/Src/eeprom_driver.c ****     {
- 154              		.loc 1 151 42 is_stmt 0 discriminator 3 view .LVU29
- 155 0050 A4B2     		uxth	r4, r4
- 156              	.LVL12:
- 157              	.L4:
- 151:External/eeprom_driver/Src/eeprom_driver.c ****     {
- 158              		.loc 1 151 28 is_stmt 1 discriminator 1 view .LVU30
- 159 0052 B4EB971F 		cmp	r4, r7, lsr #6
- 160 0056 DDD3     		bcc	.L6
- 161              	.LBE3:
- 156:External/eeprom_driver/Src/eeprom_driver.c ****     }
- 157:External/eeprom_driver/Src/eeprom_driver.c ****     eeprom_delay(WRITE_CYCLE_TIMEOUT);
- 162              		.loc 1 157 5 view .LVU31
- 163 0058 1420     		movs	r0, #20
- 164 005a FFF7FEFF 		bl	eeprom_delay
- 165              	.LVL13:
+ 379              	.LVL36:
+ 135:External/eeprom_driver/Src/eeprom_driver.c ****         (uint8_t*)&sent_data,
+ 136:External/eeprom_driver/Src/eeprom_driver.c ****         3
+ 137:External/eeprom_driver/Src/eeprom_driver.c ****     );
+ 138:External/eeprom_driver/Src/eeprom_driver.c ****     eeprom_delay(WRITE_CYCLE_TIMEOUT);
+ 380              		.loc 1 138 5 is_stmt 1 view .LVU88
+ 381 001c 1420     		movs	r0, #20
+ 382 001e FFF7FEFF 		bl	eeprom_delay
+ 383              	.LVL37:
+ 139:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 140:External/eeprom_driver/Src/eeprom_driver.c ****     return status;
+ 384              		.loc 1 140 5 view .LVU89
+ 141:External/eeprom_driver/Src/eeprom_driver.c **** }
+ 385              		.loc 1 141 1 is_stmt 0 view .LVU90
+ 386 0022 2046     		mov	r0, r4
+ 387 0024 02B0     		add	sp, sp, #8
+ 388              	.LCFI8:
+ 389              		.cfi_def_cfa_offset 8
+ 390              		@ sp needed
+ 391 0026 10BD     		pop	{r4, pc}
+ 392              		.loc 1 141 1 view .LVU91
+ 393              		.cfi_endproc
+ 394              	.LFE6:
+ 396              		.section	.text.eeprom_page_write,"ax",%progbits
+ 397              		.align	1
+ 398              		.global	eeprom_page_write
+ 399              		.syntax unified
+ 400              		.thumb
+ 401              		.thumb_func
+ 403              	eeprom_page_write:
+ 404              	.LVL38:
+ 405              	.LFB7:
+ 142:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 143:External/eeprom_driver/Src/eeprom_driver.c **** eeprom_status eeprom_page_write(
+ 144:External/eeprom_driver/Src/eeprom_driver.c ****     const uint16_t addr,
+ 145:External/eeprom_driver/Src/eeprom_driver.c ****     const uint8_t *const data,
+ 146:External/eeprom_driver/Src/eeprom_driver.c ****     uint16_t size
+ 147:External/eeprom_driver/Src/eeprom_driver.c **** )
+ 148:External/eeprom_driver/Src/eeprom_driver.c **** {
+ 406              		.loc 1 148 1 is_stmt 1 view -0
+ 407              		.cfi_startproc
+ 408              		@ args = 0, pretend = 0, frame = 80
+ 409              		@ frame_needed = 0, uses_anonymous_args = 0
+ 410              		.loc 1 148 1 is_stmt 0 view .LVU93
+ 411 0000 30B5     		push	{r4, r5, lr}
+ 412              	.LCFI9:
+ 413              		.cfi_def_cfa_offset 12
+ 414              		.cfi_offset 4, -12
+ 415              		.cfi_offset 5, -8
+ 416              		.cfi_offset 14, -4
+ 417 0002 97B0     		sub	sp, sp, #92
+ 418              	.LCFI10:
+ 419              		.cfi_def_cfa_offset 104
+ 149:External/eeprom_driver/Src/eeprom_driver.c ****     // uint16_t current_addr = addr;
+ 150:External/eeprom_driver/Src/eeprom_driver.c ****     // uint8_t *current_data_ptr = data;
+ 151:External/eeprom_driver/Src/eeprom_driver.c ****     // struct 
+ 152:External/eeprom_driver/Src/eeprom_driver.c ****     // {
+ARM GAS  /tmp/ccgCDWnC.s 			page 11
+
+
+ 153:External/eeprom_driver/Src/eeprom_driver.c ****     //     uint16_t addr;
+ 154:External/eeprom_driver/Src/eeprom_driver.c ****     //     uint8_t data[64];
+ 155:External/eeprom_driver/Src/eeprom_driver.c ****     // } sent_page;
+ 156:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 157:External/eeprom_driver/Src/eeprom_driver.c ****     // sent_page.addr = invert_address(addr);
  158:External/eeprom_driver/Src/eeprom_driver.c **** 
- 159:External/eeprom_driver/Src/eeprom_driver.c ****     return status;
- 166              		.loc 1 159 5 view .LVU32
- 160:External/eeprom_driver/Src/eeprom_driver.c **** }
- 167              		.loc 1 160 1 is_stmt 0 view .LVU33
- 168 005e 3046     		mov	r0, r6
- 169 0060 12B0     		add	sp, sp, #72
- 170              	.LCFI5:
- 171              		.cfi_def_cfa_offset 24
- 172              		@ sp needed
- 173 0062 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
- 174              		.loc 1 160 1 view .LVU34
- 175              		.cfi_endproc
- 176              	.LFE1:
- 178              		.section	.text.eeprom_current_address_read,"ax",%progbits
- 179              		.align	1
- 180              		.global	eeprom_current_address_read
- 181              		.syntax unified
- 182              		.thumb
-ARM GAS  /tmp/ccuHymKT.s 			page 7
-
-
- 183              		.thumb_func
- 185              	eeprom_current_address_read:
- 186              	.LVL14:
- 187              	.LFB2:
- 161:External/eeprom_driver/Src/eeprom_driver.c **** 
- 162:External/eeprom_driver/Src/eeprom_driver.c **** eeprom_status eeprom_current_address_read(
- 163:External/eeprom_driver/Src/eeprom_driver.c ****     uint8_t *const data
- 164:External/eeprom_driver/Src/eeprom_driver.c **** )
- 165:External/eeprom_driver/Src/eeprom_driver.c **** {
- 188              		.loc 1 165 1 is_stmt 1 view -0
- 189              		.cfi_startproc
- 190              		@ args = 0, pretend = 0, frame = 0
- 191              		@ frame_needed = 0, uses_anonymous_args = 0
- 192              		@ link register save eliminated.
- 166:External/eeprom_driver/Src/eeprom_driver.c ****     return EEPROM_OK;
- 193              		.loc 1 166 5 view .LVU36
- 167:External/eeprom_driver/Src/eeprom_driver.c **** }
- 194              		.loc 1 167 1 is_stmt 0 view .LVU37
- 195 0000 0020     		movs	r0, #0
- 196              	.LVL15:
- 197              		.loc 1 167 1 view .LVU38
- 198 0002 7047     		bx	lr
- 199              		.cfi_endproc
- 200              	.LFE2:
- 202              		.section	.text.eeprom_random_byte_read,"ax",%progbits
- 203              		.align	1
- 204              		.global	eeprom_random_byte_read
- 205              		.syntax unified
- 206              		.thumb
- 207              		.thumb_func
- 209              	eeprom_random_byte_read:
- 210              	.LVL16:
- 211              	.LFB3:
- 168:External/eeprom_driver/Src/eeprom_driver.c **** 
- 169:External/eeprom_driver/Src/eeprom_driver.c **** eeprom_status eeprom_random_byte_read(
- 170:External/eeprom_driver/Src/eeprom_driver.c ****     const uint16_t addr,
- 171:External/eeprom_driver/Src/eeprom_driver.c ****     uint8_t *const data
- 172:External/eeprom_driver/Src/eeprom_driver.c **** )
- 173:External/eeprom_driver/Src/eeprom_driver.c **** {
- 212              		.loc 1 173 1 is_stmt 1 view -0
- 213              		.cfi_startproc
- 214              		@ args = 0, pretend = 0, frame = 8
- 215              		@ frame_needed = 0, uses_anonymous_args = 0
- 216              		.loc 1 173 1 is_stmt 0 view .LVU40
- 217 0000 30B5     		push	{r4, r5, lr}
- 218              	.LCFI6:
- 219              		.cfi_def_cfa_offset 12
- 220              		.cfi_offset 4, -12
- 221              		.cfi_offset 5, -8
- 222              		.cfi_offset 14, -4
- 223 0002 83B0     		sub	sp, sp, #12
- 224              	.LCFI7:
- 225              		.cfi_def_cfa_offset 24
- 226 0004 0D46     		mov	r5, r1
- 174:External/eeprom_driver/Src/eeprom_driver.c ****     struct 
- 227              		.loc 1 174 5 is_stmt 1 view .LVU41
- 175:External/eeprom_driver/Src/eeprom_driver.c ****     {
-ARM GAS  /tmp/ccuHymKT.s 			page 8
-
-
- 176:External/eeprom_driver/Src/eeprom_driver.c ****         uint16_t addr;
- 177:External/eeprom_driver/Src/eeprom_driver.c ****         uint8_t dummy;
- 178:External/eeprom_driver/Src/eeprom_driver.c ****     } set_addr_cmd = { .addr = addr, .dummy = 0xff };
- 228              		.loc 1 178 7 is_stmt 0 view .LVU42
- 229 0006 ADF80400 		strh	r0, [sp, #4]	@ movhi
- 230 000a FF23     		movs	r3, #255
- 231 000c 8DF80630 		strb	r3, [sp, #6]
+ 159:External/eeprom_driver/Src/eeprom_driver.c ****     // // Divide the data into parts of 64 bytes 
+ 160:External/eeprom_driver/Src/eeprom_driver.c ****     // // (more than that cannot be written)
+ 161:External/eeprom_driver/Src/eeprom_driver.c ****     // // (ATMEL AT24C8C128 datasheet pg. 7)
+ 162:External/eeprom_driver/Src/eeprom_driver.c ****     // eeprom_status status = EEPROM_OK;
+ 163:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 164:External/eeprom_driver/Src/eeprom_driver.c ****     // // The data word address lower 6 bits are internally incremented
+ 165:External/eeprom_driver/Src/eeprom_driver.c ****     // // following the receipt of each data word
+ 166:External/eeprom_driver/Src/eeprom_driver.c ****     // // (ATMEL AT24C8C128 datasheet pg. 7)
+ 167:External/eeprom_driver/Src/eeprom_driver.c ****     // // uint16_t num_of_remaining_bytes = 0x3f - (addr & 0x3f);
+ 168:External/eeprom_driver/Src/eeprom_driver.c ****     // // memcpy((uint8_t*)&sent_page.data, data, num_of_remaining_bytes);
+ 169:External/eeprom_driver/Src/eeprom_driver.c ****     // // status |= eeprom_io_write((uint8_t*)&sent_page, num_of_remaining_bytes + 2);
+ 170:External/eeprom_driver/Src/eeprom_driver.c ****     // // eeprom_delay(WRITE_CYCLE_TIMEOUT);
+ 171:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 172:External/eeprom_driver/Src/eeprom_driver.c ****     // uint16_t remaining_bytes = get_num_of_start_remaining_bytes(addr, size);
+ 173:External/eeprom_driver/Src/eeprom_driver.c ****     // status |= send_page(
+ 174:External/eeprom_driver/Src/eeprom_driver.c ****     //     current_addr, current_data_ptr, remaining_bytes, (uint8_t*)&sent_page
+ 175:External/eeprom_driver/Src/eeprom_driver.c ****     // );
+ 176:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 177:External/eeprom_driver/Src/eeprom_driver.c ****     // if (remaining_bytes == size)
+ 178:External/eeprom_driver/Src/eeprom_driver.c ****     
  179:External/eeprom_driver/Src/eeprom_driver.c **** 
- 180:External/eeprom_driver/Src/eeprom_driver.c ****     eeprom_status status = eeprom_io_write(
- 232              		.loc 1 180 5 is_stmt 1 view .LVU43
- 233              		.loc 1 180 28 is_stmt 0 view .LVU44
- 234 0010 0421     		movs	r1, #4
- 235              	.LVL17:
- 236              		.loc 1 180 28 view .LVU45
- 237 0012 0DEB0100 		add	r0, sp, r1
- 238              	.LVL18:
- 239              		.loc 1 180 28 view .LVU46
- 240 0016 FFF7FEFF 		bl	eeprom_io_write
- 241              	.LVL19:
- 242              		.loc 1 180 28 view .LVU47
- 243 001a 0446     		mov	r4, r0
- 244              	.LVL20:
- 181:External/eeprom_driver/Src/eeprom_driver.c ****         (uint8_t*)&set_addr_cmd,
- 182:External/eeprom_driver/Src/eeprom_driver.c ****         sizeof(set_addr_cmd)
- 183:External/eeprom_driver/Src/eeprom_driver.c ****     );
- 184:External/eeprom_driver/Src/eeprom_driver.c ****     status |= eeprom_io_read(data, 1);
- 245              		.loc 1 184 5 is_stmt 1 view .LVU48
- 246              		.loc 1 184 15 is_stmt 0 view .LVU49
- 247 001c 0121     		movs	r1, #1
- 248 001e 2846     		mov	r0, r5
- 249 0020 FFF7FEFF 		bl	eeprom_io_read
- 250              	.LVL21:
- 251              		.loc 1 184 12 discriminator 1 view .LVU50
- 252 0024 2043     		orrs	r0, r0, r4
- 253              	.LVL22:
- 185:External/eeprom_driver/Src/eeprom_driver.c **** 
- 186:External/eeprom_driver/Src/eeprom_driver.c ****     return status;
- 254              		.loc 1 186 5 is_stmt 1 view .LVU51
- 187:External/eeprom_driver/Src/eeprom_driver.c **** }
- 255              		.loc 1 187 1 is_stmt 0 view .LVU52
- 256 0026 C0B2     		uxtb	r0, r0
- 257              		.loc 1 187 1 view .LVU53
- 258 0028 03B0     		add	sp, sp, #12
- 259              	.LCFI8:
- 260              		.cfi_def_cfa_offset 12
- 261              		@ sp needed
- 262 002a 30BD     		pop	{r4, r5, pc}
- 263              		.loc 1 187 1 view .LVU54
- 264              		.cfi_endproc
- 265              	.LFE3:
- 267              		.section	.text.eeprom_sequential_read,"ax",%progbits
- 268              		.align	1
- 269              		.global	eeprom_sequential_read
- 270              		.syntax unified
- 271              		.thumb
- 272              		.thumb_func
- 274              	eeprom_sequential_read:
-ARM GAS  /tmp/ccuHymKT.s 			page 9
-
-
- 275              	.LVL23:
- 276              	.LFB4:
- 188:External/eeprom_driver/Src/eeprom_driver.c **** 
- 189:External/eeprom_driver/Src/eeprom_driver.c **** eeprom_status eeprom_sequential_read(
- 190:External/eeprom_driver/Src/eeprom_driver.c ****     uint8_t data
- 191:External/eeprom_driver/Src/eeprom_driver.c **** )
- 192:External/eeprom_driver/Src/eeprom_driver.c **** {
- 277              		.loc 1 192 1 is_stmt 1 view -0
- 278              		.cfi_startproc
- 279              		@ args = 0, pretend = 0, frame = 0
- 280              		@ frame_needed = 0, uses_anonymous_args = 0
- 281              		@ link register save eliminated.
- 193:External/eeprom_driver/Src/eeprom_driver.c ****     return EEPROM_OK;
- 282              		.loc 1 193 5 view .LVU56
- 194:External/eeprom_driver/Src/eeprom_driver.c **** }
- 283              		.loc 1 194 1 is_stmt 0 view .LVU57
- 284 0000 0020     		movs	r0, #0
- 285              	.LVL24:
- 286              		.loc 1 194 1 view .LVU58
- 287 0002 7047     		bx	lr
- 288              		.cfi_endproc
- 289              	.LFE4:
- 291              		.section	.text.eeprom_check_link,"ax",%progbits
- 292              		.align	1
- 293              		.global	eeprom_check_link
- 294              		.syntax unified
- 295              		.thumb
- 296              		.thumb_func
- 298              	eeprom_check_link:
- 299              	.LFB5:
- 195:External/eeprom_driver/Src/eeprom_driver.c **** 
- 196:External/eeprom_driver/Src/eeprom_driver.c **** eeprom_status eeprom_check_link(void)
- 197:External/eeprom_driver/Src/eeprom_driver.c **** {
- 300              		.loc 1 197 1 is_stmt 1 view -0
- 301              		.cfi_startproc
- 302              		@ args = 0, pretend = 0, frame = 0
- 303              		@ frame_needed = 0, uses_anonymous_args = 0
- 304 0000 38B5     		push	{r3, r4, r5, lr}
- 305              	.LCFI9:
- 306              		.cfi_def_cfa_offset 16
- 307              		.cfi_offset 3, -16
- 308              		.cfi_offset 4, -12
- 309              		.cfi_offset 5, -8
- 310              		.cfi_offset 14, -4
- 198:External/eeprom_driver/Src/eeprom_driver.c ****     static uint8_t data[] = { 0x0, 0x0, 0x55 };
- 311              		.loc 1 198 5 view .LVU60
- 199:External/eeprom_driver/Src/eeprom_driver.c ****     static uint8_t result = 0x0;
- 312              		.loc 1 199 5 view .LVU61
- 200:External/eeprom_driver/Src/eeprom_driver.c **** 
- 201:External/eeprom_driver/Src/eeprom_driver.c ****     eeprom_status status = eeprom_io_write(&data, sizeof(data));
- 313              		.loc 1 201 5 view .LVU62
- 314              		.loc 1 201 28 is_stmt 0 view .LVU63
- 315 0002 0321     		movs	r1, #3
- 316 0004 0D48     		ldr	r0, .L16
- 317 0006 FFF7FEFF 		bl	eeprom_io_write
- 318              	.LVL25:
- 319 000a 0446     		mov	r4, r0
-ARM GAS  /tmp/ccuHymKT.s 			page 10
-
-
- 320              	.LVL26:
- 202:External/eeprom_driver/Src/eeprom_driver.c ****     eeprom_delay(WRITE_CYCLE_TIMEOUT);
- 321              		.loc 1 202 5 is_stmt 1 view .LVU64
- 322 000c 1420     		movs	r0, #20
- 323 000e FFF7FEFF 		bl	eeprom_delay
- 324              	.LVL27:
- 203:External/eeprom_driver/Src/eeprom_driver.c ****     
- 204:External/eeprom_driver/Src/eeprom_driver.c ****     if (status)
- 325              		.loc 1 204 5 view .LVU65
- 326              		.loc 1 204 8 is_stmt 0 view .LVU66
- 327 0012 0CB1     		cbz	r4, .L15
- 328              	.L13:
- 329              	.LVL28:
- 205:External/eeprom_driver/Src/eeprom_driver.c ****         return status;
+ 180:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 181:External/eeprom_driver/Src/eeprom_driver.c ****     // uint16_t offset = size % 64;
+ 182:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 183:External/eeprom_driver/Src/eeprom_driver.c ****     // // Send the partial page first and align the data
+ 184:External/eeprom_driver/Src/eeprom_driver.c ****     // if (offset != 0)
+ 185:External/eeprom_driver/Src/eeprom_driver.c ****     // {
+ 186:External/eeprom_driver/Src/eeprom_driver.c ****     //     memcpy(
+ 187:External/eeprom_driver/Src/eeprom_driver.c ****     //         (uint8_t*)&sent_page.data + num_of_remaining_bytes,
+ 188:External/eeprom_driver/Src/eeprom_driver.c ****     //         data,
+ 189:External/eeprom_driver/Src/eeprom_driver.c ****     //         offset
+ 190:External/eeprom_driver/Src/eeprom_driver.c ****     //     );
+ 191:External/eeprom_driver/Src/eeprom_driver.c ****     //     status |= eeprom_io_write((uint8_t*)&sent_page, offset + 2);
+ 192:External/eeprom_driver/Src/eeprom_driver.c ****     //     eeprom_delay(WRITE_CYCLE_TIMEOUT);
+ 193:External/eeprom_driver/Src/eeprom_driver.c ****     // }
+ 194:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 195:External/eeprom_driver/Src/eeprom_driver.c ****     // for (uint16_t i = 0; i < (size / 64); i++)
+ 196:External/eeprom_driver/Src/eeprom_driver.c ****     // {
+ 197:External/eeprom_driver/Src/eeprom_driver.c ****     //     memcpy(
+ 198:External/eeprom_driver/Src/eeprom_driver.c ****     //         (uint8_t*)&sent_page.data,
+ 199:External/eeprom_driver/Src/eeprom_driver.c ****     //         data + offset + (i * 64),
+ 200:External/eeprom_driver/Src/eeprom_driver.c ****     //         64
+ 201:External/eeprom_driver/Src/eeprom_driver.c ****     //     );
+ 202:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 203:External/eeprom_driver/Src/eeprom_driver.c ****     //     status |= eeprom_io_write((uint8_t*)&sent_page, 66);
+ 204:External/eeprom_driver/Src/eeprom_driver.c ****     //     eeprom_delay(WRITE_CYCLE_TIMEOUT);
+ 205:External/eeprom_driver/Src/eeprom_driver.c ****     // }
  206:External/eeprom_driver/Src/eeprom_driver.c **** 
- 207:External/eeprom_driver/Src/eeprom_driver.c ****     status = eeprom_io_write(&data, 2);
- 208:External/eeprom_driver/Src/eeprom_driver.c ****     status |= eeprom_io_read(&result, 1);
- 209:External/eeprom_driver/Src/eeprom_driver.c **** 
- 210:External/eeprom_driver/Src/eeprom_driver.c ****     if (result != 0x55)
- 211:External/eeprom_driver/Src/eeprom_driver.c ****         status |= EEPROM_ERROR;
- 212:External/eeprom_driver/Src/eeprom_driver.c ****     return status;
- 213:External/eeprom_driver/Src/eeprom_driver.c **** }
- 330              		.loc 1 213 1 view .LVU67
- 331 0014 2046     		mov	r0, r4
- 332 0016 38BD     		pop	{r3, r4, r5, pc}
- 333              	.LVL29:
- 334              	.L15:
- 207:External/eeprom_driver/Src/eeprom_driver.c ****     status |= eeprom_io_read(&result, 1);
- 335              		.loc 1 207 5 is_stmt 1 view .LVU68
- 207:External/eeprom_driver/Src/eeprom_driver.c ****     status |= eeprom_io_read(&result, 1);
- 336              		.loc 1 207 14 is_stmt 0 view .LVU69
- 337 0018 0221     		movs	r1, #2
- 338 001a 0848     		ldr	r0, .L16
- 339 001c FFF7FEFF 		bl	eeprom_io_write
- 340              	.LVL30:
- 341 0020 0446     		mov	r4, r0
- 342              	.LVL31:
- 208:External/eeprom_driver/Src/eeprom_driver.c **** 
- 343              		.loc 1 208 5 is_stmt 1 view .LVU70
- 208:External/eeprom_driver/Src/eeprom_driver.c **** 
- 344              		.loc 1 208 15 is_stmt 0 view .LVU71
- 345 0022 074D     		ldr	r5, .L16+4
- 346 0024 0121     		movs	r1, #1
- 347 0026 2846     		mov	r0, r5
- 348 0028 FFF7FEFF 		bl	eeprom_io_read
- 349              	.LVL32:
- 208:External/eeprom_driver/Src/eeprom_driver.c **** 
- 350              		.loc 1 208 12 discriminator 1 view .LVU72
- 351 002c 0443     		orrs	r4, r4, r0
- 352              	.LVL33:
- 208:External/eeprom_driver/Src/eeprom_driver.c **** 
- 353              		.loc 1 208 12 discriminator 1 view .LVU73
- 354 002e E4B2     		uxtb	r4, r4
- 355              	.LVL34:
- 210:External/eeprom_driver/Src/eeprom_driver.c ****         status |= EEPROM_ERROR;
- 356              		.loc 1 210 5 is_stmt 1 view .LVU74
- 210:External/eeprom_driver/Src/eeprom_driver.c ****         status |= EEPROM_ERROR;
-ARM GAS  /tmp/ccuHymKT.s 			page 11
+ 207:External/eeprom_driver/Src/eeprom_driver.c ****     uint16_t current_addr = addr;
+ 420              		.loc 1 207 5 is_stmt 1 view .LVU94
+ 421              		.loc 1 207 14 is_stmt 0 view .LVU95
+ARM GAS  /tmp/ccgCDWnC.s 			page 12
 
 
- 357              		.loc 1 210 16 is_stmt 0 view .LVU75
- 358 0030 2B78     		ldrb	r3, [r5]	@ zero_extendqisi2
- 210:External/eeprom_driver/Src/eeprom_driver.c ****         status |= EEPROM_ERROR;
- 359              		.loc 1 210 8 view .LVU76
- 360 0032 552B     		cmp	r3, #85
- 361 0034 EED0     		beq	.L13
- 211:External/eeprom_driver/Src/eeprom_driver.c ****     return status;
- 362              		.loc 1 211 9 is_stmt 1 view .LVU77
- 211:External/eeprom_driver/Src/eeprom_driver.c ****     return status;
- 363              		.loc 1 211 16 is_stmt 0 view .LVU78
- 364 0036 44F00104 		orr	r4, r4, #1
- 365              	.LVL35:
- 211:External/eeprom_driver/Src/eeprom_driver.c ****     return status;
- 366              		.loc 1 211 16 view .LVU79
- 367 003a EBE7     		b	.L13
- 368              	.L17:
- 369              		.align	2
- 370              	.L16:
- 371 003c 00000000 		.word	data.1
- 372 0040 00000000 		.word	result.0
- 373              		.cfi_endproc
- 374              	.LFE5:
- 376              		.section	.bss.result.0,"aw",%nobits
- 379              	result.0:
- 380 0000 00       		.space	1
- 381              		.section	.data.data.1,"aw"
- 382              		.align	2
- 385              	data.1:
- 386 0000 000055   		.ascii	"\000\000U"
- 387              		.text
- 388              	.Letext0:
- 389              		.file 2 "/usr/local/src/arm-gnu-toolchain-13.2/arm-none-eabi/include/machine/_default_types.h"
- 390              		.file 3 "/usr/local/src/arm-gnu-toolchain-13.2/arm-none-eabi/include/sys/_stdint.h"
- 391              		.file 4 "External/eeprom_driver/Inc/eeprom_defs.h"
- 392              		.file 5 "External/eeprom_driver/Inc/eeprom_io.h"
- 393              		.file 6 "External/eeprom_driver/Inc/eeprom_time.h"
-ARM GAS  /tmp/ccuHymKT.s 			page 12
+ 422 0004 ADF85600 		strh	r0, [sp, #86]	@ movhi
+ 208:External/eeprom_driver/Src/eeprom_driver.c ****     uint8_t *current_data_ptr = (uint8_t*)data;
+ 423              		.loc 1 208 5 is_stmt 1 view .LVU96
+ 424              		.loc 1 208 14 is_stmt 0 view .LVU97
+ 425 0008 1491     		str	r1, [sp, #80]
+ 209:External/eeprom_driver/Src/eeprom_driver.c ****     uint16_t remaining_size = size;
+ 426              		.loc 1 209 5 is_stmt 1 view .LVU98
+ 427              		.loc 1 209 14 is_stmt 0 view .LVU99
+ 428 000a ADF84E20 		strh	r2, [sp, #78]	@ movhi
+ 210:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 211:External/eeprom_driver/Src/eeprom_driver.c ****     // struct 
+ 212:External/eeprom_driver/Src/eeprom_driver.c ****     // {
+ 213:External/eeprom_driver/Src/eeprom_driver.c ****     //     uint16_t addr;
+ 214:External/eeprom_driver/Src/eeprom_driver.c ****     //     uint8_t data[64];
+ 215:External/eeprom_driver/Src/eeprom_driver.c ****     // } sent_page;
+ 216:External/eeprom_driver/Src/eeprom_driver.c ****     uint8_t buffer[66];
+ 429              		.loc 1 216 5 is_stmt 1 view .LVU100
+ 217:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 218:External/eeprom_driver/Src/eeprom_driver.c ****     // Divide the data into parts of 64 bytes 
+ 219:External/eeprom_driver/Src/eeprom_driver.c ****     // (more than that cannot be written)
+ 220:External/eeprom_driver/Src/eeprom_driver.c ****     // (ATMEL AT24C8C128 datasheet pg. 7)
+ 221:External/eeprom_driver/Src/eeprom_driver.c ****     eeprom_status status = EEPROM_OK;
+ 430              		.loc 1 221 5 view .LVU101
+ 431              	.LVL39:
+ 222:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 223:External/eeprom_driver/Src/eeprom_driver.c ****     // The data word address lower 6 bits are internally incremented
+ 224:External/eeprom_driver/Src/eeprom_driver.c ****     // following the receipt of each data word
+ 225:External/eeprom_driver/Src/eeprom_driver.c ****     // (ATMEL AT24C8C128 datasheet pg. 7)
+ 226:External/eeprom_driver/Src/eeprom_driver.c ****     // uint16_t num_of_remaining_bytes = 0x3f - (addr & 0x3f);
+ 227:External/eeprom_driver/Src/eeprom_driver.c ****     // memcpy((uint8_t*)&sent_page.data, data, num_of_remaining_bytes);
+ 228:External/eeprom_driver/Src/eeprom_driver.c ****     // status |= eeprom_io_write((uint8_t*)&sent_page, num_of_remaining_bytes + 2);
+ 229:External/eeprom_driver/Src/eeprom_driver.c ****     // eeprom_delay(WRITE_CYCLE_TIMEOUT);
+ 230:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 231:External/eeprom_driver/Src/eeprom_driver.c ****     status |= send_start_bytes(
+ 432              		.loc 1 231 5 view .LVU102
+ 433              		.loc 1 231 15 is_stmt 0 view .LVU103
+ 434 000e 03AB     		add	r3, sp, #12
+ 435 0010 0093     		str	r3, [sp]
+ 436 0012 0DF14E03 		add	r3, sp, #78
+ 437 0016 14A9     		add	r1, sp, #80
+ 438              	.LVL40:
+ 439              		.loc 1 231 15 view .LVU104
+ 440 0018 0DF15600 		add	r0, sp, #86
+ 441              	.LVL41:
+ 442              		.loc 1 231 15 view .LVU105
+ 443 001c FFF7FEFF 		bl	send_start_bytes
+ 444              	.LVL42:
+ 445              		.loc 1 231 15 view .LVU106
+ 446 0020 0546     		mov	r5, r0
+ 447              	.LVL43:
+ 232:External/eeprom_driver/Src/eeprom_driver.c ****         &current_addr,
+ 233:External/eeprom_driver/Src/eeprom_driver.c ****         &current_data_ptr,
+ 234:External/eeprom_driver/Src/eeprom_driver.c ****         size,
+ 235:External/eeprom_driver/Src/eeprom_driver.c ****         &remaining_size,
+ 236:External/eeprom_driver/Src/eeprom_driver.c ****         buffer
+ 237:External/eeprom_driver/Src/eeprom_driver.c ****     );
+ 238:External/eeprom_driver/Src/eeprom_driver.c ****     
+ARM GAS  /tmp/ccgCDWnC.s 			page 13
+
+
+ 239:External/eeprom_driver/Src/eeprom_driver.c ****     if (remaining_size == 0)
+ 448              		.loc 1 239 5 is_stmt 1 view .LVU107
+ 449              		.loc 1 239 24 is_stmt 0 view .LVU108
+ 450 0022 BDF84E30 		ldrh	r3, [sp, #78]
+ 451              		.loc 1 239 8 view .LVU109
+ 452 0026 13B9     		cbnz	r3, .L22
+ 453              	.L18:
+ 240:External/eeprom_driver/Src/eeprom_driver.c ****         return status;
+ 241:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 242:External/eeprom_driver/Src/eeprom_driver.c ****     // uint16_t offset = size % 64;
+ 243:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 244:External/eeprom_driver/Src/eeprom_driver.c ****     // // Send the partial page first and align the data
+ 245:External/eeprom_driver/Src/eeprom_driver.c ****     // if (offset != 0)
+ 246:External/eeprom_driver/Src/eeprom_driver.c ****     // {
+ 247:External/eeprom_driver/Src/eeprom_driver.c ****     //     memcpy(
+ 248:External/eeprom_driver/Src/eeprom_driver.c ****     //         (uint8_t*)&sent_page.data + num_of_remaining_bytes,
+ 249:External/eeprom_driver/Src/eeprom_driver.c ****     //         data,
+ 250:External/eeprom_driver/Src/eeprom_driver.c ****     //         offset
+ 251:External/eeprom_driver/Src/eeprom_driver.c ****     //     );
+ 252:External/eeprom_driver/Src/eeprom_driver.c ****     //     status |= eeprom_io_write((uint8_t*)&sent_page, offset + 2);
+ 253:External/eeprom_driver/Src/eeprom_driver.c ****     //     eeprom_delay(WRITE_CYCLE_TIMEOUT);
+ 254:External/eeprom_driver/Src/eeprom_driver.c ****     // }
+ 255:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 256:External/eeprom_driver/Src/eeprom_driver.c ****     status |= send_offset_bytes(
+ 257:External/eeprom_driver/Src/eeprom_driver.c ****         &current_addr,
+ 258:External/eeprom_driver/Src/eeprom_driver.c ****         &current_data_ptr,
+ 259:External/eeprom_driver/Src/eeprom_driver.c ****         &remaining_size,
+ 260:External/eeprom_driver/Src/eeprom_driver.c ****         buffer
+ 261:External/eeprom_driver/Src/eeprom_driver.c ****     );
+ 262:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 263:External/eeprom_driver/Src/eeprom_driver.c ****     for (uint16_t i = 0; i < (remaining_size / 64); i++)
+ 264:External/eeprom_driver/Src/eeprom_driver.c ****     {
+ 265:External/eeprom_driver/Src/eeprom_driver.c ****         // memcpy(
+ 266:External/eeprom_driver/Src/eeprom_driver.c ****         //     (uint8_t*)&sent_page.data,
+ 267:External/eeprom_driver/Src/eeprom_driver.c ****         //     data + offset + (i * 64),
+ 268:External/eeprom_driver/Src/eeprom_driver.c ****         //     64
+ 269:External/eeprom_driver/Src/eeprom_driver.c ****         // );
+ 270:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 271:External/eeprom_driver/Src/eeprom_driver.c ****         // status |= eeprom_io_write((uint8_t*)&sent_page, 66);
+ 272:External/eeprom_driver/Src/eeprom_driver.c ****         // eeprom_delay(WRITE_CYCLE_TIMEOUT);
+ 273:External/eeprom_driver/Src/eeprom_driver.c ****         send_page(
+ 274:External/eeprom_driver/Src/eeprom_driver.c ****             current_addr,
+ 275:External/eeprom_driver/Src/eeprom_driver.c ****             current_data_ptr,
+ 276:External/eeprom_driver/Src/eeprom_driver.c ****             64,
+ 277:External/eeprom_driver/Src/eeprom_driver.c ****             buffer
+ 278:External/eeprom_driver/Src/eeprom_driver.c ****         );
+ 279:External/eeprom_driver/Src/eeprom_driver.c ****         current_addr += 64;
+ 280:External/eeprom_driver/Src/eeprom_driver.c ****         current_data_ptr += 64;
+ 281:External/eeprom_driver/Src/eeprom_driver.c ****     }
+ 282:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 283:External/eeprom_driver/Src/eeprom_driver.c ****     return status;
+ 284:External/eeprom_driver/Src/eeprom_driver.c **** }
+ 454              		.loc 1 284 1 view .LVU110
+ 455 0028 2846     		mov	r0, r5
+ 456 002a 17B0     		add	sp, sp, #92
+ 457              	.LCFI11:
+ 458              		.cfi_remember_state
+ARM GAS  /tmp/ccgCDWnC.s 			page 14
+
+
+ 459              		.cfi_def_cfa_offset 12
+ 460              		@ sp needed
+ 461 002c 30BD     		pop	{r4, r5, pc}
+ 462              	.LVL44:
+ 463              	.L22:
+ 464              	.LCFI12:
+ 465              		.cfi_restore_state
+ 256:External/eeprom_driver/Src/eeprom_driver.c ****         &current_addr,
+ 466              		.loc 1 256 5 is_stmt 1 view .LVU111
+ 256:External/eeprom_driver/Src/eeprom_driver.c ****         &current_addr,
+ 467              		.loc 1 256 15 is_stmt 0 view .LVU112
+ 468 002e 03AB     		add	r3, sp, #12
+ 469 0030 0DF14E02 		add	r2, sp, #78
+ 470 0034 14A9     		add	r1, sp, #80
+ 471 0036 0DF15600 		add	r0, sp, #86
+ 472 003a FFF7FEFF 		bl	send_offset_bytes
+ 473              	.LVL45:
+ 256:External/eeprom_driver/Src/eeprom_driver.c ****         &current_addr,
+ 474              		.loc 1 256 12 discriminator 1 view .LVU113
+ 475 003e 2843     		orrs	r0, r0, r5
+ 476 0040 C5B2     		uxtb	r5, r0
+ 477              	.LVL46:
+ 263:External/eeprom_driver/Src/eeprom_driver.c ****     {
+ 478              		.loc 1 263 5 is_stmt 1 view .LVU114
+ 479              	.LBB2:
+ 263:External/eeprom_driver/Src/eeprom_driver.c ****     {
+ 480              		.loc 1 263 10 view .LVU115
+ 263:External/eeprom_driver/Src/eeprom_driver.c ****     {
+ 481              		.loc 1 263 19 is_stmt 0 view .LVU116
+ 482 0042 0024     		movs	r4, #0
+ 263:External/eeprom_driver/Src/eeprom_driver.c ****     {
+ 483              		.loc 1 263 5 view .LVU117
+ 484 0044 10E0     		b	.L19
+ 485              	.LVL47:
+ 486              	.L20:
+ 273:External/eeprom_driver/Src/eeprom_driver.c ****             current_addr,
+ 487              		.loc 1 273 9 is_stmt 1 view .LVU118
+ 488 0046 03AB     		add	r3, sp, #12
+ 489 0048 4022     		movs	r2, #64
+ 490 004a 1499     		ldr	r1, [sp, #80]
+ 491 004c BDF85600 		ldrh	r0, [sp, #86]
+ 492 0050 FFF7FEFF 		bl	send_page
+ 493              	.LVL48:
+ 279:External/eeprom_driver/Src/eeprom_driver.c ****         current_data_ptr += 64;
+ 494              		.loc 1 279 9 view .LVU119
+ 279:External/eeprom_driver/Src/eeprom_driver.c ****         current_data_ptr += 64;
+ 495              		.loc 1 279 22 is_stmt 0 view .LVU120
+ 496 0054 BDF85630 		ldrh	r3, [sp, #86]
+ 497 0058 4033     		adds	r3, r3, #64
+ 498 005a ADF85630 		strh	r3, [sp, #86]	@ movhi
+ 280:External/eeprom_driver/Src/eeprom_driver.c ****     }
+ 499              		.loc 1 280 9 is_stmt 1 view .LVU121
+ 280:External/eeprom_driver/Src/eeprom_driver.c ****     }
+ 500              		.loc 1 280 26 is_stmt 0 view .LVU122
+ 501 005e 149B     		ldr	r3, [sp, #80]
+ 502 0060 4033     		adds	r3, r3, #64
+ 503 0062 1493     		str	r3, [sp, #80]
+ARM GAS  /tmp/ccgCDWnC.s 			page 15
+
+
+ 263:External/eeprom_driver/Src/eeprom_driver.c ****     {
+ 504              		.loc 1 263 54 is_stmt 1 discriminator 3 view .LVU123
+ 505 0064 0134     		adds	r4, r4, #1
+ 506              	.LVL49:
+ 263:External/eeprom_driver/Src/eeprom_driver.c ****     {
+ 507              		.loc 1 263 54 is_stmt 0 discriminator 3 view .LVU124
+ 508 0066 A4B2     		uxth	r4, r4
+ 509              	.LVL50:
+ 510              	.L19:
+ 263:External/eeprom_driver/Src/eeprom_driver.c ****     {
+ 511              		.loc 1 263 28 is_stmt 1 discriminator 1 view .LVU125
+ 512 0068 BDF84E30 		ldrh	r3, [sp, #78]
+ 513 006c B4EB931F 		cmp	r4, r3, lsr #6
+ 514 0070 E9D3     		bcc	.L20
+ 515 0072 D9E7     		b	.L18
+ 516              	.LBE2:
+ 517              		.cfi_endproc
+ 518              	.LFE7:
+ 520              		.section	.text.eeprom_current_address_read,"ax",%progbits
+ 521              		.align	1
+ 522              		.global	eeprom_current_address_read
+ 523              		.syntax unified
+ 524              		.thumb
+ 525              		.thumb_func
+ 527              	eeprom_current_address_read:
+ 528              	.LVL51:
+ 529              	.LFB8:
+ 285:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 286:External/eeprom_driver/Src/eeprom_driver.c **** eeprom_status eeprom_current_address_read(
+ 287:External/eeprom_driver/Src/eeprom_driver.c ****     uint8_t *const data
+ 288:External/eeprom_driver/Src/eeprom_driver.c **** )
+ 289:External/eeprom_driver/Src/eeprom_driver.c **** {
+ 530              		.loc 1 289 1 view -0
+ 531              		.cfi_startproc
+ 532              		@ args = 0, pretend = 0, frame = 0
+ 533              		@ frame_needed = 0, uses_anonymous_args = 0
+ 534              		.loc 1 289 1 is_stmt 0 view .LVU127
+ 535 0000 08B5     		push	{r3, lr}
+ 536              	.LCFI13:
+ 537              		.cfi_def_cfa_offset 8
+ 538              		.cfi_offset 3, -8
+ 539              		.cfi_offset 14, -4
+ 290:External/eeprom_driver/Src/eeprom_driver.c ****     return eeprom_io_read(data, 1);
+ 540              		.loc 1 290 5 is_stmt 1 view .LVU128
+ 541              		.loc 1 290 12 is_stmt 0 view .LVU129
+ 542 0002 0121     		movs	r1, #1
+ 543 0004 FFF7FEFF 		bl	eeprom_io_read
+ 544              	.LVL52:
+ 291:External/eeprom_driver/Src/eeprom_driver.c **** }
+ 545              		.loc 1 291 1 view .LVU130
+ 546 0008 08BD     		pop	{r3, pc}
+ 547              		.cfi_endproc
+ 548              	.LFE8:
+ 550              		.section	.text.eeprom_random_byte_read,"ax",%progbits
+ 551              		.align	1
+ 552              		.global	eeprom_random_byte_read
+ 553              		.syntax unified
+ARM GAS  /tmp/ccgCDWnC.s 			page 16
+
+
+ 554              		.thumb
+ 555              		.thumb_func
+ 557              	eeprom_random_byte_read:
+ 558              	.LVL53:
+ 559              	.LFB9:
+ 292:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 293:External/eeprom_driver/Src/eeprom_driver.c **** eeprom_status eeprom_random_byte_read(
+ 294:External/eeprom_driver/Src/eeprom_driver.c ****     const uint16_t addr,
+ 295:External/eeprom_driver/Src/eeprom_driver.c ****     uint8_t *const data
+ 296:External/eeprom_driver/Src/eeprom_driver.c **** )
+ 297:External/eeprom_driver/Src/eeprom_driver.c **** {
+ 560              		.loc 1 297 1 is_stmt 1 view -0
+ 561              		.cfi_startproc
+ 562              		@ args = 0, pretend = 0, frame = 0
+ 563              		@ frame_needed = 0, uses_anonymous_args = 0
+ 564              		.loc 1 297 1 is_stmt 0 view .LVU132
+ 565 0000 38B5     		push	{r3, r4, r5, lr}
+ 566              	.LCFI14:
+ 567              		.cfi_def_cfa_offset 16
+ 568              		.cfi_offset 3, -16
+ 569              		.cfi_offset 4, -12
+ 570              		.cfi_offset 5, -8
+ 571              		.cfi_offset 14, -4
+ 572 0002 0D46     		mov	r5, r1
+ 298:External/eeprom_driver/Src/eeprom_driver.c ****     eeprom_status status = eeprom_addr_write(addr);
+ 573              		.loc 1 298 5 is_stmt 1 view .LVU133
+ 574              		.loc 1 298 28 is_stmt 0 view .LVU134
+ 575 0004 FFF7FEFF 		bl	eeprom_addr_write
+ 576              	.LVL54:
+ 577              		.loc 1 298 28 view .LVU135
+ 578 0008 0446     		mov	r4, r0
+ 579              	.LVL55:
+ 299:External/eeprom_driver/Src/eeprom_driver.c ****     status |= eeprom_io_read(data, 1);
+ 580              		.loc 1 299 5 is_stmt 1 view .LVU136
+ 581              		.loc 1 299 15 is_stmt 0 view .LVU137
+ 582 000a 0121     		movs	r1, #1
+ 583 000c 2846     		mov	r0, r5
+ 584 000e FFF7FEFF 		bl	eeprom_io_read
+ 585              	.LVL56:
+ 586              		.loc 1 299 12 discriminator 1 view .LVU138
+ 587 0012 2043     		orrs	r0, r0, r4
+ 588              	.LVL57:
+ 300:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 301:External/eeprom_driver/Src/eeprom_driver.c ****     return status;
+ 589              		.loc 1 301 5 is_stmt 1 view .LVU139
+ 302:External/eeprom_driver/Src/eeprom_driver.c **** }
+ 590              		.loc 1 302 1 is_stmt 0 view .LVU140
+ 591 0014 C0B2     		uxtb	r0, r0
+ 592              		.loc 1 302 1 view .LVU141
+ 593 0016 38BD     		pop	{r3, r4, r5, pc}
+ 594              		.loc 1 302 1 view .LVU142
+ 595              		.cfi_endproc
+ 596              	.LFE9:
+ 598              		.section	.text.eeprom_sequential_read,"ax",%progbits
+ 599              		.align	1
+ 600              		.global	eeprom_sequential_read
+ 601              		.syntax unified
+ARM GAS  /tmp/ccgCDWnC.s 			page 17
+
+
+ 602              		.thumb
+ 603              		.thumb_func
+ 605              	eeprom_sequential_read:
+ 606              	.LVL58:
+ 607              	.LFB10:
+ 303:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 304:External/eeprom_driver/Src/eeprom_driver.c **** // Before this function you need to specify the address with another command
+ 305:External/eeprom_driver/Src/eeprom_driver.c **** eeprom_status eeprom_sequential_read(
+ 306:External/eeprom_driver/Src/eeprom_driver.c ****     uint8_t *const data,
+ 307:External/eeprom_driver/Src/eeprom_driver.c ****     const uint16_t size
+ 308:External/eeprom_driver/Src/eeprom_driver.c **** )
+ 309:External/eeprom_driver/Src/eeprom_driver.c **** {
+ 608              		.loc 1 309 1 is_stmt 1 view -0
+ 609              		.cfi_startproc
+ 610              		@ args = 0, pretend = 0, frame = 0
+ 611              		@ frame_needed = 0, uses_anonymous_args = 0
+ 612              		.loc 1 309 1 is_stmt 0 view .LVU144
+ 613 0000 08B5     		push	{r3, lr}
+ 614              	.LCFI15:
+ 615              		.cfi_def_cfa_offset 8
+ 616              		.cfi_offset 3, -8
+ 617              		.cfi_offset 14, -4
+ 310:External/eeprom_driver/Src/eeprom_driver.c ****     return eeprom_io_read(data, size);
+ 618              		.loc 1 310 5 is_stmt 1 view .LVU145
+ 619              		.loc 1 310 12 is_stmt 0 view .LVU146
+ 620 0002 C9B2     		uxtb	r1, r1
+ 621              	.LVL59:
+ 622              		.loc 1 310 12 view .LVU147
+ 623 0004 FFF7FEFF 		bl	eeprom_io_read
+ 624              	.LVL60:
+ 311:External/eeprom_driver/Src/eeprom_driver.c **** }
+ 625              		.loc 1 311 1 view .LVU148
+ 626 0008 08BD     		pop	{r3, pc}
+ 627              		.cfi_endproc
+ 628              	.LFE10:
+ 630              		.section	.text.eeprom_check_link,"ax",%progbits
+ 631              		.align	1
+ 632              		.global	eeprom_check_link
+ 633              		.syntax unified
+ 634              		.thumb
+ 635              		.thumb_func
+ 637              	eeprom_check_link:
+ 638              	.LFB11:
+ 312:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 313:External/eeprom_driver/Src/eeprom_driver.c **** eeprom_status eeprom_check_link(void)
+ 314:External/eeprom_driver/Src/eeprom_driver.c **** {
+ 639              		.loc 1 314 1 is_stmt 1 view -0
+ 640              		.cfi_startproc
+ 641              		@ args = 0, pretend = 0, frame = 0
+ 642              		@ frame_needed = 0, uses_anonymous_args = 0
+ 643 0000 38B5     		push	{r3, r4, r5, lr}
+ 644              	.LCFI16:
+ 645              		.cfi_def_cfa_offset 16
+ 646              		.cfi_offset 3, -16
+ 647              		.cfi_offset 4, -12
+ 648              		.cfi_offset 5, -8
+ 649              		.cfi_offset 14, -4
+ARM GAS  /tmp/ccgCDWnC.s 			page 18
+
+
+ 315:External/eeprom_driver/Src/eeprom_driver.c ****     static uint8_t data[] = { 0x0, 0x0, 0x55 };
+ 650              		.loc 1 315 5 view .LVU150
+ 316:External/eeprom_driver/Src/eeprom_driver.c ****     static uint8_t result = 0x0;
+ 651              		.loc 1 316 5 view .LVU151
+ 317:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 318:External/eeprom_driver/Src/eeprom_driver.c ****     eeprom_status status = eeprom_io_write(&data, sizeof(data));
+ 652              		.loc 1 318 5 view .LVU152
+ 653              		.loc 1 318 28 is_stmt 0 view .LVU153
+ 654 0002 0321     		movs	r1, #3
+ 655 0004 0D48     		ldr	r0, .L33
+ 656 0006 FFF7FEFF 		bl	eeprom_io_write
+ 657              	.LVL61:
+ 658 000a 0446     		mov	r4, r0
+ 659              	.LVL62:
+ 319:External/eeprom_driver/Src/eeprom_driver.c ****     eeprom_delay(WRITE_CYCLE_TIMEOUT);
+ 660              		.loc 1 319 5 is_stmt 1 view .LVU154
+ 661 000c 1420     		movs	r0, #20
+ 662 000e FFF7FEFF 		bl	eeprom_delay
+ 663              	.LVL63:
+ 320:External/eeprom_driver/Src/eeprom_driver.c ****     
+ 321:External/eeprom_driver/Src/eeprom_driver.c ****     if (status)
+ 664              		.loc 1 321 5 view .LVU155
+ 665              		.loc 1 321 8 is_stmt 0 view .LVU156
+ 666 0012 0CB1     		cbz	r4, .L32
+ 667              	.L30:
+ 668              	.LVL64:
+ 322:External/eeprom_driver/Src/eeprom_driver.c ****         return status;
+ 323:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 324:External/eeprom_driver/Src/eeprom_driver.c ****     status = eeprom_io_write(&data, 2);
+ 325:External/eeprom_driver/Src/eeprom_driver.c ****     status |= eeprom_io_read(&result, 1);
+ 326:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 327:External/eeprom_driver/Src/eeprom_driver.c ****     if (result != 0x55)
+ 328:External/eeprom_driver/Src/eeprom_driver.c ****         status |= EEPROM_ERROR;
+ 329:External/eeprom_driver/Src/eeprom_driver.c ****     return status;
+ 330:External/eeprom_driver/Src/eeprom_driver.c **** }
+ 669              		.loc 1 330 1 view .LVU157
+ 670 0014 2046     		mov	r0, r4
+ 671 0016 38BD     		pop	{r3, r4, r5, pc}
+ 672              	.LVL65:
+ 673              	.L32:
+ 324:External/eeprom_driver/Src/eeprom_driver.c ****     status |= eeprom_io_read(&result, 1);
+ 674              		.loc 1 324 5 is_stmt 1 view .LVU158
+ 324:External/eeprom_driver/Src/eeprom_driver.c ****     status |= eeprom_io_read(&result, 1);
+ 675              		.loc 1 324 14 is_stmt 0 view .LVU159
+ 676 0018 0221     		movs	r1, #2
+ 677 001a 0848     		ldr	r0, .L33
+ 678 001c FFF7FEFF 		bl	eeprom_io_write
+ 679              	.LVL66:
+ 680 0020 0446     		mov	r4, r0
+ 681              	.LVL67:
+ 325:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 682              		.loc 1 325 5 is_stmt 1 view .LVU160
+ 325:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 683              		.loc 1 325 15 is_stmt 0 view .LVU161
+ 684 0022 074D     		ldr	r5, .L33+4
+ 685 0024 0121     		movs	r1, #1
+ 686 0026 2846     		mov	r0, r5
+ARM GAS  /tmp/ccgCDWnC.s 			page 19
+
+
+ 687 0028 FFF7FEFF 		bl	eeprom_io_read
+ 688              	.LVL68:
+ 325:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 689              		.loc 1 325 12 discriminator 1 view .LVU162
+ 690 002c 0443     		orrs	r4, r4, r0
+ 691              	.LVL69:
+ 325:External/eeprom_driver/Src/eeprom_driver.c **** 
+ 692              		.loc 1 325 12 discriminator 1 view .LVU163
+ 693 002e E4B2     		uxtb	r4, r4
+ 694              	.LVL70:
+ 327:External/eeprom_driver/Src/eeprom_driver.c ****         status |= EEPROM_ERROR;
+ 695              		.loc 1 327 5 is_stmt 1 view .LVU164
+ 327:External/eeprom_driver/Src/eeprom_driver.c ****         status |= EEPROM_ERROR;
+ 696              		.loc 1 327 16 is_stmt 0 view .LVU165
+ 697 0030 2B78     		ldrb	r3, [r5]	@ zero_extendqisi2
+ 327:External/eeprom_driver/Src/eeprom_driver.c ****         status |= EEPROM_ERROR;
+ 698              		.loc 1 327 8 view .LVU166
+ 699 0032 552B     		cmp	r3, #85
+ 700 0034 EED0     		beq	.L30
+ 328:External/eeprom_driver/Src/eeprom_driver.c ****     return status;
+ 701              		.loc 1 328 9 is_stmt 1 view .LVU167
+ 328:External/eeprom_driver/Src/eeprom_driver.c ****     return status;
+ 702              		.loc 1 328 16 is_stmt 0 view .LVU168
+ 703 0036 44F00104 		orr	r4, r4, #1
+ 704              	.LVL71:
+ 328:External/eeprom_driver/Src/eeprom_driver.c ****     return status;
+ 705              		.loc 1 328 16 view .LVU169
+ 706 003a EBE7     		b	.L30
+ 707              	.L34:
+ 708              		.align	2
+ 709              	.L33:
+ 710 003c 00000000 		.word	data.1
+ 711 0040 00000000 		.word	result.0
+ 712              		.cfi_endproc
+ 713              	.LFE11:
+ 715              		.section	.bss.result.0,"aw",%nobits
+ 718              	result.0:
+ 719 0000 00       		.space	1
+ 720              		.section	.data.data.1,"aw"
+ 721              		.align	2
+ 724              	data.1:
+ 725 0000 000055   		.ascii	"\000\000U"
+ 726              		.text
+ 727              	.Letext0:
+ 728              		.file 2 "/usr/local/src/arm-gnu-toolchain-13.2/arm-none-eabi/include/machine/_default_types.h"
+ 729              		.file 3 "/usr/local/src/arm-gnu-toolchain-13.2/arm-none-eabi/include/sys/_stdint.h"
+ 730              		.file 4 "External/eeprom_driver/Inc/eeprom_defs.h"
+ 731              		.file 5 "/usr/local/src/arm-gnu-toolchain-13.2/lib/gcc/arm-none-eabi/13.2.1/include/stddef.h"
+ 732              		.file 6 "External/eeprom_driver/Inc/eeprom_io.h"
+ 733              		.file 7 "/usr/local/src/arm-gnu-toolchain-13.2/arm-none-eabi/include/string.h"
+ 734              		.file 8 "External/eeprom_driver/Inc/eeprom_time.h"
+ 735              		.file 9 "<built-in>"
+ARM GAS  /tmp/ccgCDWnC.s 			page 20
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 eeprom_driver.c
-     /tmp/ccuHymKT.s:19     .text.eeprom_byte_write:00000000 $t
-     /tmp/ccuHymKT.s:25     .text.eeprom_byte_write:00000000 eeprom_byte_write
-     /tmp/ccuHymKT.s:77     .text.eeprom_page_write:00000000 $t
-     /tmp/ccuHymKT.s:83     .text.eeprom_page_write:00000000 eeprom_page_write
-     /tmp/ccuHymKT.s:179    .text.eeprom_current_address_read:00000000 $t
-     /tmp/ccuHymKT.s:185    .text.eeprom_current_address_read:00000000 eeprom_current_address_read
-     /tmp/ccuHymKT.s:203    .text.eeprom_random_byte_read:00000000 $t
-     /tmp/ccuHymKT.s:209    .text.eeprom_random_byte_read:00000000 eeprom_random_byte_read
-     /tmp/ccuHymKT.s:268    .text.eeprom_sequential_read:00000000 $t
-     /tmp/ccuHymKT.s:274    .text.eeprom_sequential_read:00000000 eeprom_sequential_read
-     /tmp/ccuHymKT.s:292    .text.eeprom_check_link:00000000 $t
-     /tmp/ccuHymKT.s:298    .text.eeprom_check_link:00000000 eeprom_check_link
-     /tmp/ccuHymKT.s:371    .text.eeprom_check_link:0000003c $d
-     /tmp/ccuHymKT.s:385    .data.data.1:00000000 data.1
-     /tmp/ccuHymKT.s:379    .bss.result.0:00000000 result.0
-     /tmp/ccuHymKT.s:380    .bss.result.0:00000000 $d
-     /tmp/ccuHymKT.s:382    .data.data.1:00000000 $d
+     /tmp/ccgCDWnC.s:19     .text.invert_address:00000000 $t
+     /tmp/ccgCDWnC.s:24     .text.invert_address:00000000 invert_address
+     /tmp/ccgCDWnC.s:44     .text.get_num_of_start_remaining_bytes:00000000 $t
+     /tmp/ccgCDWnC.s:49     .text.get_num_of_start_remaining_bytes:00000000 get_num_of_start_remaining_bytes
+     /tmp/ccgCDWnC.s:87     .text.send_page:00000000 $t
+     /tmp/ccgCDWnC.s:92     .text.send_page:00000000 send_page
+     /tmp/ccgCDWnC.s:147    .text.send_start_bytes:00000000 $t
+     /tmp/ccgCDWnC.s:152    .text.send_start_bytes:00000000 send_start_bytes
+     /tmp/ccgCDWnC.s:219    .text.send_offset_bytes:00000000 $t
+     /tmp/ccgCDWnC.s:224    .text.send_offset_bytes:00000000 send_offset_bytes
+     /tmp/ccgCDWnC.s:296    .text.eeprom_addr_write:00000000 $t
+     /tmp/ccgCDWnC.s:302    .text.eeprom_addr_write:00000000 eeprom_addr_write
+     /tmp/ccgCDWnC.s:339    .text.eeprom_byte_write:00000000 $t
+     /tmp/ccgCDWnC.s:345    .text.eeprom_byte_write:00000000 eeprom_byte_write
+     /tmp/ccgCDWnC.s:397    .text.eeprom_page_write:00000000 $t
+     /tmp/ccgCDWnC.s:403    .text.eeprom_page_write:00000000 eeprom_page_write
+     /tmp/ccgCDWnC.s:521    .text.eeprom_current_address_read:00000000 $t
+     /tmp/ccgCDWnC.s:527    .text.eeprom_current_address_read:00000000 eeprom_current_address_read
+     /tmp/ccgCDWnC.s:551    .text.eeprom_random_byte_read:00000000 $t
+     /tmp/ccgCDWnC.s:557    .text.eeprom_random_byte_read:00000000 eeprom_random_byte_read
+     /tmp/ccgCDWnC.s:599    .text.eeprom_sequential_read:00000000 $t
+     /tmp/ccgCDWnC.s:605    .text.eeprom_sequential_read:00000000 eeprom_sequential_read
+     /tmp/ccgCDWnC.s:631    .text.eeprom_check_link:00000000 $t
+     /tmp/ccgCDWnC.s:637    .text.eeprom_check_link:00000000 eeprom_check_link
+     /tmp/ccgCDWnC.s:710    .text.eeprom_check_link:0000003c $d
+     /tmp/ccgCDWnC.s:724    .data.data.1:00000000 data.1
+     /tmp/ccgCDWnC.s:718    .bss.result.0:00000000 result.0
+     /tmp/ccgCDWnC.s:719    .bss.result.0:00000000 $d
+     /tmp/ccgCDWnC.s:721    .data.data.1:00000000 $d
 
 UNDEFINED SYMBOLS
+memcpy
 eeprom_io_write
 eeprom_delay
 eeprom_io_read
