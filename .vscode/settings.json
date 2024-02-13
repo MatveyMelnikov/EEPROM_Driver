@@ -12,5 +12,5 @@
         "eeprom_io.h": "c",
         "unity_fixture.h": "c"
     },
-    "cortex-debug.variableUseNaturalFormat": false
+    "cortex-debug.variableUseNaturalFormat": true
 }

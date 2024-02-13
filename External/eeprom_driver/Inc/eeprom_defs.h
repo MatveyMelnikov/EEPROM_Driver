@@ -1,15 +1,6 @@
 #ifndef EEPROM_DEFS_H
 #define EEPROM_DEFS_H
 
-// #define EEPROM_TIMEOUT 0x64U
-
-// typedef enum
-// {
-//     WRITE_TIMEOUT_1_8_V = 0x14U,
-//     WRITE_TIMEOUT_2_7_V = 0xaU,
-//     WRITE_TIMEOUT_5_V = 0xaU,
-// } EEPROM_write_cycle_time;
-
 enum
 {
     EEPROM_TIMEOUT = 0x64U

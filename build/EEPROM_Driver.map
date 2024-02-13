@@ -1505,7 +1505,7 @@ LOAD /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/t
                 0x08000000                g_pfnVectors
                 0x0800010c                        . = ALIGN (0x4)
 
-.text           0x0800010c     0x3c98
+.text           0x0800010c     0x3c68
                 0x0800010c                        . = ALIGN (0x4)
  *(.text)
  .text          0x0800010c       0x1c /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-setjmp.o)
@@ -1553,665 +1553,663 @@ LOAD /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/t
                 0x08000394       0x32 build/eeprom_driver.o
  .text.send_start_bytes
                 0x080003c6       0x3a build/eeprom_driver.o
- .text.send_offset_bytes
-                0x08000400       0x34 build/eeprom_driver.o
  .text.eeprom_addr_write
-                0x08000434       0x1c build/eeprom_driver.o
-                0x08000434                eeprom_addr_write
+                0x08000400       0x1c build/eeprom_driver.o
+                0x08000400                eeprom_addr_write
  .text.eeprom_byte_write
-                0x08000450       0x28 build/eeprom_driver.o
-                0x08000450                eeprom_byte_write
+                0x0800041c       0x28 build/eeprom_driver.o
+                0x0800041c                eeprom_byte_write
  .text.eeprom_page_write
-                0x08000478       0x74 build/eeprom_driver.o
-                0x08000478                eeprom_page_write
+                0x08000444       0x78 build/eeprom_driver.o
+                0x08000444                eeprom_page_write
  .text.eeprom_current_address_read
-                0x080004ec        0xa build/eeprom_driver.o
-                0x080004ec                eeprom_current_address_read
+                0x080004bc        0xa build/eeprom_driver.o
+                0x080004bc                eeprom_current_address_read
  .text.eeprom_random_byte_read
-                0x080004f6       0x18 build/eeprom_driver.o
-                0x080004f6                eeprom_random_byte_read
+                0x080004c6       0x18 build/eeprom_driver.o
+                0x080004c6                eeprom_random_byte_read
  .text.eeprom_sequential_read
-                0x0800050e        0xa build/eeprom_driver.o
-                0x0800050e                eeprom_sequential_read
+                0x080004de        0xa build/eeprom_driver.o
+                0x080004de                eeprom_sequential_read
  .text.eeprom_check_link
-                0x08000518       0x44 build/eeprom_driver.o
-                0x08000518                eeprom_check_link
+                0x080004e8       0x44 build/eeprom_driver.o
+                0x080004e8                eeprom_check_link
  .text.UnityPrintNumberUnsigned
-                0x0800055c       0x48 build/unity.o
-                0x0800055c                UnityPrintNumberUnsigned
+                0x0800052c       0x48 build/unity.o
+                0x0800052c                UnityPrintNumberUnsigned
  .text.UnityPrintNumber
-                0x080005a4       0x18 build/unity.o
-                0x080005a4                UnityPrintNumber
+                0x08000574       0x18 build/unity.o
+                0x08000574                UnityPrintNumber
  .text.UnityPrintNumberHex
-                0x080005bc       0x34 build/unity.o
-                0x080005bc                UnityPrintNumberHex
+                0x0800058c       0x34 build/unity.o
+                0x0800058c                UnityPrintNumberHex
  .text.UnityPrintChar
-                0x080005f0       0x50 build/unity.o
+                0x080005c0       0x50 build/unity.o
  .text.UnityPrint
-                0x08000640       0x18 build/unity.o
-                0x08000640                UnityPrint
+                0x08000610       0x18 build/unity.o
+                0x08000610                UnityPrint
  .text.UnityTestResultsBegin
-                0x08000658       0x30 build/unity.o
+                0x08000628       0x30 build/unity.o
  .text.UnityTestResultsFailBegin
-                0x08000688       0x24 build/unity.o
+                0x08000658       0x24 build/unity.o
  .text.UnityAddMsgIfSpecified
-                0x080006ac       0x50 build/unity.o
+                0x0800067c       0x50 build/unity.o
  .text.UnityPrintNumberByStyle
-                0x080006fc       0x92 build/unity.o
-                0x080006fc                UnityPrintNumberByStyle
- *fill*         0x0800078e        0x2 
+                0x080006cc       0x92 build/unity.o
+                0x080006cc                UnityPrintNumberByStyle
+ *fill*         0x0800075e        0x2 
  .text.UnityAssertEqualNumber
-                0x08000790       0x6c build/unity.o
-                0x08000790                UnityAssertEqualNumber
+                0x08000760       0x6c build/unity.o
+                0x08000760                UnityAssertEqualNumber
  .text.UnityBegin
-                0x080007fc       0x20 build/unity.o
-                0x080007fc                UnityBegin
+                0x080007cc       0x20 build/unity.o
+                0x080007cc                UnityBegin
  .text.UnityEnd
-                0x0800081c       0x94 build/unity.o
-                0x0800081c                UnityEnd
+                0x080007ec       0x94 build/unity.o
+                0x080007ec                UnityEnd
  .text.announceTestRun
-                0x080008b0       0x38 build/unity_fixture.o
+                0x08000880       0x38 build/unity_fixture.o
  .text.selected
-                0x080008e8       0x1a build/unity_fixture.o
- *fill*         0x08000902        0x2 
+                0x080008b8       0x1a build/unity_fixture.o
+ *fill*         0x080008d2        0x2 
  .text.testSelected
-                0x08000904       0x14 build/unity_fixture.o
+                0x080008d4       0x14 build/unity_fixture.o
  .text.groupSelected
-                0x08000918       0x14 build/unity_fixture.o
+                0x080008e8       0x14 build/unity_fixture.o
  .text.UnityPointer_Init
-                0x0800092c        0xc build/unity_fixture.o
-                0x0800092c                UnityPointer_Init
+                0x080008fc        0xc build/unity_fixture.o
+                0x080008fc                UnityPointer_Init
  .text.UnityPointer_UndoAllSets
-                0x08000938       0x28 build/unity_fixture.o
-                0x08000938                UnityPointer_UndoAllSets
+                0x08000908       0x28 build/unity_fixture.o
+                0x08000908                UnityPointer_UndoAllSets
  .text.UnityGetCommandLineOptions
-                0x08000960      0x23c build/unity_fixture.o
-                0x08000960                UnityGetCommandLineOptions
+                0x08000930      0x23c build/unity_fixture.o
+                0x08000930                UnityGetCommandLineOptions
  .text.UnityMain
-                0x08000b9c       0x50 build/unity_fixture.o
-                0x08000b9c                UnityMain
+                0x08000b6c       0x50 build/unity_fixture.o
+                0x08000b6c                UnityMain
  .text.UnityConcludeFixtureTest
-                0x08000bec       0x74 build/unity_fixture.o
-                0x08000bec                UnityConcludeFixtureTest
+                0x08000bbc       0x74 build/unity_fixture.o
+                0x08000bbc                UnityConcludeFixtureTest
  .text.UnityTestRunner
-                0x08000c60       0x98 build/unity_fixture.o
-                0x08000c60                UnityTestRunner
+                0x08000c30       0x98 build/unity_fixture.o
+                0x08000c30                UnityTestRunner
  .text.MX_GPIO_Init
-                0x08000cf8       0x30 build/target_tests.o
+                0x08000cc8       0x30 build/target_tests.o
  .text.run_all_tests
-                0x08000d28        0x8 build/target_tests.o
+                0x08000cf8        0x8 build/target_tests.o
  .text.unity_config_put_c
-                0x08000d30       0x20 build/target_tests.o
-                0x08000d30                unity_config_put_c
- .text._kill    0x08000d50        0x6 build/target_tests.o
-                0x08000d50                _kill
- .text._getpid  0x08000d56        0x4 build/target_tests.o
-                0x08000d56                _getpid
- .text._exit    0x08000d5a        0x2 build/target_tests.o
-                0x08000d5a                _exit
+                0x08000d00       0x20 build/target_tests.o
+                0x08000d00                unity_config_put_c
+ .text._kill    0x08000d20        0x6 build/target_tests.o
+                0x08000d20                _kill
+ .text._getpid  0x08000d26        0x4 build/target_tests.o
+                0x08000d26                _getpid
+ .text._exit    0x08000d2a        0x2 build/target_tests.o
+                0x08000d2a                _exit
  .text.Error_Handler
-                0x08000d5c        0x4 build/target_tests.o
-                0x08000d5c                Error_Handler
+                0x08000d2c        0x4 build/target_tests.o
+                0x08000d2c                Error_Handler
  .text.MX_I2C2_Init
-                0x08000d60       0x38 build/target_tests.o
+                0x08000d30       0x38 build/target_tests.o
  .text.MX_USART1_UART_Init
-                0x08000d98       0x34 build/target_tests.o
+                0x08000d68       0x34 build/target_tests.o
  .text.SystemClock_Config
-                0x08000dcc       0x52 build/target_tests.o
-                0x08000dcc                SystemClock_Config
- *fill*         0x08000e1e        0x2 
- .text.main     0x08000e20       0x28 build/target_tests.o
-                0x08000e20                main
+                0x08000d9c       0x52 build/target_tests.o
+                0x08000d9c                SystemClock_Config
+ *fill*         0x08000dee        0x2 
+ .text.main     0x08000df0       0x28 build/target_tests.o
+                0x08000df0                main
  .text.TEST_eeprom_driver_GROUP_RUNNER
-                0x08000e48       0x2c build/eeprom_test_runner.o
-                0x08000e48                TEST_eeprom_driver_GROUP_RUNNER
+                0x08000e18       0x2c build/eeprom_test_runner.o
+                0x08000e18                TEST_eeprom_driver_GROUP_RUNNER
  .text.TEST_eeprom_driver_SETUP
-                0x08000e74        0x2 build/eeprom_test.o
-                0x08000e74                TEST_eeprom_driver_SETUP
+                0x08000e44        0x2 build/eeprom_test.o
+                0x08000e44                TEST_eeprom_driver_SETUP
  .text.TEST_eeprom_driver_TEAR_DOWN
-                0x08000e76        0x2 build/eeprom_test.o
-                0x08000e76                TEST_eeprom_driver_TEAR_DOWN
+                0x08000e46        0x2 build/eeprom_test.o
+                0x08000e46                TEST_eeprom_driver_TEAR_DOWN
  .text.TEST_eeprom_driver_check_link_success_
-                0x08000e78       0x1e build/eeprom_test.o
-                0x08000e78                TEST_eeprom_driver_check_link_success_
+                0x08000e48       0x1e build/eeprom_test.o
+                0x08000e48                TEST_eeprom_driver_check_link_success_
  .text.check_data
-                0x08000e96       0x2a build/eeprom_test.o
+                0x08000e66       0x2a build/eeprom_test.o
  .text.TEST_eeprom_driver_random_write_and_read_byte_success_
-                0x08000ec0       0x4c build/eeprom_test.o
-                0x08000ec0                TEST_eeprom_driver_random_write_and_read_byte_success_
+                0x08000e90       0x4c build/eeprom_test.o
+                0x08000e90                TEST_eeprom_driver_random_write_and_read_byte_success_
  .text.TEST_eeprom_driver_current_address_read_byte_success_
-                0x08000f0c       0x4e build/eeprom_test.o
-                0x08000f0c                TEST_eeprom_driver_current_address_read_byte_success_
- *fill*         0x08000f5a        0x2 
+                0x08000edc       0x4e build/eeprom_test.o
+                0x08000edc                TEST_eeprom_driver_current_address_read_byte_success_
+ *fill*         0x08000f2a        0x2 
  .text.TEST_eeprom_driver_multiple_current_address_read_byte_success_
-                0x08000f5c       0x98 build/eeprom_test.o
-                0x08000f5c                TEST_eeprom_driver_multiple_current_address_read_byte_success_
+                0x08000f2c       0x98 build/eeprom_test.o
+                0x08000f2c                TEST_eeprom_driver_multiple_current_address_read_byte_success_
  .text.TEST_eeprom_driver_page_8_sequential_read_success_
-                0x08000ff4       0x64 build/eeprom_test.o
-                0x08000ff4                TEST_eeprom_driver_page_8_sequential_read_success_
+                0x08000fc4       0x64 build/eeprom_test.o
+                0x08000fc4                TEST_eeprom_driver_page_8_sequential_read_success_
  .text.TEST_eeprom_driver_page_68_sequential_read_success_
-                0x08001058       0x84 build/eeprom_test.o
-                0x08001058                TEST_eeprom_driver_page_68_sequential_read_success_
+                0x08001028       0x84 build/eeprom_test.o
+                0x08001028                TEST_eeprom_driver_page_68_sequential_read_success_
  .text.TEST_eeprom_driver_page_128_sequential_read_success_
-                0x080010dc       0xa0 build/eeprom_test.o
-                0x080010dc                TEST_eeprom_driver_page_128_sequential_read_success_
+                0x080010ac       0xa0 build/eeprom_test.o
+                0x080010ac                TEST_eeprom_driver_page_128_sequential_read_success_
  .text.TEST_eeprom_driver_page_8_write_success_
-                0x0800117c       0x6c build/eeprom_test.o
-                0x0800117c                TEST_eeprom_driver_page_8_write_success_
+                0x0800114c       0x6c build/eeprom_test.o
+                0x0800114c                TEST_eeprom_driver_page_8_write_success_
  .text.TEST_eeprom_driver_page_68_write_success_
-                0x080011e8       0x70 build/eeprom_test.o
-                0x080011e8                TEST_eeprom_driver_page_68_write_success_
+                0x080011b8       0x70 build/eeprom_test.o
+                0x080011b8                TEST_eeprom_driver_page_68_write_success_
  .text.TEST_eeprom_driver_page_128_write_success_
-                0x08001258       0x78 build/eeprom_test.o
-                0x08001258                TEST_eeprom_driver_page_128_write_success_
+                0x08001228       0x78 build/eeprom_test.o
+                0x08001228                TEST_eeprom_driver_page_128_write_success_
  .text.TEST_eeprom_driver_check_link_success_run
-                0x080012d0       0x44 build/eeprom_test.o
-                0x080012d0                TEST_eeprom_driver_check_link_success_run
+                0x080012a0       0x44 build/eeprom_test.o
+                0x080012a0                TEST_eeprom_driver_check_link_success_run
  .text.TEST_eeprom_driver_random_write_and_read_byte_success_run
-                0x08001314       0x44 build/eeprom_test.o
-                0x08001314                TEST_eeprom_driver_random_write_and_read_byte_success_run
+                0x080012e4       0x44 build/eeprom_test.o
+                0x080012e4                TEST_eeprom_driver_random_write_and_read_byte_success_run
  .text.TEST_eeprom_driver_current_address_read_byte_success_run
-                0x08001358       0x44 build/eeprom_test.o
-                0x08001358                TEST_eeprom_driver_current_address_read_byte_success_run
+                0x08001328       0x44 build/eeprom_test.o
+                0x08001328                TEST_eeprom_driver_current_address_read_byte_success_run
  .text.TEST_eeprom_driver_multiple_current_address_read_byte_success_run
-                0x0800139c       0x44 build/eeprom_test.o
-                0x0800139c                TEST_eeprom_driver_multiple_current_address_read_byte_success_run
+                0x0800136c       0x44 build/eeprom_test.o
+                0x0800136c                TEST_eeprom_driver_multiple_current_address_read_byte_success_run
  .text.TEST_eeprom_driver_page_8_sequential_read_success_run
-                0x080013e0       0x44 build/eeprom_test.o
-                0x080013e0                TEST_eeprom_driver_page_8_sequential_read_success_run
+                0x080013b0       0x44 build/eeprom_test.o
+                0x080013b0                TEST_eeprom_driver_page_8_sequential_read_success_run
  .text.TEST_eeprom_driver_page_68_sequential_read_success_run
-                0x08001424       0x44 build/eeprom_test.o
-                0x08001424                TEST_eeprom_driver_page_68_sequential_read_success_run
+                0x080013f4       0x44 build/eeprom_test.o
+                0x080013f4                TEST_eeprom_driver_page_68_sequential_read_success_run
  .text.TEST_eeprom_driver_page_128_sequential_read_success_run
-                0x08001468       0x44 build/eeprom_test.o
-                0x08001468                TEST_eeprom_driver_page_128_sequential_read_success_run
+                0x08001438       0x44 build/eeprom_test.o
+                0x08001438                TEST_eeprom_driver_page_128_sequential_read_success_run
  .text.TEST_eeprom_driver_page_8_write_success_run
-                0x080014ac       0x44 build/eeprom_test.o
-                0x080014ac                TEST_eeprom_driver_page_8_write_success_run
+                0x0800147c       0x44 build/eeprom_test.o
+                0x0800147c                TEST_eeprom_driver_page_8_write_success_run
  .text.TEST_eeprom_driver_page_68_write_success_run
-                0x080014f0       0x44 build/eeprom_test.o
-                0x080014f0                TEST_eeprom_driver_page_68_write_success_run
+                0x080014c0       0x44 build/eeprom_test.o
+                0x080014c0                TEST_eeprom_driver_page_68_write_success_run
  .text.TEST_eeprom_driver_page_128_write_success_run
-                0x08001534       0x44 build/eeprom_test.o
-                0x08001534                TEST_eeprom_driver_page_128_write_success_run
+                0x08001504       0x44 build/eeprom_test.o
+                0x08001504                TEST_eeprom_driver_page_128_write_success_run
  .text.eeprom_io_read
-                0x08001578       0x20 build/eeprom_io.o
-                0x08001578                eeprom_io_read
+                0x08001548       0x20 build/eeprom_io.o
+                0x08001548                eeprom_io_read
  .text.eeprom_io_write
-                0x08001598       0x20 build/eeprom_io.o
-                0x08001598                eeprom_io_write
+                0x08001568       0x20 build/eeprom_io.o
+                0x08001568                eeprom_io_write
  .text.eeprom_delay
-                0x080015b8        0x8 build/eeprom_time.o
-                0x080015b8                eeprom_delay
+                0x08001588        0x8 build/eeprom_time.o
+                0x08001588                eeprom_delay
  .text.NMI_Handler
-                0x080015c0        0x2 build/stm32f1xx_it.o
-                0x080015c0                NMI_Handler
+                0x08001590        0x2 build/stm32f1xx_it.o
+                0x08001590                NMI_Handler
  .text.HardFault_Handler
-                0x080015c2        0x2 build/stm32f1xx_it.o
-                0x080015c2                HardFault_Handler
+                0x08001592        0x2 build/stm32f1xx_it.o
+                0x08001592                HardFault_Handler
  .text.MemManage_Handler
-                0x080015c4        0x2 build/stm32f1xx_it.o
-                0x080015c4                MemManage_Handler
+                0x08001594        0x2 build/stm32f1xx_it.o
+                0x08001594                MemManage_Handler
  .text.BusFault_Handler
-                0x080015c6        0x2 build/stm32f1xx_it.o
-                0x080015c6                BusFault_Handler
+                0x08001596        0x2 build/stm32f1xx_it.o
+                0x08001596                BusFault_Handler
  .text.UsageFault_Handler
-                0x080015c8        0x2 build/stm32f1xx_it.o
-                0x080015c8                UsageFault_Handler
+                0x08001598        0x2 build/stm32f1xx_it.o
+                0x08001598                UsageFault_Handler
  .text.SVC_Handler
-                0x080015ca        0x2 build/stm32f1xx_it.o
-                0x080015ca                SVC_Handler
+                0x0800159a        0x2 build/stm32f1xx_it.o
+                0x0800159a                SVC_Handler
  .text.DebugMon_Handler
-                0x080015cc        0x2 build/stm32f1xx_it.o
-                0x080015cc                DebugMon_Handler
+                0x0800159c        0x2 build/stm32f1xx_it.o
+                0x0800159c                DebugMon_Handler
  .text.PendSV_Handler
-                0x080015ce        0x2 build/stm32f1xx_it.o
-                0x080015ce                PendSV_Handler
+                0x0800159e        0x2 build/stm32f1xx_it.o
+                0x0800159e                PendSV_Handler
  .text.SysTick_Handler
-                0x080015d0        0x8 build/stm32f1xx_it.o
-                0x080015d0                SysTick_Handler
+                0x080015a0        0x8 build/stm32f1xx_it.o
+                0x080015a0                SysTick_Handler
  .text.HAL_MspInit
-                0x080015d8       0x44 build/stm32f1xx_hal_msp.o
-                0x080015d8                HAL_MspInit
+                0x080015a8       0x44 build/stm32f1xx_hal_msp.o
+                0x080015a8                HAL_MspInit
  .text.HAL_I2C_MspInit
-                0x0800161c       0x64 build/stm32f1xx_hal_msp.o
-                0x0800161c                HAL_I2C_MspInit
+                0x080015ec       0x64 build/stm32f1xx_hal_msp.o
+                0x080015ec                HAL_I2C_MspInit
  .text.HAL_UART_MspInit
-                0x08001680       0x78 build/stm32f1xx_hal_msp.o
-                0x08001680                HAL_UART_MspInit
+                0x08001650       0x78 build/stm32f1xx_hal_msp.o
+                0x08001650                HAL_UART_MspInit
  .text.I2C_IsAcknowledgeFailed
-                0x080016f8       0x32 build/stm32f1xx_hal_i2c.o
+                0x080016c8       0x32 build/stm32f1xx_hal_i2c.o
  .text.I2C_WaitOnFlagUntilTimeout
-                0x0800172a       0xaa build/stm32f1xx_hal_i2c.o
+                0x080016fa       0xaa build/stm32f1xx_hal_i2c.o
  .text.I2C_WaitOnMasterAddressFlagUntilTimeout
-                0x080017d4       0xd6 build/stm32f1xx_hal_i2c.o
- *fill*         0x080018aa        0x2 
+                0x080017a4       0xd6 build/stm32f1xx_hal_i2c.o
+ *fill*         0x0800187a        0x2 
  .text.I2C_MasterRequestWrite
-                0x080018ac       0xb4 build/stm32f1xx_hal_i2c.o
+                0x0800187c       0xb4 build/stm32f1xx_hal_i2c.o
  .text.I2C_MasterRequestRead
-                0x08001960      0x120 build/stm32f1xx_hal_i2c.o
+                0x08001930      0x120 build/stm32f1xx_hal_i2c.o
  .text.I2C_WaitOnTXEFlagUntilTimeout
-                0x08001a80       0x5e build/stm32f1xx_hal_i2c.o
+                0x08001a50       0x5e build/stm32f1xx_hal_i2c.o
  .text.I2C_WaitOnBTFFlagUntilTimeout
-                0x08001ade       0x5e build/stm32f1xx_hal_i2c.o
+                0x08001aae       0x5e build/stm32f1xx_hal_i2c.o
  .text.I2C_WaitOnRXNEFlagUntilTimeout
-                0x08001b3c       0x78 build/stm32f1xx_hal_i2c.o
+                0x08001b0c       0x78 build/stm32f1xx_hal_i2c.o
  .text.HAL_I2C_Init
-                0x08001bb4      0x1bc build/stm32f1xx_hal_i2c.o
-                0x08001bb4                HAL_I2C_Init
+                0x08001b84      0x1bc build/stm32f1xx_hal_i2c.o
+                0x08001b84                HAL_I2C_Init
  .text.HAL_I2C_Master_Transmit
-                0x08001d70      0x178 build/stm32f1xx_hal_i2c.o
-                0x08001d70                HAL_I2C_Master_Transmit
+                0x08001d40      0x178 build/stm32f1xx_hal_i2c.o
+                0x08001d40                HAL_I2C_Master_Transmit
  .text.HAL_I2C_Master_Receive
-                0x08001ee8      0x358 build/stm32f1xx_hal_i2c.o
-                0x08001ee8                HAL_I2C_Master_Receive
+                0x08001eb8      0x358 build/stm32f1xx_hal_i2c.o
+                0x08001eb8                HAL_I2C_Master_Receive
  .text.HAL_InitTick
-                0x08002240       0x4c build/stm32f1xx_hal.o
-                0x08002240                HAL_InitTick
+                0x08002210       0x4c build/stm32f1xx_hal.o
+                0x08002210                HAL_InitTick
  .text.HAL_Init
-                0x0800228c       0x24 build/stm32f1xx_hal.o
-                0x0800228c                HAL_Init
+                0x0800225c       0x24 build/stm32f1xx_hal.o
+                0x0800225c                HAL_Init
  .text.HAL_IncTick
-                0x080022b0       0x18 build/stm32f1xx_hal.o
-                0x080022b0                HAL_IncTick
+                0x08002280       0x18 build/stm32f1xx_hal.o
+                0x08002280                HAL_IncTick
  .text.HAL_GetTick
-                0x080022c8        0xc build/stm32f1xx_hal.o
-                0x080022c8                HAL_GetTick
+                0x08002298        0xc build/stm32f1xx_hal.o
+                0x08002298                HAL_GetTick
  .text.HAL_Delay
-                0x080022d4       0x28 build/stm32f1xx_hal.o
-                0x080022d4                HAL_Delay
+                0x080022a4       0x28 build/stm32f1xx_hal.o
+                0x080022a4                HAL_Delay
  .text.RCC_Delay
-                0x080022fc       0x2c build/stm32f1xx_hal_rcc.o
+                0x080022cc       0x2c build/stm32f1xx_hal_rcc.o
  .text.HAL_RCC_OscConfig
-                0x08002328      0x410 build/stm32f1xx_hal_rcc.o
-                0x08002328                HAL_RCC_OscConfig
+                0x080022f8      0x410 build/stm32f1xx_hal_rcc.o
+                0x080022f8                HAL_RCC_OscConfig
  .text.HAL_RCC_GetSysClockFreq
-                0x08002738       0x54 build/stm32f1xx_hal_rcc.o
-                0x08002738                HAL_RCC_GetSysClockFreq
+                0x08002708       0x54 build/stm32f1xx_hal_rcc.o
+                0x08002708                HAL_RCC_GetSysClockFreq
  .text.HAL_RCC_ClockConfig
-                0x0800278c      0x16c build/stm32f1xx_hal_rcc.o
-                0x0800278c                HAL_RCC_ClockConfig
+                0x0800275c      0x16c build/stm32f1xx_hal_rcc.o
+                0x0800275c                HAL_RCC_ClockConfig
  .text.HAL_RCC_GetHCLKFreq
-                0x080028f8        0xc build/stm32f1xx_hal_rcc.o
-                0x080028f8                HAL_RCC_GetHCLKFreq
+                0x080028c8        0xc build/stm32f1xx_hal_rcc.o
+                0x080028c8                HAL_RCC_GetHCLKFreq
  .text.HAL_RCC_GetPCLK1Freq
-                0x08002904       0x20 build/stm32f1xx_hal_rcc.o
-                0x08002904                HAL_RCC_GetPCLK1Freq
+                0x080028d4       0x20 build/stm32f1xx_hal_rcc.o
+                0x080028d4                HAL_RCC_GetPCLK1Freq
  .text.HAL_RCC_GetPCLK2Freq
-                0x08002924       0x20 build/stm32f1xx_hal_rcc.o
-                0x08002924                HAL_RCC_GetPCLK2Freq
+                0x080028f4       0x20 build/stm32f1xx_hal_rcc.o
+                0x080028f4                HAL_RCC_GetPCLK2Freq
  .text.HAL_GPIO_Init
-                0x08002944      0x21c build/stm32f1xx_hal_gpio.o
-                0x08002944                HAL_GPIO_Init
+                0x08002914      0x21c build/stm32f1xx_hal_gpio.o
+                0x08002914                HAL_GPIO_Init
  .text.__NVIC_SetPriority
-                0x08002b60       0x28 build/stm32f1xx_hal_cortex.o
+                0x08002b30       0x28 build/stm32f1xx_hal_cortex.o
  .text.NVIC_EncodePriority
-                0x08002b88       0x3e build/stm32f1xx_hal_cortex.o
- *fill*         0x08002bc6        0x2 
+                0x08002b58       0x3e build/stm32f1xx_hal_cortex.o
+ *fill*         0x08002b96        0x2 
  .text.HAL_NVIC_SetPriorityGrouping
-                0x08002bc8       0x24 build/stm32f1xx_hal_cortex.o
-                0x08002bc8                HAL_NVIC_SetPriorityGrouping
+                0x08002b98       0x24 build/stm32f1xx_hal_cortex.o
+                0x08002b98                HAL_NVIC_SetPriorityGrouping
  .text.HAL_NVIC_SetPriority
-                0x08002bec       0x20 build/stm32f1xx_hal_cortex.o
-                0x08002bec                HAL_NVIC_SetPriority
+                0x08002bbc       0x20 build/stm32f1xx_hal_cortex.o
+                0x08002bbc                HAL_NVIC_SetPriority
  .text.HAL_SYSTICK_Config
-                0x08002c0c       0x28 build/stm32f1xx_hal_cortex.o
-                0x08002c0c                HAL_SYSTICK_Config
+                0x08002bdc       0x28 build/stm32f1xx_hal_cortex.o
+                0x08002bdc                HAL_SYSTICK_Config
  .text.SystemInit
-                0x08002c34        0x2 build/system_stm32f1xx.o
-                0x08002c34                SystemInit
- *fill*         0x08002c36        0x2 
+                0x08002c04        0x2 build/system_stm32f1xx.o
+                0x08002c04                SystemInit
+ *fill*         0x08002c06        0x2 
  .text.UART_SetConfig
-                0x08002c38       0x94 build/stm32f1xx_hal_uart.o
+                0x08002c08       0x94 build/stm32f1xx_hal_uart.o
  .text.UART_WaitOnFlagUntilTimeout
-                0x08002ccc       0x84 build/stm32f1xx_hal_uart.o
+                0x08002c9c       0x84 build/stm32f1xx_hal_uart.o
  .text.HAL_UART_Init
-                0x08002d50       0x60 build/stm32f1xx_hal_uart.o
-                0x08002d50                HAL_UART_Init
+                0x08002d20       0x60 build/stm32f1xx_hal_uart.o
+                0x08002d20                HAL_UART_Init
  .text.HAL_UART_Transmit
-                0x08002db0       0xbe build/stm32f1xx_hal_uart.o
-                0x08002db0                HAL_UART_Transmit
- *fill*         0x08002e6e        0x2 
+                0x08002d80       0xbe build/stm32f1xx_hal_uart.o
+                0x08002d80                HAL_UART_Transmit
+ *fill*         0x08002e3e        0x2 
  .text.Reset_Handler
-                0x08002e70       0x48 build/startup_stm32f103xb.o
-                0x08002e70                Reset_Handler
+                0x08002e40       0x48 build/startup_stm32f103xb.o
+                0x08002e40                Reset_Handler
  .text.Default_Handler
-                0x08002eb8        0x2 build/startup_stm32f103xb.o
-                0x08002eb8                RTC_Alarm_IRQHandler
-                0x08002eb8                EXTI2_IRQHandler
-                0x08002eb8                TIM1_CC_IRQHandler
-                0x08002eb8                PVD_IRQHandler
-                0x08002eb8                EXTI3_IRQHandler
-                0x08002eb8                EXTI0_IRQHandler
-                0x08002eb8                I2C2_EV_IRQHandler
-                0x08002eb8                ADC1_2_IRQHandler
-                0x08002eb8                SPI1_IRQHandler
-                0x08002eb8                TAMPER_IRQHandler
-                0x08002eb8                DMA1_Channel4_IRQHandler
-                0x08002eb8                USART3_IRQHandler
-                0x08002eb8                RTC_IRQHandler
-                0x08002eb8                DMA1_Channel7_IRQHandler
-                0x08002eb8                CAN1_RX1_IRQHandler
-                0x08002eb8                TIM4_IRQHandler
-                0x08002eb8                I2C1_EV_IRQHandler
-                0x08002eb8                DMA1_Channel6_IRQHandler
-                0x08002eb8                TIM3_IRQHandler
-                0x08002eb8                RCC_IRQHandler
-                0x08002eb8                TIM1_TRG_COM_IRQHandler
-                0x08002eb8                DMA1_Channel1_IRQHandler
-                0x08002eb8                Default_Handler
-                0x08002eb8                EXTI15_10_IRQHandler
-                0x08002eb8                EXTI9_5_IRQHandler
-                0x08002eb8                SPI2_IRQHandler
-                0x08002eb8                DMA1_Channel5_IRQHandler
-                0x08002eb8                EXTI4_IRQHandler
-                0x08002eb8                USB_LP_CAN1_RX0_IRQHandler
-                0x08002eb8                USB_HP_CAN1_TX_IRQHandler
-                0x08002eb8                DMA1_Channel3_IRQHandler
-                0x08002eb8                TIM1_UP_IRQHandler
-                0x08002eb8                WWDG_IRQHandler
-                0x08002eb8                TIM2_IRQHandler
-                0x08002eb8                TIM1_BRK_IRQHandler
-                0x08002eb8                EXTI1_IRQHandler
-                0x08002eb8                USART2_IRQHandler
-                0x08002eb8                I2C2_ER_IRQHandler
-                0x08002eb8                DMA1_Channel2_IRQHandler
-                0x08002eb8                CAN1_SCE_IRQHandler
-                0x08002eb8                FLASH_IRQHandler
-                0x08002eb8                USART1_IRQHandler
-                0x08002eb8                I2C1_ER_IRQHandler
-                0x08002eb8                USBWakeUp_IRQHandler
- *fill*         0x08002eba        0x2 
+                0x08002e88        0x2 build/startup_stm32f103xb.o
+                0x08002e88                RTC_Alarm_IRQHandler
+                0x08002e88                EXTI2_IRQHandler
+                0x08002e88                TIM1_CC_IRQHandler
+                0x08002e88                PVD_IRQHandler
+                0x08002e88                EXTI3_IRQHandler
+                0x08002e88                EXTI0_IRQHandler
+                0x08002e88                I2C2_EV_IRQHandler
+                0x08002e88                ADC1_2_IRQHandler
+                0x08002e88                SPI1_IRQHandler
+                0x08002e88                TAMPER_IRQHandler
+                0x08002e88                DMA1_Channel4_IRQHandler
+                0x08002e88                USART3_IRQHandler
+                0x08002e88                RTC_IRQHandler
+                0x08002e88                DMA1_Channel7_IRQHandler
+                0x08002e88                CAN1_RX1_IRQHandler
+                0x08002e88                TIM4_IRQHandler
+                0x08002e88                I2C1_EV_IRQHandler
+                0x08002e88                DMA1_Channel6_IRQHandler
+                0x08002e88                TIM3_IRQHandler
+                0x08002e88                RCC_IRQHandler
+                0x08002e88                TIM1_TRG_COM_IRQHandler
+                0x08002e88                DMA1_Channel1_IRQHandler
+                0x08002e88                Default_Handler
+                0x08002e88                EXTI15_10_IRQHandler
+                0x08002e88                EXTI9_5_IRQHandler
+                0x08002e88                SPI2_IRQHandler
+                0x08002e88                DMA1_Channel5_IRQHandler
+                0x08002e88                EXTI4_IRQHandler
+                0x08002e88                USB_LP_CAN1_RX0_IRQHandler
+                0x08002e88                USB_HP_CAN1_TX_IRQHandler
+                0x08002e88                DMA1_Channel3_IRQHandler
+                0x08002e88                TIM1_UP_IRQHandler
+                0x08002e88                WWDG_IRQHandler
+                0x08002e88                TIM2_IRQHandler
+                0x08002e88                TIM1_BRK_IRQHandler
+                0x08002e88                EXTI1_IRQHandler
+                0x08002e88                USART2_IRQHandler
+                0x08002e88                I2C2_ER_IRQHandler
+                0x08002e88                DMA1_Channel2_IRQHandler
+                0x08002e88                CAN1_SCE_IRQHandler
+                0x08002e88                FLASH_IRQHandler
+                0x08002e88                USART1_IRQHandler
+                0x08002e88                I2C1_ER_IRQHandler
+                0x08002e88                USBWakeUp_IRQHandler
+ *fill*         0x08002e8a        0x2 
  .text.__libc_init_array
-                0x08002ebc       0x48 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-init.o)
-                0x08002ebc                __libc_init_array
- .text.memcpy   0x08002f04       0x1c /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-memcpy-stub.o)
-                0x08002f04                memcpy
- .text.strstr   0x08002f20       0x2c /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-strstr.o)
-                0x08002f20                strstr
- .text.memset   0x08002f4c       0x10 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-memset.o)
-                0x08002f4c                memset
+                0x08002e8c       0x48 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-init.o)
+                0x08002e8c                __libc_init_array
+ .text.memcpy   0x08002ed4       0x1c /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-memcpy-stub.o)
+                0x08002ed4                memcpy
+ .text.strstr   0x08002ef0       0x2c /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-strstr.o)
+                0x08002ef0                strstr
+ .text.memset   0x08002f1c       0x10 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-memset.o)
+                0x08002f1c                memset
  .text.selfrel_offset31
-                0x08002f5c       0x14 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x08002f2c       0x14 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
  .text.search_EIT_table
-                0x08002f70       0x64 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x08002f40       0x64 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
  .text.__gnu_unwind_get_pr_addr
-                0x08002fd4       0x28 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x08002fa4       0x28 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
  .text.get_eit_entry
-                0x08002ffc       0x98 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x08002fcc       0x98 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
  .text.restore_non_core_regs
-                0x08003094       0x58 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x08003064       0x58 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
  .text._Unwind_decode_typeinfo_ptr.constprop.0
-                0x080030ec        0xc /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x080030bc        0xc /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
  .text._Unwind_DebugHook
-                0x080030f8        0x4 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x080030c8        0x4 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
  .text.unwind_phase2
-                0x080030fc       0x40 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x080030cc       0x40 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
  .text.unwind_phase2_forced
-                0x0800313c       0xe0 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x0800310c       0xe0 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
  .text.__gnu_Unwind_RaiseException
-                0x0800321c       0x68 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
-                0x0800321c                __gnu_Unwind_RaiseException
+                0x080031ec       0x68 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x080031ec                __gnu_Unwind_RaiseException
  .text.__gnu_Unwind_ForcedUnwind
-                0x08003284       0x18 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
-                0x08003284                __gnu_Unwind_ForcedUnwind
+                0x08003254       0x18 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x08003254                __gnu_Unwind_ForcedUnwind
  .text.__gnu_Unwind_Resume
-                0x0800329c       0x44 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
-                0x0800329c                __gnu_Unwind_Resume
+                0x0800326c       0x44 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x0800326c                __gnu_Unwind_Resume
  .text.__gnu_Unwind_Resume_or_Rethrow
-                0x080032e0       0x18 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
-                0x080032e0                __gnu_Unwind_Resume_or_Rethrow
+                0x080032b0       0x18 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x080032b0                __gnu_Unwind_Resume_or_Rethrow
  .text._Unwind_VRS_Get
-                0x080032f8       0x34 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
-                0x080032f8                _Unwind_VRS_Get
+                0x080032c8       0x34 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x080032c8                _Unwind_VRS_Get
  .text._Unwind_GetGR
-                0x0800332c       0x1c /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x080032fc       0x1c /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
  .text._Unwind_VRS_Set
-                0x08003348       0x34 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
-                0x08003348                _Unwind_VRS_Set
+                0x08003318       0x34 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x08003318                _Unwind_VRS_Set
  .text._Unwind_SetGR
-                0x0800337c       0x18 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x0800334c       0x18 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
  .text.__gnu_Unwind_Backtrace
-                0x08003394       0x80 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
-                0x08003394                __gnu_Unwind_Backtrace
+                0x08003364       0x80 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x08003364                __gnu_Unwind_Backtrace
  .text.__gnu_unwind_pr_common
-                0x08003414      0x2a8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x080033e4      0x2a8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
  .text.__aeabi_unwind_cpp_pr0
-                0x080036bc        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
-                0x080036bc                __aeabi_unwind_cpp_pr0
+                0x0800368c        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x0800368c                __aeabi_unwind_cpp_pr0
  .text.__aeabi_unwind_cpp_pr1
-                0x080036c4        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
-                0x080036c4                __aeabi_unwind_cpp_pr1
+                0x08003694        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x08003694                __aeabi_unwind_cpp_pr1
  .text.__aeabi_unwind_cpp_pr2
-                0x080036cc        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
-                0x080036cc                __aeabi_unwind_cpp_pr2
+                0x0800369c        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x0800369c                __aeabi_unwind_cpp_pr2
  .text._Unwind_VRS_Pop
-                0x080036d4      0x2ec /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
-                0x080036d4                _Unwind_VRS_Pop
+                0x080036a4      0x2ec /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x080036a4                _Unwind_VRS_Pop
  .text.next_unwind_byte
-                0x080039c0       0x38 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(pr-support.o)
+                0x08003990       0x38 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(pr-support.o)
  .text.__gnu_unwind_execute
-                0x080039f8      0x2fc /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(pr-support.o)
-                0x080039f8                __gnu_unwind_execute
- .text.abort    0x08003cf4        0xe /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-abort.o)
-                0x08003cf4                abort
+                0x080039c8      0x2fc /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(pr-support.o)
+                0x080039c8                __gnu_unwind_execute
+ .text.abort    0x08003cc4        0xe /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-abort.o)
+                0x08003cc4                abort
  .text._raise_r
-                0x08003d02       0x50 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-signal.o)
-                0x08003d02                _raise_r
- *fill*         0x08003d52        0x2 
- .text.raise    0x08003d54       0x10 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-signal.o)
-                0x08003d54                raise
- .text._kill_r  0x08003d64       0x24 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-signalr.o)
-                0x08003d64                _kill_r
+                0x08003cd2       0x50 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-signal.o)
+                0x08003cd2                _raise_r
+ *fill*         0x08003d22        0x2 
+ .text.raise    0x08003d24       0x10 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-signal.o)
+                0x08003d24                raise
+ .text._kill_r  0x08003d34       0x24 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-signalr.o)
+                0x08003d34                _kill_r
  .text._getpid_r
-                0x08003d88        0x4 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-signalr.o)
-                0x08003d88                _getpid_r
+                0x08003d58        0x4 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-signalr.o)
+                0x08003d58                _getpid_r
  *(.glue_7)
- .glue_7        0x08003d8c        0x0 linker stubs
+ .glue_7        0x08003d5c        0x0 linker stubs
  *(.glue_7t)
- .glue_7t       0x08003d8c        0x0 linker stubs
+ .glue_7t       0x08003d5c        0x0 linker stubs
  *(.eh_frame)
- .eh_frame      0x08003d8c        0x0 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/crtbegin.o
+ .eh_frame      0x08003d5c        0x0 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/crtbegin.o
  *(.init)
- .init          0x08003d8c        0x4 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/crti.o
-                0x08003d8c                _init
- .init          0x08003d90        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/crtn.o
+ .init          0x08003d5c        0x4 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/crti.o
+                0x08003d5c                _init
+ .init          0x08003d60        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/crtn.o
  *(.fini)
- .fini          0x08003d98        0x4 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/crti.o
-                0x08003d98                _fini
- .fini          0x08003d9c        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/crtn.o
-                0x08003da4                        . = ALIGN (0x4)
-                0x08003da4                        _etext = .
+ .fini          0x08003d68        0x4 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/crti.o
+                0x08003d68                _fini
+ .fini          0x08003d6c        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/crtn.o
+                0x08003d74                        . = ALIGN (0x4)
+                0x08003d74                        _etext = .
 
-.vfp11_veneer   0x08003da4        0x0
- .vfp11_veneer  0x08003da4        0x0 linker stubs
+.vfp11_veneer   0x08003d74        0x0
+ .vfp11_veneer  0x08003d74        0x0 linker stubs
 
-.v4_bx          0x08003da4        0x0
- .v4_bx         0x08003da4        0x0 linker stubs
+.v4_bx          0x08003d74        0x0
+ .v4_bx         0x08003d74        0x0 linker stubs
 
-.iplt           0x08003da4        0x0
- .iplt          0x08003da4        0x0 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/crtbegin.o
+.iplt           0x08003d74        0x0
+ .iplt          0x08003d74        0x0 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/crtbegin.o
 
-.rodata         0x08003da4      0x694
-                0x08003da4                        . = ALIGN (0x4)
+.rodata         0x08003d74      0x694
+                0x08003d74                        . = ALIGN (0x4)
  *(.rodata)
- .rodata        0x08003da4       0x1d build/eeprom_test.o
+ .rodata        0x08003d74       0x1d build/eeprom_test.o
  *(.rodata*)
- *fill*         0x08003dc1        0x3 
+ *fill*         0x08003d91        0x3 
  .rodata.UnityStrDetail2Name
-                0x08003dc4        0xb build/unity.o
- *fill*         0x08003dcf        0x1 
+                0x08003d94        0xb build/unity.o
+ *fill*         0x08003d9f        0x1 
  .rodata.UnityStrDetail1Name
-                0x08003dd0        0xa build/unity.o
- *fill*         0x08003dda        0x2 
+                0x08003da0        0xa build/unity.o
+ *fill*         0x08003daa        0x2 
  .rodata.UnityStrResultsIgnored
-                0x08003ddc        0xa build/unity.o
- *fill*         0x08003de6        0x2 
+                0x08003dac        0xa build/unity.o
+ *fill*         0x08003db6        0x2 
  .rodata.UnityStrResultsFailures
-                0x08003de8        0xb build/unity.o
- *fill*         0x08003df3        0x1 
+                0x08003db8        0xb build/unity.o
+ *fill*         0x08003dc3        0x1 
  .rodata.UnityStrResultsTests
-                0x08003df4        0x8 build/unity.o
+                0x08003dc4        0x8 build/unity.o
  .rodata.UnityStrBreaker
-                0x08003dfc       0x18 build/unity.o
+                0x08003dcc       0x18 build/unity.o
  .rodata.UnityStrWas
-                0x08003e14        0x6 build/unity.o
- *fill*         0x08003e1a        0x2 
+                0x08003de4        0x6 build/unity.o
+ *fill*         0x08003dea        0x2 
  .rodata.UnityStrExpected
-                0x08003e1c        0xb build/unity.o
- *fill*         0x08003e27        0x1 
+                0x08003dec        0xb build/unity.o
+ *fill*         0x08003df7        0x1 
  .rodata.UnityStrSpacer
-                0x08003e28        0x3 build/unity.o
- *fill*         0x08003e2b        0x1 
+                0x08003df8        0x3 build/unity.o
+ *fill*         0x08003dfb        0x1 
  .rodata.UnityStrFail
-                0x08003e2c        0x5 build/unity.o
-                0x08003e2c                UnityStrFail
- *fill*         0x08003e31        0x3 
+                0x08003dfc        0x5 build/unity.o
+                0x08003dfc                UnityStrFail
+ *fill*         0x08003e01        0x3 
  .rodata.UnityStrPass
-                0x08003e34        0x5 build/unity.o
-                0x08003e34                UnityStrPass
- *fill*         0x08003e39        0x3 
+                0x08003e04        0x5 build/unity.o
+                0x08003e04                UnityStrPass
+ *fill*         0x08003e09        0x3 
  .rodata.UnityStrOk
-                0x08003e3c        0x3 build/unity.o
-                0x08003e3c                UnityStrOk
- *fill*         0x08003e3f        0x1 
+                0x08003e0c        0x3 build/unity.o
+                0x08003e0c                UnityStrOk
+ *fill*         0x08003e0f        0x1 
  .rodata.announceTestRun.str1.4
-                0x08003e40      0x5cb build/unity_fixture.o
+                0x08003e10      0x5cb build/unity_fixture.o
                                  0x15 (size before relaxing)
  .rodata.UnityGetCommandLineOptions.str1.4
-                0x0800440b      0x237 build/unity_fixture.o
+                0x080043db      0x237 build/unity_fixture.o
  .rodata.UnityConcludeFixtureTest.str1.4
-                0x0800440b        0x2 build/unity_fixture.o
+                0x080043db        0x2 build/unity_fixture.o
  .rodata.TEST_eeprom_driver_check_link_success_run.str1.4
-                0x0800440b       0x7a build/eeprom_test.o
+                0x080043db       0x7a build/eeprom_test.o
  .rodata.TEST_eeprom_driver_random_write_and_read_byte_success_run.str1.4
-                0x0800440b       0x5b build/eeprom_test.o
+                0x080043db       0x5b build/eeprom_test.o
  .rodata.TEST_eeprom_driver_current_address_read_byte_success_run.str1.4
-                0x0800440b       0x5a build/eeprom_test.o
+                0x080043db       0x5a build/eeprom_test.o
  .rodata.TEST_eeprom_driver_multiple_current_address_read_byte_success_run.str1.4
-                0x0800440b       0x6b build/eeprom_test.o
+                0x080043db       0x6b build/eeprom_test.o
  .rodata.TEST_eeprom_driver_page_8_sequential_read_success_run.str1.4
-                0x0800440b       0x53 build/eeprom_test.o
+                0x080043db       0x53 build/eeprom_test.o
  .rodata.TEST_eeprom_driver_page_68_sequential_read_success_run.str1.4
-                0x0800440b       0x58 build/eeprom_test.o
+                0x080043db       0x58 build/eeprom_test.o
  .rodata.TEST_eeprom_driver_page_128_sequential_read_success_run.str1.4
-                0x0800440b       0x59 build/eeprom_test.o
+                0x080043db       0x59 build/eeprom_test.o
  .rodata.TEST_eeprom_driver_page_8_write_success_run.str1.4
-                0x0800440b       0x41 build/eeprom_test.o
+                0x080043db       0x41 build/eeprom_test.o
  .rodata.TEST_eeprom_driver_page_68_write_success_run.str1.4
-                0x0800440b       0x42 build/eeprom_test.o
+                0x080043db       0x42 build/eeprom_test.o
  .rodata.TEST_eeprom_driver_page_128_write_success_run.str1.4
-                0x0800440b       0x43 build/eeprom_test.o
- *fill*         0x0800440b        0x1 
+                0x080043db       0x43 build/eeprom_test.o
+ *fill*         0x080043db        0x1 
  .rodata.aPredivFactorTable.0
-                0x0800440c        0x2 build/stm32f1xx_hal_rcc.o
- *fill*         0x0800440e        0x2 
+                0x080043dc        0x2 build/stm32f1xx_hal_rcc.o
+ *fill*         0x080043de        0x2 
  .rodata.aPLLMULFactorTable.1
-                0x08004410       0x10 build/stm32f1xx_hal_rcc.o
+                0x080043e0       0x10 build/stm32f1xx_hal_rcc.o
  .rodata.APBPrescTable
-                0x08004420        0x8 build/system_stm32f1xx.o
-                0x08004420                APBPrescTable
+                0x080043f0        0x8 build/system_stm32f1xx.o
+                0x080043f0                APBPrescTable
  .rodata.AHBPrescTable
-                0x08004428       0x10 build/system_stm32f1xx.o
-                0x08004428                AHBPrescTable
-                0x08004438                        . = ALIGN (0x4)
+                0x080043f8       0x10 build/system_stm32f1xx.o
+                0x080043f8                AHBPrescTable
+                0x08004408                        . = ALIGN (0x4)
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
 
-.ARM            0x08004438       0x90
-                0x08004438                        __exidx_start = .
+.ARM            0x08004408       0x90
+                0x08004408                        __exidx_start = .
  *(.ARM.exidx*)
- .ARM.exidx     0x08004438        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-setjmp.o)
+ .ARM.exidx     0x08004408        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-setjmp.o)
                                  0x10 (size before relaxing)
- .ARM.exidx     0x08004440        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-strcmp.o)
+ .ARM.exidx     0x08004410        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-strcmp.o)
  .ARM.exidx.text.selfrel_offset31
-                0x08004448        0x0 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x08004418        0x0 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text.search_EIT_table
-                0x08004448        0x0 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x08004418        0x0 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text.__gnu_unwind_get_pr_addr
-                0x08004448        0x0 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x08004418        0x0 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text.get_eit_entry
-                0x08004448        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x08004418        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
  .ARM.exidx.text.restore_non_core_regs
-                0x08004450        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x08004420        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
  .ARM.exidx.text._Unwind_decode_typeinfo_ptr.constprop.0
-                0x08004458        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x08004428        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
  .ARM.exidx.text._Unwind_DebugHook
-                0x08004460        0x0 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x08004430        0x0 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text.unwind_phase2
-                0x08004460        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x08004430        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
  .ARM.exidx.text.unwind_phase2_forced
-                0x08004468        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x08004438        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
  .ARM.exidx.text.__gnu_Unwind_RaiseException
-                0x08004470        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x08004440        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
  .ARM.exidx.text.__gnu_Unwind_ForcedUnwind
-                0x08004478        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x08004448        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
  .ARM.exidx.text.__gnu_Unwind_Resume
-                0x08004480        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x08004450        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
  .ARM.exidx.text.__gnu_Unwind_Resume_or_Rethrow
-                0x08004488        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x08004458        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
  .ARM.exidx.text._Unwind_VRS_Get
-                0x08004490        0x0 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x08004460        0x0 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._Unwind_GetGR
-                0x08004490        0x0 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x08004460        0x0 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._Unwind_VRS_Set
-                0x08004490        0x0 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x08004460        0x0 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._Unwind_SetGR
-                0x08004490        0x0 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x08004460        0x0 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text.__gnu_Unwind_Backtrace
-                0x08004490        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x08004460        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
  .ARM.exidx.text.__gnu_unwind_pr_common
-                0x08004498        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x08004468        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
  .ARM.exidx.text.__aeabi_unwind_cpp_pr0
-                0x080044a0        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x08004470        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
  .ARM.exidx.text.__aeabi_unwind_cpp_pr1
-                0x080044a8        0x0 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x08004478        0x0 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text.__aeabi_unwind_cpp_pr2
-                0x080044a8        0x0 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x08004478        0x0 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
                                   0x8 (size before relaxing)
  .ARM.exidx.text._Unwind_VRS_Pop
-                0x080044a8        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+                0x08004478        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
  .ARM.exidx.text.next_unwind_byte
-                0x080044b0        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(pr-support.o)
+                0x08004480        0x8 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(pr-support.o)
  .ARM.exidx.text.__gnu_unwind_execute
-                0x080044b8       0x10 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(pr-support.o)
+                0x08004488       0x10 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(pr-support.o)
                                   0x8 (size before relaxing)
-                0x080044c8                        __exidx_end = .
+                0x08004498                        __exidx_end = .
 
-.rel.dyn        0x080044c8        0x0
- .rel.iplt      0x080044c8        0x0 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/crtbegin.o
+.rel.dyn        0x08004498        0x0
+ .rel.iplt      0x08004498        0x0 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/crtbegin.o
 
-.preinit_array  0x080044c8        0x0
-                0x080044c8                        PROVIDE (__preinit_array_start = .)
+.preinit_array  0x08004498        0x0
+                0x08004498                        PROVIDE (__preinit_array_start = .)
  *(.preinit_array*)
-                0x080044c8                        PROVIDE (__preinit_array_end = .)
+                0x08004498                        PROVIDE (__preinit_array_end = .)
 
-.init_array     0x080044c8        0x4
-                0x080044c8                        PROVIDE (__init_array_start = .)
+.init_array     0x08004498        0x4
+                0x08004498                        PROVIDE (__init_array_start = .)
  *(SORT_BY_NAME(.init_array.*))
  *(.init_array*)
- .init_array    0x080044c8        0x4 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/crtbegin.o
-                0x080044cc                        PROVIDE (__init_array_end = .)
+ .init_array    0x08004498        0x4 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/crtbegin.o
+                0x0800449c                        PROVIDE (__init_array_end = .)
 
-.fini_array     0x080044cc        0x4
+.fini_array     0x0800449c        0x4
                 [!provide]                        PROVIDE (__fini_array_start = .)
  *(SORT_BY_NAME(.fini_array.*))
  *(.fini_array*)
- .fini_array    0x080044cc        0x4 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/crtbegin.o
+ .fini_array    0x0800449c        0x4 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/crtbegin.o
                 [!provide]                        PROVIDE (__fini_array_end = .)
-                0x080044d0                        _sidata = LOADADDR (.data)
+                0x080044a0                        _sidata = LOADADDR (.data)
 
-.data           0x20000000       0x64 load address 0x080044d0
+.data           0x20000000       0x64 load address 0x080044a0
                 0x20000000                        . = ALIGN (0x4)
                 0x20000000                        _sdata = .
  *(.data)
@@ -2240,17 +2238,17 @@ LOAD /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/t
                 0x20000064                        _edata = .
 
 .tm_clone_table
-                0x20000064        0x0 load address 0x08004534
+                0x20000064        0x0 load address 0x08004504
  .tm_clone_table
                 0x20000064        0x0 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/crtbegin.o
  .tm_clone_table
                 0x20000064        0x0 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/crtend.o
 
-.igot.plt       0x20000064        0x0 load address 0x08004534
+.igot.plt       0x20000064        0x0 load address 0x08004504
  .igot.plt      0x20000064        0x0 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/crtbegin.o
                 0x20000064                        . = ALIGN (0x4)
 
-.bss            0x20000068      0x304 load address 0x08004534
+.bss            0x20000068      0x304 load address 0x08004504
                 0x20000068                        _sbss = .
                 0x20000068                        __bss_start__ = _sbss
  *(.bss)
@@ -2286,7 +2284,7 @@ LOAD /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/t
                 0x2000036c                        __bss_end__ = _ebss
 
 ._user_heap_stack
-                0x2000036c      0x604 load address 0x08004534
+                0x2000036c      0x604 load address 0x08004504
                 0x20000370                        . = ALIGN (0x8)
  *fill*         0x2000036c        0x4 
                 0x20000370                        PROVIDE (end = .)
@@ -2385,163 +2383,163 @@ LOAD /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/.
 LOAD /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libm.a
 LOAD /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a
 
-.debug_info     0x00000000    0x137a0
- .debug_info    0x00000000      0x991 build/eeprom_driver.o
- .debug_info    0x00000991     0x375b build/unity.o
- .debug_info    0x000040ec      0xe05 build/unity_fixture.o
- .debug_info    0x00004ef1      0xf29 build/target_tests.o
- .debug_info    0x00005e1a      0x262 build/eeprom_test_runner.o
- .debug_info    0x0000607c     0x1301 build/eeprom_test.o
- .debug_info    0x0000737d      0x80f build/eeprom_io.o
- .debug_info    0x00007b8c       0xe8 build/eeprom_time.o
- .debug_info    0x00007c74      0x158 build/stm32f1xx_it.o
- .debug_info    0x00007dcc      0xd64 build/stm32f1xx_hal_msp.o
- .debug_info    0x00008b30     0x3d20 build/stm32f1xx_hal_i2c.o
- .debug_info    0x0000c850      0x880 build/stm32f1xx_hal.o
- .debug_info    0x0000d0d0      0xb10 build/stm32f1xx_hal_rcc.o
- .debug_info    0x0000dbe0      0x6d7 build/stm32f1xx_hal_gpio.o
- .debug_info    0x0000e2b7      0xe3f build/stm32f1xx_hal_cortex.o
- .debug_info    0x0000f0f6      0x26e build/system_stm32f1xx.o
- .debug_info    0x0000f364     0x440c build/stm32f1xx_hal_uart.o
- .debug_info    0x00013770       0x30 build/startup_stm32f103xb.o
+.debug_info     0x00000000    0x136d9
+ .debug_info    0x00000000      0x8ca build/eeprom_driver.o
+ .debug_info    0x000008ca     0x375b build/unity.o
+ .debug_info    0x00004025      0xe05 build/unity_fixture.o
+ .debug_info    0x00004e2a      0xf29 build/target_tests.o
+ .debug_info    0x00005d53      0x262 build/eeprom_test_runner.o
+ .debug_info    0x00005fb5     0x1301 build/eeprom_test.o
+ .debug_info    0x000072b6      0x80f build/eeprom_io.o
+ .debug_info    0x00007ac5       0xe8 build/eeprom_time.o
+ .debug_info    0x00007bad      0x158 build/stm32f1xx_it.o
+ .debug_info    0x00007d05      0xd64 build/stm32f1xx_hal_msp.o
+ .debug_info    0x00008a69     0x3d20 build/stm32f1xx_hal_i2c.o
+ .debug_info    0x0000c789      0x880 build/stm32f1xx_hal.o
+ .debug_info    0x0000d009      0xb10 build/stm32f1xx_hal_rcc.o
+ .debug_info    0x0000db19      0x6d7 build/stm32f1xx_hal_gpio.o
+ .debug_info    0x0000e1f0      0xe3f build/stm32f1xx_hal_cortex.o
+ .debug_info    0x0000f02f      0x26e build/system_stm32f1xx.o
+ .debug_info    0x0000f29d     0x440c build/stm32f1xx_hal_uart.o
+ .debug_info    0x000136a9       0x30 build/startup_stm32f103xb.o
 
-.debug_abbrev   0x00000000     0x25c1
- .debug_abbrev  0x00000000      0x238 build/eeprom_driver.o
- .debug_abbrev  0x00000238      0x3e1 build/unity.o
- .debug_abbrev  0x00000619      0x2c4 build/unity_fixture.o
- .debug_abbrev  0x000008dd      0x2fb build/target_tests.o
- .debug_abbrev  0x00000bd8       0x78 build/eeprom_test_runner.o
- .debug_abbrev  0x00000c50      0x24d build/eeprom_test.o
- .debug_abbrev  0x00000e9d      0x185 build/eeprom_io.o
- .debug_abbrev  0x00001022       0x9c build/eeprom_time.o
- .debug_abbrev  0x000010be       0x80 build/stm32f1xx_it.o
- .debug_abbrev  0x0000113e      0x1d5 build/stm32f1xx_hal_msp.o
- .debug_abbrev  0x00001313      0x31e build/stm32f1xx_hal_i2c.o
- .debug_abbrev  0x00001631      0x232 build/stm32f1xx_hal.o
- .debug_abbrev  0x00001863      0x2d6 build/stm32f1xx_hal_rcc.o
- .debug_abbrev  0x00001b39      0x222 build/stm32f1xx_hal_gpio.o
- .debug_abbrev  0x00001d5b      0x3aa build/stm32f1xx_hal_cortex.o
- .debug_abbrev  0x00002105      0x140 build/system_stm32f1xx.o
- .debug_abbrev  0x00002245      0x35f build/stm32f1xx_hal_uart.o
- .debug_abbrev  0x000025a4       0x1d build/startup_stm32f103xb.o
+.debug_abbrev   0x00000000     0x2556
+ .debug_abbrev  0x00000000      0x1cd build/eeprom_driver.o
+ .debug_abbrev  0x000001cd      0x3e1 build/unity.o
+ .debug_abbrev  0x000005ae      0x2c4 build/unity_fixture.o
+ .debug_abbrev  0x00000872      0x2fb build/target_tests.o
+ .debug_abbrev  0x00000b6d       0x78 build/eeprom_test_runner.o
+ .debug_abbrev  0x00000be5      0x24d build/eeprom_test.o
+ .debug_abbrev  0x00000e32      0x185 build/eeprom_io.o
+ .debug_abbrev  0x00000fb7       0x9c build/eeprom_time.o
+ .debug_abbrev  0x00001053       0x80 build/stm32f1xx_it.o
+ .debug_abbrev  0x000010d3      0x1d5 build/stm32f1xx_hal_msp.o
+ .debug_abbrev  0x000012a8      0x31e build/stm32f1xx_hal_i2c.o
+ .debug_abbrev  0x000015c6      0x232 build/stm32f1xx_hal.o
+ .debug_abbrev  0x000017f8      0x2d6 build/stm32f1xx_hal_rcc.o
+ .debug_abbrev  0x00001ace      0x222 build/stm32f1xx_hal_gpio.o
+ .debug_abbrev  0x00001cf0      0x3aa build/stm32f1xx_hal_cortex.o
+ .debug_abbrev  0x0000209a      0x140 build/system_stm32f1xx.o
+ .debug_abbrev  0x000021da      0x35f build/stm32f1xx_hal_uart.o
+ .debug_abbrev  0x00002539       0x1d build/startup_stm32f103xb.o
 
-.debug_loc      0x00000000    0x10c99
- .debug_loc     0x00000000      0x7f4 build/eeprom_driver.o
- .debug_loc     0x000007f4     0x2fe5 build/unity.o
- .debug_loc     0x000037d9      0x7a6 build/unity_fixture.o
- .debug_loc     0x00003f7f      0x14d build/target_tests.o
- .debug_loc     0x000040cc       0x20 build/eeprom_test_runner.o
- .debug_loc     0x000040ec      0x873 build/eeprom_test.o
- .debug_loc     0x0000495f      0x150 build/eeprom_io.o
- .debug_loc     0x00004aaf       0x4b build/eeprom_time.o
- .debug_loc     0x00004afa       0x20 build/stm32f1xx_it.o
- .debug_loc     0x00004b1a      0x21e build/stm32f1xx_hal_msp.o
- .debug_loc     0x00004d38     0x54d5 build/stm32f1xx_hal_i2c.o
- .debug_loc     0x0000a20d      0x1f9 build/stm32f1xx_hal.o
- .debug_loc     0x0000a406      0x7c6 build/stm32f1xx_hal_rcc.o
- .debug_loc     0x0000abcc      0x56c build/stm32f1xx_hal_gpio.o
- .debug_loc     0x0000b138      0x8b4 build/stm32f1xx_hal_cortex.o
- .debug_loc     0x0000b9ec      0x11b build/system_stm32f1xx.o
- .debug_loc     0x0000bb07     0x5192 build/stm32f1xx_hal_uart.o
+.debug_loc      0x00000000    0x10b1a
+ .debug_loc     0x00000000      0x675 build/eeprom_driver.o
+ .debug_loc     0x00000675     0x2fe5 build/unity.o
+ .debug_loc     0x0000365a      0x7a6 build/unity_fixture.o
+ .debug_loc     0x00003e00      0x14d build/target_tests.o
+ .debug_loc     0x00003f4d       0x20 build/eeprom_test_runner.o
+ .debug_loc     0x00003f6d      0x873 build/eeprom_test.o
+ .debug_loc     0x000047e0      0x150 build/eeprom_io.o
+ .debug_loc     0x00004930       0x4b build/eeprom_time.o
+ .debug_loc     0x0000497b       0x20 build/stm32f1xx_it.o
+ .debug_loc     0x0000499b      0x21e build/stm32f1xx_hal_msp.o
+ .debug_loc     0x00004bb9     0x54d5 build/stm32f1xx_hal_i2c.o
+ .debug_loc     0x0000a08e      0x1f9 build/stm32f1xx_hal.o
+ .debug_loc     0x0000a287      0x7c6 build/stm32f1xx_hal_rcc.o
+ .debug_loc     0x0000aa4d      0x56c build/stm32f1xx_hal_gpio.o
+ .debug_loc     0x0000afb9      0x8b4 build/stm32f1xx_hal_cortex.o
+ .debug_loc     0x0000b86d      0x11b build/system_stm32f1xx.o
+ .debug_loc     0x0000b988     0x5192 build/stm32f1xx_hal_uart.o
 
-.debug_aranges  0x00000000      0xc20
+.debug_aranges  0x00000000      0xc18
  .debug_aranges
-                0x00000000       0x78 build/eeprom_driver.o
+                0x00000000       0x70 build/eeprom_driver.o
  .debug_aranges
-                0x00000078      0x150 build/unity.o
+                0x00000070      0x150 build/unity.o
  .debug_aranges
-                0x000001c8       0x88 build/unity_fixture.o
+                0x000001c0       0x88 build/unity_fixture.o
  .debug_aranges
-                0x00000250       0x70 build/target_tests.o
+                0x00000248       0x70 build/target_tests.o
  .debug_aranges
-                0x000002c0       0x20 build/eeprom_test_runner.o
+                0x000002b8       0x20 build/eeprom_test_runner.o
  .debug_aranges
-                0x000002e0       0xd0 build/eeprom_test.o
+                0x000002d8       0xd0 build/eeprom_test.o
  .debug_aranges
-                0x000003b0       0x28 build/eeprom_io.o
+                0x000003a8       0x28 build/eeprom_io.o
  .debug_aranges
-                0x000003d8       0x20 build/eeprom_time.o
+                0x000003d0       0x20 build/eeprom_time.o
  .debug_aranges
-                0x000003f8       0x60 build/stm32f1xx_it.o
+                0x000003f0       0x60 build/stm32f1xx_it.o
  .debug_aranges
-                0x00000458       0x40 build/stm32f1xx_hal_msp.o
+                0x00000450       0x40 build/stm32f1xx_hal_msp.o
  .debug_aranges
-                0x00000498      0x2a8 build/stm32f1xx_hal_i2c.o
+                0x00000490      0x2a8 build/stm32f1xx_hal_i2c.o
  .debug_aranges
-                0x00000740       0xe0 build/stm32f1xx_hal.o
+                0x00000738       0xe0 build/stm32f1xx_hal.o
  .debug_aranges
-                0x00000820       0x90 build/stm32f1xx_hal_rcc.o
+                0x00000818       0x90 build/stm32f1xx_hal_rcc.o
  .debug_aranges
-                0x000008b0       0x58 build/stm32f1xx_hal_gpio.o
+                0x000008a8       0x58 build/stm32f1xx_hal_gpio.o
  .debug_aranges
-                0x00000908       0xc0 build/stm32f1xx_hal_cortex.o
+                0x00000900       0xc0 build/stm32f1xx_hal_cortex.o
  .debug_aranges
-                0x000009c8       0x28 build/system_stm32f1xx.o
+                0x000009c0       0x28 build/system_stm32f1xx.o
  .debug_aranges
-                0x000009f0      0x208 build/stm32f1xx_hal_uart.o
+                0x000009e8      0x208 build/stm32f1xx_hal_uart.o
  .debug_aranges
-                0x00000bf8       0x28 build/startup_stm32f103xb.o
+                0x00000bf0       0x28 build/startup_stm32f103xb.o
 
-.debug_ranges   0x00000000      0xc38
- .debug_ranges  0x00000000       0x68 build/eeprom_driver.o
- .debug_ranges  0x00000068      0x1d8 build/unity.o
- .debug_ranges  0x00000240       0x78 build/unity_fixture.o
- .debug_ranges  0x000002b8       0x60 build/target_tests.o
- .debug_ranges  0x00000318       0x10 build/eeprom_test_runner.o
- .debug_ranges  0x00000328      0x108 build/eeprom_test.o
- .debug_ranges  0x00000430       0x18 build/eeprom_io.o
- .debug_ranges  0x00000448       0x10 build/eeprom_time.o
- .debug_ranges  0x00000458       0x50 build/stm32f1xx_it.o
- .debug_ranges  0x000004a8       0x30 build/stm32f1xx_hal_msp.o
- .debug_ranges  0x000004d8      0x2b0 build/stm32f1xx_hal_i2c.o
- .debug_ranges  0x00000788       0xd0 build/stm32f1xx_hal.o
- .debug_ranges  0x00000858       0xa0 build/stm32f1xx_hal_rcc.o
- .debug_ranges  0x000008f8       0x48 build/stm32f1xx_hal_gpio.o
- .debug_ranges  0x00000940       0xb0 build/stm32f1xx_hal_cortex.o
- .debug_ranges  0x000009f0       0x18 build/system_stm32f1xx.o
- .debug_ranges  0x00000a08      0x210 build/stm32f1xx_hal_uart.o
- .debug_ranges  0x00000c18       0x20 build/startup_stm32f103xb.o
+.debug_ranges   0x00000000      0xc30
+ .debug_ranges  0x00000000       0x60 build/eeprom_driver.o
+ .debug_ranges  0x00000060      0x1d8 build/unity.o
+ .debug_ranges  0x00000238       0x78 build/unity_fixture.o
+ .debug_ranges  0x000002b0       0x60 build/target_tests.o
+ .debug_ranges  0x00000310       0x10 build/eeprom_test_runner.o
+ .debug_ranges  0x00000320      0x108 build/eeprom_test.o
+ .debug_ranges  0x00000428       0x18 build/eeprom_io.o
+ .debug_ranges  0x00000440       0x10 build/eeprom_time.o
+ .debug_ranges  0x00000450       0x50 build/stm32f1xx_it.o
+ .debug_ranges  0x000004a0       0x30 build/stm32f1xx_hal_msp.o
+ .debug_ranges  0x000004d0      0x2b0 build/stm32f1xx_hal_i2c.o
+ .debug_ranges  0x00000780       0xd0 build/stm32f1xx_hal.o
+ .debug_ranges  0x00000850       0xa0 build/stm32f1xx_hal_rcc.o
+ .debug_ranges  0x000008f0       0x48 build/stm32f1xx_hal_gpio.o
+ .debug_ranges  0x00000938       0xb0 build/stm32f1xx_hal_cortex.o
+ .debug_ranges  0x000009e8       0x18 build/system_stm32f1xx.o
+ .debug_ranges  0x00000a00      0x210 build/stm32f1xx_hal_uart.o
+ .debug_ranges  0x00000c10       0x20 build/startup_stm32f103xb.o
 
-.debug_line     0x00000000     0xe292
- .debug_line    0x00000000      0x4da build/eeprom_driver.o
- .debug_line    0x000004da     0x17b4 build/unity.o
- .debug_line    0x00001c8e      0x75c build/unity_fixture.o
- .debug_line    0x000023ea      0x49e build/target_tests.o
- .debug_line    0x00002888       0xd7 build/eeprom_test_runner.o
- .debug_line    0x0000295f      0x72b build/eeprom_test.o
- .debug_line    0x0000308a      0x1f9 build/eeprom_io.o
- .debug_line    0x00003283      0x13b build/eeprom_time.o
- .debug_line    0x000033be      0x13d build/stm32f1xx_it.o
- .debug_line    0x000034fb      0x310 build/stm32f1xx_hal_msp.o
- .debug_line    0x0000380b     0x55ab build/stm32f1xx_hal_i2c.o
- .debug_line    0x00008db6      0x4f8 build/stm32f1xx_hal.o
- .debug_line    0x000092ae      0xc74 build/stm32f1xx_hal_rcc.o
- .debug_line    0x00009f22      0x59a build/stm32f1xx_hal_gpio.o
- .debug_line    0x0000a4bc      0x671 build/stm32f1xx_hal_cortex.o
- .debug_line    0x0000ab2d      0x20f build/system_stm32f1xx.o
- .debug_line    0x0000ad3c     0x34e5 build/stm32f1xx_hal_uart.o
- .debug_line    0x0000e221       0x71 build/startup_stm32f103xb.o
+.debug_line     0x00000000     0xe22f
+ .debug_line    0x00000000      0x477 build/eeprom_driver.o
+ .debug_line    0x00000477     0x17b4 build/unity.o
+ .debug_line    0x00001c2b      0x75c build/unity_fixture.o
+ .debug_line    0x00002387      0x49e build/target_tests.o
+ .debug_line    0x00002825       0xd7 build/eeprom_test_runner.o
+ .debug_line    0x000028fc      0x72b build/eeprom_test.o
+ .debug_line    0x00003027      0x1f9 build/eeprom_io.o
+ .debug_line    0x00003220      0x13b build/eeprom_time.o
+ .debug_line    0x0000335b      0x13d build/stm32f1xx_it.o
+ .debug_line    0x00003498      0x310 build/stm32f1xx_hal_msp.o
+ .debug_line    0x000037a8     0x55ab build/stm32f1xx_hal_i2c.o
+ .debug_line    0x00008d53      0x4f8 build/stm32f1xx_hal.o
+ .debug_line    0x0000924b      0xc74 build/stm32f1xx_hal_rcc.o
+ .debug_line    0x00009ebf      0x59a build/stm32f1xx_hal_gpio.o
+ .debug_line    0x0000a459      0x671 build/stm32f1xx_hal_cortex.o
+ .debug_line    0x0000aaca      0x20f build/system_stm32f1xx.o
+ .debug_line    0x0000acd9     0x34e5 build/stm32f1xx_hal_uart.o
+ .debug_line    0x0000e1be       0x71 build/startup_stm32f103xb.o
 
-.debug_str      0x00000000     0x3ddf
- .debug_str     0x00000000     0x3ddf build/eeprom_driver.o
-                                0x3d8 (size before relaxing)
- .debug_str     0x00003ddf      0xe2c build/unity.o
- .debug_str     0x00003ddf      0x4f0 build/unity_fixture.o
- .debug_str     0x00003ddf      0xac8 build/target_tests.o
- .debug_str     0x00003ddf      0x3c5 build/eeprom_test_runner.o
- .debug_str     0x00003ddf      0x926 build/eeprom_test.o
- .debug_str     0x00003ddf      0x6f3 build/eeprom_io.o
- .debug_str     0x00003ddf      0x1ac build/eeprom_time.o
- .debug_str     0x00003ddf      0x206 build/stm32f1xx_it.o
- .debug_str     0x00003ddf      0x920 build/stm32f1xx_hal_msp.o
- .debug_str     0x00003ddf      0xfa9 build/stm32f1xx_hal_i2c.o
- .debug_str     0x00003ddf      0x812 build/stm32f1xx_hal.o
- .debug_str     0x00003ddf      0x60f build/stm32f1xx_hal_rcc.o
- .debug_str     0x00003ddf      0x3e4 build/stm32f1xx_hal_gpio.o
- .debug_str     0x00003ddf      0x8b7 build/stm32f1xx_hal_cortex.o
- .debug_str     0x00003ddf      0x238 build/system_stm32f1xx.o
- .debug_str     0x00003ddf      0xcd8 build/stm32f1xx_hal_uart.o
- .debug_str     0x00003ddf       0x6f build/startup_stm32f103xb.o
+.debug_str      0x00000000     0x3dcd
+ .debug_str     0x00000000     0x3dcd build/eeprom_driver.o
+                                0x3bf (size before relaxing)
+ .debug_str     0x00003dcd      0xe2c build/unity.o
+ .debug_str     0x00003dcd      0x4f0 build/unity_fixture.o
+ .debug_str     0x00003dcd      0xac8 build/target_tests.o
+ .debug_str     0x00003dcd      0x3c5 build/eeprom_test_runner.o
+ .debug_str     0x00003dcd      0x926 build/eeprom_test.o
+ .debug_str     0x00003dcd      0x6f3 build/eeprom_io.o
+ .debug_str     0x00003dcd      0x1ac build/eeprom_time.o
+ .debug_str     0x00003dcd      0x206 build/stm32f1xx_it.o
+ .debug_str     0x00003dcd      0x920 build/stm32f1xx_hal_msp.o
+ .debug_str     0x00003dcd      0xfa9 build/stm32f1xx_hal_i2c.o
+ .debug_str     0x00003dcd      0x812 build/stm32f1xx_hal.o
+ .debug_str     0x00003dcd      0x60f build/stm32f1xx_hal_rcc.o
+ .debug_str     0x00003dcd      0x3e4 build/stm32f1xx_hal_gpio.o
+ .debug_str     0x00003dcd      0x8b7 build/stm32f1xx_hal_cortex.o
+ .debug_str     0x00003dcd      0x238 build/system_stm32f1xx.o
+ .debug_str     0x00003dcd      0xcd8 build/stm32f1xx_hal_uart.o
+ .debug_str     0x00003dcd       0x6f build/startup_stm32f103xb.o
 
 .comment        0x00000000       0x44
  .comment       0x00000000       0x44 build/eeprom_driver.o
@@ -2563,36 +2561,36 @@ LOAD /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/t
  .comment       0x00000044       0x45 build/system_stm32f1xx.o
  .comment       0x00000044       0x45 build/stm32f1xx_hal_uart.o
 
-.debug_frame    0x00000000     0x2968
- .debug_frame   0x00000000      0x154 build/eeprom_driver.o
- .debug_frame   0x00000154      0x4a4 build/unity.o
- .debug_frame   0x000005f8      0x15c build/unity_fixture.o
- .debug_frame   0x00000754      0x104 build/target_tests.o
- .debug_frame   0x00000858       0x28 build/eeprom_test_runner.o
- .debug_frame   0x00000880      0x2ac build/eeprom_test.o
- .debug_frame   0x00000b2c       0x48 build/eeprom_io.o
- .debug_frame   0x00000b74       0x28 build/eeprom_time.o
- .debug_frame   0x00000b9c       0xa8 build/stm32f1xx_it.o
- .debug_frame   0x00000c44       0x98 build/stm32f1xx_hal_msp.o
- .debug_frame   0x00000cdc      0x984 build/stm32f1xx_hal_i2c.o
- .debug_frame   0x00001660      0x1cc build/stm32f1xx_hal.o
- .debug_frame   0x0000182c      0x184 build/stm32f1xx_hal_rcc.o
- .debug_frame   0x000019b0       0xe4 build/stm32f1xx_hal_gpio.o
- .debug_frame   0x00001a94      0x19c build/stm32f1xx_hal_cortex.o
- .debug_frame   0x00001c30       0x30 build/system_stm32f1xx.o
- .debug_frame   0x00001c60      0x5d4 build/stm32f1xx_hal_uart.o
- .debug_frame   0x00002234       0x2c /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-init.o)
- .debug_frame   0x00002260       0x20 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-strcmp.o)
- .debug_frame   0x00002280       0x28 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-memcpy-stub.o)
- .debug_frame   0x000022a8      0x144 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-findfp.o)
- .debug_frame   0x000023ec       0x2c /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-strstr.o)
- .debug_frame   0x00002418       0x20 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-memset.o)
- .debug_frame   0x00002438       0x38 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-reent.o)
- .debug_frame   0x00002470      0x2d4 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
- .debug_frame   0x00002744       0xf4 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(pr-support.o)
- .debug_frame   0x00002838       0x28 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-abort.o)
- .debug_frame   0x00002860       0xcc /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-signal.o)
- .debug_frame   0x0000292c       0x3c /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-signalr.o)
+.debug_frame    0x00000000     0x2948
+ .debug_frame   0x00000000      0x134 build/eeprom_driver.o
+ .debug_frame   0x00000134      0x4a4 build/unity.o
+ .debug_frame   0x000005d8      0x15c build/unity_fixture.o
+ .debug_frame   0x00000734      0x104 build/target_tests.o
+ .debug_frame   0x00000838       0x28 build/eeprom_test_runner.o
+ .debug_frame   0x00000860      0x2ac build/eeprom_test.o
+ .debug_frame   0x00000b0c       0x48 build/eeprom_io.o
+ .debug_frame   0x00000b54       0x28 build/eeprom_time.o
+ .debug_frame   0x00000b7c       0xa8 build/stm32f1xx_it.o
+ .debug_frame   0x00000c24       0x98 build/stm32f1xx_hal_msp.o
+ .debug_frame   0x00000cbc      0x984 build/stm32f1xx_hal_i2c.o
+ .debug_frame   0x00001640      0x1cc build/stm32f1xx_hal.o
+ .debug_frame   0x0000180c      0x184 build/stm32f1xx_hal_rcc.o
+ .debug_frame   0x00001990       0xe4 build/stm32f1xx_hal_gpio.o
+ .debug_frame   0x00001a74      0x19c build/stm32f1xx_hal_cortex.o
+ .debug_frame   0x00001c10       0x30 build/system_stm32f1xx.o
+ .debug_frame   0x00001c40      0x5d4 build/stm32f1xx_hal_uart.o
+ .debug_frame   0x00002214       0x2c /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-init.o)
+ .debug_frame   0x00002240       0x20 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-strcmp.o)
+ .debug_frame   0x00002260       0x28 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-memcpy-stub.o)
+ .debug_frame   0x00002288      0x144 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-findfp.o)
+ .debug_frame   0x000023cc       0x2c /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-strstr.o)
+ .debug_frame   0x000023f8       0x20 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-memset.o)
+ .debug_frame   0x00002418       0x38 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-reent.o)
+ .debug_frame   0x00002450      0x2d4 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(unwind-arm.o)
+ .debug_frame   0x00002724       0xf4 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7-m/nofp/libgcc.a(pr-support.o)
+ .debug_frame   0x00002818       0x28 /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-abort.o)
+ .debug_frame   0x00002840       0xcc /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-signal.o)
+ .debug_frame   0x0000290c       0x3c /usr/local/src/arm-gnu-toolchain-13.2/bin/../lib/gcc/arm-none-eabi/13.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-signalr.o)
 
 .debug_line_str
                 0x00000000      0x1aa
