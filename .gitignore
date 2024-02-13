@@ -1,0 +1,4 @@
+.vscode/
+build/
+EEPROM_Drive.ioc
+.mxproject
