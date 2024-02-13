@@ -1,8 +1,6 @@
 #ifndef EEPROM_DRIVER_H
 #define EEPROM_DRIVER_H
 
-// #include "stm32f1xx.h"
-// #include "stm32f1xx_hal_i2c.h"
 #include <stdint.h>
 #include "eeprom_defs.h"
 

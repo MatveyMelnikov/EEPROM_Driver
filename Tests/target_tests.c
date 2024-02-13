@@ -6,7 +6,7 @@
 
 I2C_HandleTypeDef hi2c2;
 UART_HandleTypeDef huart1;
-I2C_HandleTypeDef *i2c = &hi2c2; // For eeprom_io
+I2C_HandleTypeDef *eeprom_i2c = &hi2c2; // For eeprom_io
 
 void SystemClock_Config(void);
 static void MX_I2C2_Init(void);

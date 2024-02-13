@@ -16,7 +16,6 @@ C_INCLUDES += \
 
 C_SOURCES += \
 $(EEPROM_DRIVER)/Src/eeprom_driver.c \
-$(EEPROM_DRIVER)/Src/eeprom_isr.c \
 $(UNITY_DIR)/src/unity.c \
 $(UNITY_DIR)/extras/fixture/src/unity_fixture.c \
 $(UNITY_DIR)/extras/memory/src/unity_memory.c

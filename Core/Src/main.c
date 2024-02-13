@@ -45,7 +45,7 @@ I2C_HandleTypeDef hi2c2;
 UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
-I2C_HandleTypeDef *i2c = &hi2c2; // For eeprom_io
+I2C_HandleTypeDef *eeprom_i2c = &hi2c2; // For eeprom_io
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -99,11 +99,7 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
-  //HAL_StatusTypeDef status = EEPROM_check_link(&hi2c2);
   eeprom_status status = eeprom_check_link();
-  uint8_t data = 0x0U;
-  status |= eeprom_random_byte_read(0x5502, &data);
-  HAL_I2C_Mem_Read_DMA
 
   if (status)
     Error_Handler();

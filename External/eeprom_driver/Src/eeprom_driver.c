@@ -7,7 +7,8 @@
 
 // Static functions ----------------------------------------------------------
 
-static uint16_t invert_address(uint16_t addr)
+__attribute__((always_inline))
+inline static uint16_t invert_address(uint16_t addr)
 {
     return (addr << 8) | (addr >> 8);
 }
@@ -20,8 +21,6 @@ static uint16_t get_num_of_start_remaining_bytes(
     uint16_t size
 )
 {
-    //uint16_t result = 0x3f - (addr & 0x3f);
-    //uint16_t result = 0x40 - (addr & 0x3f);
     uint8_t a = addr & 0x3f;
     uint16_t result = 0x40 - a;
     if (result > size)
@@ -30,7 +29,8 @@ static uint16_t get_num_of_start_remaining_bytes(
     return result;
 }
 
-static eeprom_status send_page(
+__attribute__((always_inline))
+inline static eeprom_status send_page(
     const uint16_t addr,
     const uint8_t *const data,
     uint16_t data_size,
@@ -122,6 +122,9 @@ eeprom_status eeprom_page_write(
     uint16_t remaining_size = size;
     uint8_t buffer[66];
     eeprom_status status = EEPROM_OK;
+
+    if (addr + size >= EEPROM_SIZE)
+        return EEPROM_OVERFLOW;
 
     status |= send_start_bytes(
         &current_addr,

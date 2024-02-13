@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccXwcwdc.s 			page 1
+ARM GAS  /tmp/ccMkNdkM.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -31,7 +31,7 @@ ARM GAS  /tmp/ccXwcwdc.s 			page 1
    2:External/eeprom_driver/Src/eeprom_io.c **** #include "stm32f1xx.h"
    3:External/eeprom_driver/Src/eeprom_io.c **** #include "stm32f1xx_hal_i2c.h"
    4:External/eeprom_driver/Src/eeprom_io.c **** 
-   5:External/eeprom_driver/Src/eeprom_io.c **** extern I2C_HandleTypeDef *i2c;
+   5:External/eeprom_driver/Src/eeprom_io.c **** extern I2C_HandleTypeDef *eeprom_i2c;
    6:External/eeprom_driver/Src/eeprom_io.c **** 
    7:External/eeprom_driver/Src/eeprom_io.c **** eeprom_status eeprom_io_read(
    8:External/eeprom_driver/Src/eeprom_io.c ****     uint8_t *const data,
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccXwcwdc.s 			page 1
   44 0008 6421     		movs	r1, #100
   45              	.LVL1:
   46              		.loc 1 12 27 view .LVU4
-ARM GAS  /tmp/ccXwcwdc.s 			page 2
+ARM GAS  /tmp/ccMkNdkM.s 			page 2
 
 
   47 000a 0091     		str	r1, [sp]
@@ -69,7 +69,7 @@ ARM GAS  /tmp/ccXwcwdc.s 			page 1
   52 0010 0068     		ldr	r0, [r0]
   53 0012 FFF7FEFF 		bl	HAL_I2C_Master_Receive
   54              	.LVL3:
-  13:External/eeprom_driver/Src/eeprom_io.c ****         i2c, DEV_ADDR, data, data_size, EEPROM_TIMEOUT
+  13:External/eeprom_driver/Src/eeprom_io.c ****         eeprom_i2c, DEV_ADDR, data, data_size, EEPROM_TIMEOUT
   14:External/eeprom_driver/Src/eeprom_io.c ****     );
   15:External/eeprom_driver/Src/eeprom_io.c **** }
   55              		.loc 1 15 1 view .LVU6
@@ -81,7 +81,7 @@ ARM GAS  /tmp/ccXwcwdc.s 			page 1
   61              	.L4:
   62              		.align	2
   63              	.L3:
-  64 001c 00000000 		.word	i2c
+  64 001c 00000000 		.word	eeprom_i2c
   65              		.cfi_endproc
   66              	.LFE65:
   68              		.section	.text.eeprom_io_write,"ax",%progbits
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccXwcwdc.s 			page 1
   93              		.loc 1 22 27 is_stmt 0 view .LVU10
   94 0008 6421     		movs	r1, #100
   95              	.LVL5:
-ARM GAS  /tmp/ccXwcwdc.s 			page 3
+ARM GAS  /tmp/ccMkNdkM.s 			page 3
 
 
   96              		.loc 1 22 27 view .LVU11
@@ -130,7 +130,7 @@ ARM GAS  /tmp/ccXwcwdc.s 			page 1
  102 0010 0068     		ldr	r0, [r0]
  103 0012 FFF7FEFF 		bl	HAL_I2C_Master_Transmit
  104              	.LVL7:
-  23:External/eeprom_driver/Src/eeprom_io.c ****         i2c, DEV_ADDR, (uint8_t*)data, data_size, EEPROM_TIMEOUT
+  23:External/eeprom_driver/Src/eeprom_io.c ****         eeprom_i2c, DEV_ADDR, (uint8_t*)data, data_size, EEPROM_TIMEOUT
   24:External/eeprom_driver/Src/eeprom_io.c ****     );
   25:External/eeprom_driver/Src/eeprom_io.c **** }
  105              		.loc 1 25 1 view .LVU13
@@ -142,7 +142,7 @@ ARM GAS  /tmp/ccXwcwdc.s 			page 1
  111              	.L8:
  112              		.align	2
  113              	.L7:
- 114 001c 00000000 		.word	i2c
+ 114 001c 00000000 		.word	eeprom_i2c
  115              		.cfi_endproc
  116              	.LFE66:
  118              		.text
@@ -154,19 +154,19 @@ ARM GAS  /tmp/ccXwcwdc.s 			page 1
  124              		.file 6 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h"
  125              		.file 7 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h"
  126              		.file 8 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h"
-ARM GAS  /tmp/ccXwcwdc.s 			page 4
+ARM GAS  /tmp/ccMkNdkM.s 			page 4
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 eeprom_io.c
-     /tmp/ccXwcwdc.s:19     .text.eeprom_io_read:00000000 $t
-     /tmp/ccXwcwdc.s:25     .text.eeprom_io_read:00000000 eeprom_io_read
-     /tmp/ccXwcwdc.s:64     .text.eeprom_io_read:0000001c $d
-     /tmp/ccXwcwdc.s:69     .text.eeprom_io_write:00000000 $t
-     /tmp/ccXwcwdc.s:75     .text.eeprom_io_write:00000000 eeprom_io_write
-     /tmp/ccXwcwdc.s:114    .text.eeprom_io_write:0000001c $d
+     /tmp/ccMkNdkM.s:19     .text.eeprom_io_read:00000000 $t
+     /tmp/ccMkNdkM.s:25     .text.eeprom_io_read:00000000 eeprom_io_read
+     /tmp/ccMkNdkM.s:64     .text.eeprom_io_read:0000001c $d
+     /tmp/ccMkNdkM.s:69     .text.eeprom_io_write:00000000 $t
+     /tmp/ccMkNdkM.s:75     .text.eeprom_io_write:00000000 eeprom_io_write
+     /tmp/ccMkNdkM.s:114    .text.eeprom_io_write:0000001c $d
 
 UNDEFINED SYMBOLS
 HAL_I2C_Master_Receive
-i2c
+eeprom_i2c
 HAL_I2C_Master_Transmit
