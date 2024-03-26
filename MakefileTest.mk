@@ -5,7 +5,7 @@ CFLAGS = -DTEST -DUNITY_INCLUDE_CONFIG_H
 TESTS_DIR = Tests
 UNITY_DIR = External/Unity-2.5.2
 EEPROM_DRIVER = External/eeprom_driver
-FOR_TARGET = Y
+FOR_TARGET = N
 
 C_INCLUDES += \
 -I$(EEPROM_DRIVER)/Inc \

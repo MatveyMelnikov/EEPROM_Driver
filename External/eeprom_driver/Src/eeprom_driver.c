@@ -21,8 +21,7 @@ static uint16_t get_num_of_start_remaining_bytes(
     uint16_t size
 )
 {
-    uint8_t a = addr & 0x3f;
-    uint16_t result = 0x40 - a;
+    uint16_t result = 0x40 - (addr & 0x3f);
     if (result > size)
         result = size;
 
@@ -109,6 +108,27 @@ eeprom_status eeprom_byte_write(
     eeprom_delay(WRITE_CYCLE_TIMEOUT);
 
     return status;
+}
+
+// Write page-sized pre-aligned data (64 bytes). Avoids additional delays
+eeprom_status eeprom_aligned_page_write(
+    const uint16_t addr,
+    const uint8_t *const data
+)
+{
+    static uint8_t buffer[66];
+
+    if (addr & 0x3f)
+      return EEPROM_ERROR;
+
+    send_page(
+        addr,
+        data,
+        64,
+        buffer
+    );
+
+    return EEPROM_OK;
 }
 
 eeprom_status eeprom_page_write(

@@ -16,6 +16,10 @@ eeprom_status eeprom_page_write(
     const uint8_t *const data,
     uint16_t size
 );
+eeprom_status eeprom_aligned_page_write(
+    const uint16_t addr,
+    const uint8_t *const data
+);
 eeprom_status eeprom_current_address_read(
     uint8_t *const data
 );
