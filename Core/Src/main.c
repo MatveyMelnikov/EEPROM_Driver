@@ -51,10 +51,9 @@ I2C_HandleTypeDef *eeprom_i2c = &hi2c2; // For eeprom_io
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
-static void MX_I2C2_Init(void);
 static void MX_USART1_UART_Init(void);
+static void MX_I2C2_Init(void);
 /* USER CODE BEGIN PFP */
-
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -85,13 +84,12 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_I2C2_Init();
   MX_USART1_UART_Init();
+  MX_I2C2_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
@@ -103,6 +101,29 @@ int main(void)
 
   if (status)
     Error_Handler();
+
+  uint16_t addr = 0x00;
+  static uint8_t data[64];
+  static uint8_t test_data;
+
+  for (uint16_t i = 0; i < 14; i++)
+  {
+    data[0] = 10 + i;
+    // We wait until the memory is ready to write data
+    while (!eeprom_is_ready()) {}
+    eeprom_aligned_page_write(addr + 64 * i, data);
+  }
+
+  while (!eeprom_is_ready()) {}
+
+  status = eeprom_addr_write(0);
+  for (uint16_t i = 0; i < 14; i++)
+  {
+    status |= eeprom_sequential_read(data, 64);
+  }
+
+  if (status)
+    __asm("nop");
 
   while (1)
   {

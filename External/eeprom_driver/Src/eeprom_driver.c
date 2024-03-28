@@ -121,14 +121,13 @@ eeprom_status eeprom_aligned_page_write(
     if (addr & 0x3f)
       return EEPROM_ERROR;
 
-    send_page(
-        addr,
-        data,
-        64,
-        buffer
-    );
+    uint16_t inverted_addr = invert_address(addr);
 
-    return EEPROM_OK;
+    memcpy(buffer, (uint8_t*)&inverted_addr, sizeof(inverted_addr));
+    memcpy(buffer + 2, data, EEPROM_PAGE_SIZE); // first 2 bytes - addr
+    eeprom_status status = eeprom_io_write(buffer, EEPROM_PAGE_SIZE + 2);
+
+    return status;
 }
 
 eeprom_status eeprom_page_write(
@@ -230,4 +229,11 @@ eeprom_status eeprom_check_link(void)
     if (result != 0x55)
         status |= EEPROM_ERROR;
     return status;
+}
+
+bool eeprom_is_ready()
+{
+  static uint8_t test_data;
+
+  return eeprom_random_byte_read(0, &test_data) == EEPROM_OK;
 }

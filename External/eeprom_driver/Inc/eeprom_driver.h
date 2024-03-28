@@ -2,6 +2,7 @@
 #define EEPROM_DRIVER_H
 
 #include <stdint.h>
+#include <stdbool.h>
 #include "eeprom_defs.h"
 
 eeprom_status eeprom_addr_write(
@@ -32,5 +33,6 @@ eeprom_status eeprom_sequential_read(
     const uint16_t size
 );
 eeprom_status eeprom_check_link(void);
+bool eeprom_is_ready(void);
 
 #endif

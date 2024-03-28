@@ -33,6 +33,10 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN Define */
 
+#define I2C_PORT GPIOB
+#define I2C_SCL_PIN GPIO_PIN_10
+#define I2C_SDA_PIN GPIO_PIN_11
+
 /* USER CODE END Define */
 
 /* Private macro -------------------------------------------------------------*/
@@ -93,7 +97,7 @@ void HAL_I2C_MspInit(I2C_HandleTypeDef* hi2c)
   if(hi2c->Instance==I2C2)
   {
   /* USER CODE BEGIN I2C2_MspInit 0 */
-
+  
   /* USER CODE END I2C2_MspInit 0 */
 
     __HAL_RCC_GPIOB_CLK_ENABLE();
